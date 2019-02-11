@@ -10,7 +10,7 @@
 import Tile from "tile";
 
 cc.Class({
-  extends: cc.Component,
+  extends: Tile,
   properties: {
       // foo: {
       //     // ATTRIBUTES:
@@ -31,9 +31,9 @@ cc.Class({
 
   start () {
     var tile = this.node.getComponent(Tile);
-    tile.isCapture = false;
-    this.isPassable = true;
-    this.canGenEnemy = true;
+    this.__isCapture = false;
+    this.__isPassable = true;
+    this.__canGenEnemy = true;
   },
     // LIFE-CYCLE CALLBACKS:
 

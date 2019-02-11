@@ -143,8 +143,7 @@ var traverseMap = function(map, width, height, direction, callback, context){
     while ( true ) {
         var iterator = map[x][y]
         if ( iterator ) {
-            if ( context ) callback.call(context, iterator, x, y);
-            else callback(iterator);
+            callback(iterator, x, y);
         }
         var after = t.step(x,y)
         if ( !after ) return;
@@ -155,6 +154,13 @@ var traverseMap = function(map, width, height, direction, callback, context){
 
 var getPointDistance = function(p1,p2) {
     return Math.abs(p1.x - p2.x) + Math.abs(p1.y - p2.y)
+}
+
+var contains = function(array1, item) {
+  for ( var i = 0; i < array1.length; i++ ) {
+    if ( item == array1[i] ) return true;
+  }
+  return false;
 }
 
 var ATTACK_TYPE_MELEE = 1;
@@ -175,6 +181,7 @@ export default {
   getDecrementPosition,
   traverseMap,
   getPointDistance,
+  contains,
 
   ATTACK_TYPE_MELEE,
   ATTACK_TYPE_RANGE,

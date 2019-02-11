@@ -8,6 +8,21 @@
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 import Room from "Room"
+import Common from "common";
+
+const KEY_LEFT = 37;
+const KEY_UP = 38;
+const KEY_RIGHT = 39;
+const KEY_DOWN = 40;
+
+const KEY_DIRECTION = {}
+KEY_DIRECTION[KEY_UP] = 0;
+KEY_DIRECTION[KEY_RIGHT] = 1;
+KEY_DIRECTION[KEY_DOWN] = 2;
+KEY_DIRECTION[KEY_LEFT] = 3;
+
+const SWIPE_THRESHOLD_WIDTH = 20;
+const SWIPE_THRESHOLD = 50;
 
 cc.Class({
     extends: cc.Component,
@@ -56,8 +71,51 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
+    onLoad () {
+      this.node.on('touchstart', ( event ) => {
+        if (this.room.isAcceptInput()) {
+          var locationInNode = event.getLocation();
+          if (this.room.node.getBoundingBoxToWorld().contains(locationInNode)) {
+              this.prevX = locationInNode.x;
+              this.prevY = locationInNode.y;
+              return true;
+          }
+        }
+      });
+      this.node.on('touchend', ( event ) => {
+        var locationInNode = event.getLocation();
+        var currentX = locationInNode.x;
+        var currentY = locationInNode.y;
+        if ( Math.abs(currentX - this.prevX) < SWIPE_THRESHOLD_WIDTH ) {
+            if ( currentY > this.prevY + SWIPE_THRESHOLD ) {
+                this.room.shift(Common.DIRECTION_UP)
+            } else if ( currentY < this.prevY - SWIPE_THRESHOLD ) {
+                this.room.shift(Common.DIRECTION_DOWN)
+            }
+        }
+        if ( Math.abs(currentY - this.prevY) < SWIPE_THRESHOLD_WIDTH ) {
+            if ( currentX > this.prevX + SWIPE_THRESHOLD ) {
+                this.room.shift(Common.DIRECTION_RIGHT)
+            } else if ( currentX < this.prevX - SWIPE_THRESHOLD ) {
+                this.room.shift(Common.DIRECTION_LEFT)
+            }
+        }
+      });
+      cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, ( event ) => {
+        if (this.room.isAcceptInput()) {
+          var key = event.keyCode;
+          if ( KEY_DIRECTION[key] !== undefined ) {
+              this.room.shift(KEY_DIRECTION[key])
+          }
+        }
+      });
+    },
 
+    onDestroy(){
+      this.node.off('touchstart');
+      this.node.off('touchend');
+      cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN);
+    },
     start () {
 
     },

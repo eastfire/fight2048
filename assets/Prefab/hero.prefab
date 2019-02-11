@@ -112,12 +112,10 @@
     "node": {
       "__id__": 1
     },
-    "_enabled": true,
+    "_enabled": false,
     "type": "",
     "subtype": null,
-    "atlas": {
-      "__uuid__": "6070df35-e0a5-4384-b3c0-beb4f9185a61"
-    },
+    "atlas": null,
     "x": 0,
     "y": 0,
     "isMovable": true,
@@ -138,6 +136,21 @@
       "__id__": 1
     },
     "_enabled": true,
+    "type": "",
+    "subtype": null,
+    "atlas": {
+      "__uuid__": "6070df35-e0a5-4384-b3c0-beb4f9185a61"
+    },
+    "x": 0,
+    "y": 0,
+    "isMovable": true,
+    "isMergeToSelfType": true,
+    "face": 2,
+    "level": 1,
+    "isAllFaceSame": true,
+    "frozen": 0,
+    "angry": 0,
+    "animateStatus": "stand",
     "_id": ""
   },
   {

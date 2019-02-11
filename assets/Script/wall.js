@@ -10,7 +10,7 @@
 import Tile from "tile";
 
 cc.Class({
-    extends: cc.Component,
+    extends: Tile,
 
     properties: {
         // foo: {
@@ -36,9 +36,9 @@ cc.Class({
 
     start () {
       var tile = this.node.getComponent(Tile);
-      tile.isCapture = false;
-      this.isPassable = false;
-      this.canGenEnemy = false;
+      this.__isCapture = false;
+      this.__isPassable = false;
+      this.__canGenEnemy = false;
     },
 
     // update (dt) {},

@@ -35,18 +35,6 @@ cc.Class({
         visible: false,
         default: "",
       },
-      isPassable: {
-        visible: false,
-        default: true,
-      },
-      isCapture: {
-        visible: false,
-        default: false,
-      },
-      canGenEnemy: {
-        visible: false,
-        default: true,
-      },
       atlas: {
         default: null,
         type: cc.SpriteAtlas
@@ -64,7 +52,15 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     // onLoad () {},
-
+    isPassable(movable) {
+      return this.__isPassable;
+    },
+    isCapture(movable) {
+      return this.__isCapture;
+    },
+    canGenEnemy() {
+      return this.__canGenEnemy;
+    },
     start () {
       var frame = this.atlas.getSpriteFrame(this.type+"-"+this.subtype);
       this.node.getComponent(cc.Sprite).spriteFrame = frame;

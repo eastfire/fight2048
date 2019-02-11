@@ -10,7 +10,7 @@
 import Movable from "movable";
 
 cc.Class({
-    extends: cc.Component,
+    extends: Movable,
 
     properties: {
         // foo: {
@@ -31,23 +31,26 @@ cc.Class({
     },
 
     // LIFE-CYCLE CALLBACKS:
+    ctor: function () {
+      this.isAllFaceSame = false;
+      this.type = "hero";
+      this.subtype = "normal";
+      this.isMergeToSelfType = false;
+    },
 
     onLoad () {
-      var movable = this.getComponent(Movable);
-      movable.isAllFaceSame = false;
-      movable.type = "hero";
-      movable.subtype = "normal";
-      cc.loader.loadRes("Texture/Hero/hero-"+this.getComponent(Movable).subtype,
+
+      cc.loader.loadRes("Texture/Hero/hero-"+this.subtype,
         cc.SpriteAtlas,
         (err, atlas) => {
-          movable.atlas = atlas;
-          movable.setFrame();
+          this.atlas = atlas;
+          this.setFrame();
         }
       );
     },
 
     start () {
-
+      this._super();
     },
 
     // update (dt) {},
