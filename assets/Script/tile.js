@@ -66,11 +66,6 @@ cc.Class({
     // onLoad () {},
 
     start () {
-    },
-
-    setType(type,subtype){
-      this.type = type;
-      this.subtype = subtype;
       var frame = this.atlas.getSpriteFrame(this.type+"-"+this.subtype);
       this.node.getComponent(cc.Sprite).spriteFrame = frame;
     },

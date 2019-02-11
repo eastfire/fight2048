@@ -34,14 +34,12 @@ cc.Class({
     tile.isCapture = false;
     this.isPassable = true;
     this.canGenEnemy = true;
-
-    var num = Math.floor(Math.random()*12);
-    tile.setType("floor", "normal"+num );
   },
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
-
-    },
+  onLoad () {
+    var num = Math.floor(Math.random()*12);
+    this.node.getComponent(Tile).subtype = "normal"+num;
+  },
     // update (dt) {},
 });

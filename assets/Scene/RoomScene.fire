@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.4503515700799707,
-      "y": 0.4503515700799707,
+      "x": 0.4305952904929577,
+      "y": 0.4305952904929577,
       "z": 1
     },
     "_quat": {
@@ -767,6 +767,7 @@
         "__uuid__": "c9ccff07-4390-452c-94b6-52a7cc69b96f"
       }
     ],
+    "movablePrefabs": [],
     "_id": "22zB2c4gBERLKpQYMY7glx"
   },
   {
@@ -809,6 +810,7 @@
     "expLabel": {
       "__id__": 8
     },
+    "room": null,
     "_id": "8bfsS4kzVJPZjdVDorAqew"
   }
 ]

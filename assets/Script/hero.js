@@ -32,10 +32,21 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
+    onLoad () {
+      var movable = this.getComponent(Movable);
+      movable.isAllFaceSame = false;
+      movable.type = "hero";
+      movable.subtype = "normal";
+      cc.loader.loadRes("Texture/Hero/hero-"+this.getComponent(Movable).subtype,
+        cc.SpriteAtlas,
+        (err, atlas) => {
+          movable.atlas = atlas;
+          movable.setFrame();
+        }
+      );
+    },
 
     start () {
-      var movable = this.node.getComponent(Movable);
 
     },
 

@@ -86,14 +86,16 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
+    onLoad () {
+      cc.log("movable onload")
+    },
 
     start () {
-
+cc.log("movable start")
+      this.curremtFrameNumber = 0;
+      this.setFrame();
     },
-    setType(type,subtype){
-      this.type = type;
-      this.subtype = subtype;
+    setFrame(){
       var frame = this.atlas.getSpriteFrame(this.getFrameName());
       this.node.getComponent(cc.Sprite).spriteFrame = frame;
     },
@@ -101,7 +103,7 @@ cc.Class({
       if ( this.isAllFaceSame ) {
         return this.type + this.subtype?("-"+this.subtype):"";
       } else {
-        return this.type + (this.subtype?("-" + this.subtype):"") + this.face + this.animateStatus + "0"
+        return this.type + (this.subtype?("-" + this.subtype):"") + this.face + this.animateStatus + this.curremtFrameNumber
       }
     }
     // update (dt) {},

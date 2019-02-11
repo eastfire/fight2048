@@ -10,12 +10,14 @@
 import TILES from "TileSet";
 import Tile from "tile";
 
+const TILE_WIDTH = 120;
 cc.Class({
     extends: cc.Component,
 
     properties: {
 
       tilePrefabs:[cc.Prefab],
+      movablePrefabs:[cc.Prefab],
         // foo: {
         //     // ATTRIBUTES:
         //     default: null,        // The default value will be used only when the component attaching
@@ -38,12 +40,18 @@ cc.Class({
     onLoad () {
       this.initTileMap()
       this.initTiles()
+      this.initMovableMap()
       this.initHero()
-      
     },
 
     start () {
 
+    },
+    initMovableMap() {
+      this.movableMap = {};
+      for ( var i = 0; i < this.movablePrefabs.length; i++ ) {
+        this.movableMap[this.movablePrefabs[i].name] = this.movablePrefabs[i]
+      }
     },
     initTileMap() {
       this.tileMap = {};
@@ -53,7 +61,7 @@ cc.Class({
     },
     initTiles() {
       var initTiles = TILES.tiles6x3;
-      var tileWidth = 120;
+
       if ( !initTiles ) return;
       this.tiles = [];
       this.width = initTiles.length;
@@ -72,13 +80,14 @@ cc.Class({
               var tile;
               if ( this.tileMap[tileEntry.type] ) {
                 tile = cc.instantiate(this.tileMap[tileEntry.type]);
-                tile.getComponent(Tile).setType(tileEntry.type, tileEntry.subtype)
+                tile.getComponent(Tile).type = tileEntry.type;
+                tile.getComponent(Tile).subtype = tileEntry.subtype;
               }
               if ( tile ) {
                 this.node.addChild(tile);
                 tile.getComponent(Tile).x = x;
                 tile.getComponent(Tile).y = y;
-                tile.setPosition(x*tile.width-(this.width-1)*tileWidth/2, y*tile.height-(this.height-1)*tileWidth/2);
+                tile.setPosition(x*tile.width-(this.width-1)*TILE_WIDTH/2, y*tile.height-(this.height-1)*TILE_WIDTH/2);
               }
               this.tiles[x][y]=tile;
           }
@@ -87,9 +96,18 @@ cc.Class({
 
       var padding = 20;
 
-      var scaleRate = (cc.winSize.width - padding*2)/((maxSize-2)*tileWidth);
+      var scaleRate = (cc.winSize.width - padding*2)/((maxSize-2)*TILE_WIDTH);
       this.node.scaleX = scaleRate;
       this.node.scaleY = scaleRate;
-    }
+    },
+    initHero() {
+      var hero;
+      hero = cc.instantiate(this.movableMap["hero"]);
+      hero.x = 1;
+      hero.y = 2;
+      hero.setPosition(hero.x*TILE_WIDTH-(this.width-1)*TILE_WIDTH/2, hero.y*TILE_WIDTH-(this.height-1)*TILE_WIDTH/2);
+      this.node.addChild(hero);
+      this.hero = hero;
+    },
     // update (dt) {},
 });
