@@ -32,6 +32,12 @@ cc.Class({
         default: null,
         type: cc.SpriteAtlas
       },
+      x: {
+        default: 0
+      },
+      y: {
+        default: 0
+      },
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -39,7 +45,6 @@ cc.Class({
       this.isAllFaceSame = true;
       this.type = "";
       this.subtype = null;
-      this.isMovable = true;
       this.isMergeToSelfType = true;
       this.face = Common.DIRECTION_DOWN;
       this._level = 1;
@@ -58,6 +63,9 @@ cc.Class({
       this.initPosition();
       this.calculateEdgePositions();
       this.setFrame();
+    },
+    isMovable(){
+      return true;
     },
     initPosition(){
       this.positions = [{x:this.x, y:this.y}];
@@ -91,8 +99,6 @@ cc.Class({
     },
     setFrame(){
       var frame = this.atlas.getSpriteFrame(this.getFrameName());
-      cc.log(this.getFrameName())
-      cc.log(frame)
       this.node.getComponent(cc.Sprite).spriteFrame = frame;
     },
     getFrameName(){
@@ -115,6 +121,9 @@ cc.Class({
         }
         return false;
     },
+    getEdgePositionLength(direction){
+      return this.edgePositionLength[direction];
+    },
     canBeMergedBy(movable, direction){
       if ( this.isMergeToSelfType
           && movable.type === this.type
@@ -130,6 +139,8 @@ cc.Class({
     },
     faceTo(direction) {
       this.face = direction;
+    },
+    beforeMove(opt){
     },
     move(opt){
         this.face = opt.direction;
@@ -162,7 +173,7 @@ cc.Class({
             this.calculateEdgePositions();
         }
     },
-    beforeMergeTo:function(movable){
+    beforeMergeTo(movable){
     },
     mergeTo(movable){ //合并到目标movable中，自身消失
         this.beforeMergeTo(movable);

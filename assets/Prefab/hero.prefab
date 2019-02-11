@@ -24,13 +24,10 @@
       },
       {
         "__id__": 3
-      },
-      {
-        "__id__": 4
       }
     ],
     "_prefab": {
-      "__id__": 5
+      "__id__": 4
     },
     "_opacity": 255,
     "_color": {
@@ -106,29 +103,6 @@
     "_id": ""
   },
   {
-    "__type__": "c9ed0nBr65OW7+S74mBnUsH",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": false,
-    "type": "",
-    "subtype": null,
-    "atlas": null,
-    "x": 0,
-    "y": 0,
-    "isMovable": true,
-    "isMergeToSelfType": true,
-    "face": 2,
-    "level": 1,
-    "isAllFaceSame": true,
-    "frozen": 0,
-    "angry": 0,
-    "animateStatus": "stand",
-    "_id": ""
-  },
-  {
     "__type__": "d9d30Yzvx9BWoe+LR1OKG6E",
     "_name": "",
     "_objFlags": 0,
@@ -136,21 +110,9 @@
       "__id__": 1
     },
     "_enabled": true,
-    "type": "",
-    "subtype": null,
     "atlas": {
       "__uuid__": "6070df35-e0a5-4384-b3c0-beb4f9185a61"
     },
-    "x": 0,
-    "y": 0,
-    "isMovable": true,
-    "isMergeToSelfType": true,
-    "face": 2,
-    "level": 1,
-    "isAllFaceSame": true,
-    "frozen": 0,
-    "angry": 0,
-    "animateStatus": "stand",
     "_id": ""
   },
   {

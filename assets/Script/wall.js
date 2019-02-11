@@ -33,13 +33,15 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     // onLoad () {},
-
-    start () {
-      var tile = this.node.getComponent(Tile);
-      this.__isCapture = false;
+    ctor: function () {
+      this.type = "wall";
       this.__isPassable = false;
+      this.__isCapture = false;
       this.__canGenEnemy = false;
     },
+
+    // start () {
+    // },
 
     // update (dt) {},
 });

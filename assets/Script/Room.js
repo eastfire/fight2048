@@ -9,6 +9,8 @@
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 import TILES from "TileSet";
 import Tile from "tile";
+import Movable from "movable";
+import Common from "common";
 
 const TILE_WIDTH = 120;
 const STEP_TIME = 100;
@@ -47,17 +49,17 @@ cc.Class({
       this.__movables = [];
       this.initTileMap()
       this.initTiles()
-      this.initMovableMap()
+      this.initMovablePrefabMap()
       this.initHero()
     },
 
     start () {
 
     },
-    initMovableMap() {
-      this.movableMap = {};
+    initMovablePrefabMap() {
+      this.movablePrefabMap = {};
       for ( var i = 0; i < this.movablePrefabs.length; i++ ) {
-        this.movableMap[this.movablePrefabs[i].name] = this.movablePrefabs[i]
+        this.movablePrefabMap[this.movablePrefabs[i].name] = this.movablePrefabs[i]
       }
     },
     initTileMap() {
@@ -96,7 +98,7 @@ cc.Class({
                 tile.getComponent(Tile).y = y;
                 tile.setPosition(x*tile.width-(this.width-1)*TILE_WIDTH/2, y*tile.height-(this.height-1)*TILE_WIDTH/2);
               }
-              this.__tiles[x][y]=tile;
+              this.__tiles[x][y]=tile.getComponent(Tile);
           }
       }
       var maxSize = Math.max(this.width, this.height)
@@ -116,6 +118,17 @@ cc.Class({
       if ( !tiles[x] ) return null;
       return tiles[x][y];
     },
+    getMovableByPosition(x,y){
+        if ( x instanceof Object ) {
+            y = x.y;
+            x = x.x;
+        }
+        for ( var i = 0; i < this.__movables.length ; i++ ){
+          var m = this.__movables[i]
+          if ( m.x === x && m.y === y ) return m;
+        }
+        return null;
+    },
     shift(direction){
       var maxStep = this._realShift(direction);
       this.scheduleOnce(()=>{
@@ -134,19 +147,22 @@ cc.Class({
           if ( !movableMapResult[i] ) movableMapResult.push([]);
       }
       this.__movables.forEach((movable)=>{
-          movable.positions.forEach((position)=>{
-              movableMapResult[position.x][position.y] = movable;
-          });
+        movable = movable.getComponent(Movable)
+        movable.positions.forEach((position)=>{
+          movableMapResult[position.x][position.y] = movable;
+        });
       })
 
       this.__movables.forEach((movable)=>{
-          movable._step = 100; //VERY BIG NUMBER
-          movable._edgeCalculated = 0;
-          movable._shiftResult = SHIFT_RESULT_NORMAL;
-          movable._movedThisRound = false;
+        movable = movable.getComponent(Movable)
+        movable._step = 100; //VERY BIG NUMBER
+        movable._edgeCalculated = 0;
+        movable._shiftResult = SHIFT_RESULT_NORMAL;
+        movable._movedThisRound = false;
       });
 
       Common.traverseMap(movableMapResult, this.width, this.height, Common.REVERSE_DIRECTIONS[direction], (movable, x, y)=>{
+        movable = movable.getComponent(Movable)
         if ( !movable._movedThisRound ) {
           if ( movable.isEdgePosition(direction,x,y) ) {
             var stepCount = 0;
@@ -204,17 +220,17 @@ cc.Class({
 
                 //maintain movableMapResult
                 //remove old mapping
-                _.each(movable.get("positions"), function (position) {
+                movable.positions.forEach( function(position) {
                     movableMapResult[position.x][position.y] = null;
-                }, this)
+                })
                 //add new mapping
                 if ( movable._shiftResult !== SHIFT_RESULT_MERGE_AND_DISAPPEAR ) {
                     var step = movable._step;
-                    _.each(movable.get("positions"),function(position){
-                        var x = position.x + step*INCREMENTS[direction].x;
-                        var y = position.y + step*INCREMENTS[direction].y;
+                    movable.positions.forEach( function(position){
+                        var x = position.x + step*Common.INCREMENTS[direction].x;
+                        var y = position.y + step*Common.INCREMENTS[direction].y;
                         movableMapResult[x][y] = movable;
-                    },this);
+                    });
                 }
 
                 var moveOpt = {
@@ -235,10 +251,10 @@ cc.Class({
     },
     initHero() {
       var hero;
-      hero = cc.instantiate(this.movableMap["hero"]);
-      hero.x = 1;
-      hero.y = 2;
-      hero.setPosition(hero.x*TILE_WIDTH-(this.width-1)*TILE_WIDTH/2, hero.y*TILE_WIDTH-(this.height-1)*TILE_WIDTH/2);
+      hero = cc.instantiate(this.movablePrefabMap["hero"]);
+      hero.getComponent(Movable).x = 4;
+      hero.getComponent(Movable).y = 2;
+      hero.setPosition(hero.getComponent(Movable).x*TILE_WIDTH-(this.width-1)*TILE_WIDTH/2, hero.getComponent(Movable).y*TILE_WIDTH-(this.height-1)*TILE_WIDTH/2);
       this.node.addChild(hero);
       this.hero = hero;
       this.__movables.push(this.hero)

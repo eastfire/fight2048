@@ -39,7 +39,7 @@ cc.Class({
     },
 
     onLoad () {
-
+      this._super();
       cc.loader.loadRes("Texture/Hero/hero-"+this.subtype,
         cc.SpriteAtlas,
         (err, atlas) => {

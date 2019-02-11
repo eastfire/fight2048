@@ -29,17 +29,20 @@ cc.Class({
       // },
   },
 
-  start () {
-    var tile = this.node.getComponent(Tile);
-    this.__isCapture = false;
+  ctor: function () {
+    this.type = "floor";
     this.__isPassable = true;
+    this.__isCapture = false;
     this.__canGenEnemy = true;
   },
-    // LIFE-CYCLE CALLBACKS:
 
-  onLoad () {
-    var num = Math.floor(Math.random()*12);
-    this.node.getComponent(Tile).subtype = "normal"+num;
+  // start () {
+  // },
+    // LIFE-CYCLE CALLBACKS:
+  start () {
+    var num = Math.floor(Math.random()*11.9);
+    this.subtype = "normal"+num;
+    this._super();
   },
     // update (dt) {},
 });

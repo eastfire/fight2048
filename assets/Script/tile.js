@@ -49,6 +49,13 @@ cc.Class({
       },
     },
 
+    ctor: function () {
+      this.type = "";
+      this.subtype = null;
+      this.__isPassable = true;
+      this.__isCapture = false;
+      this.__canGenEnemy = false;
+    },
     // LIFE-CYCLE CALLBACKS:
 
     // onLoad () {},
