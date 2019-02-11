@@ -38,6 +38,8 @@ cc.Class({
     onLoad () {
       this.initTileMap()
       this.initTiles()
+      this.initHero()
+      
     },
 
     start () {

@@ -7,6 +7,7 @@
 // Learn life-cycle callbacks:
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
+import Common from "common";
 
 cc.Class({
     extends: cc.Component,
@@ -27,6 +28,60 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
+        type: {
+          visible: false,
+          default: "",
+        },
+        subtype: {
+          visible: false,
+          default: null,
+        },
+        atlas: {
+          default: null,
+          type: cc.SpriteAtlas
+        },
+        x: {
+          default: 0,
+          visible: false,
+        },
+        y: {
+          default: 0,
+          visible: false,
+        },
+        isMovable: {
+          default: true,
+          visible: false,
+        },
+        isMergeToSelfType: {
+          default: true,
+          visible: false,
+        },
+        face: {
+          default: Common.DIRECTION_DOWN,
+          visible: false,
+        },
+        level: {
+          default: 1,
+          visible: false,
+        },
+        isAllFaceSame: {
+          default: true,
+          visible: false
+        },
+        //status
+        frozen: {
+          default: 0,
+          visible: false,
+        },
+        angry: {
+          default: 0,
+          visible: false,
+        },
+
+        animateStatus: {
+          default: "stand",
+          visible: false,
+        },
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -36,6 +91,18 @@ cc.Class({
     start () {
 
     },
-
+    setType(type,subtype){
+      this.type = type;
+      this.subtype = subtype;
+      var frame = this.atlas.getSpriteFrame(this.getFrameName());
+      this.node.getComponent(cc.Sprite).spriteFrame = frame;
+    },
+    getFrameName(){
+      if ( this.isAllFaceSame ) {
+        return this.type + this.subtype?("-"+this.subtype):"";
+      } else {
+        return this.type + (this.subtype?("-" + this.subtype):"") + this.face + this.animateStatus + "0"
+      }
+    }
     // update (dt) {},
 });

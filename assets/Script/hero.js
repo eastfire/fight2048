@@ -7,36 +7,12 @@
 // Learn life-cycle callbacks:
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
-import Room from "Room"
+import Movable from "movable";
 
 cc.Class({
     extends: cc.Component,
 
     properties: {
-      scoreLabel:{
-        default: null,
-        type: cc.Label
-      },
-      turnLabel:{
-        default: null,
-        type: cc.Label
-      },
-      moneyLabel:{
-        default: null,
-        type: cc.Label
-      },
-      lifeLabel:{
-        default: null,
-        type: cc.Label
-      },
-      expLabel:{
-        default: null,
-        type: cc.Label
-      },
-      room: {
-        default: null,
-        type: Room
-      }
         // foo: {
         //     // ATTRIBUTES:
         //     default: null,        // The default value will be used only when the component attaching
@@ -59,14 +35,9 @@ cc.Class({
     // onLoad () {},
 
     start () {
+      var movable = this.node.getComponent(Movable);
 
     },
-
-    initRules() {
-
-    },
-
-
 
     // update (dt) {},
 });
