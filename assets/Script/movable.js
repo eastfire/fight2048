@@ -34,10 +34,12 @@ cc.Class({
         type: cc.SpriteAtlas
       },
       x: {
-        default: 0
+        default: 0,
+        visible: false
       },
       y: {
-        default: 0
+        default: 0,
+        visible: false
       },
     },
 
@@ -48,7 +50,7 @@ cc.Class({
       this.subtype = null;
       this.isMergeToSelfType = true;
       this.face = Common.DIRECTION_DOWN;
-      this._level = 1;
+      this.level = 1;
 
       this.frozen = 0;
       this.angry = 0;
@@ -106,8 +108,10 @@ cc.Class({
       })
     },
     setFrame(){
-      var frame = this.atlas.getSpriteFrame(this.getFrameName());
-      this.node.getComponent(cc.Sprite).spriteFrame = frame;
+      if ( this.atlas ) {
+        var frame = this.atlas.getSpriteFrame(this.getFrameName());
+        this.node.getComponent(cc.Sprite).spriteFrame = frame;
+      }
     },
     getFrameName(){
       if ( this.isAllFaceSame ) {
@@ -152,15 +156,16 @@ cc.Class({
     beforeMove(opt){
     },
     move(opt){
-        this.beforeMove( opt );
-        //remove old mapping
-        this.positions.forEach((position)=>{
-            Global.currentRoom.__movableMap[position.x][position.y] = null;
-        })
-        //开始移动
-        this.__moveSprite(opt);
+      this.beforeMove( opt );
+      //remove old mapping
+      this.positions.forEach((position)=>{
+          Global.currentRoom.__movableMap[position.x][position.y] = null;
+      })
+      //开始移动
+      this.__moveSprite(opt);
     },
     __moveSprite(opt){
+      cc.log("__moveSprite")
       var increment = Common.INCREMENTS[opt.direction];
       this.node.runAction(cc.sequence(
           //cc.spawn(
@@ -173,33 +178,34 @@ cc.Class({
       ))
     },
     afterMove(opt){ //called by view
-        var direction = opt.direction;
-        var step = opt.step;
-        var currentX = this.positions[0].x + step*Common.INCREMENTS[direction].x
-        var currentY = this.positions[0].y + step*Common.INCREMENTS[direction].y
-        if ( opt.result === Common.SHIFT_RESULT_MERGE_AND_DISAPPEAR ) {
-            var movable = Global.currentRoom.getMovableByPosition(currentX, currentY);
-            this.mergeTo(movable);
-        } else if ( opt.result === Common.SHIFT_RESULT_MERGE_AND_STAY ) {
-            var movable = Global.currentRoom.getMovableByPosition(currentX, currentY);
-            movable.mergeTo(this);
-        }
-        if ( opt.result !== Common.SHIFT_RESULT_MERGE_AND_DISAPPEAR ) {
-            this.positions.forEach(function(position){
-                position.x += step*Common.INCREMENTS[direction].x;
-                position.y += step*Common.INCREMENTS[direction].y;
-                Global.currentRoom.__movableMap[position.x][position.y] = this;
-            },this);
-            this.calculateEdgePositions();
-        }
+      cc.log("afterMove")
+      var direction = opt.direction;
+      var step = opt.step;
+      var currentX = this.positions[0].x + step*Common.INCREMENTS[direction].x
+      var currentY = this.positions[0].y + step*Common.INCREMENTS[direction].y
+      if ( opt.result === Common.SHIFT_RESULT_MERGE_AND_DISAPPEAR ) {
+          var movable = Global.currentRoom.getMovableByPosition(currentX, currentY);
+          this.mergeTo(movable);
+      } else if ( opt.result === Common.SHIFT_RESULT_MERGE_AND_STAY ) {
+          var movable = Global.currentRoom.getMovableByPosition(currentX, currentY);
+          movable.mergeTo(this);
+      }
+      if ( opt.result !== Common.SHIFT_RESULT_MERGE_AND_DISAPPEAR ) {
+          this.positions.forEach(function(position){
+              position.x += step*Common.INCREMENTS[direction].x;
+              position.y += step*Common.INCREMENTS[direction].y;
+              Global.currentRoom.__movableMap[position.x][position.y] = this;
+          },this);
+          this.calculateEdgePositions();
+      }
     },
     beforeMergeTo(movable){
     },
     mergeTo(movable){ //合并到目标movable中，自身消失
         this.beforeMergeTo(movable);
         movable.beforeBeMerged(this);
-        this.trigger("mergeTo",this, movable)
-        movable.trigger("beMerged",movable, this)
+        this.emit("mergeTo",this, movable)
+        movable.emit("beMerged",movable, this)
     },
     afterMergeTo(targetMovable){ //called by view
       targetMovable.afterBeMerged(this);
@@ -208,20 +214,28 @@ cc.Class({
     beforeBeMerged(movable){
     },
     afterBeMerged(movable){
-        this._level+=movable._level;
-        this.levelUp(this._level);
+        this.level+=movable.level;
+        this.levelUp(this.level);
     },
     beforeLevelUp(level){
     },
     levelUp(level){
         this.beforeLevelUp(level);
-        this.trigger("levelUp",this, level)
+        this.emit("levelUp",this, level)
     },
     afterLevelUp(level){ //called by view
     },
     onTurnStart(){
     },
     onTurnEnd(){
-    }
+    },
+    generate(){
+      this.node.setScale(0.1);
+      this.node.runAction(
+        // cc.sequence(
+          cc.scaleTo( Global.GENERATE_TIME, 1,1)
+        // )
+      )
+    },
     // update (dt) {},
 });

@@ -163,6 +163,32 @@ var contains = function(array1, item) {
   return false;
 }
 
+var random = function(min, max) {
+  if (max == null) {
+    max = min;
+    min = 0;
+  }
+  return min + Math.floor(Math.random() * (max - min + 1));
+};
+
+var sample = function(array, n) {
+  if (n == null) {
+    return array[random(array.length - 1)];
+  }
+  var sample = array.slice();
+  var length = sample.length;
+  n = Math.max(Math.min(n, length), 0);
+  var last = length - 1;
+  for (var index = 0; index < n; index++) {
+    var rand = random(index, last);
+    var temp = sample[index];
+    sample[index] = sample[rand];
+    sample[rand] = temp;
+  }
+  return sample.slice(0, n);
+};
+
+
 var ATTACK_TYPE_MELEE = 1;
 var ATTACK_TYPE_RANGE = 2;
 var ATTACK_TYPE_MAGIC = 3;
@@ -182,6 +208,8 @@ export default {
   traverseMap,
   getPointDistance,
   contains,
+  random,
+  sample,
 
   ATTACK_TYPE_MELEE,
   ATTACK_TYPE_RANGE,

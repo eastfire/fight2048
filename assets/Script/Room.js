@@ -44,14 +44,15 @@ cc.Class({
       this.__movables = [];
       this.initTileMap()
       this.initTiles()
+      this.initEvents();
       this.__genMovableMap();
       this.initMovablePrefabMap()
       this.initHero()
-
+      this.initGenEnemyStrategy();
     },
 
     start () {
-
+      this.node.emit("turn-start-complete")
     },
     initMovablePrefabMap() {
       this.movablePrefabMap = {};
@@ -86,16 +87,15 @@ cc.Class({
               var tile;
               if ( this.tileMap[tileEntry.type] ) {
                 tile = cc.instantiate(this.tileMap[tileEntry.type]);
-                tile.getComponent(Tile).type = tileEntry.type;
-                tile.getComponent(Tile).subtype = tileEntry.subtype;
-              }
-              if ( tile ) {
                 this.node.addChild(tile);
-                tile.getComponent(Tile).x = x;
-                tile.getComponent(Tile).y = y;
                 tile.setPosition(x*tile.width-(this.width-1)*Global.TILE_WIDTH/2, y*tile.height-(this.height-1)*Global.TILE_HEIGHT/2);
+                tile = tile.getComponent(Tile);
+                tile.type = tileEntry.type;
+                tile.subtype = tileEntry.subtype;
+                tile.x = x;
+                tile.y = y;
+                this.__tiles[x][y]=tile;
               }
-              this.__tiles[x][y]=tile.getComponent(Tile);
           }
       }
       var maxSize = Math.max(this.width, this.height)
@@ -125,6 +125,10 @@ cc.Class({
           return null;
       };
       return this.__movableMap[x][y]
+    },
+    getMovableByTile(tile){
+      if ( !tile ) return null;
+      return this.getMovableByPosition(tile.x, tile.y);
     },
     addMovable(movable,x,y){ //left bottom corner
       if ( x instanceof Object ) {
@@ -208,7 +212,6 @@ cc.Class({
       //FIXME
       // this.__acceptInput = false;
       var maxStep = 0;
-
       var movableMapResult = [];
       for ( var i = 0; i < this.width; i++){
           if ( !movableMapResult[i] ) movableMapResult.push([]);
@@ -279,7 +282,7 @@ cc.Class({
             movable._edgeCalculated ++;
             movable.faceTo(direction);
             if ( movable._step === 0 ){
-                movable._movedThisRound = true;                
+                movable._movedThisRound = true;
             } else if ( movable._edgeCalculated >= movable.getEdgePositionLength(direction) ) {
                 if ( movable._step > maxStep )
                     maxStep = movable._step;
@@ -316,6 +319,22 @@ cc.Class({
     checkAllMovableMoved(){
 
     },
+    initEvents(){
+      this.node.on("turn-start-complete", this.generateEnemy, this)
+      this.node.on("gen-enemy-complete", this.afterGenEnemy, this)
+      this.node.on("all-move-complete", this.heroAttack, this)
+      this.node.on("hero-attack-complete", function(){
+          if ( this.passCheckCondition() ) {
+              this.enemyAttack();
+          }
+      },this)
+      this.node.on("enemy-attack-complete", function(){
+          if ( this.passCheckCondition() ) {
+              this.turnEnd();
+          }
+      }, this)
+      this.node.on("turn-complete", this.turnStart, this)
+    },
     initHero() {
       var hero;
       hero = cc.instantiate(this.movablePrefabMap["hero"]);
@@ -323,6 +342,77 @@ cc.Class({
       var heroY = 2;
       this.hero = hero;
       this.addMovable(this.hero, heroX, heroY)
+
+      var test;
+      test = cc.instantiate(this.movablePrefabMap["slime"]);
+      this.addMovable(test, 3, 3)
+    },
+    initGenEnemyStrategy() {
+      this.genEnemyStrategy = [{
+        type:"random",
+        number: 2,
+        last: 0
+      }];
+      this.genEnemyStrategyIndex = 0;
+      this.genEnemyStrategyTurn = 0;
+      this.enemyPool = [{type:"slime",subtype:"red"}];
+      this.enemyLevelPool = [1];
+    },
+    generateOneEnemyType(){
+      return Common.sample( this.enemyPool);
+    },
+    generateOneEnemyLevel(){
+      return Common.sample( this.enemyLevelPool);
+    },
+    generateOneEnemy(x,y, typeObj, level){
+      var type = typeof typeObj === "string" ? typeObj: typeObj.type;
+      if ( this.movablePrefabMap[type] ) {
+        //FIXME : only single block enemy here
+        var enemy = cc.instantiate(this.movablePrefabMap[type]);
+        enemy.level = level;
+        enemy.type = type;
+        enemy.subtype = typeof typeObj === "string" ? null: typeObj.subtype;
+        this.addMovable(enemy, x, y);
+        enemy.getComponent(Movable).generate();
+      }
+    },
+    generateEnemy(){
+      cc.log("generateEnemy")
+      var currentGenEnemyStrategy = this.genEnemyStrategy[this.genEnemyStrategyIndex]
+      if ( currentGenEnemyStrategy ){
+        var tiles = this.filterTile(function(tile){
+            return tile.canGenEnemy() && !this.getMovableByTile(tile)
+          },
+        this)
+        var number = 0;
+        if ( typeof currentGenEnemyStrategy.number === "number" ) {
+            number = currentGenEnemyStrategy.number;
+        } else if ( typeof currentGenEnemyStrategy.number === "function" ) {
+            number = currentGenEnemyStrategy.number.call(this)
+        }
+        var candidates = [];
+        if ( currentGenEnemyStrategy.type === "random" ) {
+            candidates = Common.sample(tiles, number );
+        }
+        if ( candidates.length ) {
+          candidates.forEach(function(tile){
+              this.generateOneEnemy( tile.x, tile.y, this.generateOneEnemyType(), this.generateOneEnemyLevel());
+          },this);
+          setTimeout(this.afterGenEnemy, Common.GENERATE_TIME * 1.2);
+        } else {
+          this.afterGenEnemy();
+        }
+
+        this.genEnemyStrategyTurn++;
+        if ( currentGenEnemyStrategy.last !== 0 && this.genEnemyStrategyTurn>=currentGenEnemyStrategy.last) {
+            this.genEnemyStrategyTurn=0;
+            this.genEnemyStrategyIndex++;
+        }
+      }
+
+    },
+    afterGenEnemy(){
+      this.__acceptInput = true;
     },
     // update (dt) {},
 });
