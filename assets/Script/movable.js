@@ -204,8 +204,8 @@ cc.Class({
     mergeTo(movable){ //合并到目标movable中，自身消失
         this.beforeMergeTo(movable);
         movable.beforeBeMerged(this);
-        this.emit("mergeTo",this, movable)
-        movable.emit("beMerged",movable, this)
+        this.node.emit("mergeTo",this, movable)
+        movable.node.emit("beMerged",movable, this)
     },
     afterMergeTo(targetMovable){ //called by view
       targetMovable.afterBeMerged(this);
@@ -221,7 +221,7 @@ cc.Class({
     },
     levelUp(level){
         this.beforeLevelUp(level);
-        this.emit("levelUp",this, level)
+        this.node.emit("levelUp",this, level)
     },
     afterLevelUp(level){ //called by view
     },
