@@ -136,7 +136,7 @@ var __getTraverse = function(direction, width, height){
     ][direction];
 }
 
-var traverseMap = function(map, width, height, direction, callback, context){
+var traverseMap = function(map, width, height, direction, callback){
     var t = __getTraverse(direction, width, height);
     var x = t.start.x;
     var y = t.start.y;
@@ -186,4 +186,8 @@ export default {
   ATTACK_TYPE_MELEE,
   ATTACK_TYPE_RANGE,
   ATTACK_TYPE_MAGIC,
+
+  SHIFT_RESULT_NORMAL: 1,
+  SHIFT_RESULT_MERGE_AND_DISAPPEAR: 2,
+  SHIFT_RESULT_MERGE_AND_STAY: 3,
 }

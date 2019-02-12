@@ -11,12 +11,7 @@ import TILES from "TileSet";
 import Tile from "tile";
 import Movable from "movable";
 import Common from "common";
-
-const TILE_WIDTH = 120;
-const STEP_TIME = 100;
-const SHIFT_RESULT_NORMAL = 1;
-const SHIFT_RESULT_MERGE_AND_DISAPPEAR = 2;
-const SHIFT_RESULT_MERGE_AND_STAY = 3;
+const Global = require("global");
 
 cc.Class({
     extends: cc.Component,
@@ -98,7 +93,7 @@ cc.Class({
                 this.node.addChild(tile);
                 tile.getComponent(Tile).x = x;
                 tile.getComponent(Tile).y = y;
-                tile.setPosition(x*tile.width-(this.width-1)*TILE_WIDTH/2, y*tile.height-(this.height-1)*TILE_WIDTH/2);
+                tile.setPosition(x*tile.width-(this.width-1)*Global.TILE_WIDTH/2, y*tile.height-(this.height-1)*Global.TILE_HEIGHT/2);
               }
               this.__tiles[x][y]=tile.getComponent(Tile);
           }
@@ -107,7 +102,7 @@ cc.Class({
 
       var padding = 20;
 
-      var scaleRate = (cc.winSize.width - padding*2)/((maxSize-2)*TILE_WIDTH);
+      var scaleRate = (cc.winSize.width - padding*2)/((maxSize-2)*Global.TILE_WIDTH);
       this.node.scaleX = scaleRate;
       this.node.scaleY = scaleRate;
     },
@@ -136,15 +131,18 @@ cc.Class({
           y = x.y;
           x = x.x;
       }
+      movable.setPosition(x*Global.TILE_WIDTH-(this.width-1)*Global.TILE_WIDTH/2, y*Global.TILE_WIDTH-(this.height-1)*Global.TILE_WIDTH/2);
+      this.node.addChild(movable);
+
       movable = movable.getComponent(Movable);
+      movable.setPositionInRoom(x, y)
       movable.positions.forEach((position) => {
-          if ( !this.__movableMap[position.x+x] ) { //out of bound
-              cc.error("__movableMap x:"+(position.x+x)+" y:"+(position.x+y)+" out of bound")
+          if ( !this.__movableMap[position.x] ) { //out of bound
+              cc.error("__movableMap x:"+(position.x)+" y:"+(position.x)+" out of bound")
               return;
           };
-          this.__movableMap[position.x+x][position.y+y] = movable;
+          this.__movableMap[position.x][position.y] = movable;
       });
-      this.trigger("add:movables", this, movable, x, y);
       this.__movables.push(movable)
     },
     removeMovable(movable){
@@ -158,7 +156,6 @@ cc.Class({
       } else {
         cc.warn("Cant find movable in this.__movables");
       }
-      this.trigger("remove:movables", this, movable);
       movable.destroy();
     },
     __genMovableMap(){
@@ -202,13 +199,14 @@ cc.Class({
       var maxStep = this._realShift(direction);
       this.scheduleOnce(()=>{
         this.checkAllMovableMoved();
-      }, STEP_TIME * maxStep )
+      }, Global.STEP_TIME * maxStep )
     },
     isAcceptInput(){
       return this.__acceptInput;
     },
     _realShift(direction){
-      this.__acceptInput = false;
+      //FIXME
+      // this.__acceptInput = false;
       var maxStep = 0;
 
       var movableMapResult = [];
@@ -226,7 +224,7 @@ cc.Class({
         movable = movable.getComponent(Movable)
         movable._step = 100; //VERY BIG NUMBER
         movable._edgeCalculated = 0;
-        movable._shiftResult = SHIFT_RESULT_NORMAL;
+        movable._shiftResult = Common.SHIFT_RESULT_NORMAL;
         movable._movedThisRound = false;
       });
 
@@ -258,12 +256,12 @@ cc.Class({
                         if (targetMovable.canBeMergedBy(movable,direction)) {
                             //can merge
                             stepCount++;
-                            movable._shiftResult = SHIFT_RESULT_MERGE_AND_DISAPPEAR;
+                            movable._shiftResult = Common.SHIFT_RESULT_MERGE_AND_DISAPPEAR;
                             break;
                         } else if (targetMovable.canMergeTo(movable,direction)) {
                             //can merge
                             stepCount++;
-                            movable._shiftResult = SHIFT_RESULT_MERGE_AND_STAY;
+                            movable._shiftResult = Common.SHIFT_RESULT_MERGE_AND_STAY;
                             break;
                         } else {
                             //cant merge
@@ -279,9 +277,9 @@ cc.Class({
                 movable._step = stepCount;
             }
             movable._edgeCalculated ++;
+            movable.faceTo(direction);
             if ( movable._step === 0 ){
-                movable._movedThisRound = true;
-                movable.faceTo(direction);
+                movable._movedThisRound = true;                
             } else if ( movable._edgeCalculated >= movable.getEdgePositionLength(direction) ) {
                 if ( movable._step > maxStep )
                     maxStep = movable._step;
@@ -293,7 +291,7 @@ cc.Class({
                     movableMapResult[position.x][position.y] = null;
                 })
                 //add new mapping
-                if ( movable._shiftResult !== SHIFT_RESULT_MERGE_AND_DISAPPEAR ) {
+                if ( movable._shiftResult !== Common.SHIFT_RESULT_MERGE_AND_DISAPPEAR ) {
                     var step = movable._step;
                     movable.positions.forEach( function(position){
                         var x = position.x + step*Common.INCREMENTS[direction].x;
@@ -323,10 +321,6 @@ cc.Class({
       hero = cc.instantiate(this.movablePrefabMap["hero"]);
       var heroX = 4;
       var heroY = 2;
-      hero.getComponent(Movable).x = heroX;
-      hero.getComponent(Movable).y = heroY;
-      hero.setPosition(heroX*TILE_WIDTH-(this.width-1)*TILE_WIDTH/2, heroY*TILE_WIDTH-(this.height-1)*TILE_WIDTH/2);
-      this.node.addChild(hero);
       this.hero = hero;
       this.addMovable(this.hero, heroX, heroY)
     },

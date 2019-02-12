@@ -55,13 +55,12 @@ cc.Class({
 
       this.animateStatus = "stand";
 
-      this.initPosition();
-      this.calculateEdgePositions();
+      this.relativePositions = [{x:0, y:0}]; //如果一个movable占据多个格子，positions列出了所有占据的格子坐标, relativePositions列出了所有相对movable的坐标
     },
 
     onLoad () {
-    },
 
+    },
     start () {
       this.currentFrameNumber = 0;
       this.setFrame();
@@ -69,8 +68,15 @@ cc.Class({
     isMovable(){
       return true;
     },
-    initPosition(){
-      this.positions = [{x:this.x, y:this.y}];
+    setPositionInRoom(x,y){
+      this.x = x;
+      this.y = y;
+
+      this.positions = [];
+      this.relativePositions.forEach((position)=>{
+        this.positions.push({x: this.x+position.x, y: this.y+position.y});
+      })
+      this.calculateEdgePositions();
     },
     calculateEdgePositions(){
       this.edgePositions = [[],[],[],[]];
@@ -141,35 +147,47 @@ cc.Class({
     },
     faceTo(direction) {
       this.face = direction;
+      this.setFrame();
     },
     beforeMove(opt){
     },
     move(opt){
-        this.face = opt.direction;
         this.beforeMove( opt );
         //remove old mapping
         this.positions.forEach((position)=>{
             Global.currentRoom.__movableMap[position.x][position.y] = null;
         })
-
-        this.trigger("move",this, opt)
+        //开始移动
+        this.__moveSprite(opt);
+    },
+    __moveSprite(opt){
+      var increment = Common.INCREMENTS[opt.direction];
+      this.node.runAction(cc.sequence(
+          //cc.spawn(
+              //TODO ADD walk animation
+              cc.moveBy(Global.STEP_TIME * opt.step, increment.x * opt.step * Global.TILE_WIDTH, increment.y * opt.step * Global.TILE_HEIGHT ),
+          //),
+          cc.callFunc(function(){
+              this.afterMove(opt);
+          },this)
+      ))
     },
     afterMove(opt){ //called by view
         var direction = opt.direction;
         var step = opt.step;
-        var currentX = this.positions[0].x + step*INCREMENTS[direction].x
-        var currentY = this.positions[0].y + step*INCREMENTS[direction].y
-        if ( opt.result === SHIFT_RESULT_MERGE_AND_DISAPPEAR ) {
+        var currentX = this.positions[0].x + step*Common.INCREMENTS[direction].x
+        var currentY = this.positions[0].y + step*Common.INCREMENTS[direction].y
+        if ( opt.result === Common.SHIFT_RESULT_MERGE_AND_DISAPPEAR ) {
             var movable = Global.currentRoom.getMovableByPosition(currentX, currentY);
             this.mergeTo(movable);
-        } else if ( opt.result === SHIFT_RESULT_MERGE_AND_STAY ) {
+        } else if ( opt.result === Common.SHIFT_RESULT_MERGE_AND_STAY ) {
             var movable = Global.currentRoom.getMovableByPosition(currentX, currentY);
             movable.mergeTo(this);
         }
-        if ( opt.result !== SHIFT_RESULT_MERGE_AND_DISAPPEAR ) {
+        if ( opt.result !== Common.SHIFT_RESULT_MERGE_AND_DISAPPEAR ) {
             this.positions.forEach(function(position){
-                position.x += step*INCREMENTS[direction].x;
-                position.y += step*INCREMENTS[direction].y;
+                position.x += step*Common.INCREMENTS[direction].x;
+                position.y += step*Common.INCREMENTS[direction].y;
                 Global.currentRoom.__movableMap[position.x][position.y] = this;
             },this);
             this.calculateEdgePositions();
