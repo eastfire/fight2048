@@ -7,8 +7,9 @@
 // Learn life-cycle callbacks:
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
-import Room from "Room"
-import Common from "common";
+const Room = require("Room");
+const Common = require("common");
+const Global = require("global");
 
 const KEY_LEFT = 37;
 const KEY_UP = 38;
@@ -72,6 +73,22 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
+      this.initEvent();
+      Global.currentRoom = this.room;
+    },
+
+    onDestroy(){
+      this.node.off('touchstart');
+      this.node.off('touchend');
+      cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN);
+
+      Global.currentRoom = null;
+    },
+    start () {
+
+    },
+
+    initEvent() {
       this.node.on('touchstart', ( event ) => {
         if (this.room.isAcceptInput()) {
           var locationInNode = event.getLocation();
@@ -109,15 +126,6 @@ cc.Class({
           }
         }
       });
-    },
-
-    onDestroy(){
-      this.node.off('touchstart');
-      this.node.off('touchend');
-      cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN);
-    },
-    start () {
-
     },
 
     initRules() {

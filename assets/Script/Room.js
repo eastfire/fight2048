@@ -49,8 +49,10 @@ cc.Class({
       this.__movables = [];
       this.initTileMap()
       this.initTiles()
+      this.__genMovableMap();
       this.initMovablePrefabMap()
       this.initHero()
+
     },
 
     start () {
@@ -119,20 +121,87 @@ cc.Class({
       return tiles[x][y];
     },
     getMovableByPosition(x,y){
-        if ( x instanceof Object ) {
-            y = x.y;
-            x = x.x;
+      if ( x instanceof Object ) {
+          y = x.y;
+          x = x.x;
+      }
+      if ( !this.__movableMap[x] ) { //out of bound
+          cc.error("__movableMap x:"+x+" y:"+y+" out of bound")
+          return null;
+      };
+      return this.__movableMap[x][y]
+    },
+    addMovable(movable,x,y){ //left bottom corner
+      if ( x instanceof Object ) {
+          y = x.y;
+          x = x.x;
+      }
+      movable = movable.getComponent(Movable);
+      movable.positions.forEach((position) => {
+          if ( !this.__movableMap[position.x+x] ) { //out of bound
+              cc.error("__movableMap x:"+(position.x+x)+" y:"+(position.x+y)+" out of bound")
+              return;
+          };
+          this.__movableMap[position.x+x][position.y+y] = movable;
+      });
+      this.trigger("add:movables", this, movable, x, y);
+      this.__movables.push(movable)
+    },
+    removeMovable(movable){
+      movable.positions.forEach((position) => {
+        if ( this.__movableMap[position.x][position.y] === movable )
+          delete this.__movableMap[position.x][position.y];
+      });
+      var index = this.__movables.indexOf(movable);
+      if ( index !== -1) {
+        this.__movables.splice(index,1)
+      } else {
+        cc.warn("Cant find movable in this.__movables");
+      }
+      this.trigger("remove:movables", this, movable);
+      movable.destroy();
+    },
+    __genMovableMap(){
+      this.__movableMap = [];
+      for ( var i = 0; i < this.width; i++){
+        if ( !this.__movableMap[i] ) this.__movableMap.push([]);
+      }
+      this.__movables.forEach((movable)=>{
+        movable.positions.forEach((position)=>{
+            this.__movableMap[position.x][position.y] = movable;
+        });
+      })
+    },
+    foreachMovable(callback, context){
+      this.__movables.forEach(callback,context)
+    },
+    filterMovable(callback, context){
+      return this.__movables.filter(callback,context)
+    },
+    foreachTile(callback,context){
+      for ( var x = 0; x < this.width; x++){
+        for ( var y = 0; y < this.height; y++){
+          var tile = this.getTile(x,y);
+          if ( tile ) callback.call(context, tile)
         }
-        for ( var i = 0; i < this.__movables.length ; i++ ){
-          var m = this.__movables[i]
-          if ( m.x === x && m.y === y ) return m;
+      }
+    },
+    filterTile(callback, context){
+      var tiles = [];
+      for ( var x = 0; x < this.width; x++){
+        for ( var y = 0; y < this.height; y++){
+          var tile = this.getTile(x,y);
+          if ( tile && callback.call(context, tile) ) {
+            tiles.push(tile)
+          }
         }
-        return null;
+      }
+      return tiles;
     },
     shift(direction){
       var maxStep = this._realShift(direction);
       this.scheduleOnce(()=>{
-          this.checkAllMovableMoved();
+        this.checkAllMovableMoved();
       }, STEP_TIME * maxStep )
     },
     isAcceptInput(){
@@ -252,12 +321,14 @@ cc.Class({
     initHero() {
       var hero;
       hero = cc.instantiate(this.movablePrefabMap["hero"]);
-      hero.getComponent(Movable).x = 4;
-      hero.getComponent(Movable).y = 2;
-      hero.setPosition(hero.getComponent(Movable).x*TILE_WIDTH-(this.width-1)*TILE_WIDTH/2, hero.getComponent(Movable).y*TILE_WIDTH-(this.height-1)*TILE_WIDTH/2);
+      var heroX = 4;
+      var heroY = 2;
+      hero.getComponent(Movable).x = heroX;
+      hero.getComponent(Movable).y = heroY;
+      hero.setPosition(heroX*TILE_WIDTH-(this.width-1)*TILE_WIDTH/2, heroY*TILE_WIDTH-(this.height-1)*TILE_WIDTH/2);
       this.node.addChild(hero);
       this.hero = hero;
-      this.__movables.push(this.hero)
+      this.addMovable(this.hero, heroX, heroY)
     },
     // update (dt) {},
 });

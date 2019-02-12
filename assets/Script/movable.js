@@ -7,7 +7,8 @@
 // Learn life-cycle callbacks:
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
-import Common from "common";
+const Common = require("common");
+const Global = require("global");
 
 cc.Class({
     extends: cc.Component,
@@ -53,6 +54,9 @@ cc.Class({
       this.angry = 0;
 
       this.animateStatus = "stand";
+
+      this.initPosition();
+      this.calculateEdgePositions();
     },
 
     onLoad () {
@@ -60,8 +64,6 @@ cc.Class({
 
     start () {
       this.currentFrameNumber = 0;
-      this.initPosition();
-      this.calculateEdgePositions();
       this.setFrame();
     },
     isMovable(){
@@ -147,7 +149,7 @@ cc.Class({
         this.beforeMove( opt );
         //remove old mapping
         this.positions.forEach((position)=>{
-            currentRoom.__movableMap[position.x][position.y] = null;
+            Global.currentRoom.__movableMap[position.x][position.y] = null;
         })
 
         this.trigger("move",this, opt)
@@ -155,20 +157,20 @@ cc.Class({
     afterMove(opt){ //called by view
         var direction = opt.direction;
         var step = opt.step;
-        var currentX = this.get("positions")[0].x + step*INCREMENTS[direction].x
-        var currentY = this.get("positions")[0].y + step*INCREMENTS[direction].y
+        var currentX = this.positions[0].x + step*INCREMENTS[direction].x
+        var currentY = this.positions[0].y + step*INCREMENTS[direction].y
         if ( opt.result === SHIFT_RESULT_MERGE_AND_DISAPPEAR ) {
-            var movable = currentRoom.getMovableByPosition(currentX, currentY);
+            var movable = Global.currentRoom.getMovableByPosition(currentX, currentY);
             this.mergeTo(movable);
         } else if ( opt.result === SHIFT_RESULT_MERGE_AND_STAY ) {
-            var movable = currentRoom.getMovableByPosition(currentX, currentY);
+            var movable = Global.currentRoom.getMovableByPosition(currentX, currentY);
             movable.mergeTo(this);
         }
         if ( opt.result !== SHIFT_RESULT_MERGE_AND_DISAPPEAR ) {
-            _.each(this.get("positions"),function(position){
+            this.positions.forEach(function(position){
                 position.x += step*INCREMENTS[direction].x;
                 position.y += step*INCREMENTS[direction].y;
-                currentRoom.__movableMap[position.x][position.y] = this;
+                Global.currentRoom.__movableMap[position.x][position.y] = this;
             },this);
             this.calculateEdgePositions();
         }
@@ -183,7 +185,7 @@ cc.Class({
     },
     afterMergeTo(targetMovable){ //called by view
       targetMovable.afterBeMerged(this);
-      currentRoom.removeMovable(this);
+      Global.currentRoom.removeMovable(this);
     },
     beforeBeMerged(movable){
     },
