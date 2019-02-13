@@ -41,6 +41,14 @@ cc.Class({
         default: 0,
         visible: false
       },
+      levelLabel: {
+        default: null,
+        type: cc.Label
+      },
+      level: {
+        default: 1,
+        visible: false
+      }
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -66,6 +74,9 @@ cc.Class({
     start () {
       this.currentFrameNumber = 0;
       this.setFrame();
+    },
+    onDestroy() {
+      this.node.destroy();
     },
     isMovable(){
       return true;
@@ -202,10 +213,17 @@ cc.Class({
     beforeMergeTo(movable){
     },
     mergeTo(movable){ //合并到目标movable中，自身消失
-        this.beforeMergeTo(movable);
-        movable.beforeBeMerged(this);
-        this.node.emit("mergeTo",this, movable)
-        movable.node.emit("beMerged",movable, this)
+      this.beforeMergeTo(movable);
+      movable.beforeBeMerged(this);
+      this.node.runAction(cc.sequence(
+        cc.scaleTo((Global.STEP_TIME-0.01)/2, 1.2),
+        cc.scaleTo((Global.STEP_TIME-0.01)/2, 1),
+        cc.callFunc(function(){
+          this.afterMergeTo(movable)
+        },this)
+      ))
+
+      movable.beMerged(this)
     },
     afterMergeTo(targetMovable){ //called by view
       targetMovable.afterBeMerged(this);
@@ -213,15 +231,21 @@ cc.Class({
     },
     beforeBeMerged(movable){
     },
+    beMerged(targetMovalbe){
+
+    },
     afterBeMerged(movable){
         this.level+=movable.level;
+        this.beforeLevelUp(this.level);
         this.levelUp(this.level);
     },
     beforeLevelUp(level){
     },
     levelUp(level){
-        this.beforeLevelUp(level);
-        this.node.emit("levelUp",this, level)
+      if ( this.levelLabel ){
+        this.levelLabel.string="Lv"+level
+      }
+
     },
     afterLevelUp(level){ //called by view
     },

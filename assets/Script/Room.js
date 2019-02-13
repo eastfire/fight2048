@@ -317,7 +317,7 @@ cc.Class({
       return maxStep;
     },
     checkAllMovableMoved(){
-
+      this.node.emit("all-move-complete");
     },
     initEvents(){
       this.node.on("turn-start-complete", this.generateEnemy, this)
@@ -413,6 +413,19 @@ cc.Class({
     },
     afterGenEnemy(){
       this.__acceptInput = true;
+    },
+    heroAttack(){
+      this.hero.getComponent("hero").normalAttack();
+    },
+    getDrawPosition(x,y){
+      if ( x instanceof  Object ) {
+        y = x.y;
+        x = x.x
+      }
+      return {
+        x: (x + 0.5)* Global.TILE_WIDTH,
+        y: (y + 0.5)* Global.TILE_HEIGHT
+      }
     },
     // update (dt) {},
 });

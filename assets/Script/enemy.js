@@ -35,6 +35,14 @@ cc.Class({
       this._super();
     },
 
-    
+    beforeBeAttacked(hero) {
+
+    },
+    checkHit(hero){
+      return true;
+    },
+    dodgeAttack(hero){
+
+    },
     // update (dt) {},
 });
