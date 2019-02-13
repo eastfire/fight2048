@@ -319,6 +319,9 @@ cc.Class({
     checkAllMovableMoved(){
       this.node.emit("all-move-complete");
     },
+    passCheckCondition() {
+      return false;
+    },
     initEvents(){
       this.node.on("turn-start-complete", this.generateEnemy, this)
       this.node.on("gen-enemy-complete", this.afterGenEnemy, this)
@@ -423,8 +426,8 @@ cc.Class({
         x = x.x
       }
       return {
-        x: (x + 0.5)* Global.TILE_WIDTH,
-        y: (y + 0.5)* Global.TILE_HEIGHT
+        x: x* Global.TILE_WIDTH-(this.width-1)*Global.TILE_WIDTH/2,
+        y: y* Global.TILE_HEIGHT-(this.height-1)*Global.TILE_HEIGHT/2
       }
     },
     // update (dt) {},

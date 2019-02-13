@@ -75,6 +75,7 @@ cc.Class({
     onLoad () {
       this.initEvent();
       Global.currentRoom = this.room;
+      Global.currentRoomScene = this;
     },
 
     onDestroy(){
@@ -83,11 +84,16 @@ cc.Class({
       cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN);
 
       Global.currentRoom = null;
+      Global.currentRoomScene = null;
     },
     start () {
-
+      this.score = 0;
+      this.scoreLabel.string = this.score
     },
-
+    getScore(score) {
+      this.score += score;
+      this.scoreLabel.string = this.score
+    },
     initEvent() {
       this.node.on('touchstart', ( event ) => {
         if (this.room.isAcceptInput()) {

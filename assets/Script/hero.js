@@ -67,14 +67,14 @@ cc.Class({
           var deltaX = Global.TILE_WIDTH*increment.x/2;
           var deltaY = Global.TILE_HEIGHT*increment.y/2
           //TODO animation
-          this.runAction(cc.sequence(
-              cc.moveBy(Global.HERO_ATTACK_TIME, deltaX, deltaY ),
+          this.node.runAction(cc.sequence(
+              cc.moveBy(Global.HERO_ATTACK_TIME/2, deltaX, deltaY ),
               cc.callFunc(function(){
                 this.hitOrMiss(enemy)
               },this)
           ))
       } else {
-          Global.currentRoom.emit("hero-attack-complete",this)
+          Global.currentRoom.node.emit("hero-attack-complete",this)
       }
     },
     canAttack( enemy ){
@@ -97,18 +97,18 @@ cc.Class({
       this.beforeHit(enemy);
       if ( this.forwardAfterKill ) {
         var p = Global.currentRoom.getDrawPosition(Common.getIncrementPosition(this.positions[0], this.face));
-        this.runAction(cc.sequence(
-          cc.moveBy(Global.HERO_ATTACK_TIME, p.x, p.y ),
+        this.node.runAction(cc.sequence(
+          cc.moveTo(Global.HERO_ATTACK_TIME/2, p.x, p.y ),
           cc.callFunc(function(){
               this.afterHit(enemy);
           },this)
         ))
       } else {
         var p = Global.currentRoom.getDrawPosition(this.positions[0])
-        this.runAction(cc.sequence(
-          cc.moveTo(Global.HERO_ATTACK_TIME, p.x, p.y ),
+        this.node.runAction(cc.sequence(
+          cc.moveTo(Global.HERO_ATTACK_TIME/2, p.x, p.y ),
           cc.callFunc(function(){
-              this.afterHit(enemyModel);
+              this.afterHit(enemy);
           },this)
         ))
       }
@@ -120,6 +120,9 @@ cc.Class({
 
     },
     miss(enemy){
+
+    },
+    gainExp(exp){
 
     }
     // update (dt) {},

@@ -188,6 +188,40 @@ var sample = function(array, n) {
   return sample.slice(0, n);
 };
 
+var min = function(array, callback, context) {
+  var value = null;
+  array.forEach((item)=>{
+    var result = callback.call(context, item);
+    if ( value === null || value > result ) {
+      value = result;
+    }
+  })
+  return value;
+}
+
+var max = function(array, callback, context) {
+  var value = null;
+  array.forEach((item)=>{
+    var result = callback.call(context, item);
+    if ( value === null || value < result ) {
+      value = result;
+    }
+  })
+  return value;
+}
+
+var any = function(array, callback, context) {
+  for ( var i = 0; i < array.length; i++ ) {
+    if ( callback.call(context, array[i]) ) return true;
+  }
+  return false;
+}
+
+var getPointDistance = function(p1,p2) {
+    return Math.abs(p1.x - p2.x) + Math.abs(p1.y - p2.y)
+}
+
+
 
 var ATTACK_TYPE_MELEE = 1;
 var ATTACK_TYPE_RANGE = 2;
@@ -210,6 +244,10 @@ export default {
   contains,
   random,
   sample,
+  max,
+  min,
+  any,
+  getPointDistance,
 
   ATTACK_TYPE_MELEE,
   ATTACK_TYPE_RANGE,

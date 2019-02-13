@@ -23,7 +23,7 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
     ctor: function () {
-      
+
     },
 
     onLoad () {
@@ -34,5 +34,12 @@ cc.Class({
       this._super();
     },
 
+    getScore(){
+      return this.level;
+    },
+    
+    getExp() {
+      return this.level;
+    },
     // update (dt) {},
 });
