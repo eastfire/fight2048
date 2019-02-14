@@ -190,24 +190,28 @@ var sample = function(array, n) {
 
 var min = function(array, callback, context) {
   var value = null;
+  var valueItem = null;
   array.forEach((item)=>{
     var result = callback.call(context, item);
     if ( value === null || value > result ) {
       value = result;
+      valueItem = item;
     }
   })
-  return value;
+  return valueItem;
 }
 
 var max = function(array, callback, context) {
   var value = null;
+  var valueItem = null;
   array.forEach((item)=>{
     var result = callback.call(context, item);
     if ( value === null || value < result ) {
       value = result;
+      valueItem = item;
     }
   })
-  return value;
+  return valueItem;
 }
 
 var any = function(array, callback, context) {

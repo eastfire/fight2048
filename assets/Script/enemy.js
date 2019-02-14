@@ -71,19 +71,32 @@ cc.Class({
         var heroPosition = hero.positions[0]
         var point = this.getClosestPoint(heroPosition)
         var deltaX = Global.TILE_WIDTH*(Math.max(-1,Math.min(1,heroPosition.x - point.x)) )/4;
-        var deltaY = Global.TILE_HEIGHT*(Math.max(-1,Math.min(1,heroPosition.y - point.y)) )/4
-
-        this.node.runAction(cc.sequence(
-            cc.moveBy(Global.HERO_ATTACK_TIME/2-0.01, -deltaX, -deltaY ),
+        var deltaY = Global.TILE_HEIGHT*(Math.max(-1,Math.min(1,heroPosition.y - point.y)) )/4;
+        if ( this.willDieAfterBeHit(hero) ) {
+          this.node.runAction(cc.sequence(
+            cc.moveBy(Global.HERO_ATTACK_TIME/2, -deltaX, -deltaY ).easing(cc.easeCubicActionOut()),
             cc.callFunc(function(){
-                this.afterBeHit(hero);
+              this.afterBeAttacked(hero);
+              this.die(hero);
+            },this)
+          ))
+          this.node.runAction( cc.fadeOut(Global.HERO_ATTACK_TIME/2).easing(cc.easeCubicActionIn()) );
+        } else {
+          this.node.runAction(cc.sequence(
+            cc.moveBy(Global.HERO_ATTACK_TIME/2, -deltaX, -deltaY ).easing(cc.easeCubicActionOut()),
+            cc.callFunc(function(){
+              this.afterBeAttacked(hero);
             },this),
-            cc.moveBy(Global.HERO_ATTACK_TIME/2-0.01, deltaX, deltaY )
-        ))
+            cc.moveBy(Global.HERO_ATTACK_TIME/2, deltaX, deltaY ).easing(cc.easeCubicActionIn()),
+          ))
+        }
+    },
+    willDieAfterBeHit(hero){
+      return true;
     },
     afterBeHit(hero){  //called by view
       this.afterBeAttacked(hero);
-      this.die(hero);
+      this.die(hero)
     },
     afterBeAttacked(hero){
     },
@@ -92,7 +105,6 @@ cc.Class({
     },
     die(hero){
         this.beforeDie(hero);
-        //TODO animation
         this.afterDie(hero);
     },
     afterDie(hero){ //called by view
