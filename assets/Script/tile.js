@@ -12,21 +12,6 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        // foo: {
-        //     // ATTRIBUTES:
-        //     default: null,        // The default value will be used only when the component attaching
-        //                           // to a node for the first time
-        //     type: cc.SpriteFrame, // optional, default is typeof default
-        //     serializable: true,   // optional, default is true
-        // },
-        // bar: {
-        //     get () {
-        //         return this._bar;
-        //     },
-        //     set (value) {
-        //         this._bar = value;
-        //     }
-        // },
       type: {
         visible: false,
         default: "",
@@ -52,21 +37,21 @@ cc.Class({
     ctor: function () {
       this.type = "";
       this.subtype = null;
-      this.__isPassable = true;
-      this.__isCapture = false;
-      this.__canGenEnemy = false;
+      this._isPassable = true;
+      this._isCapture = false;
+      this._canGenEnemy = false;
     },
     // LIFE-CYCLE CALLBACKS:
 
     // onLoad () {},
     isPassable(movable) {
-      return this.__isPassable;
+      return this._isPassable;
     },
     isCapture(movable) {
-      return this.__isCapture;
+      return this._isCapture;
     },
     canGenEnemy() {
-      return this.__canGenEnemy;
+      return this._canGenEnemy;
     },
     start () {
       var frame = this.atlas.getSpriteFrame(this.type+"-"+this.subtype);

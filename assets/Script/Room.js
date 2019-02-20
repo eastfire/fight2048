@@ -10,6 +10,7 @@
 import TILES from "TileSet";
 import Tile from "tile";
 import Movable from "movable";
+import Enemy from "enemy";
 import Common from "common";
 const Global = require("global");
 
@@ -20,45 +21,39 @@ cc.Class({
 
       tilePrefabs:[cc.Prefab],
       movablePrefabs:[cc.Prefab],
-        // foo: {
-        //     // ATTRIBUTES:
-        //     default: null,        // The default value will be used only when the component attaching
-        //                           // to a node for the first time
-        //     type: cc.SpriteFrame, // optional, default is typeof default
-        //     serializable: true,   // optional, default is true
-        // },
-        // bar: {
-        //     get () {
-        //         return this._bar;
-        //     },
-        //     set (value) {
-        //         this._bar = value;
-        //     }
-        // },
+
+      turn: 1,
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-      this.__acceptInput = true;
-      this.__movables = [];
+      this._acceptInput = true;
+      this._movables = [];
       this.initTileMap()
       this.initTiles()
       this.initEvents();
-      this.__genMovableMap();
+      this.initMovableMap();
       this.initMovablePrefabMap()
       this.initHero()
       this.initGenEnemyStrategy();
-    },
-
-    start () {
-      this.node.emit("turn-start-complete")
     },
     initMovablePrefabMap() {
       this.movablePrefabMap = {};
       for ( var i = 0; i < this.movablePrefabs.length; i++ ) {
         this.movablePrefabMap[this.movablePrefabs[i].name] = this.movablePrefabs[i]
       }
+    },
+    initMovableMap(){
+      this.__movableMap = [];
+      for ( var i = 0; i < this.width; i++){
+        if ( !this.__movableMap[i] ) this.__movableMap.push([]);
+      }
+      this._movables.forEach((movable)=>{
+        movable.positions.forEach((position)=>{
+            this.__movableMap[position.x][position.y] = movable;
+        });
+      })
     },
     initTileMap() {
       this.tileMap = {};
@@ -106,6 +101,11 @@ cc.Class({
       this.node.scaleX = scaleRate;
       this.node.scaleY = scaleRate;
     },
+
+    start () {
+      this.turnStart();
+    },
+
     getTile(x,y){
       if ( x instanceof Object ) {
         y = x.y;
@@ -147,37 +147,27 @@ cc.Class({
           };
           this.__movableMap[position.x][position.y] = movable;
       });
-      this.__movables.push(movable)
+      this._movables.push(movable)
     },
     removeMovable(movable){
       movable.positions.forEach((position) => {
         if ( this.__movableMap[position.x][position.y] === movable )
           delete this.__movableMap[position.x][position.y];
       });
-      var index = this.__movables.indexOf(movable);
+      var index = this._movables.indexOf(movable);
       if ( index !== -1) {
-        this.__movables.splice(index,1)
+        this._movables.splice(index,1)
       } else {
-        cc.warn("Cant find movable in this.__movables");
+        cc.warn("Cant find movable in this._movables");
       }
       movable.destroy();
     },
-    __genMovableMap(){
-      this.__movableMap = [];
-      for ( var i = 0; i < this.width; i++){
-        if ( !this.__movableMap[i] ) this.__movableMap.push([]);
-      }
-      this.__movables.forEach((movable)=>{
-        movable.positions.forEach((position)=>{
-            this.__movableMap[position.x][position.y] = movable;
-        });
-      })
-    },
+
     foreachMovable(callback, context){
-      this.__movables.forEach(callback,context)
+      this._movables.forEach(callback,context)
     },
     filterMovable(callback, context){
-      return this.__movables.filter(callback,context)
+      return this._movables.filter(callback,context)
     },
     foreachTile(callback,context){
       for ( var x = 0; x < this.width; x++){
@@ -199,31 +189,32 @@ cc.Class({
       }
       return tiles;
     },
+
     shift(direction){
+      cc.log("PHASE:movePhase")
       var maxStep = this._realShift(direction);
       this.scheduleOnce(()=>{
         this.checkAllMovableMoved();
-      }, Global.STEP_TIME * maxStep )
+      }, Global.STEP_TIME * (maxStep+1) )
     },
     isAcceptInput(){
-      return this.__acceptInput;
+      return this._acceptInput;
     },
     _realShift(direction){
-      //FIXME
-      // this.__acceptInput = false;
+      this._acceptInput = false;
       var maxStep = 0;
       var movableMapResult = [];
       for ( var i = 0; i < this.width; i++){
           if ( !movableMapResult[i] ) movableMapResult.push([]);
       }
-      this.__movables.forEach((movable)=>{
+      this._movables.forEach((movable)=>{
         movable = movable.getComponent(Movable)
         movable.positions.forEach((position)=>{
           movableMapResult[position.x][position.y] = movable;
         });
       })
 
-      this.__movables.forEach((movable)=>{
+      this._movables.forEach((movable)=>{
         movable = movable.getComponent(Movable)
         movable._step = 100; //VERY BIG NUMBER
         movable._edgeCalculated = 0;
@@ -323,20 +314,22 @@ cc.Class({
       return false;
     },
     initEvents(){
-      this.node.on("turn-start-complete", this.generateEnemy, this)
-      this.node.on("gen-enemy-complete", this.afterGenEnemy, this)
       this.node.on("all-move-complete", this.heroAttack, this)
       this.node.on("hero-attack-complete", function(){
-          if ( this.passCheckCondition() ) {
+          if ( !this.passCheckCondition() ) {
               this.enemyAttack();
           }
       },this)
       this.node.on("enemy-attack-complete", function(){
-          if ( this.passCheckCondition() ) {
+          if ( !this.passCheckCondition() ) {
               this.turnEnd();
           }
       }, this)
-      this.node.on("turn-complete", this.turnStart, this)
+    },
+    turnEnd(){
+      cc.log("PHASE: turnEnd")
+      this.turn++;
+      this.turnStart();
     },
     initHero() {
       var hero;
@@ -361,6 +354,12 @@ cc.Class({
       this.enemyPool = [{type:"slime",subtype:"red"}];
       this.enemyLevelPool = [1];
     },
+//PHASE
+    turnStart(){
+      cc.log("PHASE:turnStart")
+      this.generateEnemy();
+    },
+
     generateOneEnemyType(){
       return Common.sample( this.enemyPool);
     },
@@ -380,7 +379,7 @@ cc.Class({
       }
     },
     generateEnemy(){
-      cc.log("generateEnemy")
+      cc.log("PHASE:generateEnemy")
       var currentGenEnemyStrategy = this.genEnemyStrategy[this.genEnemyStrategyIndex]
       if ( currentGenEnemyStrategy ){
         var tiles = this.filterTile(function(tile){
@@ -401,7 +400,9 @@ cc.Class({
           candidates.forEach(function(tile){
               this.generateOneEnemy( tile.x, tile.y, this.generateOneEnemyType(), this.generateOneEnemyLevel());
           },this);
-          setTimeout(this.afterGenEnemy, Common.GENERATE_TIME * 1.2);
+          setTimeout(()=>{
+            this.afterGenEnemy();
+          }, Global.GENERATE_TIME * 1.2*1000);
         } else {
           this.afterGenEnemy();
         }
@@ -415,7 +416,7 @@ cc.Class({
 
     },
     afterGenEnemy(){
-      this.__acceptInput = true;
+      this._acceptInput = true;
     },
     heroAttack(){
       this.hero.getComponent("hero").normalAttack();
@@ -428,6 +429,34 @@ cc.Class({
       return {
         x: x* Global.TILE_WIDTH-(this.width-1)*Global.TILE_WIDTH/2,
         y: y* Global.TILE_HEIGHT-(this.height-1)*Global.TILE_HEIGHT/2
+      }
+    },
+    enemyAttack(){
+      cc.log("PHASE:enemyAttack")
+      var attackHappened = false;
+      this.foreachMovable(function(movable){
+        var enemy = movable.getComponent("enemy")
+        if ( enemy ) {
+          if (enemy.canAttack(this.hero.getComponent("hero")) ) {
+            attackHappened = true;
+            enemy.attackHero(this.hero.getComponent("hero"));
+          } else {
+            enemy.passAttack();
+          }
+        }
+      },this)
+      if ( !attackHappened ) {
+        cc.log("PHASE:enemyAttack skipped")
+        this.node.emit("enemy-attack-complete",this)
+      }
+    },
+    checkAllEnemyAttacked(){
+      if (Common.all(this._movables,function(movable){
+        if ( movable.getComponent(Enemy) ) {
+          return movable.getComponent(Enemy).attackOver
+        } else return true;
+      },this)) {
+        this.node.emit("enemy-attack-complete",this)
       }
     },
     // update (dt) {},

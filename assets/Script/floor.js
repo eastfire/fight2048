@@ -31,9 +31,9 @@ cc.Class({
 
   ctor: function () {
     this.type = "floor";
-    this.__isPassable = true;
-    this.__isCapture = false;
-    this.__canGenEnemy = true;
+    this._isPassable = true;
+    this._isCapture = false;
+    this._canGenEnemy = true;
   },
 
   // start () {

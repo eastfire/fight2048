@@ -31,6 +31,7 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
+
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -40,6 +41,9 @@ cc.Class({
       this.subtype = "normal";
       this.isMergeToSelfType = false;
       this.forwardAfterKill = false;
+
+      this.hp = 20;
+      this.maxHp = 20;
     },
 
     onLoad () {
@@ -73,8 +77,11 @@ cc.Class({
                 this.hitOrMiss(enemy)
               },this)
           ))
+          setTimeout(()=>{
+            Global.currentRoom.node.emit("hero-attack-complete",this)
+          }, Global.HERO_ATTACK_TIME*1.1*1000)
       } else {
-          Global.currentRoom.node.emit("hero-attack-complete",this)
+        Global.currentRoom.node.emit("hero-attack-complete",this)
       }
     },
     canAttack( enemy ){
@@ -124,6 +131,50 @@ cc.Class({
     },
     gainExp(exp){
 
+    },
+    beforeBeAttacked(enemy){
+
+    },
+    checkHit(enemy){
+      return true;
+    },
+    beforeBeHit(enemy, attackPoint){
+    },
+    beHit(enemy, attackPoint){
+      this.beforeBeHit(enemy, attackPoint);
+      // this.trigger("beHit",this, enemy);
+      return attackPoint;
+    },
+    afterBeHit(enemy, attackPoint){ //called by view
+      this.afterBeAttacked(enemy)
+    },
+    blocked(attackPoint){
+      //TODO
+      // this.trigger("blocked")
+    },
+    beforeDodgeAttack(enemy){
+    },
+    dodgeAttack(enemy){
+      this.beforeDodgeAttack(enemy);
+      //TODO
+      // this.trigger("dodgeAttack",this, enemy);
+    },
+    afterDodgeAttack(enemy){
+      this.afterBeAttacked(enemy);
+    },
+    beforeTakeDamage(enemy, damage){
+    },
+    takeDamage(enemy, damage){
+        this.beforeTakeDamage(enemy, damage)
+        //TODO
+        // this.trigger("takeDamage", this, enemy, damage);
+        this.loseHp(damage);
+    },
+    loseHp(damage){
+      cc.log("lose hp " + damage)
+      this.hp = Math.max(0, this.hp - damage)
+    },
+    afterTakeDamage(enemy, damage){
     }
     // update (dt) {},
 });

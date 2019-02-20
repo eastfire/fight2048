@@ -35,9 +35,9 @@ cc.Class({
     // onLoad () {},
     ctor: function () {
       this.type = "wall";
-      this.__isPassable = false;
-      this.__isCapture = false;
-      this.__canGenEnemy = false;
+      this._isPassable = false;
+      this._isCapture = false;
+      this._canGenEnemy = false;
     },
 
     // start () {

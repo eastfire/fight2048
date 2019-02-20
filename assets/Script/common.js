@@ -221,6 +221,13 @@ var any = function(array, callback, context) {
   return false;
 }
 
+var all = function(array, callback, context) {
+  for ( var i = 0; i < array.length; i++ ) {
+    if ( !callback.call(context, array[i]) ) return false;
+  }
+  return true;
+}
+
 var getPointDistance = function(p1,p2) {
     return Math.abs(p1.x - p2.x) + Math.abs(p1.y - p2.y)
 }
@@ -251,6 +258,7 @@ export default {
   max,
   min,
   any,
+  all,
   getPointDistance,
 
   ATTACK_TYPE_MELEE,

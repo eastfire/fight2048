@@ -1,10 +1,12 @@
 export default {
   currentRoom: null,
   currentRoomScene: null,
-  
+
   STEP_TIME: 0.100,
   GENERATE_TIME: 0.300,
   HERO_ATTACK_TIME: 0.3,
+  ENEMY_ATTACK_TIME: 0.3,
+
   TILE_WIDTH: 120,
   TILE_HEIGHT: 120,
   SCORE_INFLATION_RATE: 20,

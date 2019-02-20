@@ -90,7 +90,7 @@ cc.Class({
       this.score = 0;
       this.scoreLabel.string = this.score
     },
-    getScore(score) {
+    gainScore(score) {
       this.score += score;
       this.scoreLabel.string = this.score
     },
@@ -106,22 +106,24 @@ cc.Class({
         }
       });
       this.node.on('touchend', ( event ) => {
-        var locationInNode = event.getLocation();
-        var currentX = locationInNode.x;
-        var currentY = locationInNode.y;
-        if ( Math.abs(currentX - this.prevX) < SWIPE_THRESHOLD_WIDTH ) {
-            if ( currentY > this.prevY + SWIPE_THRESHOLD ) {
-                this.room.shift(Common.DIRECTION_UP)
-            } else if ( currentY < this.prevY - SWIPE_THRESHOLD ) {
-                this.room.shift(Common.DIRECTION_DOWN)
-            }
-        }
-        if ( Math.abs(currentY - this.prevY) < SWIPE_THRESHOLD_WIDTH ) {
-            if ( currentX > this.prevX + SWIPE_THRESHOLD ) {
-                this.room.shift(Common.DIRECTION_RIGHT)
-            } else if ( currentX < this.prevX - SWIPE_THRESHOLD ) {
-                this.room.shift(Common.DIRECTION_LEFT)
-            }
+        if (this.room.isAcceptInput()) {
+          var locationInNode = event.getLocation();
+          var currentX = locationInNode.x;
+          var currentY = locationInNode.y;
+          if ( Math.abs(currentX - this.prevX) < SWIPE_THRESHOLD_WIDTH ) {
+              if ( currentY > this.prevY + SWIPE_THRESHOLD ) {
+                  this.room.shift(Common.DIRECTION_UP)
+              } else if ( currentY < this.prevY - SWIPE_THRESHOLD ) {
+                  this.room.shift(Common.DIRECTION_DOWN)
+              }
+          }
+          if ( Math.abs(currentY - this.prevY) < SWIPE_THRESHOLD_WIDTH ) {
+              if ( currentX > this.prevX + SWIPE_THRESHOLD ) {
+                  this.room.shift(Common.DIRECTION_RIGHT)
+              } else if ( currentX < this.prevX - SWIPE_THRESHOLD ) {
+                  this.room.shift(Common.DIRECTION_LEFT)
+              }
+          }
         }
       });
       cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, ( event ) => {

@@ -14,21 +14,6 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-      // foo: {
-      //     // ATTRIBUTES:
-      //     default: null,        // The default value will be used only when the component attaching
-      //                           // to a node for the first time
-      //     type: cc.SpriteFrame, // optional, default is typeof default
-      //     serializable: true,   // optional, default is true
-      // },
-      // bar: {
-      //     get () {
-      //         return this._bar;
-      //     },
-      //     set (value) {
-      //         this._bar = value;
-      //     }
-      // },
       atlas: {
         default: null,
         type: cc.SpriteAtlas
@@ -173,10 +158,9 @@ cc.Class({
           Global.currentRoom.__movableMap[position.x][position.y] = null;
       })
       //开始移动
-      this.__moveSprite(opt);
+      this._moveSprite(opt);
     },
-    __moveSprite(opt){
-      cc.log("__moveSprite")
+    _moveSprite(opt){
       var increment = Common.INCREMENTS[opt.direction];
       this.node.runAction(cc.sequence(
           //cc.spawn(
@@ -189,7 +173,6 @@ cc.Class({
       ))
     },
     afterMove(opt){ //called by view
-      cc.log("afterMove")
       var direction = opt.direction;
       var step = opt.step;
       var currentX = this.positions[0].x + step*Common.INCREMENTS[direction].x
