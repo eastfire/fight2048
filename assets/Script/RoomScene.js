@@ -58,8 +58,15 @@ cc.Class({
       room: {
         default: null,
         type: Room
+      },
+      skillLayout:{
+        default: null,
+        type: cc.Layout
+      },
+      skillPrefab: {
+        default: null,
+        type: cc.Prefab
       }
-
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -71,6 +78,7 @@ cc.Class({
       this.maxSkill = 4;
       this.initEvent();
       this.initChoicePool()
+      this.initSkill();
     },
 
     onDestroy(){
@@ -139,6 +147,18 @@ cc.Class({
       Global.currentChoicePool.push(ChoiceList.getScore({number:300}))
       Global.currentChoicePool.push(ChoiceList.getScore({number:200}))
       Global.currentChoicePool.push(ChoiceList.getScore({number:100}))
+    },
+    initSkill(){
+      this.skills={};
+    },
+    gainSkill(skillName){
+      var skillEntry = ALL_SKILL[skillName];
+      var skill = cc.instantiate(this.skillPrefab)
+      this.skillLayout.addChild()
+      this.skills[skillName] = skill;
+    },
+    getSkill(skillName){
+      return this.skills[skillName];
     }
     // update (dt) {},
 });
