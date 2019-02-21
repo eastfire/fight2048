@@ -16,9 +16,13 @@ cc.Class({
     extends: Movable,
 
     properties: {
+      levelUpDialog:{
+        type: cc.Prefab,
+        default: null
+      },
       maxHp: {
         get(){
-          return this.level*Global.HP_INFLATION_RATE;
+          return Global.BASE_HP+this.level*Global.HP_INFLATION_RATE;
         },
       },
       hp: {
@@ -28,7 +32,7 @@ cc.Class({
           if (oldValue === this.hp) {
             return;
           }
-          if ( Global.currentRoomScene.lifeLabel ) {
+          if ( Global.currentRoomScene ) {
             Global.currentRoomScene.lifeLabel.string = this.hp+"/"+this.maxHp;
           }
         }
@@ -40,7 +44,9 @@ cc.Class({
           if (oldValue === this.exp) {
             return;
           }
-          Global.currentRoomScene.expLabel.string = this.exp+"/"+this.maxExp;
+          if ( Global.currentRoomScene ) {
+            Global.currentRoomScene.expLabel.string = this.exp+"/"+this.maxExp;
+          }
         }
       },
       extraExp: 0,
@@ -56,13 +62,13 @@ cc.Class({
           //升级
           this.exp = 0;
           this.hp = this.maxHp;
-          if ( Global.currentRoomScene.levelLabel ) {
+          if ( Global.currentRoomScene ) {
             Global.currentRoomScene.levelLabel.string = this.level;
           }
-          if (Global.currentRoomScene.lifeLabel) {
+          if (Global.currentRoomScene) {
             Global.currentRoomScene.lifeLabel.string = this.hp+"/"+this.maxHp;
           }
-          if (Global.currentRoomScene.expLabel) {
+          if (Global.currentRoomScene) {
             Global.currentRoomScene.expLabel.string = this.exp+"/"+this.maxExp;
           }
         }
@@ -74,7 +80,18 @@ cc.Class({
         }
       },
       extraExp: 0,
+
+      dodge: 0,
       cunning: 0,
+      choiceNumber:{
+        get(){
+          return Global.ORIGIN_CHOICE_NUMBER
+        }
+      },
+
+      //status
+      dizzy: 0,
+
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -180,13 +197,25 @@ cc.Class({
       if ( this.exp >= this.maxExp ) {
         this.exp = 0;
         this.level++;
+        //show Level Up dialog
+        var dialog = cc.instantiate(this.levelUpDialog);
+        dialog.getComponent("levelUpDialog").initChoicePool(Global.currentChoicePool, this.choiceNumber,function(){
+          this.afterLevelupDialog();
+        },this)
+        Global.currentRoomScene.node.addChild(dialog)
         return true;
       }
       return false;
     },
     afterLevelupDialog(){
       this.gainExp(this.extraExp);
-      this.checkLevelUp();
+      if ( this.checkLevelUp() ) {
+
+      } else {
+        if ( Global.currentRoom._phase == "heroAttack") {
+          Global.currentRoom.node.emit("enemy-attack-start")
+        } //另一种phase是waitUserInput
+      }
     },
     beforeBeAttacked(enemy){
 

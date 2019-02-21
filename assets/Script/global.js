@@ -6,11 +6,13 @@ export default {
   GENERATE_TIME: 0.300,
   HERO_ATTACK_TIME: 0.3,
   ENEMY_ATTACK_TIME: 0.3,
+  DIALOG_EXIT_TIME: 0.4,
 
   TILE_WIDTH: 120,
   TILE_HEIGHT: 120,
 
-  HP_INFLATION_RATE: 20,
+  BASE_HP: 15,
+  HP_INFLATION_RATE: 5,
   SCORE_INFLATION_RATE: 20,
   EXP_INFLATION_RATE: 10,
   MONEY_INFLATION_RATE: 1,
@@ -32,4 +34,6 @@ export default {
 
   NEGATIVE_EFFECTS : ["frozen","cursed","dizzy","forbidDraw","poison","blind"],
   AUTO_DECREASE_EFFECTS : ["dizzy","forbidDraw","dispel","poison","blind","forwardSlash"], //freeze is handle in Movable
+
+  choicePool: []
 }

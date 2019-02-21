@@ -6,46 +6,32 @@ cc.Class({
     extends: Movable,
 
     properties: {
-        // foo: {
-        //     // ATTRIBUTES:
-        //     default: null,        // The default value will be used only when the component attaching
-        //                           // to a node for the first time
-        //     type: cc.SpriteFrame, // optional, default is typeof default
-        //     serializable: true,   // optional, default is true
-        // },
-        // bar: {
-        //     get () {
-        //         return this._bar;
-        //     },
-        //     set (value) {
-        //         this._bar = value;
-        //     }
-        // },
-        attackRage: {
-          get() {
-            return 1;
-          },
-          visible: false
+      attackRage: {
+        get() {
+          return 1;
         },
-        score: {
-          get() {
-            return 1;
-          },
-          visible: false
+        visible: false
+      },
+      score: {
+        get() {
+          return 1;
         },
-        exp: {
-          get() {
-            return 1;
-          },
-          visible: false
+        visible: false
+      },
+      exp: {
+        get() {
+          return 1;
         },
-        attack: {
-          get() {
-            return 1;
-          },
-          visible: false
+        visible: false
+      },
+      attack: {
+        get() {
+          return 1;
         },
+        visible: false
+      },
       attackOver: true,
+
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -121,7 +107,6 @@ cc.Class({
         this.afterDie(hero);
     },
     afterDie(hero){ //called by view
-      cc.log("movable die")
       var realExp = this.exp;
       //TODO
       // if ( this.level >= 12 && MORE_EXP_ABOVE12) {
@@ -165,7 +150,6 @@ cc.Class({
     canAttack(hero){
       //TODO other status effect
       if ( this.checkRange(hero) ) {
-        cc.log(this)
         return true;
       }
       return false

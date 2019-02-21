@@ -8,8 +8,10 @@
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 const Room = require("Room");
+const Skill = require("skill");
 const Common = require("common");
 const Global = require("global");
+const ChoiceList = require("choiceList")
 
 const KEY_LEFT = 37;
 const KEY_UP = 38;
@@ -57,21 +59,7 @@ cc.Class({
         default: null,
         type: Room
       }
-        // foo: {
-        //     // ATTRIBUTES:
-        //     default: null,        // The default value will be used only when the component attaching
-        //                           // to a node for the first time
-        //     type: cc.SpriteFrame, // optional, default is typeof default
-        //     serializable: true,   // optional, default is true
-        // },
-        // bar: {
-        //     get () {
-        //         return this._bar;
-        //     },
-        //     set (value) {
-        //         this._bar = value;
-        //     }
-        // },
+
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -79,7 +67,10 @@ cc.Class({
     onLoad () {
       Global.currentRoomScene = this;
       Global.currentRoom = this.room;
+      this.skill = [];
+      this.maxSkill = 4;
       this.initEvent();
+      this.initChoicePool()
     },
 
     onDestroy(){
@@ -143,8 +134,11 @@ cc.Class({
     initRules() {
 
     },
-
-
-
+    initChoicePool(){
+      Global.currentChoicePool = [];
+      Global.currentChoicePool.push(ChoiceList.getScore({number:300}))
+      Global.currentChoicePool.push(ChoiceList.getScore({number:200}))
+      Global.currentChoicePool.push(ChoiceList.getScore({number:100}))
+    }
     // update (dt) {},
 });

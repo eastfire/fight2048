@@ -113,6 +113,18 @@
     "atlas": {
       "__uuid__": "6070df35-e0a5-4384-b3c0-beb4f9185a61"
     },
+    "levelLabel": null,
+    "frozen": 0,
+    "_N$level": 1,
+    "levelUpDialog": {
+      "__uuid__": "a34b2794-5dbb-4d5f-a9d1-6150ac02cb45"
+    },
+    "extraExp": 0,
+    "dodge": 0,
+    "cunning": 0,
+    "dizzy": 0,
+    "_N$hp": 20,
+    "_N$exp": 0,
     "_id": ""
   },
   {

@@ -13,7 +13,7 @@ cc.Class({
         },
         exp: {
           get(){
-            return this.level*EXP_INFLATION_RATE
+            return this.level*EXP_INFLATION_RATE*10
           },
           override: true
         }

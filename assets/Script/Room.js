@@ -203,7 +203,7 @@ cc.Class({
     },
 
     shift(direction){
-      this._phase = movePhase;
+      this._phase = "movePhase";
       var maxStep = this._realShift(direction);
       this.scheduleOnce(()=>{
         this.checkAllMovableMoved();
@@ -329,8 +329,8 @@ cc.Class({
       this.node.on("all-move-complete", this.heroAttack, this)
       this.node.on("hero-attack-complete", function(){
           if ( !this.passCheckCondition() ) {
-            if ( this.hero.checkLevelUp() ) {
-              //show Level Up dialog
+            if ( this.hero.getComponent("hero").checkLevelUp() ) {
+
             } else {
               this.node.emit("enemy-attack-start")
             }
@@ -346,7 +346,7 @@ cc.Class({
       }, this)
     },
     turnEnd(){
-      this._phase = turnEnd;
+      this._phase = "turnEnd";
       this.turn++;
       this.turnStart();
     },

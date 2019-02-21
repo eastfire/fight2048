@@ -17,15 +17,7 @@ cc.Class({
       atlas: {
         default: null,
         type: cc.SpriteAtlas
-      },
-      x: {
-        default: 0,
-        visible: false
-      },
-      y: {
-        default: 0,
-        visible: false
-      },
+      },      
       levelLabel: {
         default: null,
         type: cc.Label
@@ -38,7 +30,9 @@ cc.Class({
             this.levelLabel.string="Lv"+this.level
           }
         }
-      }
+      },
+
+      frozen: 0,
     },
 
     // LIFE-CYCLE CALLBACKS:
