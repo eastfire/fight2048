@@ -45,6 +45,10 @@ cc.Class({
         default: null,
         type: cc.Label
       },
+      levelLabel:{
+        default: null,
+        type: cc.Label
+      },
       expLabel:{
         default: null,
         type: cc.Label
@@ -73,9 +77,9 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-      this.initEvent();
-      Global.currentRoom = this.room;
       Global.currentRoomScene = this;
+      Global.currentRoom = this.room;
+      this.initEvent();
     },
 
     onDestroy(){

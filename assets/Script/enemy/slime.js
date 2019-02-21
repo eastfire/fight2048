@@ -1,3 +1,4 @@
+import {EXP_INFLATION_RATE} from "global"
 const Enemy = require("enemy");
 
 cc.Class({
@@ -12,7 +13,7 @@ cc.Class({
         },
         exp: {
           get(){
-            return this.level
+            return this.level*EXP_INFLATION_RATE
           },
           override: true
         }

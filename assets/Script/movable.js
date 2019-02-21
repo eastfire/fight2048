@@ -32,7 +32,12 @@ cc.Class({
       },
       level: {
         default: 1,
-        visible: false
+        visible: false,
+        notify: function(oldValue){
+          if (this.levelLabel) {
+            this.levelLabel.string="Lv"+this.level
+          }
+        }
       }
     },
 
@@ -67,12 +72,9 @@ cc.Class({
       return true;
     },
     setPositionInRoom(x,y){
-      this.x = x;
-      this.y = y;
-
       this.positions = [];
       this.relativePositions.forEach((position)=>{
-        this.positions.push({x: this.x+position.x, y: this.y+position.y});
+        this.positions.push({x: x+position.x, y: y+position.y});
       })
       this.calculateEdgePositions();
     },
@@ -218,16 +220,12 @@ cc.Class({
 
     },
     afterBeMerged(movable){
-        this.level+=movable.level;
-        this.beforeLevelUp(this.level);
-        this.levelUp(this.level);
+      this.beforeLevelUp(this.level);
+      this.level+=movable.level;
     },
     beforeLevelUp(level){
     },
     levelUp(level){
-      if ( this.levelLabel ){
-        this.levelLabel.string="Lv"+level
-      }
 
     },
     afterLevelUp(level){ //called by view

@@ -22,7 +22,18 @@ cc.Class({
       tilePrefabs:[cc.Prefab],
       movablePrefabs:[cc.Prefab],
 
-      turn: 1,
+      turn: {
+        default: 1,
+        notify(oldValue){
+          Global.currentRoomScene.turnLabel.string = this.turn;
+        }
+      },
+      _phase: {
+        default:"turnStart",
+        notify(oldValue){
+          cc.log("PHASE:"+this._phase)
+        }
+      }
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -30,13 +41,14 @@ cc.Class({
     onLoad () {
       this._acceptInput = true;
       this._movables = [];
-      this.initTileMap()
+      this.initMovablePrefabMap()
+      this.initTilePrefabMap()
+      this.initGenEnemyStrategy();
       this.initTiles()
       this.initEvents();
       this.initMovableMap();
-      this.initMovablePrefabMap()
+
       this.initHero()
-      this.initGenEnemyStrategy();
     },
     initMovablePrefabMap() {
       this.movablePrefabMap = {};
@@ -55,7 +67,7 @@ cc.Class({
         });
       })
     },
-    initTileMap() {
+    initTilePrefabMap() {
       this.tileMap = {};
       for ( var i = 0; i < this.tilePrefabs.length; i++ ) {
         this.tileMap[this.tilePrefabs[i].name] = this.tilePrefabs[i]
@@ -191,7 +203,7 @@ cc.Class({
     },
 
     shift(direction){
-      cc.log("PHASE:movePhase")
+      this._phase = movePhase;
       var maxStep = this._realShift(direction);
       this.scheduleOnce(()=>{
         this.checkAllMovableMoved();
@@ -317,9 +329,16 @@ cc.Class({
       this.node.on("all-move-complete", this.heroAttack, this)
       this.node.on("hero-attack-complete", function(){
           if ( !this.passCheckCondition() ) {
-              this.enemyAttack();
+            if ( this.hero.checkLevelUp() ) {
+              //show Level Up dialog
+            } else {
+              this.node.emit("enemy-attack-start")
+            }
           }
       },this)
+      this.node.on("enemy-attack-start", function(){
+        this.enemyAttack();
+      }, this)
       this.node.on("enemy-attack-complete", function(){
           if ( !this.passCheckCondition() ) {
               this.turnEnd();
@@ -327,7 +346,7 @@ cc.Class({
       }, this)
     },
     turnEnd(){
-      cc.log("PHASE: turnEnd")
+      this._phase = turnEnd;
       this.turn++;
       this.turnStart();
     },
@@ -356,7 +375,7 @@ cc.Class({
     },
 //PHASE
     turnStart(){
-      cc.log("PHASE:turnStart")
+      this._phase = "turnStart"
       this.generateEnemy();
     },
 
@@ -379,7 +398,7 @@ cc.Class({
       }
     },
     generateEnemy(){
-      cc.log("PHASE:generateEnemy")
+      this._phase = "generateEnemy"
       var currentGenEnemyStrategy = this.genEnemyStrategy[this.genEnemyStrategyIndex]
       if ( currentGenEnemyStrategy ){
         var tiles = this.filterTile(function(tile){
@@ -416,9 +435,11 @@ cc.Class({
 
     },
     afterGenEnemy(){
+      this._phase="waitUserInput";
       this._acceptInput = true;
     },
     heroAttack(){
+      this._phase = "heroAttack"
       this.hero.getComponent("hero").normalAttack();
     },
     getDrawPosition(x,y){
@@ -432,8 +453,9 @@ cc.Class({
       }
     },
     enemyAttack(){
-      cc.log("PHASE:enemyAttack")
+      this._phase = "enemyAttack"
       var attackHappened = false;
+
       this.foreachMovable(function(movable){
         var enemy = movable.getComponent("enemy")
         if ( enemy ) {

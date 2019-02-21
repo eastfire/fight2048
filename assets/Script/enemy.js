@@ -121,39 +121,40 @@ cc.Class({
         this.afterDie(hero);
     },
     afterDie(hero){ //called by view
-        var realExp = this.exp;
-        //TODO
-        // if ( this.level >= 12 && MORE_EXP_ABOVE12) {
-        //     realExp = Math.round(realExp*1.5);
-        // } else if ( this.get("level") <= 6 && LESS_EXP_BELOW6) {
-        //     realExp = Math.round(realExp*0.5);
-        // }
-        hero.gainExp(realExp);
-        Global.currentRoomScene.gainScore(this.score);
+      cc.log("movable die")
+      var realExp = this.exp;
+      //TODO
+      // if ( this.level >= 12 && MORE_EXP_ABOVE12) {
+      //     realExp = Math.round(realExp*1.5);
+      // } else if ( this.get("level") <= 6 && LESS_EXP_BELOW6) {
+      //     realExp = Math.round(realExp*0.5);
+      // }
+      hero.gainExp(realExp);
+      Global.currentRoomScene.gainScore(this.score);
 
-        // currentRoom.logEnemyDie(this);
-        var enemyLevel = this.level;
-        var dropItem = false;
-        var p = null;
-        if ( this.__dropItemPredetermined ) {
-            if ( this.__willDropItem ) {
-                dropItem = true;
-                p = this.positions[0];
-            }
-        } else {
-            Common.any(this.positions, function (position) { //generate one item is enough ?
-                if (this.checkDropItem()) {
-                    dropItem = true;
-                    p = position;
-                    return true;
-                }
-            }, this);
+      // currentRoom.logEnemyDie(this);
+      var enemyLevel = this.level;
+      var dropItem = false;
+      var p = null;
+      if ( this.__dropItemPredetermined ) {
+        if ( this.__willDropItem ) {
+            dropItem = true;
+            p = this.positions[0];
         }
+      } else {
+        Common.any(this.positions, function (position) { //generate one item is enough ?
+          if (this.checkDropItem()) {
+              dropItem = true;
+              p = position;
+              return true;
+          }
+        }, this);
+      }
 
-        Global.currentRoom.removeMovable(this);
-        if ( dropItem ) {
-            Global.currentRoom.generateOneItem(p, enemyLevel)
-        }
+      Global.currentRoom.removeMovable(this);
+      if ( dropItem ) {
+        Global.currentRoom.generateOneItem(p, enemyLevel)
+      }
     },
     checkDropItem(){
       return Math.random() < this.getDropRate();
@@ -164,6 +165,7 @@ cc.Class({
     canAttack(hero){
       //TODO other status effect
       if ( this.checkRange(hero) ) {
+        cc.log(this)
         return true;
       }
       return false

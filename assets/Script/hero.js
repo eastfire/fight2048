@@ -16,22 +16,65 @@ cc.Class({
     extends: Movable,
 
     properties: {
-        // foo: {
-        //     // ATTRIBUTES:
-        //     default: null,        // The default value will be used only when the component attaching
-        //                           // to a node for the first time
-        //     type: cc.SpriteFrame, // optional, default is typeof default
-        //     serializable: true,   // optional, default is true
-        // },
-        // bar: {
-        //     get () {
-        //         return this._bar;
-        //     },
-        //     set (value) {
-        //         this._bar = value;
-        //     }
-        // },
-
+      maxHp: {
+        get(){
+          return this.level*Global.HP_INFLATION_RATE;
+        },
+      },
+      hp: {
+        default: Global.HP_INFLATION_RATE,
+        notify(oldValue) {
+            //减少无效赋值
+          if (oldValue === this.hp) {
+            return;
+          }
+          if ( Global.currentRoomScene.lifeLabel ) {
+            Global.currentRoomScene.lifeLabel.string = this.hp+"/"+this.maxHp;
+          }
+        }
+      },
+      exp: {
+        default: 0,
+        notify(oldValue) {
+            //减少无效赋值
+          if (oldValue === this.exp) {
+            return;
+          }
+          Global.currentRoomScene.expLabel.string = this.exp+"/"+this.maxExp;
+        }
+      },
+      extraExp: 0,
+      level: {
+        override: true,
+        default: 1,
+        visible: false,
+        notify(oldValue){
+            //减少无效赋值
+          if (oldValue === this.exp) {
+            return;
+          }
+          //升级
+          this.exp = 0;
+          this.hp = this.maxHp;
+          if ( Global.currentRoomScene.levelLabel ) {
+            Global.currentRoomScene.levelLabel.string = this.level;
+          }
+          if (Global.currentRoomScene.lifeLabel) {
+            Global.currentRoomScene.lifeLabel.string = this.hp+"/"+this.maxHp;
+          }
+          if (Global.currentRoomScene.expLabel) {
+            Global.currentRoomScene.expLabel.string = this.exp+"/"+this.maxExp;
+          }
+        }
+      },
+      maxExp: {
+        get() {
+          var lv = this.level;
+          return Math.round((Math.log10(lv) * lv * 16.61 + 10) * (1 - (Global.CUNNING_EFFECT / 100) * this.cunning) * Global.EXP_INFLATION_RATE);
+        }
+      },
+      extraExp: 0,
+      cunning: 0,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -41,9 +84,6 @@ cc.Class({
       this.subtype = "normal";
       this.isMergeToSelfType = false;
       this.forwardAfterKill = false;
-
-      this.hp = 20;
-      this.maxHp = 20;
     },
 
     onLoad () {
@@ -77,10 +117,8 @@ cc.Class({
                 this.hitOrMiss(enemy)
               },this)
           ))
-          setTimeout(()=>{
-            Global.currentRoom.node.emit("hero-attack-complete",this)
-          }, Global.HERO_ATTACK_TIME*1.1*1000)
       } else {
+        cc.log("PHASE:heroAttack skipped")
         Global.currentRoom.node.emit("hero-attack-complete",this)
       }
     },
@@ -105,7 +143,7 @@ cc.Class({
       if ( this.forwardAfterKill ) {
         var p = Global.currentRoom.getDrawPosition(Common.getIncrementPosition(this.positions[0], this.face));
         this.node.runAction(cc.sequence(
-          cc.moveTo(Global.HERO_ATTACK_TIME/2, p.x, p.y ),
+          cc.moveTo(Global.HERO_ATTACK_TIME/2+0.1, p.x, p.y ), //留时间给enemy做特效
           cc.callFunc(function(){
               this.afterHit(enemy);
           },this)
@@ -113,7 +151,7 @@ cc.Class({
       } else {
         var p = Global.currentRoom.getDrawPosition(this.positions[0])
         this.node.runAction(cc.sequence(
-          cc.moveTo(Global.HERO_ATTACK_TIME/2, p.x, p.y ),
+          cc.moveTo(Global.HERO_ATTACK_TIME/2+0.1, p.x, p.y ), //留时间给enemy做特效
           cc.callFunc(function(){
               this.afterHit(enemy);
           },this)
@@ -124,13 +162,31 @@ cc.Class({
 
     },
     afterHit(enemy){
-
+      cc.log("hero-attack-complete")
+      Global.currentRoom.node.emit("hero-attack-complete",this)
     },
     miss(enemy){
 
     },
     gainExp(exp){
-
+      if ( exp+this.exp <= this.maxExp ) {
+        this.exp += exp;
+      } else {
+        this.extraExp = exp - ( this.maxExp - this.exp );
+        this.exp = this.maxExp;
+      }
+    },
+    checkLevelUp(){
+      if ( this.exp >= this.maxExp ) {
+        this.exp = 0;
+        this.level++;
+        return true;
+      }
+      return false;
+    },
+    afterLevelupDialog(){
+      this.gainExp(this.extraExp);
+      this.checkLevelUp();
     },
     beforeBeAttacked(enemy){
 
@@ -142,22 +198,20 @@ cc.Class({
     },
     beHit(enemy, attackPoint){
       this.beforeBeHit(enemy, attackPoint);
-      // this.trigger("beHit",this, enemy);
       return attackPoint;
     },
     afterBeHit(enemy, attackPoint){ //called by view
       this.afterBeAttacked(enemy)
     },
     blocked(attackPoint){
-      //TODO
-      // this.trigger("blocked")
+      //TODO block effect
     },
     beforeDodgeAttack(enemy){
     },
     dodgeAttack(enemy){
       this.beforeDodgeAttack(enemy);
-      //TODO
-      // this.trigger("dodgeAttack",this, enemy);
+      //TODO dodge effect
+
     },
     afterDodgeAttack(enemy){
       this.afterBeAttacked(enemy);
@@ -166,8 +220,7 @@ cc.Class({
     },
     takeDamage(enemy, damage){
         this.beforeTakeDamage(enemy, damage)
-        //TODO
-        // this.trigger("takeDamage", this, enemy, damage);
+        //TODO damage effect
         this.loseHp(damage);
     },
     loseHp(damage){
@@ -175,6 +228,6 @@ cc.Class({
       this.hp = Math.max(0, this.hp - damage)
     },
     afterTakeDamage(enemy, damage){
-    }
+    },
     // update (dt) {},
 });
