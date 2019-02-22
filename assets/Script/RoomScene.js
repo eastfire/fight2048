@@ -137,6 +137,11 @@ cc.Class({
           }
         }
       });
+      this.room.node.on("PHASE:turnStart",()=>{
+        for ( var i in this.skills ) {
+          this.skills[i].getComponent("skill").onTurnStart()
+        }
+      })
     },
 
     initRules() {
@@ -150,12 +155,20 @@ cc.Class({
     },
     initSkill(){
       this.skills={};
+      this.gainSkill("healSkill")
+      this.gainSkill("healSkill")
+      this.gainSkill("healSkill")
+      this.gainSkill("healSkill")
     },
     gainSkill(skillName){
-      var skillEntry = ALL_SKILL[skillName];
+      // var skillEntry = ALL_SKILL[skillName];
       var skill = cc.instantiate(this.skillPrefab)
-      this.skillLayout.addChild()
+      skill.addComponent(skillName)
+      skill.y = 0;
+      skill.x = 0;
+      this.skillLayout.node.addChild(skill)
       this.skills[skillName] = skill;
+
     },
     getSkill(skillName){
       return this.skills[skillName];

@@ -32,6 +32,7 @@ cc.Class({
         default:"turnStart",
         notify(oldValue){
           cc.log("PHASE:"+this._phase)
+          this.node.emit("PHASE:"+this._phase)
         }
       }
     },
@@ -48,7 +49,9 @@ cc.Class({
       this.initEvents();
       this.initMovableMap();
 
-      this.initHero()
+      this.initHero();
+
+      this.scheduleOnce(this.turnStart, 0.5);
     },
     initMovablePrefabMap() {
       this.movablePrefabMap = {};
@@ -115,7 +118,7 @@ cc.Class({
     },
 
     start () {
-      this.turnStart();
+
     },
 
     getTile(x,y){
