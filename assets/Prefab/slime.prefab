@@ -53,8 +53,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 219,
-      "y": 370,
+      "x": 236,
+      "y": 375,
       "z": 0
     },
     "_scale": {
@@ -179,7 +179,7 @@
     "sync": false
   },
   {
-    "__type__": "cc.Sprite",
+    "__type__": "dragonBones.ArmatureDisplay",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -188,22 +188,20 @@
     "_enabled": true,
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "af3e2849-af29-4979-bddf-d86bc29aaecd"
+    "_armatureName": "Armature",
+    "_animationName": "stand",
+    "playTimes": -1,
+    "premultipliedAlpha": false,
+    "_N$dragonAsset": {
+      "__uuid__": "6f31ac59-2717-4e61-a3dc-d966e9887e1d"
     },
-    "_type": 0,
-    "_sizeMode": 1,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
+    "_N$dragonAtlasAsset": {
+      "__uuid__": "e0c72bc5-2889-44dd-bbcb-877d3c993894"
     },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_state": 0,
-    "_atlas": null,
+    "_N$_defaultArmatureIndex": 0,
+    "_N$_animationIndex": 1,
+    "_N$timeScale": 1,
+    "_N$debugBones": false,
     "_id": ""
   },
   {
