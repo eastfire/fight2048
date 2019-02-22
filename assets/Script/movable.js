@@ -194,9 +194,10 @@ cc.Class({
     },
     mergeTo(movable){ //合并到目标movable中，自身消失
       this.beforeMergeTo(movable);
+      this.node.runAction(cc.fadeOut(Global.STEP_TIME/2))
       movable.beforeBeMerged(this);
       movable.node.runAction(cc.sequence(
-        cc.scaleTo((Global.STEP_TIME-0.01)/2, 1.2),
+        cc.scaleTo((Global.STEP_TIME-0.01)/2, 1.4),
         cc.scaleTo((Global.STEP_TIME-0.01)/2, 1),
         cc.callFunc(function(){
           this.afterMergeTo(movable)

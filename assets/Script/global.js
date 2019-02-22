@@ -2,7 +2,7 @@ export default {
   currentRoom: null,
   currentRoomScene: null,
 
-  STEP_TIME: 0.100,
+  STEP_TIME: 0.14,
   GENERATE_TIME: 0.300,
   HERO_ATTACK_TIME: 0.3,
   ENEMY_ATTACK_TIME: 0.3,
