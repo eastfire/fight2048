@@ -9,22 +9,30 @@ cc.Class({
   properties: {
     level: 1,
     maxLevel: 5,
+    skillName: null,
     displayName: "",
     desc: "",
-    levelUpDesc: "",
-    coolDown: 5,
+    coolDown: {
+      default: 5,
+      notify(oldValue){
+        if ( oldValue == this.coolDown ) return;
+        this.countDownIcon.fillRange = (this.coolDown - this.countDown)/this.coolDown;
+      }
+    },
     icon:"",
     countDown: {
       default: 0,
       notify(oldValue){
         if ( oldValue == this.countDown ) return;
         this.countDownLabel.string = this.countDown == 0 ? "":this.countDown;
+        this.countDownIcon.fillRange = (this.coolDown - this.countDown)/this.coolDown;
       }
     },
   },
+  onLoad(){
 
+  },
   start() {
-    cc.log(this.displayName)
     cc.find("skillName",this.node).getComponent(cc.Label).string = this.displayName;
     var iconLayout = cc.find("iconLayout",this.node);
     this.iconBg = cc.find("iconBg",iconLayout).getComponent(cc.Sprite);
@@ -32,7 +40,7 @@ cc.Class({
     this.countDownLabel = cc.find("countDown",iconLayout).getComponent(cc.Label);
 
     this.countDownLabel.string = "";
-    cc.loader.loadRes("Texture/Skill/"+this.icon, cc.SpriteFrame, (err, spriteFrame) => {
+    cc.loader.loadRes("Texture/"+this.icon, cc.SpriteFrame, (err, spriteFrame) => {
       this.iconBg.spriteFrame = this.countDownIcon.spriteFrame = spriteFrame;
     });
     this.iconBg.node.on('touchend', this.useSkill, this)
@@ -43,9 +51,12 @@ cc.Class({
   levelUp(level) {
     level = level || 1;
     this.level += level;
+    this.onLevelUp();
   },
   useSkill() {
     if ( this.canUse() ) {
+      Global.currentRoom.setAcceptInput(false);
+      this.getComponent(this.skillName).onUsed();
       this.countDown = this.coolDown;
     }
   },
@@ -57,7 +68,11 @@ cc.Class({
     this.countDown = Math.max(0, this.countDown - turn)
   },
   onGain() {
-
+  },
+  onLevelUp(){
+  },
+  levelUpDesc(){
+    return "";
   },
   onTurnStart(){
     this.reduceWait()

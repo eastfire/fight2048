@@ -158,7 +158,7 @@ var getPointDistance = function(p1,p2) {
 
 var contains = function(array1, item) {
   for ( var i = 0; i < array1.length; i++ ) {
-    if ( item == array1[i] ) return true;
+    if ( item === array1[i] ) return true;
   }
   return false;
 }

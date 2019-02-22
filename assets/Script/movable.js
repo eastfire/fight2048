@@ -17,7 +17,7 @@ cc.Class({
       atlas: {
         default: null,
         type: cc.SpriteAtlas
-      },      
+      },
       levelLabel: {
         default: null,
         type: cc.Label
@@ -37,6 +37,7 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
     ctor: function () {
+      this.accept = [];
       this.isAllFaceSame = true;
       this.type = "";
       this.subtype = null;
@@ -134,12 +135,12 @@ cc.Class({
           && movable.subtype === this.subtype ) {
           return true;
       }
-      if (Common.contains(this.canMergeTo, movable.type)) return true;
-      if (Common.contains(movable.canMergeTo, this.type)) return true;
+      if (Common.contains(this.accept, movable.type)) return true;
+      if (Common.contains(movable.accept, this.type)) return true;
       return false;
     },
     canMergeTo(movable, direction){
-      return Common.contains(movable.canMergeTo, this.type);
+      return Common.contains(movable.accept, this.type);
     },
     faceTo(direction) {
       this.face = direction;
@@ -194,7 +195,7 @@ cc.Class({
     mergeTo(movable){ //合并到目标movable中，自身消失
       this.beforeMergeTo(movable);
       movable.beforeBeMerged(this);
-      this.node.runAction(cc.sequence(
+      movable.node.runAction(cc.sequence(
         cc.scaleTo((Global.STEP_TIME-0.01)/2, 1.2),
         cc.scaleTo((Global.STEP_TIME-0.01)/2, 1),
         cc.callFunc(function(){
@@ -204,7 +205,7 @@ cc.Class({
 
       movable.beMerged(this)
     },
-    afterMergeTo(targetMovable){ //called by view
+    afterMergeTo(targetMovable){
       targetMovable.afterBeMerged(this);
       Global.currentRoom.removeMovable(this);
     },

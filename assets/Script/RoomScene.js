@@ -11,7 +11,8 @@ const Room = require("Room");
 const Skill = require("skill");
 const Common = require("common");
 const Global = require("global");
-const ChoiceList = require("choiceList")
+const ChoiceList = require("choiceFactory")
+import AllSkill from "allSkill"
 
 const KEY_LEFT = 37;
 const KEY_UP = 38;
@@ -151,24 +152,19 @@ cc.Class({
       Global.currentChoicePool = [];
       Global.currentChoicePool.push(ChoiceList.getScore({number:300}))
       Global.currentChoicePool.push(ChoiceList.getScore({number:200}))
-      Global.currentChoicePool.push(ChoiceList.getScore({number:100}))
+      Global.currentChoicePool.push(ChoiceList.getSkill({name:"healSkill"}))
     },
     initSkill(){
       this.skills={};
-      this.gainSkill("healSkill")
-      this.gainSkill("healSkill")
-      this.gainSkill("healSkill")
-      this.gainSkill("healSkill")
     },
     gainSkill(skillName){
-      // var skillEntry = ALL_SKILL[skillName];
       var skill = cc.instantiate(this.skillPrefab)
-      skill.addComponent(skillName)
+      skill.addComponent(AllSkill[skillName])
       skill.y = 0;
       skill.x = 0;
       this.skillLayout.node.addChild(skill)
       this.skills[skillName] = skill;
-
+      skill.getComponent("skill").onGain();
     },
     getSkill(skillName){
       return this.skills[skillName];

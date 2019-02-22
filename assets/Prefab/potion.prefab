@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "slime",
+    "_name": "potion",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -43,7 +43,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 76,
+      "width": 58,
       "height": 67
     },
     "_anchorPoint": {
@@ -173,7 +173,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "fd5bfb6c-5494-4eeb-abb1-611c26033d49"
+      "__uuid__": "486d7eee-a294-40cf-b3a8-2af980c74800"
     },
     "fileId": "48lbiI0udPtrWWhPQvtzNJ",
     "sync": false
@@ -189,7 +189,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "af3e2849-af29-4979-bddf-d86bc29aaecd"
+      "__uuid__": "0e504554-e838-4f30-97d4-64633cbf180c"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -207,7 +207,7 @@
     "_id": ""
   },
   {
-    "__type__": "ce089ZHEDBMgZ3Flha/kifc",
+    "__type__": "14ecc3ITFlAmrnqwaLg6zUJ",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -220,7 +220,6 @@
     },
     "frozen": 0,
     "_N$level": 1,
-    "attackOver": true,
     "_id": ""
   },
   {
@@ -229,7 +228,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "fd5bfb6c-5494-4eeb-abb1-611c26033d49"
+      "__uuid__": "486d7eee-a294-40cf-b3a8-2af980c74800"
     },
     "fileId": "8boshtil9PNLzd/g2UM8Bp",
     "sync": false

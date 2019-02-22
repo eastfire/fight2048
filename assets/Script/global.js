@@ -7,6 +7,7 @@ export default {
   HERO_ATTACK_TIME: 0.3,
   ENEMY_ATTACK_TIME: 0.3,
   DIALOG_EXIT_TIME: 0.4,
+  CHOICE_SELECT_TIME: 0.2,
 
   TILE_WIDTH: 120,
   TILE_HEIGHT: 120,
@@ -31,6 +32,7 @@ export default {
   CONSTITUTION_EFFECT : 5,
 
   NEGATIVE_EFFECT_TIME_ADJUST : 0,
+  ITEM_LEVEL_ADJUST: 0,
 
   NEGATIVE_EFFECTS : ["frozen","cursed","dizzy","forbidDraw","poison","blind"],
   AUTO_DECREASE_EFFECTS : ["dizzy","forbidDraw","dispel","poison","blind","forwardSlash"], //freeze is handle in Movable

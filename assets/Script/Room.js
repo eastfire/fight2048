@@ -48,7 +48,7 @@ cc.Class({
       this.initTiles()
       this.initEvents();
       this.initMovableMap();
-
+      this.initItem();
       this.initHero();
 
       this.scheduleOnce(this.turnStart, 0.5);
@@ -212,6 +212,9 @@ cc.Class({
         this.checkAllMovableMoved();
       }, Global.STEP_TIME * (maxStep+1) )
     },
+    setAcceptInput(accept) {
+      this._acceptInput = accept;
+    },
     isAcceptInput(){
       return this._acceptInput;
     },
@@ -360,10 +363,6 @@ cc.Class({
       var heroY = 2;
       this.hero = hero;
       this.addMovable(this.hero, heroX, heroY)
-
-      var test;
-      test = cc.instantiate(this.movablePrefabMap["slime"]);
-      this.addMovable(test, 3, 3)
     },
     initGenEnemyStrategy() {
       this.genEnemyStrategy = [{
@@ -376,12 +375,31 @@ cc.Class({
       this.enemyPool = [{type:"slime",subtype:"red"}];
       this.enemyLevelPool = [1];
     },
+    initItem() {
+      this.itemPool = ["potion"]
+    },
 //PHASE
     turnStart(){
       this._phase = "turnStart"
       this.generateEnemy();
     },
+    generateOneItemType(){
+      return Common.sample( this.itemPool );
+    },
+    generateOneItemLevel(enemyLevel){
+      return Math.min(9,Math.ceil(enemyLevel/4));
+    },
+    generateOneItem(position, enemyLevel){
+      if ( this.itemPool.length ) {
+        var itemLevel = this.generateOneItemLevel(enemyLevel) + Global.ITEM_LEVEL_ADJUST;
+        if ( itemLevel <= 0 ) return;
 
+        var itemType = this.generateOneItemType();
+        var item = cc.instantiate(this.movablePrefabMap[itemType]);
+        item.getComponent("item").level = itemLevel;
+        this.addMovable(item, position.x, position.y)
+      }
+    },
     generateOneEnemyType(){
       return Common.sample( this.enemyPool);
     },
@@ -393,9 +411,7 @@ cc.Class({
       if ( this.movablePrefabMap[type] ) {
         //FIXME : only single block enemy here
         var enemy = cc.instantiate(this.movablePrefabMap[type]);
-        enemy.level = level;
-        enemy.type = type;
-        enemy.subtype = typeof typeObj === "string" ? null: typeObj.subtype;
+        enemy.getComponent("enemy").level = level;
         this.addMovable(enemy, x, y);
         enemy.getComponent(Movable).generate();
       }

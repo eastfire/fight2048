@@ -42,12 +42,17 @@ cc.Class({
       this.context = context;
 
       var candidates = pool.filter(function(choice){
+        if ( typeof choice == "function" )
+          choice = choice();
         if ( choice.validate ) {
           return choice.validate()
         } else return true;
       },this)
       var choices = Common.sample(candidates, choiceNumber);
       choices.forEach(function(choice){
+        if ( typeof choice == "function" )
+          choice = choice();
+
         var choiceLayout = cc.instantiate(this.choicePrefab)
         choiceLayout.x = 0;
         this.choiceList.node.addChild(choiceLayout);
@@ -61,10 +66,10 @@ cc.Class({
         choiceLayout.choice = choice;
         choiceLayout.on('touchend', ( event ) => {
           this.currentChoice = choiceLayout.choice;
-          choiceLayout.runAction(cc.scaleTo(0.3, 1.1))
+          choiceLayout.runAction(cc.scaleTo(Global.CHOICE_SELECT_TIME, 1.1))
           this.choiceLayouts.forEach(function(layout){
             if ( layout != choiceLayout ) {
-              layout.runAction(cc.scaleTo(0.2,1))
+              layout.runAction(cc.scaleTo(Global.CHOICE_SELECT_TIME,1))
             }
           },this)
         })

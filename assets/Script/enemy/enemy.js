@@ -145,7 +145,7 @@ cc.Class({
       return Math.random() < this.getDropRate();
     },
     getDropRate(){
-      return Math.min(0.5, (this.level + Global.currentRoom.hero.luck)) * Global.LUCK_EFFECT
+      return Math.min(0.5, (this.level + Global.currentRoom.hero.getComponent("hero").luck)) * Global.LUCK_EFFECT
     },
     canAttack(hero){
       //TODO other status effect

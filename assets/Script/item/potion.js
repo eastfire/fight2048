@@ -1,27 +1,26 @@
-import {EXP_INFLATION_RATE} from "global"
-const Enemy = require("enemy");
+const Item = require("item");
+const Global = require("global")
 
 cc.Class({
-    extends: Enemy,
+    extends: Item,
 
     properties: {
         score: {
           get(){
-            return this.level
+            return this.level*Global.SCORE_INFLATION_RATE
           },
           override: true
         },
-        exp: {
+        effect: {
           get(){
-            return this.level*EXP_INFLATION_RATE
+            return this.level*5
           },
-          override: true
         }
     },
 
     // LIFE-CYCLE CALLBACKS:
     ctor: function () {
-
+      this.type="potion"
     },
 
     onLoad () {
@@ -32,8 +31,8 @@ cc.Class({
       this._super();
     },
 
-    getExp() {
-      return this.level;
+    onTaken() {
+      Global.currentRoom.hero.getComponent("hero").gainHp(this.effect)
     },
     // update (dt) {},
 });
