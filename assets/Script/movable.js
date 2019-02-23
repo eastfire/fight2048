@@ -27,7 +27,7 @@ cc.Class({
         visible: false,
         notify: function(oldValue){
           if (this.levelLabel) {
-            this.levelLabel.string="Lv"+this.level
+            this.levelLabel.string=this.level
           }
         }
       },

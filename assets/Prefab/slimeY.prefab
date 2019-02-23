@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "slimeR",
+    "_name": "slimeY",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -242,7 +242,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "fd5bfb6c-5494-4eeb-abb1-611c26033d49"
+      "__uuid__": "7ba14c35-3490-42de-a291-cd06c7f3f1c0"
     },
     "fileId": "1fKEOSBHBOt7+9/w8fj1y5",
     "sync": false
@@ -281,7 +281,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "fd5bfb6c-5494-4eeb-abb1-611c26033d49"
+      "__uuid__": "7ba14c35-3490-42de-a291-cd06c7f3f1c0"
     },
     "fileId": "32ncZl851LLIg15tO+t4+Q",
     "sync": false
@@ -301,10 +301,10 @@
     "playTimes": -1,
     "premultipliedAlpha": false,
     "_N$dragonAsset": {
-      "__uuid__": "6f31ac59-2717-4e61-a3dc-d966e9887e1d"
+      "__uuid__": "3d401c90-eca9-4d97-bc80-8acf919f64bf"
     },
     "_N$dragonAtlasAsset": {
-      "__uuid__": "e0c72bc5-2889-44dd-bbcb-877d3c993894"
+      "__uuid__": "f4d4267d-2302-4af0-aea4-675ceb772bab"
     },
     "_N$_defaultArmatureIndex": 0,
     "_N$_animationIndex": 1,
@@ -335,7 +335,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "fd5bfb6c-5494-4eeb-abb1-611c26033d49"
+      "__uuid__": "7ba14c35-3490-42de-a291-cd06c7f3f1c0"
     },
     "fileId": "8boshtil9PNLzd/g2UM8Bp",
     "sync": false

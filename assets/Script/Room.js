@@ -372,7 +372,7 @@ cc.Class({
       }];
       this.genEnemyStrategyIndex = 0;
       this.genEnemyStrategyTurn = 0;
-      this.enemyPool = [{type:"slime",subtype:"red"}];
+      this.enemyPool = [{type:"slimeR",subtype:"red"},{type:"slime",subtype:"blue"},{type:"slimeY",subtype:"yellow"}];
       this.enemyLevelPool = [1];
     },
     initItem() {
@@ -408,9 +408,11 @@ cc.Class({
     },
     generateOneEnemy(x,y, typeObj, level){
       var type = typeof typeObj === "string" ? typeObj: typeObj.type;
+      var subtype = typeof typeObj === "string" ? typeObj: typeObj.subtype;
       if ( this.movablePrefabMap[type] ) {
         //FIXME : only single block enemy here
         var enemy = cc.instantiate(this.movablePrefabMap[type]);
+        enemy.getComponent("enemy").subtype = subtype;
         enemy.getComponent("enemy").level = level;
         this.addMovable(enemy, x, y);
         enemy.getComponent(Movable).generate();
@@ -436,6 +438,7 @@ cc.Class({
         }
         if ( candidates.length ) {
           candidates.forEach(function(tile){
+            cc.log(this.generateOneEnemyType())
               this.generateOneEnemy( tile.x, tile.y, this.generateOneEnemyType(), this.generateOneEnemyLevel());
           },this);
           setTimeout(()=>{

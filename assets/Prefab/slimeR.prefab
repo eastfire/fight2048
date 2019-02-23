@@ -242,7 +242,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "fd5bfb6c-5494-4eeb-abb1-611c26033d49"
+      "__uuid__": "e81d546a-11f1-4708-9e25-441cceef9a49"
     },
     "fileId": "1fKEOSBHBOt7+9/w8fj1y5",
     "sync": false
@@ -281,7 +281,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "fd5bfb6c-5494-4eeb-abb1-611c26033d49"
+      "__uuid__": "e81d546a-11f1-4708-9e25-441cceef9a49"
     },
     "fileId": "32ncZl851LLIg15tO+t4+Q",
     "sync": false
@@ -301,10 +301,10 @@
     "playTimes": -1,
     "premultipliedAlpha": false,
     "_N$dragonAsset": {
-      "__uuid__": "6f31ac59-2717-4e61-a3dc-d966e9887e1d"
+      "__uuid__": "6a01a518-8d33-4b3b-95d9-e54c1d996c9a"
     },
     "_N$dragonAtlasAsset": {
-      "__uuid__": "e0c72bc5-2889-44dd-bbcb-877d3c993894"
+      "__uuid__": "8b1eaac4-2f1e-43f9-9ac2-800cac1b4f1c"
     },
     "_N$_defaultArmatureIndex": 0,
     "_N$_animationIndex": 1,
@@ -335,7 +335,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "fd5bfb6c-5494-4eeb-abb1-611c26033d49"
+      "__uuid__": "e81d546a-11f1-4708-9e25-441cceef9a49"
     },
     "fileId": "8boshtil9PNLzd/g2UM8Bp",
     "sync": false
