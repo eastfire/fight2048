@@ -812,7 +812,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 0,
+      "y": 100,
       "z": 0
     },
     "_scale": {
@@ -895,6 +895,9 @@
         "__uuid__": "7ba14c35-3490-42de-a291-cd06c7f3f1c0"
       }
     ],
+    "starPrefab": {
+      "__uuid__": "8ad76baa-d0c1-4225-ba36-61e33a7d0148"
+    },
     "_N$turn": 1,
     "_N$_phase": "turnStart",
     "_id": "22zB2c4gBERLKpQYMY7glx"

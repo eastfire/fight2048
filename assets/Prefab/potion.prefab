@@ -80,7 +80,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "sprite",
+    "_name": "levelIcon",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -323,9 +323,7 @@
     },
     "_enabled": true,
     "atlas": null,
-    "levelLabel": {
-      "__id__": 4
-    },
+    "statusList": null,
     "frozen": 0,
     "_N$level": 1,
     "_id": ""

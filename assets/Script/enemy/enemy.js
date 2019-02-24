@@ -30,8 +30,6 @@ cc.Class({
         },
         visible: false
       },
-      attackOver: true,
-
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -47,8 +45,19 @@ cc.Class({
 
     start () {
       this._super();
+      this.attackOver = true;
+      this.starList = cc.find("levelIcon/starList",this.node);
+      this.starList = this.starList && this.starList.getComponent(cc.Layout);
+      this.star = this.starOfLevel(this.level)
+      for ( var i = 0; i < this.star; i++){
+        var star = cc.instantiate(Global.currentRoom.starPrefab)
+        this.starList.node.addChild(star)
+      }
     },
 
+    starOfLevel(level){
+      return Math.min(Global.MAX_STAR, Math.floor(this.level/Global.STAR_THRESHOLD))
+    },
     beforeBeAttacked(hero) {
 
     },
@@ -57,6 +66,15 @@ cc.Class({
     },
     dodgeAttack(hero){
 
+    },
+    onLevelUp(levelUp){
+      var starNumber = this.starOfLevel(this.level)
+      for ( var i = this.star; i < starNumber; i++){
+        var star = cc.instantiate(Global.currentRoom.starPrefab)
+        this.starList.node.addChild(star)
+      }
+      this.star = starNumber
+      this._super();
     },
     getClosestPoint(p){
       return Common.min(this.positions, function(position){

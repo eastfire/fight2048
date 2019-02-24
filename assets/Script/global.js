@@ -34,8 +34,11 @@ export default {
   NEGATIVE_EFFECT_TIME_ADJUST : 0,
   ITEM_LEVEL_ADJUST: 0,
 
-  NEGATIVE_EFFECTS : ["frozen","cursed","dizzy","forbidDraw","poison","blind"],
-  AUTO_DECREASE_EFFECTS : ["dizzy","forbidDraw","dispel","poison","blind","forwardSlash"], //freeze is handle in Movable
+  STAR_THRESHOLD: 6,
+  MAX_STAR:5,
+
+  NEGATIVE_EFFECTS : ["frozen","cursed","dizzy","silent","poison","blind"],
+  AUTO_DECREASE_EFFECTS : ["dizzy","silent","dispel","poison","blind","forwardSlash"], //freeze is handle in Movable
 
   choicePool: []
 }

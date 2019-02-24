@@ -18,10 +18,7 @@ cc.Class({
         default: null,
         type: cc.SpriteAtlas
       },
-      levelLabel: {
-        default: null,
-        type: cc.Label
-      },
+
       level: {
         default: 1,
         visible: false,
@@ -54,10 +51,18 @@ cc.Class({
     },
 
     onLoad () {
-
     },
     start () {
       this.currentFrameNumber = 0;
+      this.levelLabel = cc.find("levelIcon/levelLabel", this.node);//this.node.getChildByName("levelLabel")
+      if ( this.levelLabel ) {
+        this.levelLabel = this.levelLabel.getComponent(cc.Label)
+        this.levelLabel.string=this.level
+      }
+      
+      this.statusList = cc.find("statusList",this.node);
+      this.statusList = this.statusList && this.statusList.getComponent(cc.Layout);
+
       this.setFrame();
     },
     onDestroy() {
@@ -218,13 +223,14 @@ cc.Class({
     afterBeMerged(movable){
       this.beforeLevelUp(this.level);
       this.level+=movable.level;
+      this.onLevelUp(this.level)
     },
     beforeLevelUp(level){
     },
     levelUp(level){
 
     },
-    afterLevelUp(level){ //called by view
+    onLevelUp(level){ //called by view
     },
     onTurnStart(){
     },
@@ -238,5 +244,18 @@ cc.Class({
         // )
       )
     },
+    gainStatus(status, turn) {
+      if (!this.statusList) return;
+      turn = turn || 1;
+    },
+    loseStatus(status){
+      if (!this.statusList) return;
+    },
+    hasStatus(status){
+      if (!this.statusList) return false;
+    },
+    forEachStatus(callback, context){
+      if (!this.statusList) return;
+    }
     // update (dt) {},
 });

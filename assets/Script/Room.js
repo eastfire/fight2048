@@ -21,7 +21,10 @@ cc.Class({
 
       tilePrefabs:[cc.Prefab],
       movablePrefabs:[cc.Prefab],
-
+      starPrefab:{
+        type:cc.Prefab,
+        default: null,
+      },
       turn: {
         default: 1,
         notify(oldValue){
@@ -77,7 +80,7 @@ cc.Class({
       }
     },
     initTiles() {
-      var initTiles = TILES.tiles6x3;
+      var initTiles = TILES.tiles6x6;
 
       if ( !initTiles ) return;
       this.__tiles = [];
@@ -372,7 +375,7 @@ cc.Class({
       }];
       this.genEnemyStrategyIndex = 0;
       this.genEnemyStrategyTurn = 0;
-      this.enemyPool = [{type:"slimeR",subtype:"red"},{type:"slime",subtype:"blue"},{type:"slimeY",subtype:"yellow"}];
+      this.enemyPool = [{type:"slimeR",subtype:"red"},{type:"slimeB",subtype:"blue"},{type:"slimeY",subtype:"yellow"}];
       this.enemyLevelPool = [1];
     },
     initItem() {
