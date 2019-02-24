@@ -29,7 +29,6 @@ cc.Class({
         }
       },
 
-      frozen: 0,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -41,9 +40,7 @@ cc.Class({
       this.isMergeToSelfType = true;
       this.face = Common.DIRECTION_DOWN;
       this.level = 1;
-
-      this.frozen = 0;
-      this.angry = 0;
+      this._isMovable = true;
 
       this.animateStatus = "stand";
 
@@ -59,17 +56,18 @@ cc.Class({
         this.levelLabel = this.levelLabel.getComponent(cc.Label)
         this.levelLabel.string=this.level
       }
-      
+
       this.statusList = cc.find("statusList",this.node);
       this.statusList = this.statusList && this.statusList.getComponent(cc.Layout);
 
+      this.status={};
       this.setFrame();
     },
     onDestroy() {
       this.node.destroy();
     },
     isMovable(){
-      return true;
+      return this._isMovable && !this.getStatus("frozen");
     },
     setPositionInRoom(x,y){
       this.positions = [];
@@ -233,8 +231,16 @@ cc.Class({
     onLevelUp(level){ //called by view
     },
     onTurnStart(){
+      this.forEachStatus(function(status){
+        if (status.onTurnStart)
+          status.onTurnStart(this)
+      },this)
     },
     onTurnEnd(){
+      this.forEachStatus(function(status){
+        if (status.onTurnEnd)
+          status.onTurnEnd(this)
+      },this)
     },
     generate(){
       this.node.setScale(0.1);
@@ -247,15 +253,56 @@ cc.Class({
     gainStatus(status, turn) {
       if (!this.statusList) return;
       turn = turn || 1;
+      if ( this.getStatus(status) ) {
+        this.getStatus(status).addDuration(turn);
+        return;
+      }
+      var statusNode = cc.instantiate(Global.currentRoom.statusMap[status])
+      this.statusList.node.addChild(statusNode)
+      //lostStatus effect
+      statusNode.setScale(0.1)
+      statusNode.runAction(cc.sequence(
+        cc.scaleTo(Global.LOSE_STATUS_TIME,1.5),
+        cc.scaleTo(Global.LOSE_STATUS_TIME,1)
+      ))
+      var s = statusNode.getComponent("status")
+      s.duration = turn;
+      if ( s.onGain )
+        s.onGain(this);
+      this.status[status] = s
     },
-    loseStatus(status){
+    lostStatus(status){
       if (!this.statusList) return;
+      delete this.status[status];
+      var s = cc.find(status, this.statusList.node);
+      if ( s ) {
+        if ( s.getComponent("status").onLost)
+          s.getComponent("status").onLost(this);
+        //lostStatus effect
+        s.runAction(cc.sequence(cc.fadeOut(
+          Global.LOSE_STATUS_TIME
+        ),
+        cc.removeSelf()))
+      }
     },
-    hasStatus(status){
-      if (!this.statusList) return false;
+    setStatus(list){
+      list.forEach(function(s){
+        this.gainStatus(s.status, s.last)
+      },this)
     },
-    forEachStatus(callback, context){
+    getStatus(status){
+      return this.status[status];
+    },
+    forEachStatusNode(callback, context){
       if (!this.statusList) return;
+      this.statusList.node.children.forEach(function(child){
+        callback.call(context, child);
+      },this)
+    },
+    forEachStatus(callback,context){
+      for (var key in this.status){
+        callback.call(context, this.status[key]);
+      }
     }
     // update (dt) {},
 });

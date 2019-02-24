@@ -32,8 +32,5 @@ cc.Class({
       this._super();
     },
 
-    getExp() {
-      return this.level;
-    },
     // update (dt) {},
 });

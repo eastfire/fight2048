@@ -25,6 +25,7 @@ cc.Class({
         type:cc.Prefab,
         default: null,
       },
+      statusPrefabs:[cc.Prefab],
       turn: {
         default: 1,
         notify(oldValue){
@@ -52,6 +53,7 @@ cc.Class({
       this.initEvents();
       this.initMovableMap();
       this.initItem();
+      this.initStatusPrefabMap()
       this.initHero();
 
       this.scheduleOnce(this.turnStart, 0.5);
@@ -77,6 +79,12 @@ cc.Class({
       this.tileMap = {};
       for ( var i = 0; i < this.tilePrefabs.length; i++ ) {
         this.tileMap[this.tilePrefabs[i].name] = this.tilePrefabs[i]
+      }
+    },
+    initStatusPrefabMap() {
+      this.statusMap = {};
+      for ( var i = 0; i < this.statusPrefabs.length; i++ ) {
+        this.statusMap[this.statusPrefabs[i].name] = this.statusPrefabs[i]
       }
     },
     initTiles() {
@@ -355,6 +363,9 @@ cc.Class({
       }, this)
     },
     turnEnd(){
+      this._movables.forEach(function(movable){
+        movable.onTurnEnd();
+      },this)
       this._phase = "turnEnd";
       this.turn++;
       this.turnStart();
@@ -375,7 +386,8 @@ cc.Class({
       }];
       this.genEnemyStrategyIndex = 0;
       this.genEnemyStrategyTurn = 0;
-      this.enemyPool = [{type:"slimeR",subtype:"red"},{type:"slimeB",subtype:"blue"},{type:"slimeY",subtype:"yellow"}];
+      // this.enemyPool = [{type:"slimeR",subtype:"red"},{type:"slimeB",subtype:"blue"},{type:"slimeY",subtype:"yellow"}];
+      this.enemyPool = [{type:"medusa"}]
       this.enemyLevelPool = [1];
     },
     initItem() {
