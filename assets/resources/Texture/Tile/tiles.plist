@@ -184,7 +184,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>floor-normal0.png</key>
+            <key>door-ce.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -199,7 +199,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>floor-normal1.png</key>
+            <key>door-cn.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -214,7 +214,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>floor-normal10.png</key>
+            <key>door-cs.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -229,7 +229,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>floor-normal11.png</key>
+            <key>door-cw.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -244,7 +244,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>floor-normal2.png</key>
+            <key>door-oe.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -259,7 +259,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>floor-normal3.png</key>
+            <key>door-on.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -274,7 +274,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>floor-normal4.png</key>
+            <key>door-os.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -289,7 +289,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>floor-normal5.png</key>
+            <key>door-ow.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -304,7 +304,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>floor-normal6.png</key>
+            <key>floor-normal0.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -319,7 +319,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>floor-normal7.png</key>
+            <key>floor-normal1.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -334,7 +334,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>floor-normal8.png</key>
+            <key>floor-normal10.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -349,7 +349,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>floor-normal9.png</key>
+            <key>floor-normal11.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -364,7 +364,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-e.png</key>
+            <key>floor-normal2.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -379,7 +379,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-elongnw.png</key>
+            <key>floor-normal3.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -394,7 +394,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-elongnwsw.png</key>
+            <key>floor-normal4.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -409,7 +409,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-elongsw.png</key>
+            <key>floor-normal5.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -424,7 +424,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-ewlong.png</key>
+            <key>floor-normal6.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -439,7 +439,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-hole.png</key>
+            <key>floor-normal7.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -454,7 +454,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-n.png</key>
+            <key>floor-normal8.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -469,7 +469,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-ne.png</key>
+            <key>floor-normal9.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -484,7 +484,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-nelong.png</key>
+            <key>nail-attacking.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -499,7 +499,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-nelongsw.png</key>
+            <key>nail-normal.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -514,7 +514,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-nenw.png</key>
+            <key>pillar-normal.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -529,7 +529,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-nenwsesw.png</key>
+            <key>pit-normal.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -544,7 +544,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-nese.png</key>
+            <key>portal-a.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -559,7 +559,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-newlong.png</key>
+            <key>portal-b.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -574,7 +574,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-nlongse.png</key>
+            <key>room-portal-normal.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -589,7 +589,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-nlongsesw.png</key>
+            <key>wall-e.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -604,7 +604,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-nlongsw.png</key>
+            <key>wall-elongnw.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -619,7 +619,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-nselong.png</key>
+            <key>wall-elongnwsw.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -634,7 +634,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-nslong.png</key>
+            <key>wall-elongsw.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -649,7 +649,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-nswlong.png</key>
+            <key>wall-ewlong.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -664,7 +664,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-nw.png</key>
+            <key>wall-hole.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -679,7 +679,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-nwlong.png</key>
+            <key>wall-n.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -694,7 +694,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-nwlongse.png</key>
+            <key>wall-ne.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -709,7 +709,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-nwsw.png</key>
+            <key>wall-nelong.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -724,7 +724,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-s.png</key>
+            <key>wall-nelongsw.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -739,7 +739,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-se.png</key>
+            <key>wall-nenw.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -754,7 +754,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-selong.png</key>
+            <key>wall-nenwsesw.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -769,7 +769,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-selongnw.png</key>
+            <key>wall-nese.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -784,7 +784,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-sesw.png</key>
+            <key>wall-newlong.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -799,7 +799,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-sewlong.png</key>
+            <key>wall-nlongse.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -814,7 +814,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-slongne.png</key>
+            <key>wall-nlongsesw.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -829,7 +829,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-slongnenw.png</key>
+            <key>wall-nlongsw.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -844,7 +844,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-slongnw.png</key>
+            <key>wall-nselong.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -859,7 +859,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-sw.png</key>
+            <key>wall-nslong.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -874,7 +874,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-swlong.png</key>
+            <key>wall-nswlong.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -889,7 +889,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-swlongne.png</key>
+            <key>wall-nw.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -904,7 +904,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-w.png</key>
+            <key>wall-nwlong.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -919,7 +919,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-wlongne.png</key>
+            <key>wall-nwlongse.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -934,7 +934,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-wlongnese.png</key>
+            <key>wall-nwsw.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -949,7 +949,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>wall-wlongse.png</key>
+            <key>wall-s.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -964,6 +964,231 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
+            <key>wall-se.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{120,120}</string>
+                <key>spriteSourceSize</key>
+                <string>{120,120}</string>
+                <key>textureRect</key>
+                <string>{{0,480},{120,120}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>wall-selong.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{120,120}</string>
+                <key>spriteSourceSize</key>
+                <string>{120,120}</string>
+                <key>textureRect</key>
+                <string>{{120,480},{120,120}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>wall-selongnw.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{120,120}</string>
+                <key>spriteSourceSize</key>
+                <string>{120,120}</string>
+                <key>textureRect</key>
+                <string>{{240,480},{120,120}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>wall-sesw.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{120,120}</string>
+                <key>spriteSourceSize</key>
+                <string>{120,120}</string>
+                <key>textureRect</key>
+                <string>{{360,480},{120,120}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>wall-sewlong.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{120,120}</string>
+                <key>spriteSourceSize</key>
+                <string>{120,120}</string>
+                <key>textureRect</key>
+                <string>{{480,480},{120,120}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>wall-slongne.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{120,120}</string>
+                <key>spriteSourceSize</key>
+                <string>{120,120}</string>
+                <key>textureRect</key>
+                <string>{{600,480},{120,120}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>wall-slongnenw.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{120,120}</string>
+                <key>spriteSourceSize</key>
+                <string>{120,120}</string>
+                <key>textureRect</key>
+                <string>{{720,480},{120,120}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>wall-slongnw.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{120,120}</string>
+                <key>spriteSourceSize</key>
+                <string>{120,120}</string>
+                <key>textureRect</key>
+                <string>{{840,480},{120,120}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>wall-sw.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{120,120}</string>
+                <key>spriteSourceSize</key>
+                <string>{120,120}</string>
+                <key>textureRect</key>
+                <string>{{960,480},{120,120}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>wall-swlong.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{120,120}</string>
+                <key>spriteSourceSize</key>
+                <string>{120,120}</string>
+                <key>textureRect</key>
+                <string>{{1080,480},{120,120}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>wall-swlongne.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{120,120}</string>
+                <key>spriteSourceSize</key>
+                <string>{120,120}</string>
+                <key>textureRect</key>
+                <string>{{1200,480},{120,120}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>wall-w.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{120,120}</string>
+                <key>spriteSourceSize</key>
+                <string>{120,120}</string>
+                <key>textureRect</key>
+                <string>{{1320,480},{120,120}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>wall-wlongne.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{120,120}</string>
+                <key>spriteSourceSize</key>
+                <string>{120,120}</string>
+                <key>textureRect</key>
+                <string>{{1440,480},{120,120}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>wall-wlongnese.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{120,120}</string>
+                <key>spriteSourceSize</key>
+                <string>{120,120}</string>
+                <key>textureRect</key>
+                <string>{{1560,480},{120,120}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>wall-wlongse.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{120,120}</string>
+                <key>spriteSourceSize</key>
+                <string>{120,120}</string>
+                <key>textureRect</key>
+                <string>{{1680,480},{120,120}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -972,9 +1197,9 @@
             <key>realTextureFileName</key>
             <string>tiles.png</string>
             <key>size</key>
-            <string>{1920,480}</string>
+            <string>{1920,600}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:49074343f1784329d48553886aec2f15:ee661883dce66dad00014637d496e164:e7ba09821896df177254bf002289be44$</string>
+            <string>$TexturePacker:SmartUpdate:a05b0e668b37737b8d507b104e739270:d1337c4c92fd0e27d1fbc2ea12056385:e7ba09821896df177254bf002289be44$</string>
             <key>textureFileName</key>
             <string>tiles.png</string>
         </dict>

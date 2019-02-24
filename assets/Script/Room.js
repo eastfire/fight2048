@@ -12,6 +12,7 @@ import Tile from "tile";
 import Movable from "movable";
 import Enemy from "enemy";
 import Common from "common";
+import EnemyFactory from "enemyFactory"
 const Global = require("global");
 
 cc.Class({
@@ -46,6 +47,9 @@ cc.Class({
     onLoad () {
       this._acceptInput = true;
       this._movables = [];
+
+      Global.currentRoomScene.turnLabel.string = this.turn;
+
       this.initMovablePrefabMap()
       this.initTilePrefabMap()
       this.initGenEnemyStrategy();
@@ -368,6 +372,7 @@ cc.Class({
       },this)
       this._phase = "turnEnd";
       this.turn++;
+      this.enemyFactory.maintain(this.turn);
       this.turnStart();
     },
     initHero() {
@@ -379,16 +384,7 @@ cc.Class({
       this.addMovable(this.hero, heroX, heroY)
     },
     initGenEnemyStrategy() {
-      this.genEnemyStrategy = [{
-        type:"random",
-        number: 2,
-        last: 0
-      }];
-      this.genEnemyStrategyIndex = 0;
-      this.genEnemyStrategyTurn = 0;
-      // this.enemyPool = [{type:"slimeR",subtype:"red"},{type:"slimeB",subtype:"blue"},{type:"slimeY",subtype:"yellow"}];
-      this.enemyPool = [{type:"medusa"}]
-      this.enemyLevelPool = [1];
+      this.enemyFactory = new EnemyFactory();
     },
     initItem() {
       this.itemPool = ["potion"]
@@ -415,12 +411,6 @@ cc.Class({
         this.addMovable(item, position.x, position.y)
       }
     },
-    generateOneEnemyType(){
-      return Common.sample( this.enemyPool);
-    },
-    generateOneEnemyLevel(){
-      return Common.sample( this.enemyLevelPool);
-    },
     generateOneEnemy(x,y, typeObj, level){
       var type = typeof typeObj === "string" ? typeObj: typeObj.type;
       var subtype = typeof typeObj === "string" ? typeObj: typeObj.subtype;
@@ -435,40 +425,25 @@ cc.Class({
     },
     generateEnemy(){
       this._phase = "generateEnemy"
-      var currentGenEnemyStrategy = this.genEnemyStrategy[this.genEnemyStrategyIndex]
-      if ( currentGenEnemyStrategy ){
-        var tiles = this.filterTile(function(tile){
-            return tile.canGenEnemy() && !this.getMovableByTile(tile)
-          },
-        this)
-        var number = 0;
-        if ( typeof currentGenEnemyStrategy.number === "number" ) {
-            number = currentGenEnemyStrategy.number;
-        } else if ( typeof currentGenEnemyStrategy.number === "function" ) {
-            number = currentGenEnemyStrategy.number.call(this)
-        }
-        var candidates = [];
-        if ( currentGenEnemyStrategy.type === "random" ) {
-            candidates = Common.sample(tiles, number );
-        }
-        if ( candidates.length ) {
-          candidates.forEach(function(tile){
-            this.generateOneEnemy( tile.x, tile.y, this.generateOneEnemyType(), this.generateOneEnemyLevel());
-          },this);
-          setTimeout(()=>{
-            this.afterGenEnemy();
-          }, Global.GENERATE_TIME * 1.2*1000);
-        } else {
+
+      var tiles = this.filterTile(function(tile){
+          return tile.canGenEnemy() && !this.getMovableByTile(tile)
+        },
+      this)
+      var number = this.enemyFactory.generateEnemyNumber();
+      var candidates = [];
+      candidates = Common.sample(tiles, number );
+
+      if ( candidates.length ) {
+        candidates.forEach(function(tile){
+          this.generateOneEnemy( tile.x, tile.y, this.enemyFactory.generateOneEnemyType(), this.enemyFactory.generateOneEnemyLevel());
+        },this);
+        setTimeout(()=>{
           this.afterGenEnemy();
-        }
-
-        this.genEnemyStrategyTurn++;
-        if ( currentGenEnemyStrategy.last !== 0 && this.genEnemyStrategyTurn>=currentGenEnemyStrategy.last) {
-            this.genEnemyStrategyTurn=0;
-            this.genEnemyStrategyIndex++;
-        }
+        }, Global.GENERATE_TIME * 1.2*1000);
+      } else {
+        this.afterGenEnemy();
       }
-
     },
     afterGenEnemy(){
       this._phase="waitUserInput";

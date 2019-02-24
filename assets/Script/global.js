@@ -42,5 +42,11 @@ export default {
   NEGATIVE_EFFECTS : ["frozen","cursed","dizzy","silent","poison","blind"],
   AUTO_DECREASE_EFFECTS : ["dizzy","silent","dispel","poison","blind","forwardSlash"], //freeze is handle in Movable
 
+  ENEMY_POOL_CHANGE_PER_TURN: 29,
+  ENEMY_LEVEL_POOL_CHANGE_PER_TURN: 97,
+  ENEMY_NUNBER_CHANGE_PER_TURN: 501,
+  MAX_ENEMY_TYPE_IN_FIELD:4,
+  MAX_GEN_ENEMY_NUMBER: 4,
+
   choicePool: []
 }

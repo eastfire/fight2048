@@ -43,7 +43,6 @@ var belt_n = {type:"belt", subtype:"n"};
 var belt_s = {type:"belt", subtype:"s"};
 var belt_e = {type:"belt", subtype:"e"};
 var belt_w = {type:"belt", subtype:"w"};
-var floor_n = {type:"floor", subtype:"normal"};
 var portal_a = {type:"portal", subtype:"a"};
 var portal_b = {type:"portal", subtype:"b"};
 var pit_n = {type:"pit", subtype:"normal"};

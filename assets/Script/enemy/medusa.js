@@ -29,7 +29,7 @@ cc.Class({
 
   // LIFE-CYCLE CALLBACKS:
   ctor: function () {
-
+    this.type = "medusa"
   },
 
   onLoad () {

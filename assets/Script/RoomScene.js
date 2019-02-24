@@ -92,6 +92,10 @@ cc.Class({
       Global.currentRoom = this.room;
       this.skill = [];
       this.maxSkill = 4;
+
+      this.scoreLabel.string = this.score;
+      this.moneyLabel.string = this.star;
+
       this.initEvent();
       this.initChoicePool()
       this.initSkill();

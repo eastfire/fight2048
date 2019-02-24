@@ -7,21 +7,27 @@ cc.Class({
     properties: {
         score: {
           get(){
-            return this.level*Global.SCORE_INFLATION_RATE
+            return (2*this.level-1)*Global.SCORE_INFLATION_RATE
           },
           override: true
         },
         exp: {
-          get(){
-            return this.level*Global.EXP_INFLATION_RATE
+          get(){  //一般
+            return this.level*2*Global.EXP_INFLATION_RATE
           },
           override: true
-        }
+        },
+        attack: {
+          get(){  //一般
+            return this.level*2-1;
+          },
+          override: true
+        },
     },
 
     // LIFE-CYCLE CALLBACKS:
     ctor: function () {
-
+      this.type = "skeleton"
     },
 
     onLoad () {
