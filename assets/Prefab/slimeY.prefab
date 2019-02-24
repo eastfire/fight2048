@@ -371,7 +371,7 @@
     "_N$paddingRight": 0,
     "_N$paddingTop": 0,
     "_N$paddingBottom": 0,
-    "_N$spacingX": 0,
+    "_N$spacingX": -1,
     "_N$spacingY": 0,
     "_N$verticalDirection": 1,
     "_N$horizontalDirection": 0,
@@ -599,20 +599,8 @@
     },
     "_enabled": true,
     "atlas": null,
-    "statusList": null,
-    "levelLabel": {
-      "__id__": 4
-    },
     "frozen": 0,
     "_N$level": 1,
-    "attackOver": true,
-    "starList": {
-      "__id__": 8
-    },
-    "starPrefab": {
-      "__uuid__": "8ad76baa-d0c1-4225-ba36-61e33a7d0148"
-    },
-    "star": 0,
     "_id": ""
   },
   {

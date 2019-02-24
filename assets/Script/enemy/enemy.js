@@ -126,12 +126,6 @@ cc.Class({
     },
     afterDie(hero){ //called by view
       var realExp = this.exp;
-      //TODO
-      // if ( this.level >= 12 && MORE_EXP_ABOVE12) {
-      //     realExp = Math.round(realExp*1.5);
-      // } else if ( this.get("level") <= 6 && LESS_EXP_BELOW6) {
-      //     realExp = Math.round(realExp*0.5);
-      // }
       hero.gainExp(realExp);
       Global.currentRoomScene.gainScore(this.score);
 
@@ -157,6 +151,24 @@ cc.Class({
       Global.currentRoom.removeMovable(this);
       if ( dropItem ) {
         Global.currentRoom.generateOneItem(p, enemyLevel)
+      }
+      //drop start
+      var drawPosition = Global.currentRoom.getDrawPosition(this.positions[0].x, this.positions[0].y)
+      var hero = Global.currentRoom.hero.getComponent("hero")
+      var heroPosition = Global.currentRoom.getDrawPosition(hero.positions[0].x, hero.positions[0].y)
+      for ( var i = 0; i < this.star; i++ ){
+        var star = cc.instantiate(Global.currentRoom.starPrefab);
+        star.x = Math.random()*Global.TILE_WIDTH + drawPosition.x - Global.TILE_WIDTH/2;
+        star.y = Math.random()*Global.TILE_HEIGHT + drawPosition.y - Global.TILE_HEIGHT/2;
+        star.setScale(2)
+        Global.currentRoom.node.addChild(star);
+        star.runAction(cc.sequence(
+          cc.moveTo(Global.GET_STAR_TIME, heroPosition.x, heroPosition.y).easing(cc.easeQuadraticActionIn()),
+          cc.callFunc(function(){
+            Global.currentRoomScene.gainStar(1)
+          },this),
+          cc.removeSelf()
+        ))
       }
     },
     checkDropItem(){

@@ -67,7 +67,22 @@ cc.Class({
       skillPrefab: {
         default: null,
         type: cc.Prefab
-      }
+      },
+      score:{
+        default: "",
+        notify(oldValue){
+          if ( oldValue == this.score ) return;
+          this.scoreLabel.string = this.score;
+        }
+      },
+      star: {
+        default: "",
+        notify(oldValue){
+          if ( oldValue == this.star ) return;
+          this.moneyLabel.string = this.star;
+        }
+      },
+
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -91,12 +106,14 @@ cc.Class({
       Global.currentRoomScene = null;
     },
     start () {
-      this.score = 0;
-      this.scoreLabel.string = this.score
+      this.score = 0; //TODO fetch from save
+      this.star = 0;
     },
     gainScore(score) {
       this.score += score;
-      this.scoreLabel.string = this.score
+    },
+    gainStar(star){
+      this.star += star;
     },
     initEvent() {
       this.node.on('touchstart', ( event ) => {

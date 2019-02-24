@@ -441,8 +441,7 @@ cc.Class({
         }
         if ( candidates.length ) {
           candidates.forEach(function(tile){
-            cc.log(this.generateOneEnemyType())
-              this.generateOneEnemy( tile.x, tile.y, this.generateOneEnemyType(), this.generateOneEnemyLevel());
+            this.generateOneEnemy( tile.x, tile.y, this.generateOneEnemyType(), this.generateOneEnemyLevel());
           },this);
           setTimeout(()=>{
             this.afterGenEnemy();
