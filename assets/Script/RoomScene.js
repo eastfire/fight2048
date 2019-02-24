@@ -76,7 +76,7 @@ cc.Class({
         }
       },
       star: {
-        default: "",
+        default: 0,
         notify(oldValue){
           if ( oldValue == this.star ) return;
           this.moneyLabel.string = this.star;
@@ -92,6 +92,9 @@ cc.Class({
       Global.currentRoom = this.room;
       this.skill = [];
       this.maxSkill = 4;
+
+      this.star = 0;
+      this.score = 0;
 
       this.scoreLabel.string = this.score;
       this.moneyLabel.string = this.star;

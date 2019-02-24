@@ -13,7 +13,7 @@ cc.Class({
         },
         exp: {
           get(){  //一般
-            return this.level*2*Global.EXP_INFLATION_RATE
+            return Math.round(this.level*1.5*Global.EXP_INFLATION_RATE)
           },
           override: true
         },
@@ -29,14 +29,5 @@ cc.Class({
     ctor: function () {
       this.type = "skeleton"
     },
-
-    onLoad () {
-      this._super();
-    },
-
-    start () {
-      this._super();
-    },
-
     // update (dt) {},
 });

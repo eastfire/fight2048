@@ -30,6 +30,10 @@ cc.Class({
         },
         visible: false
       },
+      attackType:{
+        default:Global.ATTACK_TYPE_MELEE,
+        visible:false,
+      }
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -242,8 +246,11 @@ cc.Class({
       this.beforeAttack(hero);
       var heroPosition = hero.positions[0]
       var point = this.getClosestPoint(heroPosition)
-      var deltaX = Global.TILE_WIDTH*(heroPosition.x - point.x )/2;
-      var deltaY = Global.TILE_HEIGHT*(heroPosition.y - point.y )/2
+      var deltaX = Global.TILE_WIDTH*(heroPosition.x - point.x );
+      var deltaY = Global.TILE_HEIGHT*(heroPosition.y - point.y );
+      var d = deltaX*deltaX + deltaY*deltaY
+      deltaX = deltaX / Math.sqrt(d) * Global.TILE_WIDTH/2;
+      deltaY = deltaY / Math.sqrt(d) * Global.TILE_HEIGHT/2;
       //TODO animation
       this.node.runAction(cc.sequence(
           cc.moveBy(Global.ENEMY_ATTACK_TIME/2, deltaX, deltaY ),
