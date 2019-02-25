@@ -406,9 +406,13 @@ cc.Class({
         if ( itemLevel <= 0 ) return;
 
         var itemType = this.generateOneItemType();
-        var item = cc.instantiate(this.movablePrefabMap[itemType]);
-        item.getComponent("item").level = itemLevel;
-        this.addMovable(item, position.x, position.y)
+        if ( this.movablePrefabMap[itemType] ) {
+          var item = cc.instantiate(this.movablePrefabMap[itemType]);
+          item.getComponent("item").level = itemLevel;
+          this.addMovable(item, position.x, position.y)
+        } else {
+          cc.error("item type:"+itemType+" not registered")
+        }
       }
     },
     generateOneEnemy(x,y, typeObj, level){
@@ -416,11 +420,15 @@ cc.Class({
       var subtype = typeof typeObj === "string" ? typeObj: typeObj.subtype;
       if ( this.movablePrefabMap[type] ) {
         //FIXME : only single block enemy here
-        var enemy = cc.instantiate(this.movablePrefabMap[type]);
-        enemy.getComponent("enemy").subtype = subtype;
-        enemy.getComponent("enemy").level = level;
-        this.addMovable(enemy, x, y);
-        enemy.getComponent(Movable).generate();
+        if ( this.movablePrefabMap[type] ) {
+          var enemy = cc.instantiate(this.movablePrefabMap[type]);
+          enemy.getComponent("enemy").subtype = subtype;
+          enemy.getComponent("enemy").level = level;
+          this.addMovable(enemy, x, y);
+          enemy.getComponent(Movable).generate();
+        } else {
+          cc.error("enemy type:"+type+" not registered")
+        }
       }
     },
     generateEnemy(){
