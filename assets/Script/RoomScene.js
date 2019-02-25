@@ -178,8 +178,8 @@ cc.Class({
     initChoicePool(){
       Global.currentChoicePool = [];
       Global.currentChoicePool.push(ChoiceFactory.getScore({number:300}))
-      // var skillChoices = ["healSkill","whirlSkill","bigWhirlSkill"]
-      var skillChoices = ["bigWhirlSkill"]
+      var skillChoices = ["healSkill","whirlSkill","bigWhirlSkill","horizontalSlashSkill","verticalSlashSkill","crossSlashSkill"]
+      //var skillChoices = ["bigWhirlSkill"]
       skillChoices.forEach(function(choice){
         Global.currentChoicePool.push(ChoiceFactory.getSkill({name:choice}))
       },this);
@@ -198,7 +198,7 @@ cc.Class({
       if ( this.room.hero.getComponent("hero").getStatus("forbid") ) {
         setTimeout(function(){
           skill.getComponent("skill").forbid = true
-        },1)        
+        },1)
       }
     },
     getSkill(skillName){
