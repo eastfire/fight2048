@@ -31,7 +31,7 @@ cc.Class({
   onUsed() {
     Global.currentRoom.hero.getComponent("hero").gainHp(this.effect);
     //TODO skill EFFECT
-    Global.currentRoom.setAcceptInput(true);
+    hero.afterUseSkill()
   }
   // update (dt) {},
 });

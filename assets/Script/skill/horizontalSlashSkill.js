@@ -44,11 +44,11 @@ cc.Class({
           enemy.dodgeAttack(hero, hero.positions[0]);
         }
       }
-    }    
+    }
 
     //TODO skill EFFECT
     this.scheduleOnce(function(){
-      Global.currentRoom.setAcceptInput(true);
+      hero.afterUseSkill()
     }, Global.HERO_ATTACK_TIME/2);
   }
   // update (dt) {},

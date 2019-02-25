@@ -48,7 +48,7 @@ cc.Class({
 
     //TODO skill EFFECT
     this.scheduleOnce(function(){
-      Global.currentRoom.setAcceptInput(true);
+      hero.afterUseSkill()
     }, Global.HERO_ATTACK_TIME/2);
   }
   // update (dt) {},

@@ -201,7 +201,13 @@ cc.Class({
     }
   },
   gainHp(hp){
-    this.hp = Math.min(this.maxHp, this.hp+hp)
+    var amount = Math.min(this.maxHp, this.hp+hp) - this.hp;
+    if ( this.getStatus("curse") ) {
+      amount = Math.round(amount)
+      this.lostStatus("curse");
+    }
+    this.hp += amount;
+    this.lostStatus("poison");
   },
   checkLevelUp(){
     if ( this.exp >= this.maxExp ) {
@@ -224,7 +230,16 @@ cc.Class({
     } else {
       if ( Global.currentRoom._phase == "heroAttack") {
         Global.currentRoom.node.emit("enemy-attack-start")
-      } //另一种phase是waitUserInput
+      } else { //另一种phase是waitUserInput
+        Global.currentRoom.setAcceptInput(true);
+      }
+    }
+  },
+  afterUseSkill(){
+    if ( this.checkLevelUp() ) {
+
+    } else {
+      Global.currentRoom.setAcceptInput(true);
     }
   },
   beforeBeAttacked(enemy){
