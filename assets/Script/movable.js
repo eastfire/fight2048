@@ -232,6 +232,12 @@ cc.Class({
 
     },
     afterBeMerged(movable){
+      //merge status
+      for (var key in movable.status){
+        var s = movable.status[key];
+        this.gainStatus(s.getComponent("status").statusName, s.duration);
+      }
+
       this.beforeLevelUp(this.level);
       this.level+=movable.level;
       this.onLevelUp(this.level)
@@ -245,14 +251,12 @@ cc.Class({
     },
     onTurnStart(){
       this.forEachStatus(function(status){
-        cc.log("onTurnStart"+status)
         if (status.onTurnStart)
           status.onTurnStart(this)
       },this)
     },
     onTurnEnd(){
       this.forEachStatus(function(status){
-        cc.log("onTurnEnd"+status)
         if (status.onTurnEnd)
           status.onTurnEnd(this)
       },this)
@@ -272,9 +276,7 @@ cc.Class({
         this.getStatus(status).addDuration(turn);
         return;
       }
-      cc.log(status)
       var statusNode = cc.instantiate(Global.currentRoom.statusMap[status])
-      cc.log(statusNode)
       this.statusList.node.addChild(statusNode)
       //getStatus effect
       statusNode.setScale(0.1)
@@ -304,7 +306,6 @@ cc.Class({
       }
     },
     setStatus(list){
-      cc.log("setStatus")
       list.forEach(function(s){
         this.gainStatus(s.status, s.last)
       },this)

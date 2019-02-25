@@ -275,7 +275,7 @@ cc.Class({
   takeDamage(enemy, damage){
       this.beforeTakeDamage(enemy, damage)
       //TODO damage effect
-      this.loseHp(damage, "damage");
+      this.loseHp(damage, {reason:"damage", enemy });
   },
   loseHp(damage, reason){
     //TODO effect

@@ -17,7 +17,7 @@ cc.Class({
     this.duration = duration;
   },
   onTurnStart(){
-    Global.currentRoom.hero.getComponent("hero").loseHp(1,"poison")
+    Global.currentRoom.hero.getComponent("hero").loseHp(1,{reason:"poison"})
   },
   // update (dt) {},
 });
