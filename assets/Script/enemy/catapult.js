@@ -17,13 +17,6 @@ cc.Class({
         },
         override: true,
       },
-      attackRage: {
-        get() {
-          return 100; //無限
-        },
-        visible: false,
-        override: true
-      },
       score: {
         get(){
           return (this.level+1)*this.level/2*Global.SCORE_INFLATION_RATE
