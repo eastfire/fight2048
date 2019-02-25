@@ -219,6 +219,9 @@ cc.Class({
       if (hero.checkHit(this)) {
         //hit
         var attackPoint = this.hit(hero); //输出
+        if ( this.getStatus("angry") ) {
+          attackPoint*=2;
+        }
         var damage = hero.beHit(this, attackPoint); //调整
         if ( damage > 0 ) { //能造成伤害
           damage = this.damageHero(hero, damage); //第二次调整

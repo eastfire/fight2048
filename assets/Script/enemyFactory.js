@@ -9,8 +9,9 @@ cc.Class({
 
   ctor(){
     this.enemyPool = [{type:"slime",subtype:"R"},{type:"slime",subtype:"B"},{type:"slime",subtype:"Y"}];
-    this.enemyPool = [{type:"vampire"}]
-    var enemyList = ["archer","catapult","gargoyle","ghost","medusa","minotaur","mummy","orge","ratman","skeleton","snake","treant","vampire"]
+    this.enemyPool = [{type:"orcChief"}]
+    var enemyList = ["archer","catapult","gargoyle","ghost","medusa","minotaur",
+    "mummy","orcChief","orge","ratman","skeleton","snake","treant","vampire"]
     this.waitingEnemyPool = [];
     enemyList.forEach(function(type){
       this.waitingEnemyPool.push({type:type})
