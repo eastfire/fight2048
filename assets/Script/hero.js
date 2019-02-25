@@ -141,7 +141,7 @@ cc.Class({
     }
   },
   canAttack( enemy ){
-    return true;
+    return !this.getStatus("paralyse");
   },
   hitOrMiss(enemy) {
     if ( enemy.checkHit(this) ) {

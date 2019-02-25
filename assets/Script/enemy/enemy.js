@@ -183,7 +183,7 @@ cc.Class({
     },
     canAttack(hero){
       //TODO other status effect
-      if ( this.checkRange(hero) ) {
+      if ( this.checkRange(hero) && !this.getStatus("paralyse") ) {
         return true;
       }
       return false
