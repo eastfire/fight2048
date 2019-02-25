@@ -33,7 +33,8 @@ cc.Class({
       attackType:{
         default:Common.ATTACK_TYPE_MELEE,
         visible:false,
-      }
+      },
+      dexterity: 0,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -66,7 +67,7 @@ cc.Class({
 
     },
     checkHit(hero){
-      return true;
+      return Math.random()>this.dexterity/100;
     },
     dodgeAttack(hero, fromPosition){
 

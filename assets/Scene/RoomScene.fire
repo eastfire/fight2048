@@ -921,6 +921,9 @@
     "statusPrefabs": [
       {
         "__uuid__": "4c0496c0-29ef-42ea-9adc-3e835d28f716"
+      },
+      {
+        "__uuid__": "61f5b0b1-c1d0-40f0-9bb1-4b58297b6052"
       }
     ],
     "_N$turn": 1,

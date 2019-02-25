@@ -180,11 +180,16 @@ cc.Class({
 
   },
   afterHit(enemy){
-    cc.log("hero-attack-complete")
     Global.currentRoom.node.emit("hero-attack-complete",this)
   },
   miss(enemy){
-
+    var p = Global.currentRoom.getDrawPosition(this.positions[0])
+    this.node.runAction(cc.sequence(
+      cc.moveTo(Global.HERO_ATTACK_TIME/2+0.1, p.x, p.y ), //留时间给enemy做特效
+      cc.callFunc(function(){
+        Global.currentRoom.node.emit("hero-attack-complete",this)
+      },this)
+    ))
   },
   gainExp(exp){
     cc.log("gain exp:"+exp)
