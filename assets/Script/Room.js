@@ -92,7 +92,7 @@ cc.Class({
       }
     },
     initTiles() {
-      var initTiles = TILES.tiles6x6;
+      var initTiles = TILES.tiles5x5;
 
       if ( !initTiles ) return;
       this.__tiles = [];

@@ -22,12 +22,6 @@ cc.Class({
   levelUpDesc(level){
     return "多治疗"+(this.effectOfLevel(level)-this.effectOfLevel(level-1))+"生命,但冷却时间多1回合"
   },
-  onLoad () {
-    this._super()
-  },
-  start () {
-    this._super()
-  },
   effectOfLevel(level){
     return 5*level+5;
   },

@@ -11,7 +11,7 @@ const Room = require("Room");
 const Skill = require("skill");
 const Common = require("common");
 const Global = require("global");
-const ChoiceList = require("choiceFactory")
+const ChoiceFactory = require("choiceFactory")
 import AllSkill from "allSkill"
 
 const KEY_LEFT = 37;
@@ -174,9 +174,12 @@ cc.Class({
     },
     initChoicePool(){
       Global.currentChoicePool = [];
-      Global.currentChoicePool.push(ChoiceList.getScore({number:300}))
-      Global.currentChoicePool.push(ChoiceList.getScore({number:200}))
-      Global.currentChoicePool.push(ChoiceList.getSkill({name:"healSkill"}))
+      Global.currentChoicePool.push(ChoiceFactory.getScore({number:300}))
+      // var skillChoices = ["healSkill","whirlSkill","bigWhirlSkill"]
+      var skillChoices = ["bigWhirlSkill"]
+      skillChoices.forEach(function(choice){
+        Global.currentChoicePool.push(ChoiceFactory.getSkill({name:choice}))
+      },this);
     },
     initSkill(){
       this.skills={};
