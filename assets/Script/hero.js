@@ -147,12 +147,12 @@ cc.Class({
     if ( enemy.checkHit(this) ) {
         //hit
       this.hit(enemy);
-      enemy.beHit(this);
+      enemy.beHit(this, this.positions[0]);
       return true;
     } else {
       //miss
       this.miss(enemy);
-      enemy.dodgeAttack(this);
+      enemy.dodgeAttack(this, this.positions[0]);
       return false;
     }
   },

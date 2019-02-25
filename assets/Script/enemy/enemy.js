@@ -31,7 +31,7 @@ cc.Class({
         visible: false
       },
       attackType:{
-        default:Global.ATTACK_TYPE_MELEE,
+        default:Common.ATTACK_TYPE_MELEE,
         visible:false,
       }
     },
@@ -68,7 +68,7 @@ cc.Class({
     checkHit(hero){
       return true;
     },
-    dodgeAttack(hero){
+    dodgeAttack(hero, fromPosition){
 
     },
     onLevelUp(levelUp){
@@ -87,12 +87,11 @@ cc.Class({
     },
     beforeBeHit(hero){
     },
-    beHit(hero){
+    beHit(hero, fromPosition){
       this.beforeBeHit(hero);
-      var heroPosition = hero.positions[0]
-      var point = this.getClosestPoint(heroPosition)
-      var deltaX = Global.TILE_WIDTH*(Math.max(-1,Math.min(1,heroPosition.x - point.x)) )/4;
-      var deltaY = Global.TILE_HEIGHT*(Math.max(-1,Math.min(1,heroPosition.y - point.y)) )/4;
+      var point = this.getClosestPoint(fromPosition)
+      var deltaX = Global.TILE_WIDTH*(Math.max(-1,Math.min(1,fromPosition.x - point.x)) )/4;
+      var deltaY = Global.TILE_HEIGHT*(Math.max(-1,Math.min(1,fromPosition.y - point.y)) )/4;
       if ( this.willDieAfterBeHit(hero) ) {
         this.node.runAction(cc.sequence(
           cc.moveBy(Global.HERO_ATTACK_TIME/2, -deltaX, -deltaY ).easing(cc.easeCubicActionOut()),
@@ -263,5 +262,8 @@ cc.Class({
           },this)
       ))
     },
+    isImmune(){
+      return false;
+    }
     // update (dt) {},
 });
