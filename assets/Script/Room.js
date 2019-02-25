@@ -224,6 +224,8 @@ cc.Class({
 
     shift(direction){
       this._phase = "movePhase";
+      if ( this.hero.getComponent("hero").getStatus("dizzy") )
+        direction = Common.REVERSE_DIRECTIONS[direction]
       var maxStep = this._realShift(direction);
       this.scheduleOnce(()=>{
         this.checkAllMovableMoved();
