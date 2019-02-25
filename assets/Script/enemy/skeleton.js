@@ -5,24 +5,36 @@ cc.Class({
     extends: Enemy,
 
     properties: {
-        score: {
-          get(){
-            return (2*this.level-1)*Global.SCORE_INFLATION_RATE
-          },
-          override: true
+      title: {
+        get(){
+          return "骷髅卫兵";
         },
-        exp: {
-          get(){  //一般
-            return Math.round(this.level*1.5*Global.EXP_INFLATION_RATE)
-          },
-          override: true
+        override: true,
+      },
+      desc: {
+        get(){
+          return "攻击力一般。\n经验值一般。";
         },
-        attack: {
-          get(){  //一般
-            return this.level*2-1;
-          },
-          override: true
+        override: true,
+      },
+      score: {
+        get(){
+          return (2*this.level-1)*Global.SCORE_INFLATION_RATE
         },
+        override: true
+      },
+      exp: {
+        get(){  //一般
+          return Math.round(this.level*1.5*Global.EXP_INFLATION_RATE)
+        },
+        override: true
+      },
+      attack: {
+        get(){  //一般
+          return this.level*2-1;
+        },
+        override: true
+      },
     },
 
     // LIFE-CYCLE CALLBACKS:

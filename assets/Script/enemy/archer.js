@@ -5,6 +5,18 @@ cc.Class({
     extends: Enemy,
 
     properties: {
+      title: {
+        get(){
+          return "骷髅弓箭手";
+        },
+        override: true,
+      },
+      desc: {
+        get(){
+          return "远程攻击。\n攻击力很低。\n经验值一般。";
+        },
+        override: true,
+      },
       attackRage: {
         get() {
           return 100; //無限

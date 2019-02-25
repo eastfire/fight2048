@@ -60,6 +60,8 @@ cc.Class({
       this.initStatusPrefabMap()
       this.initHero();
 
+      this.seen = {"slime":true};
+
       this.scheduleOnce(this.turnStart, 0.5);
     },
     initMovablePrefabMap() {
@@ -410,6 +412,11 @@ cc.Class({
           var item = cc.instantiate(this.movablePrefabMap[itemType]);
           item.getComponent("item").level = itemLevel;
           this.addMovable(item, position.x, position.y)
+
+          if ( !this.seen[itemType] ) {
+            this.seen[itemType] = true;
+            item.getComponent("movable").showDescDialog();
+          }
         } else {
           cc.error("item type:"+itemType+" not registered")
         }
@@ -418,17 +425,24 @@ cc.Class({
     generateOneEnemy(x,y, typeObj, level){
       var type = typeof typeObj === "string" ? typeObj: typeObj.type;
       var subtype = typeof typeObj === "string" ? typeObj: typeObj.subtype;
-      if ( this.movablePrefabMap[type] ) {
+      var prefab = this.movablePrefabMap[type];
+      if ( !prefab ) {
+        prefab = this.movablePrefabMap[type+subtype];
+      }
+      if ( prefab ) {
         //FIXME : only single block enemy here
-        if ( this.movablePrefabMap[type] ) {
-          var enemy = cc.instantiate(this.movablePrefabMap[type]);
-          enemy.getComponent("enemy").subtype = subtype;
-          enemy.getComponent("enemy").level = level;
-          this.addMovable(enemy, x, y);
-          enemy.getComponent(Movable).generate();
-        } else {
-          cc.error("enemy type:"+type+" not registered")
+        var enemy = cc.instantiate( prefab );
+        enemy.getComponent("enemy").subtype = subtype;
+        enemy.getComponent("enemy").level = level;
+        this.addMovable(enemy, x, y);
+        enemy.getComponent(Movable).generate();
+
+        if ( !this.seen[type] ) {
+          this.seen[type] = true;
+          enemy.getComponent("movable").showDescDialog();
         }
+      } else {
+        cc.error("enemy type:"+type+" not registered")
       }
     },
     generateEnemy(){
@@ -500,5 +514,6 @@ cc.Class({
         this.node.emit("enemy-attack-complete",this)
       }
     },
+
     // update (dt) {},
 });

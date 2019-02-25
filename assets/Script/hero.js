@@ -266,5 +266,8 @@ cc.Class({
   afterBeMerged(movable){
     //hero不要在合并后升级，所以重载movable的afterBeMerged
   },
+  showDescDialog(){
+
+  },
     // update (dt) {},
 });

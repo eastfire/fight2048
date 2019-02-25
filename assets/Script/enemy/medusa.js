@@ -7,6 +7,18 @@ cc.Class({
   extends: Enemy,
 
   properties: {
+    title: {
+      get(){
+        return "美杜莎";
+      },
+      override: true,
+    },
+    desc: {
+      get(){
+        return "合并或攻击时有一定概率冻结周围角色（等级越高概率越高）。\n攻击力一般。\n经验值一般。";
+      },
+      override: true,
+    },
     exp: {
       get(){
         return (Math.round(this.level*2.5)-1)*Global.EXP_INFLATION_RATE

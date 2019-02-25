@@ -5,24 +5,36 @@ cc.Class({
     extends: Enemy,
 
     properties: {
-        score: {
-          get(){
-            return (this.level+1)*this.level*Global.SCORE_INFLATION_RATE
-          },
-          override: true
+      title: {
+        get(){
+          return "食人魔";
         },
-        exp: {
-          get(){ //较高
-            return (Math.round(Math.log(this.level+1)*this.level)+1)*Global.EXP_INFLATION_RATE
-          },
-          override: true
+        override: true,
+      },
+      desc: {
+        get(){
+          return "攻击力高。\n经验值高。";
         },
-        attack: {
-          get(){  //较高
-            return Math.round(Math.log(this.level+1)*this.level)+1;
-          },
-          override: true
+        override: true,
+      },
+      score: {
+        get(){
+          return (this.level+1)*this.level*Global.SCORE_INFLATION_RATE
         },
+        override: true
+      },
+      exp: {
+        get(){ //较高
+          return (Math.round(Math.log(this.level+1)*this.level)+1)*Global.EXP_INFLATION_RATE
+        },
+        override: true
+      },
+      attack: {
+        get(){  //较高
+          return Math.round(Math.log(this.level+1)*this.level)+1;
+        },
+        override: true
+      },
     },
 
     // LIFE-CYCLE CALLBACKS:

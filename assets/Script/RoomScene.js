@@ -82,7 +82,10 @@ cc.Class({
           this.moneyLabel.string = this.star;
         }
       },
-
+      descDialog: {
+        default: null,
+        type: cc.Prefab,
+      }
     },
 
     // LIFE-CYCLE CALLBACKS:

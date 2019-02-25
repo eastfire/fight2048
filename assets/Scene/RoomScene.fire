@@ -1629,6 +1629,9 @@
     "skillPrefab": {
       "__uuid__": "c7a1cfa7-522e-47c1-a23b-1108de871e8e"
     },
+    "descDialog": {
+      "__uuid__": "fdf8af72-e2ae-4245-ba59-7073f26ca58c"
+    },
     "_N$score": "",
     "_N$star": "",
     "_id": "8bfsS4kzVJPZjdVDorAqew"

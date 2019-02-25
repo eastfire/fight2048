@@ -2,35 +2,47 @@ import Global from "global"
 const Enemy = require("enemy");
 
 cc.Class({
-    extends: Enemy,
+  extends: Enemy,
 
-    properties: {
-        score: {
-          get(){
-            return this.level*Global.SCORE_INFLATION_RATE
-          },
-          override: true
-        },
-        exp: {
-          get(){
-            return this.level*Global.EXP_INFLATION_RATE
-          },
-          override: true
-        }
+  properties: {
+    title: {
+      get(){
+        return "史莱姆";
+      },
+      override:true
     },
-
-    // LIFE-CYCLE CALLBACKS:
-    ctor: function () {
-
+    desc: {
+      get(){
+        return "攻击力始终为1。\n经验值极低。";
+      },
+      override:true
     },
-
-    onLoad () {
-      this._super();
+    score: {
+      get(){
+        return this.level*Global.SCORE_INFLATION_RATE
+      },
+      override: true
     },
+    exp: {
+      get(){
+        return this.level*Global.EXP_INFLATION_RATE
+      },
+      override: true
+    }
+  },
 
-    start () {
-      this._super();
-    },
+  // LIFE-CYCLE CALLBACKS:
+  ctor: function () {
+    this.type = "slime"
+  },
 
-    // update (dt) {},
+  onLoad () {
+    this._super();
+  },
+
+  start () {
+    this._super();
+  },
+
+  // update (dt) {},
 });

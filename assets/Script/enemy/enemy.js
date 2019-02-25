@@ -264,6 +264,6 @@ cc.Class({
     },
     isImmune(){
       return false;
-    }
+    },
     // update (dt) {},
 });

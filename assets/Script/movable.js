@@ -19,6 +19,14 @@ cc.Class({
         type: cc.SpriteAtlas
       },
 
+      title: {
+        default: "",
+        visible: false
+      },
+      desc: {
+        default: "",
+        visible: false
+      },
       level: {
         default: 1,
         visible: false,
@@ -62,6 +70,10 @@ cc.Class({
 
       this.status={};
       this.setFrame();
+
+      this.node.on('touchend', ( event ) => {
+        this.showDescDialog()
+      },this)
     },
     onDestroy() {
       this.node.destroy();
@@ -303,6 +315,12 @@ cc.Class({
       for (var key in this.status){
         callback.call(context, this.status[key]);
       }
-    }
+    },
+    showDescDialog(){
+      var dialog = cc.instantiate(Global.currentRoomScene.descDialog)
+      dialog.getComponent("descDialog").setMovable(this);
+      Global.currentRoomScene.node.addChild(dialog)
+      return dialog;
+    },
     // update (dt) {},
 });

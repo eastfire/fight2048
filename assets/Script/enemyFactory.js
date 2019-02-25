@@ -8,8 +8,8 @@ cc.Class({
   },
 
   ctor(){
-    // this.enemyPool = [{type:"slimeR",subtype:"red"},{type:"slimeB",subtype:"blue"},{type:"slimeY",subtype:"yellow"}];
-    this.enemyPool = [{type:"orge"}]
+    this.enemyPool = [{type:"slime",subtype:"R"},{type:"slime",subtype:"B"},{type:"slime",subtype:"Y"}];
+    // this.enemyPool = [{type:"orge"}]
     this.waitingEnemyPool = [{type:"medusa"},{type:"skeleton"},{type:"archer"},{type:"minotaur"},{type:"orge"}]
     this.enemyLevelPool = [1];
     this.enemyMaxLevel = 1;
