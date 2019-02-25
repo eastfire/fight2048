@@ -9,8 +9,13 @@ cc.Class({
 
   ctor(){
     this.enemyPool = [{type:"slime",subtype:"R"},{type:"slime",subtype:"B"},{type:"slime",subtype:"Y"}];
-    // this.enemyPool = [{type:"ghost"}]
-    this.waitingEnemyPool = [{type:"medusa"},{type:"skeleton"},{type:"archer"},{type:"minotaur"},{type:"orge"},{type:"gargoyle"},{type:"ghost"},{type:"treant"}]
+    this.enemyPool = [{type:"mummy"}]
+    var enemyList = ["archer","gargoyle","ghost","medusa","minotaur","mummy","orge","skeleton","snake","treant"]
+    this.waitingEnemyPool = [];
+    enemyList.forEach(function(type){
+      this.waitingEnemyPool.push({type:type})
+    },this)
+
     this.enemyLevelPool = [1];
     this.enemyMaxLevel = 1;
     this.enemyNumber = 2;

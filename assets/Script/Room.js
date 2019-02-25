@@ -369,10 +369,10 @@ cc.Class({
       }, this)
     },
     turnEnd(){
+      this._phase = "turnEnd";
       this._movables.forEach(function(movable){
         movable.onTurnEnd();
       },this)
-      this._phase = "turnEnd";
       this.turn++;
       this.enemyFactory.maintain(this.turn);
       this.turnStart();
@@ -396,6 +396,9 @@ cc.Class({
 //PHASE
     turnStart(){
       this._phase = "turnStart"
+      this._movables.forEach(function(movable){
+        movable.onTurnStart();
+      },this)
       this.generateEnemy();
     },
     generateOneItemType(){

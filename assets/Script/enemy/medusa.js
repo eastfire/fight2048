@@ -44,14 +44,6 @@ cc.Class({
     this.type = "medusa"
   },
 
-  onLoad () {
-    this._super();
-  },
-
-  start () {
-    this._super();
-  },
-
   afterBeMerged(movable){
     this._super(movable);
 

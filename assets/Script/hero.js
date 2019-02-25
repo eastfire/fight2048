@@ -61,7 +61,7 @@ cc.Class({
         }
         //升级
         this.exp = 0;
-        this.hp = this.maxHp;
+        this.gainHp(this.maxHp-this.hp)
         if ( Global.currentRoomScene ) {
           Global.currentRoomScene.levelLabel.string = this.level;
         }
@@ -202,9 +202,9 @@ cc.Class({
   },
   gainHp(hp){
     var amount = Math.min(this.maxHp, this.hp+hp) - this.hp;
-    if ( this.getStatus("curse") ) {
-      amount = Math.round(amount)
-      this.lostStatus("curse");
+    if ( this.getStatus("cursed") ) {
+      amount = Math.round(amount/2)
+      this.lostStatus("cursed");
     }
     this.hp += amount;
     this.lostStatus("poison");
@@ -275,10 +275,10 @@ cc.Class({
   takeDamage(enemy, damage){
       this.beforeTakeDamage(enemy, damage)
       //TODO damage effect
-      this.loseHp(damage);
+      this.loseHp(damage, "damage");
   },
-  loseHp(damage){
-    cc.log("lose hp " + damage)
+  loseHp(damage, reason){
+    //TODO effect
     this.hp = Math.max(0, this.hp - damage)
   },
   afterTakeDamage(enemy, damage){

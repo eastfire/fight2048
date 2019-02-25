@@ -245,12 +245,14 @@ cc.Class({
     },
     onTurnStart(){
       this.forEachStatus(function(status){
+        cc.log("onTurnStart"+status)
         if (status.onTurnStart)
           status.onTurnStart(this)
       },this)
     },
     onTurnEnd(){
       this.forEachStatus(function(status){
+        cc.log("onTurnEnd"+status)
         if (status.onTurnEnd)
           status.onTurnEnd(this)
       },this)
@@ -270,7 +272,9 @@ cc.Class({
         this.getStatus(status).addDuration(turn);
         return;
       }
+      cc.log(status)
       var statusNode = cc.instantiate(Global.currentRoom.statusMap[status])
+      cc.log(statusNode)
       this.statusList.node.addChild(statusNode)
       //getStatus effect
       statusNode.setScale(0.1)
@@ -306,6 +310,7 @@ cc.Class({
       },this)
     },
     getStatus(status){
+      if ( !this.status ) return null;
       return this.status[status];
     },
     forEachStatusNode(callback, context){
