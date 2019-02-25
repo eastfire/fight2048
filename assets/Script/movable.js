@@ -53,6 +53,7 @@ cc.Class({
       this.animateStatus = "stand";
 
       this.relativePositions = [{x:0, y:0}]; //如果一个movable占据多个格子，positions列出了所有占据的格子坐标, relativePositions列出了所有相对movable的坐标
+      this.status = {};
     },
 
     onLoad () {
@@ -271,7 +272,7 @@ cc.Class({
       }
       var statusNode = cc.instantiate(Global.currentRoom.statusMap[status])
       this.statusList.node.addChild(statusNode)
-      //lostStatus effect
+      //getStatus effect
       statusNode.setScale(0.1)
       statusNode.runAction(cc.sequence(
         cc.scaleTo(Global.LOSE_STATUS_TIME,1.5),
@@ -288,8 +289,9 @@ cc.Class({
       delete this.status[status];
       var s = cc.find(status, this.statusList.node);
       if ( s ) {
-        if ( s.getComponent("status").onLost)
+        if ( s.getComponent("status").onLost) {
           s.getComponent("status").onLost(this);
+        }
         //lostStatus effect
         s.runAction(cc.sequence(cc.fadeOut(
           Global.LOSE_STATUS_TIME
@@ -298,6 +300,7 @@ cc.Class({
       }
     },
     setStatus(list){
+      cc.log("setStatus")
       list.forEach(function(s){
         this.gainStatus(s.status, s.last)
       },this)

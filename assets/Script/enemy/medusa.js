@@ -60,7 +60,6 @@ cc.Class({
     Common.INCREMENTS.forEach(function(increment){
         var model = Global.currentRoom.getMovableByPosition(position.x+increment.x, position.y+increment.y);
         if ( model ) {
-          cc.log(model)
           this.checkFreeze(model);
         }
     },this);
@@ -74,9 +73,9 @@ cc.Class({
        // return 1;
     return Math.min(0.7,this.level*5/200+0.1);
   },
-  checkFreeze(hero){
-    if (this.getFreezeRate(hero) > Math.random() ){
-      hero.gainStatus("frozen",2)
+  checkFreeze(model){
+    if (this.getFreezeRate(model) > Math.random() ){
+      model.gainStatus("frozen",2)
     }
   },
   // update (dt) {},

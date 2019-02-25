@@ -28,6 +28,20 @@ cc.Class({
         this.countDownIcon.fillRange = (this.coolDown - this.countDown)/this.coolDown;
       }
     },
+    _forbid:false,
+    forbid: {
+      get(){
+        return this._forbid;
+      },
+      set(value){
+        this._forbid = value;
+        if ( value ) {
+          this.forbidIcon.node.opacity = 255;
+        } else {
+          this.forbidIcon.node.opacity = 0;
+        }
+      }
+    }
   },
   onLoad(){
 
@@ -38,6 +52,7 @@ cc.Class({
     this.iconBg = cc.find("iconBg",iconLayout).getComponent(cc.Sprite);
     this.countDownIcon = cc.find("countDownIcon",iconLayout).getComponent(cc.Sprite);
     this.countDownLabel = cc.find("countDown",iconLayout).getComponent(cc.Label);
+    this.forbidIcon = cc.find("forbidIcon",iconLayout).getComponent(cc.Sprite);
 
     this.countDownLabel.string = "";
     cc.loader.loadRes("Texture/"+this.icon, cc.SpriteFrame, (err, spriteFrame) => {
@@ -61,7 +76,7 @@ cc.Class({
     }
   },
   canUse(){
-    return Global.currentRoom.isAcceptInput() && this.countDown <= 0;
+    return !this.forbid && Global.currentRoom.isAcceptInput() && this.countDown <= 0;
   },
   reduceWait(turn){
     turn = turn || 1;
@@ -76,5 +91,5 @@ cc.Class({
   },
   onTurnStart(){
     this.reduceWait()
-  }
+  },
 })

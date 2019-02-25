@@ -31,14 +31,14 @@ cc.Class({
         || Global.currentRoom.movablePrefabMap[m.type+m.subtype];
 
       var movable = cc.instantiate(prefab)
-      movable.getComponent("movable").subtype = this.subtype;
+      movable.getComponent("movable").subtype = m.subtype;
       movable.x = 0;
       movable.y = 0;
-      movable.removeComponent(this.type)
+      movable.removeComponent(m.type)
 
       this.icon.addChild(movable)
       this.titleLabel.string = m.title
-      this.descLabel.string = m.desc      
+      this.descLabel.string = m.desc
     },
 
     closeDialog(){

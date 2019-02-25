@@ -195,9 +195,19 @@ cc.Class({
       this.skillLayout.node.addChild(skill)
       this.skills[skillName] = skill;
       skill.getComponent("skill").onGain();
+      if ( this.room.hero.getComponent("hero").getStatus("forbid") ) {
+        setTimeout(function(){
+          skill.getComponent("skill").forbid = true
+        },1)        
+      }
     },
     getSkill(skillName){
       return this.skills[skillName];
-    }
+    },
+    forEachSkill(callback, context){
+      for ( var i in this.skills ) {
+        callback.call(context, this.skills[i].getComponent("skill"))
+      }
+    },
     // update (dt) {},
 });
