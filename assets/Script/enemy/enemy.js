@@ -35,6 +35,8 @@ cc.Class({
         visible:false,
       },
       dexterity: 0,
+
+      immune: [cc.String]
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -269,9 +271,6 @@ cc.Class({
             this.afterAttack(hero)
           },this)
       ))
-    },
-    isImmune(){
-      return false;
     },
     // update (dt) {},
 });
