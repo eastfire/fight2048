@@ -9,7 +9,7 @@ cc.Class({
 
   ctor(){
     this.enemyPool = [{type:"slime",subtype:"R"},{type:"slime",subtype:"B"},{type:"slime",subtype:"Y"}];
-    // this.enemyPool = [{type:"golem"}]
+    // this.enemyPool = [{type:"ghost"}]
     var enemyList = ["archer","balista","catapult","gargoyle","ghost","golem","killerBee","kobold","medusa","mimic","minotaur",
     "mummy","orcChief","orge","ratman","skeleton","shaman","snake","treant","troll","vampire"]
     this.waitingEnemyPool = [];
@@ -45,7 +45,7 @@ cc.Class({
         }
       } while(!pass);
 
-      if ( Global.MAX_ENEMY_TYPE_IN_FIELD > this.enemyPool ){
+      if ( Global.MAX_ENEMY_TYPE_IN_FIELD > this.enemyPool.length ){
         this.enemyPool.unshift( monsterType )
       } else {
         //replace a monster

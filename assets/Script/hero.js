@@ -72,8 +72,6 @@ cc.Class({
     },
     extraExp: 0,
 
-    dodge: 0,
-    cunning: 0,
     choiceNumber:{
       get(){
         return Global.ORIGIN_CHOICE_NUMBER
@@ -267,8 +265,8 @@ cc.Class({
   },
   dodgeAttack(enemy){
     this.beforeDodgeAttack(enemy);
-    //TODO dodge effect
 
+    Common.labelEffect("Miss",cc.Color.BLUE,enemy.node)
   },
   afterDodgeAttack(enemy){
     this.afterBeAttacked(enemy);
@@ -290,6 +288,7 @@ cc.Class({
     if ( !this.dead && this.hp == 0 ) {
       this.dead = true;
       if ( this.onDead(reason) ) {
+        reason.damage = damage;
         Global.currentRoomScene.gameOver(reason);
       }
     }

@@ -72,7 +72,7 @@ cc.Class({
       else return true;
     },
     dodgeAttack(hero, fromPosition){
-
+      Common.labelEffect("Miss",cc.Color.BLUE,hero.node)
     },
     onLevelUp(levelUp){
       var starNumber = this.starOfLevel(this.level)
