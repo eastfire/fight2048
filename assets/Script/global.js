@@ -13,6 +13,7 @@ export default {
 
   TILE_WIDTH: 120,
   TILE_HEIGHT: 120,
+  ROOM_PADDING: 20,
 
   BASE_HP: 15,
   HP_INFLATION_RATE: 5,

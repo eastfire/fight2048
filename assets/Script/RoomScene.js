@@ -148,19 +148,27 @@ cc.Class({
           var locationInNode = event.getLocation();
           var currentX = locationInNode.x;
           var currentY = locationInNode.y;
+          var shiftHappend = false;
           if ( Math.abs(currentX - this.prevX) < SWIPE_THRESHOLD_WIDTH ) {
-              if ( currentY > this.prevY + SWIPE_THRESHOLD ) {
-                  this.room.shift(Common.DIRECTION_UP)
-              } else if ( currentY < this.prevY - SWIPE_THRESHOLD ) {
-                  this.room.shift(Common.DIRECTION_DOWN)
-              }
+            if ( currentY > this.prevY + SWIPE_THRESHOLD ) {
+              shiftHappend = true;
+              this.room.shift(Common.DIRECTION_UP)
+            } else if ( currentY < this.prevY - SWIPE_THRESHOLD ) {
+              shiftHappend = true;
+              this.room.shift(Common.DIRECTION_DOWN)
+            }
           }
           if ( Math.abs(currentY - this.prevY) < SWIPE_THRESHOLD_WIDTH ) {
-              if ( currentX > this.prevX + SWIPE_THRESHOLD ) {
-                  this.room.shift(Common.DIRECTION_RIGHT)
-              } else if ( currentX < this.prevX - SWIPE_THRESHOLD ) {
-                  this.room.shift(Common.DIRECTION_LEFT)
-              }
+            if ( currentX > this.prevX + SWIPE_THRESHOLD ) {
+              shiftHappend = true;
+              this.room.shift(Common.DIRECTION_RIGHT)
+            } else if ( currentX < this.prevX - SWIPE_THRESHOLD ) {
+              shiftHappend = true;
+              this.room.shift(Common.DIRECTION_LEFT)
+            }
+          }
+          if ( !shiftHappend ) {
+            this.room.click(currentX, currentY)
           }
         }
       });
@@ -178,7 +186,7 @@ cc.Class({
         }
       })
     },
-
+    
     initRules() {
 
     },

@@ -72,9 +72,10 @@ cc.Class({
       this.status={};
       this.setFrame();
 
-      this.node.on('touchend', ( event ) => {
-        this.showDescDialog()
-      },this)
+//与主屏幕触摸冲突
+      // this.node.on('touchend', ( event ) => {
+      //   this.showDescDialog()
+      // },this)
     },
     onDestroy() {
       this.node.destroy();

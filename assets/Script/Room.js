@@ -1,12 +1,3 @@
-// Learn cc.Class:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/class.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/class.html
-// Learn Attribute:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/reference/attributes.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
-//  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 import TILES from "TileSet";
 import Tile from "tile";
 import Movable from "movable";
@@ -127,15 +118,26 @@ cc.Class({
       }
       var maxSize = Math.max(this.width, this.height)
 
-      var padding = 20;
-
-      var scaleRate = (cc.winSize.width - padding*2)/((maxSize-2)*Global.TILE_WIDTH);
+      var scaleRate = (cc.winSize.width - Global.ROOM_PADDING*2)/((maxSize-2)*Global.TILE_WIDTH);
       this.node.scaleX = scaleRate;
       this.node.scaleY = scaleRate;
     },
 
     start () {
 
+    },
+
+    click(x,y){
+      var scale = this.node.scaleX
+      var tile = this.__tiles[0][0]
+      x = (x-cc.winSize.width/2)/scale - tile.node.x + Global.TILE_WIDTH/2
+      y = (y-cc.winSize.height/2-this.node.y)/scale - tile.node.y + Global.TILE_HEIGHT/2
+      var roomX = Math.floor( x / Global.TILE_WIDTH )
+      var roomY = Math.floor( y / Global.TILE_HEIGHT )
+      var movable = this.getMovableByPosition(roomX,roomY)
+      if ( movable ) {
+        movable.showDescDialog();
+      }
     },
 
     getTile(x,y){
