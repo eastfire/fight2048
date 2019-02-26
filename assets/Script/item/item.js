@@ -19,7 +19,7 @@ cc.Class({
   ctor: function () {
     this.isAllFaceSame = true;
     this.isMergeToSelfType = true;
-    this.accept = ["hero"]
+    this.accept = []
   },
 
   onLoad () {

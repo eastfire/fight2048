@@ -101,7 +101,7 @@ cc.Class({
     this.subtype = "normal";
     this.isMergeToSelfType = false;
     this.forwardAfterKill = false;
-    this.accept = ["item"]
+    this.accept = ["potion"]
   },
 
   onLoad () {
@@ -288,6 +288,15 @@ cc.Class({
   },
   showDescDialog(){
 
+  },
+//英雄mergeTo道具的逻辑与普通movable不同
+  mergeTo(movable){
+    movable.node.runAction(cc.sequence(
+      cc.fadeOut(Global.STEP_TIME/2-0.01),
+      cc.callFunc(function(){
+        movable.afterMergeTo(this)
+      },this)
+    ))
   },
     // update (dt) {},
 });

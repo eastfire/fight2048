@@ -151,8 +151,10 @@ cc.Class({
           && movable.subtype === this.subtype ) {
           return true;
       }
+      cc.log("XXXXX")
+      cc.log(this.accept)
+      cc.log( movable.type)
       if (Common.contains(this.accept, movable.type)) return true;
-      if (Common.contains(movable.accept, this.type)) return true;
       return false;
     },
     canMergeTo(movable, direction){
@@ -185,7 +187,7 @@ cc.Class({
           },this)
       ))
     },
-    afterMove(opt){ //called by view
+    afterMove(opt){
       var direction = opt.direction;
       var step = opt.step;
       var currentX = this.positions[0].x + step*Common.INCREMENTS[direction].x
@@ -194,6 +196,7 @@ cc.Class({
           var movable = Global.currentRoom.getMovableByPosition(currentX, currentY);
           this.mergeTo(movable);
       } else if ( opt.result === Common.SHIFT_RESULT_MERGE_AND_STAY ) {
+        cc.log("SHIFT_RESULT_MERGE_AND_STAY")
           var movable = Global.currentRoom.getMovableByPosition(currentX, currentY);
           movable.mergeTo(this);
       }
