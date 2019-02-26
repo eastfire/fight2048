@@ -150,6 +150,8 @@ cc.Class({
       this.node.on('touchmove', ( event) => {
         if (!this.room.isAcceptInput()) return;
         var locationInNode = event.getLocation();
+        if (!this.room.node.getBoundingBoxToWorld().contains(locationInNode))
+          return;
         var currentX = locationInNode.x;
         var currentY = locationInNode.y;
 
@@ -176,9 +178,11 @@ cc.Class({
         this.shiftArrowSprite.node.opacity = 0;
         if (this.room.isAcceptInput()) {
           var locationInNode = event.getLocation();
+          if (!this.room.node.getBoundingBoxToWorld().contains(locationInNode))
+            return;
           var currentX = locationInNode.x;
           var currentY = locationInNode.y;
-
+        
           var deltaX = currentX - this.prevX;
           var deltaY = currentY - this.prevY;
           var shiftHappend = false;
@@ -192,7 +196,7 @@ cc.Class({
             this.room.shift(Common.DIRECTION_LEFT)
           } else {
             this.room.click(currentX, currentY)
-          }          
+          }
         }
       });
       cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, ( event ) => {
