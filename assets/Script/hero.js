@@ -193,7 +193,6 @@ cc.Class({
     ))
   },
   gainExp(exp){
-    cc.log("gain exp:"+exp)
     if ( exp+this.exp <= this.maxExp ) {
       this.exp += exp;
     } else {

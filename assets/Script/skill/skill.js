@@ -61,7 +61,6 @@ cc.Class({
     this.iconBg.node.on('touchend', this.useSkill, this)
   },
   onDestroy(){
-    this.iconBg.node.off("touchend")
   },
   levelUp(level) {
     level = level || 1;
