@@ -220,7 +220,7 @@ cc.Class({
     initChoicePool(){
       Global.currentChoicePool = [];
       Global.currentChoicePool.push(ChoiceFactory.getScore({number:300}))
-      var skillChoices = ["dispelSkill","healSkill","whirlSkill","bigWhirlSkill","horizontalSlashSkill","verticalSlashSkill","crossSlashSkill"]
+      var skillChoices = ["coolingSkill","dispelSkill","healSkill","whirlSkill","bigWhirlSkill","horizontalSlashSkill","verticalSlashSkill","crossSlashSkill"]
       //var skillChoices = ["dispelSkill"]
       skillChoices.forEach(function(choice){
         Global.currentChoicePool.push(ChoiceFactory.getSkill({name:choice}))

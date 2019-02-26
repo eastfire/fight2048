@@ -23,6 +23,10 @@ cc.Class({
   levelUpDesc(level){
     return "多保持1回合，但冷却时间也增加1回合"
   },
+  start () {
+    this._super()
+    this.coolDown = 6;
+  },
   effectOfLevel(level){
     return level;
   },

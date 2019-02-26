@@ -1,5 +1,6 @@
 import Skill from "skill";
 import Global from "../global"
+import Common from "../common"
 
 cc.Class({
   extends: Skill,
@@ -14,28 +15,29 @@ cc.Class({
 
   // LIFE-CYCLE CALLBACKS:
   ctor() {
-    this.skillName = "healSkill"
-    this.icon="Skill/healSkill";
-    this.displayName = "治疗"
-    this.desc = "治疗"+this.effect+"生命";
+    this.skillName = "coolingSkill"
+    this.icon="Skill/coolingSkill";
+    this.displayName = "冷静"
+    this.desc = "所有其他技能冷却"+this.effect+"回合";
   },
   levelUpDesc(level){
-    return "多治疗"+(this.effectOfLevel(level)-this.effectOfLevel(level-1))+"生命,但冷却时间多1回合"
+    return "多冷却1"
   },
   start () {
     this._super()
-    this.coolDown = 5;
+    this.coolDown = 20;
   },
   effectOfLevel(level){
-    return 5*level+5;
+    return level+4;
   },
   onLevelUp(level){
-    this.coolDown ++;
   },
   onUsed() {
     var hero = Global.currentRoom.hero.getComponent("hero");
-    hero.gainHp(this.effect);
-    //TODO skill EFFECT
+    Global.currentRoomScene.forEachSkill(function(skill){
+      skill.getComponent("skill").reduceWait(this.effect)
+    },this)
+
     hero.afterUseSkill()
   }
   // update (dt) {},

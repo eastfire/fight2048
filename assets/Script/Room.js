@@ -394,6 +394,8 @@ cc.Class({
       this.addMovable(this.hero, heroX, heroY)
 
       // Global.currentRoomScene.gainSkill("dispelSkill")
+      // Global.currentRoomScene.gainSkill("coolingSkill")
+      // Global.currentRoomScene.gainSkill("healSkill")
       // setTimeout(()=>{
       //   this.hero.getComponent("hero").gainStatus("dizzy",-1)
       //   this.hero.getComponent("hero").gainStatus("poison",-1)
