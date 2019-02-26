@@ -29,7 +29,8 @@ cc.Class({
     this.coolDown ++;
   },
   onUsed() {
-    Global.currentRoom.hero.getComponent("hero").gainHp(this.effect);
+    var hero = Global.currentRoom.hero.getComponent("hero");
+    hero.gainHp(this.effect);
     //TODO skill EFFECT
     hero.afterUseSkill()
   }
