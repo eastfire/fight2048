@@ -42,7 +42,7 @@ cc.Class({
     for ( var i = 0; i < Global.currentRoom.width; i++ ) {
       var enemy = Global.currentRoom.getMovableByPosition(i,heroPosition.y);
       if (enemy && enemy.getComponent("enemy") ) {
-        if ( enemy.checkHit(hero) ) {
+        if ( enemy.checkHit(hero, attackDetail) ) {
           enemy.beHit(hero, attackDetail);
         } else {
           //miss
@@ -53,17 +53,11 @@ cc.Class({
     for ( var i = 0; i < Global.currentRoom.height; i++ ) {
       var enemy = Global.currentRoom.getMovableByPosition(heroPosition.x,i);
       if (enemy && enemy.getComponent("enemy") ) {
-        if ( enemy.checkHit(hero) ) {
-          enemy.beHit(hero, {
-            fromPosition:hero.positions[0],
-            type:Common.ATTACK_TYPE_SKILL
-          });
+        if ( enemy.checkHit(hero, attackDetail) ) {
+          enemy.beHit(hero, attackDetail);
         } else {
           //miss
-          enemy.dodgeAttack(hero, {
-            fromPosition:hero.positions[0],
-            type:Common.ATTACK_TYPE_SKILL
-          });
+          enemy.dodgeAttack(hero, attackDetail);
         }
       }
     }
