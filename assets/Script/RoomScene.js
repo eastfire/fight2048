@@ -92,6 +92,10 @@ cc.Class({
       dieDialog: {
         default: null,
         type: cc.Prefab,
+      },
+      shiftArrowSprite: {
+        default: null,
+        type: cc.Sprite
       }
     },
 
@@ -115,6 +119,7 @@ cc.Class({
 
     onDestroy(){
       this.node.off('touchstart');
+      this.node.off('touchmove');
       this.node.off('touchend');
       cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN);
 
@@ -142,33 +147,52 @@ cc.Class({
           }
         }
       });
+      this.node.on('touchmove', ( event) => {
+        if (!this.room.isAcceptInput()) return;
+        var locationInNode = event.getLocation();
+        var currentX = locationInNode.x;
+        var currentY = locationInNode.y;
+
+        var deltaX = currentX - this.prevX;
+        var deltaY = currentY - this.prevY;
+        var isDizzy = Global.currentRoom.hero.getComponent("hero").getStatus("dizzy");
+        if ( deltaY > SWIPE_THRESHOLD && Math.abs(deltaX) < Math.abs(deltaY) ) {
+          this.shiftArrowSprite.node.opacity = 100;
+          this.shiftArrowSprite.node.rotation=isDizzy? 180:0;
+        } else if ( deltaY < - SWIPE_THRESHOLD && Math.abs(deltaX) < Math.abs(deltaY) ) {
+          this.shiftArrowSprite.node.opacity = 100;
+          this.shiftArrowSprite.node.rotation = isDizzy? 0:180;
+        } else if ( deltaX > SWIPE_THRESHOLD && Math.abs(deltaY) <  Math.abs(deltaX) ) {
+          this.shiftArrowSprite.node.opacity = 100;
+          this.shiftArrowSprite.node.rotation = isDizzy?270:90;
+        } else if ( deltaX < - SWIPE_THRESHOLD && Math.abs(deltaY) < Math.abs(deltaX) ) {
+          this.shiftArrowSprite.node.opacity = 100;
+          this.shiftArrowSprite.node.rotation = isDizzy?90:270;
+        } else {
+          this.shiftArrowSprite.node.opacity = 0;
+        }
+      })
       this.node.on('touchend', ( event ) => {
+        this.shiftArrowSprite.node.opacity = 0;
         if (this.room.isAcceptInput()) {
           var locationInNode = event.getLocation();
           var currentX = locationInNode.x;
           var currentY = locationInNode.y;
+
+          var deltaX = currentX - this.prevX;
+          var deltaY = currentY - this.prevY;
           var shiftHappend = false;
-          if ( Math.abs(currentX - this.prevX) < SWIPE_THRESHOLD_WIDTH ) {
-            if ( currentY > this.prevY + SWIPE_THRESHOLD ) {
-              shiftHappend = true;
-              this.room.shift(Common.DIRECTION_UP)
-            } else if ( currentY < this.prevY - SWIPE_THRESHOLD ) {
-              shiftHappend = true;
-              this.room.shift(Common.DIRECTION_DOWN)
-            }
-          }
-          if ( Math.abs(currentY - this.prevY) < SWIPE_THRESHOLD_WIDTH ) {
-            if ( currentX > this.prevX + SWIPE_THRESHOLD ) {
-              shiftHappend = true;
-              this.room.shift(Common.DIRECTION_RIGHT)
-            } else if ( currentX < this.prevX - SWIPE_THRESHOLD ) {
-              shiftHappend = true;
-              this.room.shift(Common.DIRECTION_LEFT)
-            }
-          }
-          if ( !shiftHappend ) {
+          if ( deltaY > SWIPE_THRESHOLD && Math.abs(deltaX) < Math.abs(deltaY) ) {
+            this.room.shift(Common.DIRECTION_UP)
+          } else if ( deltaY < - SWIPE_THRESHOLD && Math.abs(deltaX) < Math.abs(deltaY) ) {
+            this.room.shift(Common.DIRECTION_DOWN)
+          } else if ( deltaX > SWIPE_THRESHOLD && Math.abs(deltaY) <  Math.abs(deltaX) ) {
+            this.room.shift(Common.DIRECTION_RIGHT)
+          } else if ( deltaX < - SWIPE_THRESHOLD && Math.abs(deltaY) < Math.abs(deltaX) ) {
+            this.room.shift(Common.DIRECTION_LEFT)
+          } else {
             this.room.click(currentX, currentY)
-          }
+          }          
         }
       });
       cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, ( event ) => {
