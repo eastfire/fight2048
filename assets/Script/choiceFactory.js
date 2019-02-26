@@ -1,5 +1,4 @@
 import Global from "global";
-const AllSkill = require("allSkill");
 
 function levelUpSkill(opt){
   return function(){
@@ -20,7 +19,9 @@ function levelUpSkill(opt){
 
 export default {
   getSkill(opt){
-    var skill = new AllSkill[opt.name]();
+    var skill = new cc.Node();
+    skill.addComponent(opt.name);
+    skill = skill.getComponent("skill")
     return {
       name:"技能："+skill.displayName,
       icon:"Texture/"+skill.icon,

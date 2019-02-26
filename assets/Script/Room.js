@@ -376,6 +376,9 @@ cc.Class({
       this._movables.forEach(function(movable){
         movable.onTurnEnd();
       },this)
+      if ( this.hero.getComponent("hero").dead ) {
+        return;
+      }
       this.turn++;
       this.enemyFactory.maintain(this.turn);
       this.turnStart();

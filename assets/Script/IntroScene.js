@@ -24,9 +24,6 @@ cc.Class({
   onTouchMoved: function (touch, event) {
   },
   onTouchEnded(event){
-    cc.director.loadScene(new RoomScene({
-        roomEntry: null,
-        maxScore: 0
-    }));
+    cc.director.loadScene("RoomScene");
   }
 });

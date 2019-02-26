@@ -102,6 +102,7 @@ cc.Class({
     this.isMergeToSelfType = false;
     this.forwardAfterKill = false;
     this.accept = ["potion"]
+    this.dead = false;
   },
 
   onLoad () {
@@ -279,11 +280,20 @@ cc.Class({
   takeDamage(enemy, damage){
       this.beforeTakeDamage(enemy, damage)
       //TODO damage effect
-      this.loseHp(damage, {reason:"damage", enemy });
+      this.loseHp(damage, {reason:"enemy", enemy });
   },
   loseHp(damage, reason){
     //TODO effect
     this.hp = Math.max(0, this.hp - damage)
+    if ( !this.dead && this.hp == 0 ) {
+      this.dead = true;
+      if ( this.onDead(reason) ) {
+        Global.currentRoomScene.gameOver(reason);
+      }
+    }
+  },
+  onDead(reason){
+    return true;//real dead
   },
   afterTakeDamage(enemy, damage){
   },

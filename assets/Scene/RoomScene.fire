@@ -1701,6 +1701,12 @@
     "descDialog": {
       "__uuid__": "fdf8af72-e2ae-4245-ba59-7073f26ca58c"
     },
+    "gameOverDialog": {
+      "__uuid__": "6add5f4a-2bd3-404f-9549-945dc82c4bb0"
+    },
+    "dieDialog": {
+      "__uuid__": "be380ff2-a08a-4b11-90d6-12641590e0b5"
+    },
     "_N$score": "",
     "_N$star": "",
     "_id": "8bfsS4kzVJPZjdVDorAqew"

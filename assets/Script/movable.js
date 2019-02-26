@@ -151,9 +151,6 @@ cc.Class({
           && movable.subtype === this.subtype ) {
           return true;
       }
-      cc.log("XXXXX")
-      cc.log(this.accept)
-      cc.log( movable.type)
       if (Common.contains(this.accept, movable.type)) return true;
       return false;
     },

@@ -12,7 +12,6 @@ const Skill = require("skill");
 const Common = require("common");
 const Global = require("global");
 const ChoiceFactory = require("choiceFactory")
-// const AllSkill = require( "allSkill")
 
 const KEY_LEFT = 37;
 const KEY_UP = 38;
@@ -83,6 +82,14 @@ cc.Class({
         }
       },
       descDialog: {
+        default: null,
+        type: cc.Prefab,
+      },
+      gameOverDialog: {
+        default: null,
+        type: cc.Prefab,
+      },
+      dieDialog: {
         default: null,
         type: cc.Prefab,
       }
@@ -189,7 +196,6 @@ cc.Class({
     },
     gainSkill(skillName){
       var skill = cc.instantiate(this.skillPrefab)
-      // skill.addComponent(AllSkill[skillName])
       skill.addComponent(skillName)
       skill.y = 0;
       skill.x = 0;
@@ -210,5 +216,11 @@ cc.Class({
         callback.call(context, this.skills[i].getComponent("skill"))
       }
     },
+
+    gameOver(reason){
+      var dialog = cc.instantiate(this.gameOverDialog)
+      dialog.getComponent("gameOverDialog").setReason(reason);
+      Global.currentRoomScene.node.addChild(dialog)
+    }
     // update (dt) {},
 });
