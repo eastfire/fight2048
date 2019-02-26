@@ -47,7 +47,7 @@ cc.Class({
       visible: false,
       notify(oldValue){
           //减少无效赋值
-        if (oldValue === this.exp) {
+        if (oldValue === this.level) {
           return;
         }
         //升级
@@ -207,6 +207,9 @@ cc.Class({
       amount = Math.round(amount/2)
       this.lostStatus("cursed");
     }
+
+    Common.labelEffect("+"+amount, cc.Color.RED, this.node)
+
     this.hp += amount;
     this.lostStatus("poison");
   },
@@ -275,11 +278,15 @@ cc.Class({
   },
   takeDamage(enemy, damage){
       this.beforeTakeDamage(enemy, damage)
-      //TODO damage effect
       this.loseHp(damage, {type:"enemy", enemy });
   },
   loseHp(damage, reason){
-    //TODO effect
+    if (reason.type == "poison") {
+      Common.labelEffect("-"+damage, cc.Color.GREEN, this.node)
+    } else if (reason.type == "enemy") {
+      Common.labelEffect("-"+damage, cc.Color.RED, this.node)
+    }
+
     this.hp = Math.max(0, this.hp - damage)
     if ( !this.dead && this.hp == 0 ) {
       this.dead = true;
