@@ -65,7 +65,7 @@ cc.Class({
     },
     getSpecialEffectRate(model){
          // return 1;
-      return Math.min(0.7,level*5/200+0.1);
+      return Math.min(0.7,this.level*5/200+0.1);
     },
     // update (dt) {},
 });

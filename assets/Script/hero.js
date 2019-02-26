@@ -315,7 +315,7 @@ cc.Class({
     ))
   },
   gainStatus(statusName){
-    if ( thig.getStatus("prevent") && Common.contains(Global.NEGATIVE_EFFECTS, statusName) ) return;
+    if ( this.getStatus("prevent") && Common.contains(Global.NEGATIVE_EFFECTS, statusName) ) return;
     this._super(statusName)
   },
   getDisturb(amount){
