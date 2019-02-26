@@ -1,5 +1,5 @@
 import Global from "global";
-import AllSkill from "allSkill";
+const AllSkill = require("allSkill");
 
 function levelUpSkill(opt){
   return function(){

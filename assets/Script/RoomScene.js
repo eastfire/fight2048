@@ -12,7 +12,7 @@ const Skill = require("skill");
 const Common = require("common");
 const Global = require("global");
 const ChoiceFactory = require("choiceFactory")
-import AllSkill from "allSkill"
+// const AllSkill = require( "allSkill")
 
 const KEY_LEFT = 37;
 const KEY_UP = 38;
@@ -189,7 +189,8 @@ cc.Class({
     },
     gainSkill(skillName){
       var skill = cc.instantiate(this.skillPrefab)
-      skill.addComponent(AllSkill[skillName])
+      // skill.addComponent(AllSkill[skillName])
+      skill.addComponent(skillName)
       skill.y = 0;
       skill.x = 0;
       this.skillLayout.node.addChild(skill)

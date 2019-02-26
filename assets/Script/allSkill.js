@@ -6,10 +6,10 @@ import verticalSlashSkill from "skill/verticalSlashSkill"
 import crossSlashSkill from "skill/crossSlashSkill"
 
 export default {
-  healSkill,
-  whirlSkill,
-  bigWhirlSkill,
-  horizontalSlashSkill,
-  verticalSlashSkill,
-  crossSlashSkill,
+  healSkill:healSkill,
+  whirlSkill:whirlSkill,
+  bigWhirlSkill:bigWhirlSkill,
+  horizontalSlashSkill:horizontalSlashSkill,
+  verticalSlashSkill:verticalSlashSkill,
+  crossSlashSkill:crossSlashSkill
 }

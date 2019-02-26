@@ -36,12 +36,6 @@ cc.Class({
         },
         override: true
       },
-      dexterity: {
-        get() {
-          return Math.min(83, this.level*(this.level+1)/2+5);
-        },
-        override: true
-      }
     },
 
     // LIFE-CYCLE CALLBACKS:
