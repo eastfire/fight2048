@@ -392,7 +392,8 @@ cc.Class({
       var heroY = 2;
       this.hero = hero;
       this.addMovable(this.hero, heroX, heroY)
-      // Global.currentRoomScene.gainSkill("crossSlashSkill")
+      Global.currentRoomScene.gainSkill("dispelSkill")
+      this.hero.getComponent("hero").gainStatus("dizzy")
     },
     initGenEnemyStrategy() {
       this.enemyFactory = new EnemyFactory();

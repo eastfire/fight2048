@@ -182,7 +182,7 @@ cc.Class({
             return;
           var currentX = locationInNode.x;
           var currentY = locationInNode.y;
-        
+
           var deltaX = currentX - this.prevX;
           var deltaY = currentY - this.prevY;
           var shiftHappend = false;
@@ -220,7 +220,7 @@ cc.Class({
     initChoicePool(){
       Global.currentChoicePool = [];
       Global.currentChoicePool.push(ChoiceFactory.getScore({number:300}))
-      var skillChoices = ["healSkill","whirlSkill","bigWhirlSkill","horizontalSlashSkill","verticalSlashSkill","crossSlashSkill"]
+      var skillChoices = ["dispelSkill","healSkill","whirlSkill","bigWhirlSkill","horizontalSlashSkill","verticalSlashSkill","crossSlashSkill"]
       //var skillChoices = ["bigWhirlSkill"]
       skillChoices.forEach(function(choice){
         Global.currentChoicePool.push(ChoiceFactory.getSkill({name:choice}))
