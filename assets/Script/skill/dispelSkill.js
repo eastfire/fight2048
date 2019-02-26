@@ -1,5 +1,6 @@
 import Skill from "skill";
 import Global from "../global"
+import Common from "../common"
 
 cc.Class({
   extends: Skill,
@@ -16,8 +17,8 @@ cc.Class({
   ctor() {
     this.skillName = "dispelSkill"
     this.icon="Skill/dispelSkill";
-    this.displayName = "驱魔"
-    this.desc = "祛除所有不良效果，且保持"+this.effect+"回合";
+    this.displayName = "驱散"
+    this.desc = "祛除所有异常效果，且保护"+this.effect+"回合不会获得异常效果";
   },
   levelUpDesc(level){
     return "多保持1回合，但冷却时间也增加1回合"
@@ -31,12 +32,11 @@ cc.Class({
   onUsed() {
     var hero = Global.currentRoom.hero.getComponent("hero");
     hero.forEachStatus(function(status){
-      if ( Global.NEGATIVE_EFFECTS.contains(status.statusName) ) {
-        hero.loseStatus(status.statusName);
+      if ( Common.contains(Global.NEGATIVE_EFFECTS, status.statusName) ) {
+        hero.lostStatus(status.statusName);
       }
     },this)
     hero.gainStatus("prevent",this.effect)
-    //TODO skill EFFECT
     hero.afterUseSkill()
   }
   // update (dt) {},

@@ -388,12 +388,16 @@ cc.Class({
     initHero() {
       var hero;
       hero = cc.instantiate(this.movablePrefabMap["hero"]);
-      var heroX = 4;
-      var heroY = 2;
+      var heroX = 3;
+      var heroY = 3;
       this.hero = hero;
       this.addMovable(this.hero, heroX, heroY)
-      Global.currentRoomScene.gainSkill("dispelSkill")
-      this.hero.getComponent("hero").gainStatus("dizzy")
+
+      // Global.currentRoomScene.gainSkill("dispelSkill")
+      // setTimeout(()=>{
+      //   this.hero.getComponent("hero").gainStatus("dizzy",-1)
+      //   this.hero.getComponent("hero").gainStatus("poison",-1)
+      // },1);
     },
     initGenEnemyStrategy() {
       this.enemyFactory = new EnemyFactory();
