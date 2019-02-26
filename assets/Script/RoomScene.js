@@ -101,7 +101,6 @@ cc.Class({
       Global.currentRoomScene = this;
       Global.currentRoom = this.room;
       this.skill = [];
-      this.maxSkill = 4;
 
       this.star = 0;
       this.score = 0;
@@ -186,7 +185,7 @@ cc.Class({
         }
       })
     },
-    
+
     initRules() {
 
     },
@@ -218,6 +217,13 @@ cc.Class({
     },
     getSkill(skillName){
       return this.skills[skillName];
+    },
+    skillCount(){
+      var count = 0;
+      for ( var i in this.skills ) {
+        count++;
+      }
+      return count;
     },
     forEachSkill(callback, context){
       for ( var i in this.skills ) {

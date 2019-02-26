@@ -27,7 +27,7 @@ export default {
       icon:"Texture/"+skill.icon,
       desc:skill.desc,
       validate(){
-        return !Global.currentRoomScene.getSkill(opt.name)
+        return !Global.currentRoomScene.getSkill(opt.name) && Global.currentRoomScene.skillCount() < Global.currentRoom.hero.getComponent("hero").maxSkill
       },
       onChosen:function(){
         Global.currentRoomScene.gainSkill(opt.name, opt.level);
