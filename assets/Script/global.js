@@ -39,8 +39,7 @@ export default {
   STAR_THRESHOLD: 6,
   MAX_STAR:5,
 
-  NEGATIVE_EFFECTS : ["frozen","cursed","dizzy","silent","poison","blind"],
-  AUTO_DECREASE_EFFECTS : ["dizzy","silent","dispel","poison","blind","forwardSlash"], //freeze is handle in Movable
+  NEGATIVE_EFFECTS : ["frozen","cursed","dizzy","forbid","poison","blind"],
 
   ENEMY_POOL_CHANGE_PER_TURN: 29,
   ENEMY_LEVEL_POOL_CHANGE_PER_TURN: 97,

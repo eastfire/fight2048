@@ -298,5 +298,15 @@ cc.Class({
       },this)
     ))
   },
+  gainStatus(statusName){
+    if ( thig.getStatus("prevent") && Common.contains(Global.NEGATIVE_EFFECTS, statusName) ) return;
+    this._super(statusName)
+  },
+  getDisturb(amount){
+    if ( this.getStatus("prevent") ) return;
+    Global.currentRoomScene.forEachSkill(function(skill){
+      skill.disturb(amount)
+    })
+  }
     // update (dt) {},
 });

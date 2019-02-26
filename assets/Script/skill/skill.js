@@ -82,6 +82,11 @@ cc.Class({
     turn = turn || 1;
     this.countDown = Math.max(0, this.countDown - turn)
   },
+  disturb(amount){
+    if ( this.countDown !== 0) {
+      this.countDown = Math.min(this.coolDown, amount+this.countDown);
+    }
+  },
   onGain() {
   },
   onLevelUp(){
