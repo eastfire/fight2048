@@ -393,7 +393,7 @@ cc.Class({
       this.hero = hero;
       this.addMovable(this.hero, heroX, heroY)
 
-      // Global.currentRoomScene.gainSkill("spiderWebSkill")
+      // Global.currentRoomScene.gainSkill("missileSkill")
       // Global.currentRoomScene.gainSkill("coolingSkill")
       // Global.currentRoomScene.gainSkill("healSkill")
       // setTimeout(()=>{

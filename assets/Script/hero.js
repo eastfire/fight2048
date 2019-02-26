@@ -136,7 +136,7 @@ cc.Class({
     }
   },
   canAttack( enemy ){
-    return !this.getStatus("paralyse");
+    return !this.getStatus("stun");
   },
   hitOrMiss(enemy) {
     var attackDetail = {

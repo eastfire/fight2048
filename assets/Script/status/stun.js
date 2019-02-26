@@ -11,7 +11,7 @@ cc.Class({
 
   // onLoad () {},
   ctor(){
-    this.statusName = "paralyse"
+    this.statusName = "stun"
   },
   addDuration(duration){
     this.duration = duration;
