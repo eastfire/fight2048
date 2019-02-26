@@ -1,5 +1,6 @@
 import Skill from "skill";
 import Global from "../global"
+const Common = require("common");
 import Enemy from "../enemy/enemy"
 
 cc.Class({
@@ -34,25 +35,35 @@ cc.Class({
     var hero = Global.currentRoom.hero.getComponent("hero");
     var heroPosition = hero.positions[0];
 
+    var attackDetail = {
+      fromPosition:heroPosition,
+      type:Common.ATTACK_TYPE_SKILL
+    };
     for ( var i = 0; i < Global.currentRoom.width; i++ ) {
       var enemy = Global.currentRoom.getMovableByPosition(i,heroPosition.y);
-      if (enemy && enemy.getComponent("enemy") && !enemy.isImmune("skill")) {
+      if (enemy && enemy.getComponent("enemy") ) {
         if ( enemy.checkHit(hero) ) {
-          enemy.beHit(hero, hero.positions[0]);
+          enemy.beHit(hero, attackDetail);
         } else {
           //miss
-          enemy.dodgeAttack(hero, hero.positions[0]);
+          enemy.dodgeAttack(hero, attackDetail);
         }
       }
     }
     for ( var i = 0; i < Global.currentRoom.height; i++ ) {
       var enemy = Global.currentRoom.getMovableByPosition(heroPosition.x,i);
-      if (enemy && enemy.getComponent("enemy") && !enemy.isImmune("skill")) {
+      if (enemy && enemy.getComponent("enemy") ) {
         if ( enemy.checkHit(hero) ) {
-          enemy.beHit(hero, hero.positions[0]);
+          enemy.beHit(hero, {
+            fromPosition:hero.positions[0],
+            type:Common.ATTACK_TYPE_SKILL
+          });
         } else {
           //miss
-          enemy.dodgeAttack(hero, hero.positions[0]);
+          enemy.dodgeAttack(hero, {
+            fromPosition:hero.positions[0],
+            type:Common.ATTACK_TYPE_SKILL
+          });
         }
       }
     }

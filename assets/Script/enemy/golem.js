@@ -1,5 +1,6 @@
 import Global from "global"
 const Enemy = require("enemy");
+const Common = require("common");
 
 cc.Class({
     extends: Enemy,
@@ -7,13 +8,13 @@ cc.Class({
     properties: {
       title: {
         get(){
-          return "幽灵";
+          return "魔像";
         },
         override: true,
       },
       desc: {
         get(){
-          return "一定概率躲过近普通攻击（等级越高概率越高）。\n攻击力很低。\n经验值较低。";
+          return "你的技能攻击对他无效，且会让他升级。\n攻击力很高。\n经验值很高。";
         },
         override: true,
       },
@@ -24,14 +25,14 @@ cc.Class({
         override: true
       },
       exp: {
-        get(){ //较低
-          return this.level*Global.EXP_INFLATION_RATE;
+        get(){ //很高
+          return  Math.round(Math.log(this.level+1)*this.level+1)*Global.EXP_INFLATION_RATE
         },
         override: true
       },
       attack: {
-        get(){  //很低
-          return Math.round(this.level/2);
+        get(){  //很高
+          return Math.round(Math.log(this.level+1)*this.level+1)
         },
         override: true
       },
@@ -45,7 +46,15 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
     ctor: function () {
-      this.type = "ghost"
-    }
+      this.type = "golem"
+    },
+
+    beHit(hero, detail){
+      if ( detail.type === Common.ATTACK_TYPE_SKILL ) {
+        this.level++;
+        return;
+      }
+      this._super(hero, detail)
+    },
     // update (dt) {},
 });

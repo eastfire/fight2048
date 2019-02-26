@@ -66,8 +66,10 @@ cc.Class({
     beforeBeAttacked(hero) {
 
     },
-    checkHit(hero){
-      return Math.random()>this.dexterity/100;
+    checkHit(hero, attackDetail){
+      if ( attackDetail.type === Common.ATTACK_TYPE_MELEE )
+        return Math.random()>this.dexterity/100;
+      else return true;
     },
     dodgeAttack(hero, fromPosition){
 
@@ -86,10 +88,12 @@ cc.Class({
         return Common.getPointDistance(position, p )
       },this)
     },
-    beforeBeHit(hero){
+    beforeBeHit(hero, detail){
+      return detail;
     },
-    beHit(hero, fromPosition){
-      this.beforeBeHit(hero);
+    beHit(hero, detail){
+      detail = this.beforeBeHit(hero, detail);
+      var fromPosition = detail.fromPosition
       var point = this.getClosestPoint(fromPosition)
       var deltaX = Global.TILE_WIDTH*(Math.max(-1,Math.min(1,fromPosition.x - point.x)) )/4;
       var deltaY = Global.TILE_HEIGHT*(Math.max(-1,Math.min(1,fromPosition.y - point.y)) )/4;

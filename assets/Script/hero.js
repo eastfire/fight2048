@@ -144,15 +144,19 @@ cc.Class({
     return !this.getStatus("paralyse");
   },
   hitOrMiss(enemy) {
-    if ( enemy.checkHit(this) ) {
+    var attackDetail = {
+      fromPosition:this.positions[0],
+      type:Common.ATTACK_TYPE_MELEE
+    }
+    if ( enemy.checkHit(this, attackDetail) ) {
         //hit
       this.hit(enemy);
-      enemy.beHit(this, this.positions[0]);
+      enemy.beHit(this, attackDetail);
       return true;
     } else {
       //miss
       this.miss(enemy);
-      enemy.dodgeAttack(this, this.positions[0]);
+      enemy.dodgeAttack(this, attackDetail);
       return false;
     }
   },
@@ -248,13 +252,13 @@ cc.Class({
   checkHit(enemy){
     return true;
   },
-  beforeBeHit(enemy, attackPoint){
+  beforeBeHit(enemy, attackDetail){
+    return attackDetail;
   },
-  beHit(enemy, attackPoint){
-    this.beforeBeHit(enemy, attackPoint);
-    return attackPoint;
+  beHit(enemy, attackDetail){
+    return this.beforeBeHit(enemy, attackDetail);
   },
-  afterBeHit(enemy, attackPoint){ //called by view
+  afterBeHit(enemy, attackDetail){ //called by view
     this.afterBeAttacked(enemy)
   },
   blocked(attackPoint){

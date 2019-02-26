@@ -1,5 +1,6 @@
 import Skill from "skill";
 import Global from "../global"
+const Common = require("common");
 import Enemy from "../enemy/enemy"
 
 cc.Class({
@@ -34,18 +35,22 @@ cc.Class({
     var hero = Global.currentRoom.hero.getComponent("hero");
     var heroPosition = hero.positions[0];
 
+    var attackDetail = {
+      fromPosition:heroPosition,
+      type:Common.ATTACK_TYPE_SKILL
+    };
     var alreadyAttacked = true;
     [{ x:heroPosition.x-1, y:heroPosition.y},
     { x:heroPosition.x+1, y:heroPosition.y},
     { x:heroPosition.x, y:heroPosition.y-1},
     { x:heroPosition.x, y:heroPosition.y+1}].forEach( function(position){
       var enemy = Global.currentRoom.getMovableByPosition(position.x, position.y);
-      if (enemy && enemy.getComponent("enemy") && !enemy.isImmune("skill") ) {
-          if ( enemy.checkHit(hero) ) {
-            enemy.beHit(hero, hero.positions[0]);
+      if (enemy && enemy.getComponent("enemy") ) {
+          if ( enemy.checkHit(hero, attackDetail) ) {
+            enemy.beHit(hero, attackDetail);
           } else {
             //miss
-            enemy.dodgeAttack(hero, hero.positions[0]);
+            enemy.dodgeAttack(hero, attackDetail);
           }
         }
       },this )

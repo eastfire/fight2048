@@ -236,7 +236,7 @@ var getPointDistance = function(p1,p2) {
 
 var ATTACK_TYPE_MELEE = 1;
 var ATTACK_TYPE_RANGE = 2;
-var ATTACK_TYPE_MAGIC = 3;
+var ATTACK_TYPE_SKILL = 3;
 
 export default {
   DIRECTION_UP,
@@ -263,7 +263,7 @@ export default {
 
   ATTACK_TYPE_MELEE,
   ATTACK_TYPE_RANGE,
-  ATTACK_TYPE_MAGIC,
+  ATTACK_TYPE_SKILL,
 
   SHIFT_RESULT_NORMAL: 1,
   SHIFT_RESULT_MERGE_AND_DISAPPEAR: 2,
