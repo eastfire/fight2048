@@ -24,7 +24,7 @@ cc.Class({
       this.scoreLabel.string += "经过"+Global.currentRoom.turn+"回合\n"
       this.scoreLabel.string += "升到Lv"+Global.currentRoom.hero.getComponent("hero").level+"\n"
       this.scoreLabel.string += "死于"
-      cc.log(reason)
+
       if ( reason.type === "poison" ) {
         this.scoreLabel.string += "中毒"
       } else if ( reason.type === "enemy" ) {
