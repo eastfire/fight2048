@@ -18,7 +18,7 @@ cc.Class({
   ctor() {
     this.skillName = "meteorShowerSkill"
     this.icon="Skill/meteorShowerSkill";
-    this.displayName = "流星雨"
+    this.displayName = "陨石雨"
     this.desc = "随机攻击6个敌人";
   },
   levelUpDesc(level){

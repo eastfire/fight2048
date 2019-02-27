@@ -39,7 +39,7 @@ export default {
   getScore(opt){
     return {
       name:"",
-      icon:"Texture/icon-exp",
+      icon:null,
       desc:"加"+opt.number+"分",
       onChosen:function(){
         Global.currentRoomScene.gainScore(opt.number);

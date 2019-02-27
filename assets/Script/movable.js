@@ -167,11 +167,25 @@ cc.Class({
     move(opt){
       this.beforeMove( opt );
       //remove old mapping
+      this.__removeOldMapping();
+      //开始移动
+      this._moveSprite(opt);
+    },
+    __removeOldMapping(){
       this.positions.forEach((position)=>{
           Global.currentRoom.__movableMap[position.x][position.y] = null;
       })
-      //开始移动
-      this._moveSprite(opt);
+    },
+    setNewPosition(newPosition){
+        var oldPosition = this.positions[0];
+        var diffX = newPosition.x - oldPosition.x;
+        var diffY = newPosition.y - oldPosition.y;
+        this.positions.forEach(function(position){
+          position.x += diffX;
+          position.y += diffY;
+          Global.currentRoom.__movableMap[position.x][position.y] = this;
+        },this);
+        this.calculateEdgePositions();
     },
     _moveSprite(opt){
       var increment = Common.INCREMENTS[opt.direction];
@@ -332,5 +346,50 @@ cc.Class({
       Global.currentRoomScene.node.addChild(dialog)
       return dialog;
     },
+    teleport(newPosition, isTurnStart){
+      if ( isTurnStart ) {
+        //TODO
+        this.__changePositionAtTurnStart = Global.currentRoom.turn;
+        this.__newPositionAtTurnStart = newPosition;
+      } else {
+        var drawPosition = Global.currentRoom.getDrawPosition(newPosition)
+        this.node.runAction(cc.sequence(
+          cc.spawn(
+            cc.moveBy(Global.TELEPORT_TIME/2, 0, 40),
+            cc.scaleTo(Global.TELEPORT_TIME/2, 0.4, 2),
+            cc.fadeOut(Global.TELEPORT_TIME/2)
+          ),
+          cc.moveTo(0.001,drawPosition.x,drawPosition.y+40),
+          cc.spawn(
+            cc.moveBy(Global.TELEPORT_TIME/2, 0, -40),
+            cc.scaleTo(Global.TELEPORT_TIME/2, 1, 1),
+            cc.fadeIn(Global.TELEPORT_TIME/2)
+          ),
+          cc.callFunc(function(){
+            this.__removeOldMapping();
+            this.setNewPosition(newPosition);
+          },this)
+        ))
+      }
+    },
+    beltTo(newPosition){
+//TODO
+      this.__changePositionAtTurnStart = Global.currentRoom.turn;
+      this.__newPositionAtTurnStart = newPosition;
+    },
+    afterBeltTo(newPosition){
+    },
+    afterTurnStartStep1(){
+      if ( this.__changePositionAtTurnStart === Global.currentRoom.turn ) {
+        this.__removeOldMapping();
+      }
+    },
+    afterTurnStartStep2(){
+      if ( this.__changePositionAtTurnStart === Global.currentRoom.turn ) {
+        this.setNewPosition(this.__newPositionAtTurnStart);
+      }
+    },
+    afterTurnStartStep3(){
+    }
     // update (dt) {},
 });
