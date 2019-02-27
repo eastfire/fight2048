@@ -95,7 +95,7 @@ cc.Class({
     this.subtype = "normal";
     this.isMergeToSelfType = false;
     this.forwardAfterKill = false;
-    this.accept = ["potion"]
+    this.accept = ["potion","poisonPotion"]
     this.dead = false;
   },
 

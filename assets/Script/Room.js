@@ -406,6 +406,7 @@ cc.Class({
     },
     initItem() {
       this.itemPool = ["potion"]
+      // this.itemPool = ["poisonPotion"]
     },
 //PHASE
     turnStart(){
