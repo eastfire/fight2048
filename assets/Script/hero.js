@@ -113,12 +113,16 @@ cc.Class({
   start () {
     this._super();
   },
-  beforeNormalAttack(enemy){
+  beforeNormalAttack(){
+    this.forEachStatus(function(status){
+      if (status.beforeNormalAttack)
+        status.beforeNormalAttack(this)
+    },this)
   },
   normalAttack() {
+    this.beforeNormalAttack();
     var enemy = Global.currentRoom.getMovableByPosition(Common.getIncrementPosition(this.positions[0], this.face));
     if ( enemy instanceof Enemy && this.canAttack(enemy)){
-        this.beforeNormalAttack(enemy);
         enemy.beforeBeAttacked(this);
         var increment = Common.INCREMENTS[this.face]
         var deltaX = Global.TILE_WIDTH*increment.x/2;
@@ -127,7 +131,7 @@ cc.Class({
         this.node.runAction(cc.sequence(
             cc.moveBy(Global.HERO_ATTACK_TIME/2, deltaX, deltaY ),
             cc.callFunc(function(){
-              this.hitOrMiss(enemy)
+              this.hitOrMiss(enemy);
             },this)
         ))
     } else {

@@ -291,7 +291,16 @@ cc.Class({
         this.getStatus(status).addDuration(turn);
         return;
       }
-      var statusNode = cc.instantiate(Global.currentRoom.statusMap[status])
+      var statusNode;
+      var statusPrefab = Global.currentRoom.statusMap[status];
+      if ( statusPrefab ) {
+        statusNode = cc.instantiate(statusPrefab)
+      } else {
+        statusPrefab = Global.currentRoom.statusMap["noIconStatus"]
+        statusNode = cc.instantiate(statusPrefab)
+        statusNode.addComponent(status);
+      }
+
       this.statusList.node.addChild(statusNode)
       //getStatus effect
       statusNode.setScale(0.1)
