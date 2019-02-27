@@ -1,10 +1,12 @@
 import Global from "global";
 
-function levelUpSkill(opt){
+function unlockHero(opt){
   return function(){
-    var skill = Global.currentRoomScene.getSkill(opt.name).getComponent("skill")
+    var unlock = new cc.Node();
+    skill.addComponent(opt.name);
+    skill = skill.getComponent("skill")
     return {
-      name:"升级技能："+skill.displayName+" 到"+(skill.level+1)+"级",
+      name:"解锁"+unlock.displayName,
       icon:"Texture/"+skill.icon,
       desc:skill.levelUpDesc(skill.level+1),
       onChosen:function(){

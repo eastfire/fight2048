@@ -220,11 +220,15 @@ cc.Class({
     initChoicePool(){
       Global.currentChoicePool = [];
       Global.currentChoicePool.push(ChoiceFactory.getScore({number:300}))
-      var skillChoices = ["forwardSlashSkill","backwardSlashSkill","coolingSkill","dispelSkill","healSkill","missileSkill","meteorShowerSkill","whirlSkill","bigWhirlSkill",
+      var skillChoices = ["forwardSlashSkill","backwardSlashSkill","dispelSkill","healSkill","missileSkill","meteorShowerSkill","whirlSkill","bigWhirlSkill",
       "horizontalSlashSkill","verticalSlashSkill","crossSlashSkill","spiderWebSkill","teleportSkill"]
       var skillChoices = ["backwardSlashSkill"]
       skillChoices.forEach(function(choice){
-        Global.currentChoicePool.push(ChoiceFactory.getSkill({name:choice}))
+        Global.currentChoicePool.push(ChoiceFactory.getSkill({name:choice, minSkillCount: 0}))
+      },this);
+      var skillChoices = ["coolingSkill"];
+      skillChoices.forEach(function(choice){
+        Global.currentChoicePool.push(ChoiceFactory.getSkill({name:choice, minSkillCount: 1}))
       },this);
     },
     initSkill(){
