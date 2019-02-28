@@ -150,6 +150,11 @@ cc.Class({
           return;
         var currentX = locationInNode.x;
         var currentY = locationInNode.y;
+        if ( this.prevX === null ) {
+          this.prevX = locationInNode.x;
+          this.prevY = locationInNode.y;
+          return;
+        }
 
         var deltaX = currentX - this.prevX;
         var deltaY = currentY - this.prevY;
@@ -193,6 +198,7 @@ cc.Class({
           } else {
             this.room.click(currentX, currentY)
           }
+          this.prevX = this.prevY = null;
         }
       });
       cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, ( event ) => {
