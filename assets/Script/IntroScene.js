@@ -1,4 +1,5 @@
 import Storage from "storage"
+import Global from "global"
 
 cc.Class({
   extends: cc.Component,
