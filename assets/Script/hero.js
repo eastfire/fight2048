@@ -259,7 +259,7 @@ cc.Class({
 
   },
   checkHit(enemy){
-    return true;
+    return Math.random()>this.dexterity/100;
   },
   beforeBeHit(enemy, attackDetail){
     return attackDetail;
