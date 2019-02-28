@@ -37,9 +37,8 @@ cc.Class({
 
     if ( Storage.statistics.gameTime === 0 ) {
       //first time game
-      // cc.director.loadScene("RoomScene");
       Global.currentHeroType = "normal"
-      cc.director.loadScene("MenuScene");
+      cc.director.loadScene("RoomScene");
     } else {
       cc.director.loadScene("MenuScene");
     }

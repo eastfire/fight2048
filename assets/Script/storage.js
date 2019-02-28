@@ -36,9 +36,13 @@ export default {
     this.unlocked = JSON.parse(cc.sys.localStorage.getItem('unlocked')) || {};
   },
   loadStatistics(){
-    this.statistics = JSON.parse(cc.sys.localStorage.getItem('statistics')) || {};
+    this.statistics = JSON.parse(cc.sys.localStorage.getItem('statistics')) || {
+      gameTime: 0
+    };
   },
-
+  saveStatistics(){
+    cc.sys.localStorage.setItem("statistics",JSON.stringify(this.statistics))
+  },
   saveProgress(){
     cc.sys.localStorage.setItem("progress",JSON.stringify(this.progress))
   },

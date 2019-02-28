@@ -16,6 +16,8 @@ cc.Class({
 
     start () {
       Global.currentRoom.setAcceptInput(false);
+      Storage.statistics.gameTime ++;
+      Storage.saveStatistics();
     },
 
     setReason(reason){
@@ -31,7 +33,9 @@ cc.Class({
         this.scoreLabel.string += "LV"+reason.enemy.level+" "+reason.enemy.title
       }
     },
-
+    home() {
+      cc.director.loadScene("MenuScene");
+    },
     restart(){
       this.node.runAction(cc.sequence(
         cc.fadeOut(Global.DIALOG_EXIT_TIME),

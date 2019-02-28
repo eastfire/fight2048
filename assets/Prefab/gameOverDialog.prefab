@@ -974,7 +974,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "shopButton",
+    "_name": "homeButton",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -1116,8 +1116,8 @@
     "_srcBlendFactor": 1,
     "_dstBlendFactor": 771,
     "_useOriginalSize": false,
-    "_string": "",
-    "_N$string": "",
+    "_string": "回到首页",
+    "_N$string": "回到首页",
     "_fontSize": 20,
     "_lineHeight": 40,
     "_enableWrapText": false,
@@ -1260,8 +1260,8 @@
       "__id__": 1
     },
     "component": "",
-    "_componentId": "a6dcaC4mppFtLslepl7WTx4",
-    "handler": "closeDialog",
+    "_componentId": "247e49nM+ZP26G7vrWzRbIo",
+    "handler": "home",
     "customEventData": ""
   },
   {
