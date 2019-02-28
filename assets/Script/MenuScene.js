@@ -1,19 +1,26 @@
-// Learn cc.Class:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/class.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/class.html
-// Learn Attribute:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/reference/attributes.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
-//  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
+import Global from "global"
+import Storage from "storage"
 
 cc.Class({
   extends: cc.Component,
 
   properties: {
     moneyLabel:{
-      
+      type:cc.Label,
+      default:null
+    },
+    star:{
+      default: Storage.money,
+      notify(oldValue){
+        if ( this.star == oldValue ) return;
+        this.moneyLabel.string = Storage.money = this.star;
+        cc.sys.localStorage.setItem("money",this.star)
+      },
+      visible:false
+    },
+    pageView:{
+      default:null,
+      type: cc.PageView
     }
   },
 
@@ -22,8 +29,16 @@ cc.Class({
   // onLoad () {},
 
   start () {
-
+    this.moneyLabel.string = Storage.money;
   },
 
+  toPage(index){
+    this.pageView.scrollToPage(index,0.2)
+  },
+
+  clearData(){
+    Storage.unlocked = {};
+    cc.sys.localStorage.setItem("unlocked",Storage.unlocked)
+  }
   // update (dt) {},
 });

@@ -75,10 +75,11 @@ cc.Class({
         }
       },
       star: {
-        default: 0,
+        default: Storage.money,
         notify(oldValue){
           if ( oldValue == this.star ) return;
-          this.moneyLabel.string = this.star;
+          this.moneyLabel.string = Storage.money = this.star;
+          cc.sys.localStorage.setItem("money",this.star)
         }
       },
       descDialog: {
@@ -106,7 +107,6 @@ cc.Class({
       Global.currentRoom = this.room;
       this.skill = [];
 
-      this.star = 0;
       this.score = 0;
 
       this.scoreLabel.string = this.score;

@@ -1,3 +1,5 @@
+import Stroage from "storage"
+
 cc.Class({
   extends: cc.Component,
 
@@ -24,6 +26,20 @@ cc.Class({
   onTouchMoved: function (touch, event) {
   },
   onTouchEnded(event){
-    cc.director.loadScene("RoomScene");
+    //Load data
+    Storage.money = cc.sys.localStorage.getItem('money') || 0;
+    Storage.game = cc.sys.localStorage.getItem('game') || {
+      gameTime: 0
+    };
+    Storage.unlocked = cc.sys.localStorage.getItem('unlocked') || {};
+    Storage.statistics = cc.sys.localStorage.getItem('statistics') || {};
+    Storage.rewardTaken = cc.sys.localStorage.getItem('rewardTaken') || {};
+
+    if ( Storage.game.gameTime === 0 ) {
+      // cc.director.loadScene("RoomScene");
+      cc.director.loadScene("MenuScene");
+    } else {
+      cc.director.loadScene("MenuScene");
+    }
   }
 });
