@@ -41,7 +41,7 @@ export default {
   STAR_THRESHOLD: 6,
   MAX_STAR:5,
 
-  NEGATIVE_EFFECTS : ["frozen","cursed","dizzy","forbid","poison","blind"],
+  NEGATIVE_EFFECTS : ["frozen","cursed","dizzy","forbid","poison","blind","stun"],
 
   ENEMY_POOL_CHANGE_PER_TURN: 29,
   ENEMY_LEVEL_POOL_CHANGE_PER_TURN: 97,
@@ -49,5 +49,18 @@ export default {
   MAX_ENEMY_TYPE_IN_FIELD:4,
   MAX_GEN_ENEMY_NUMBER: 4,
 
-  choicePool: []
+  currentHeroType: "normal",
+  currentSkillPool: [],
+
+  basicSkill: ["healSkill","coolingSkill"],
+  heroBasicSkill: {
+    normal: ["forwardSlashSkill","horizontalSlashSkill","verticalSlashSkill"],
+    wizard: ["dispelSkill","missileSkill","spiderWebSkill"],
+    cleric: [],
+    thief: []
+  },
+  heroUnlockableSkill: {
+    normal: ["backwardSlashSkill","whirlSkill","bigWhirlSkill","crossSlashSkill"],
+    wizard: ["teleportSkill","meteorShowerSkill"]
+  }
 }

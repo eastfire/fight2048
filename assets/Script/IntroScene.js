@@ -1,4 +1,4 @@
-import Stroage from "storage"
+import Storage from "storage"
 
 cc.Class({
   extends: cc.Component,
@@ -27,16 +27,18 @@ cc.Class({
   },
   onTouchEnded(event){
     //Load data
-    Storage.money = cc.sys.localStorage.getItem('money') || 0;
-    Storage.game = cc.sys.localStorage.getItem('game') || {
-      gameTime: 0
-    };
-    Storage.unlocked = cc.sys.localStorage.getItem('unlocked') || {};
-    Storage.statistics = cc.sys.localStorage.getItem('statistics') || {};
-    Storage.rewardTaken = cc.sys.localStorage.getItem('rewardTaken') || {};
+    Storage.loadMoney();
+    Storage.loadGame();
+    Storage.loadUnlock();
+    Storage.loadStatistics();
+    Storage.loadRewardTaken();
+    Storage.loadAchievement();
+    Storage.loadProgress();
 
-    if ( Storage.game.gameTime === 0 ) {
+    if ( Storage.statistics.gameTime === 0 ) {
+      //first time game
       // cc.director.loadScene("RoomScene");
+      Global.currentHeroType = "normal"
       cc.director.loadScene("MenuScene");
     } else {
       cc.director.loadScene("MenuScene");

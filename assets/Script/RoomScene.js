@@ -1,17 +1,9 @@
-// Learn cc.Class:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/class.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/class.html
-// Learn Attribute:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/reference/attributes.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
-//  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 const Room = require("Room");
 const Skill = require("skill");
 const Common = require("common");
 const Global = require("global");
 const ChoiceFactory = require("choiceFactory")
+import Storage from "storage"
 
 const KEY_LEFT = 37;
 const KEY_UP = 38;
@@ -63,6 +55,14 @@ cc.Class({
         default: null,
         type: cc.Layout
       },
+      skillSlotFrame: {
+        default: null,
+        type: cc.SpriteFrame
+      },
+      skillSlotLayout:{
+        default: null,
+        type: cc.Layout
+      },
       skillPrefab: {
         default: null,
         type: cc.Prefab
@@ -75,11 +75,12 @@ cc.Class({
         }
       },
       star: {
-        default: Storage.money,
+        default: 0,
         notify(oldValue){
           if ( oldValue == this.star ) return;
-          this.moneyLabel.string = Storage.money = this.star;
-          cc.sys.localStorage.setItem("money",this.star)
+          cc.log("this.star"+this.star)
+          Storage.saveMoney(this.star)
+          this.moneyLabel.string = this.star;
         }
       },
       descDialog: {
@@ -107,11 +108,6 @@ cc.Class({
       Global.currentRoom = this.room;
       this.skill = [];
 
-      this.score = 0;
-
-      this.scoreLabel.string = this.score;
-      this.moneyLabel.string = this.star;
-
       this.initEvent();
       this.initChoicePool()
       this.initSkill();
@@ -128,7 +124,7 @@ cc.Class({
     },
     start () {
       this.score = 0; //TODO fetch from save
-      this.star = 0;
+      this.star = Storage.star;
     },
     gainScore(score) {
       this.score += score;
@@ -220,19 +216,31 @@ cc.Class({
     initChoicePool(){
       Global.currentChoicePool = [];
       Global.currentChoicePool.push(ChoiceFactory.getScore({number:300}))
-      var skillChoices = ["forwardSlashSkill","backwardSlashSkill","dispelSkill","healSkill","missileSkill","meteorShowerSkill","whirlSkill","bigWhirlSkill",
-      "horizontalSlashSkill","verticalSlashSkill","crossSlashSkill","spiderWebSkill","teleportSkill"]
-      var skillChoices = ["backwardSlashSkill"]
-      skillChoices.forEach(function(choice){
+
+      Global.basicSkill.forEach(function(choice){
+        Global.currentChoicePool.push(ChoiceFactory.getSkill({name:choice, minSkillCount: choice == "coolingSkill"?1:0}))
+      },this)
+      Global.heroBasicSkill[Global.currentHeroType].forEach(function(choice){
         Global.currentChoicePool.push(ChoiceFactory.getSkill({name:choice, minSkillCount: 0}))
-      },this);
-      var skillChoices = ["coolingSkill"];
-      skillChoices.forEach(function(choice){
-        Global.currentChoicePool.push(ChoiceFactory.getSkill({name:choice, minSkillCount: 1}))
-      },this);
+      },this)
+      Global.heroUnlockableSkill[Global.currentHeroType].forEach(function(choice){
+        if ( Storage.unlocked[choice] ) {
+          Global.currentChoicePool.push(ChoiceFactory.getSkill({name:choice, minSkillCount: 0}))
+        }
+      },this)
     },
     initSkill(){
       this.skills={};
+      var maxSkill = Storage.progress.maxSkill[Global.currentHeroType]||2;
+      for ( var i =0 ;i < maxSkill; i++ ) {
+        var slot = new cc.Node()
+        slot.addComponent(cc.Sprite)
+        slot.getComponent(cc.Sprite).spriteFrame = this.skillSlotFrame;
+        slot.y = 0;
+        slot.width = 120;
+        slot.height = 140;
+        this.skillSlotLayout.node.addChild(slot)
+      }
     },
     gainSkill(skillName){
       var skill = cc.instantiate(this.skillPrefab)

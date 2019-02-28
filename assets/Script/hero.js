@@ -2,6 +2,7 @@ import Movable from "movable";
 import Global from "global";
 import Common from "common";
 import Enemy from "enemy";
+import Storage from "storage"
 
 cc.Class({
   extends: Movable,
@@ -84,8 +85,8 @@ cc.Class({
     dodge: 0,
     cunning: 0,
 
-    maxSkill: 4,
-    maxPerk: 2,
+    maxSkill: Storage.progress.maxSkill.normal || 2,
+    maxPerk: Storage.progress.maxPerk.normal || 1,
   },
 
   // LIFE-CYCLE CALLBACKS:

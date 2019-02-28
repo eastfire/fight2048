@@ -45,7 +45,6 @@ cc.Class({
       (err, frame)=>{
         this.unlockIcon.spriteFrame = frame;
     })
-
     this.validate()
   },
 
@@ -53,22 +52,40 @@ cc.Class({
     if ( !this.prerequests || (this.prerequests && Common.all(this.prerequests,function(request){
       return Storage.unlocked[request];
     },this) ) ) {
-      this.node.setScale(1);
+      this.availableButton();
     } else {
-      this.node.setScale(0);
+      this.unavailableButton();
     }
   },
 
-  click(){
-    MenuScene.star -= this.price;
-    Storage.unlocked[this.unlockName] = true;
-    cc.sys.localStorage.setItem("unlocked",Storage.unlocked)
-
+  unavailableButton(){
     this.unlockButton.interactable = false;
-    this.starIcon.destroy();
-    this.priceLabel.string = "已解锁"
+    this.node.active = false
+  },
 
-    Global.UnlockScene.refresh();
+  availableButton(){
+    this.unlockButton.interactable = Storage.star >= this.price;
+    this.node.active = true
+  },
+
+  unlockedButton(){
+    this.unlockButton.interactable = false;
+    this.starIcon.destroy()
+    this.priceLabel.string = "已解锁"
+    this.node.color = cc.Color.GRAY;
+  },
+
+  click(){
+    if ( Global.MenuScene.star >= this.price ) {
+      Global.MenuScene.star -= this.price;
+      Storage.unlock(this.unlockName)
+      if ( this.onUnlock ) {
+        this.onUnlock();
+      }
+      this.unlockedButton();
+
+      Global.UnlockScene.refresh();
+    }
   },
   // update (dt) {},
 });

@@ -10,11 +10,12 @@ cc.Class({
       default:null
     },
     star:{
-      default: Storage.money,
+      default: 0,
       notify(oldValue){
         if ( this.star == oldValue ) return;
-        this.moneyLabel.string = Storage.money = this.star;
-        cc.sys.localStorage.setItem("money",this.star)
+        Storage.saveMoney(this.star);
+        this.moneyLabel.string = this.star;
+        cc.log("money"+Storage.star)
       },
       visible:false
     },
@@ -26,19 +27,31 @@ cc.Class({
 
   // LIFE-CYCLE CALLBACKS:
 
-  // onLoad () {},
+  onLoad () {
+    Storage.loadUnlock();
+    Global.MenuScene = this;
+  },
 
   start () {
-    this.moneyLabel.string = Storage.money;
+    cc.log("Storage.star"+Storage.star)
+    this.star = Storage.star;
+    this.moneyLabel.string = Storage.star;
   },
 
-  toPage(index){
+  toPage(event, index){
     this.pageView.scrollToPage(index,0.2)
   },
-
+  addStar(){
+    this.star += 100;
+    Global.UnlockScene.refresh();
+  },
   clearData(){
-    Storage.unlocked = {};
-    cc.sys.localStorage.setItem("unlocked",Storage.unlocked)
+    Storage.clearData("unlocked")
+    Storage.clearData("star")
+  },
+
+  starGame(){
+    cc.director.loadScene("RoomScene");
   }
   // update (dt) {},
 });
