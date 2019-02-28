@@ -44,23 +44,26 @@ export default {
   NEGATIVE_EFFECTS : ["frozen","cursed","dizzy","forbid","poison","blind","stun"],
 
   ENEMY_POOL_CHANGE_PER_TURN: 29,
-  ENEMY_LEVEL_POOL_CHANGE_PER_TURN: 97,
+  ENEMY_LEVEL_POOL_CHANGE_PER_TURN: 89,
   ENEMY_NUNBER_CHANGE_PER_TURN: 501,
   MAX_ENEMY_TYPE_IN_FIELD:4,
   MAX_GEN_ENEMY_NUMBER: 4,
+  MAX_ENEMY_LEVEL_DIFF: 3,
 
   currentHeroType: "normal",
   currentSkillPool: [],
 
-  basicSkill: ["healSkill","coolingSkill"],
+  // basicSkill: ["turnUndeadSkill"],
+  basicSkill: ["healSkill","coolingSkill","constitutionSkill"],
   heroBasicSkill: {
     normal: ["forwardSlashSkill","horizontalSlashSkill","verticalSlashSkill"],
     wizard: ["dispelSkill","missileSkill","spiderWebSkill"],
-    cleric: [],
+    cleric: ["dispelSkill"],
     thief: []
   },
   heroUnlockableSkill: {
     normal: ["backwardSlashSkill","whirlSkill","bigWhirlSkill","crossSlashSkill"],
-    wizard: ["teleportSkill","meteorShowerSkill"]
+    wizard: ["teleportSkill","meteorShowerSkill"],
+    cleric: ["turnUndeadSkill"]
   }
 }

@@ -35,6 +35,7 @@ cc.Class({
         },
         override: true
       },
+      isUndead: true
     },
 
     // LIFE-CYCLE CALLBACKS:

@@ -46,7 +46,8 @@ cc.Class({
         override: true,
         default: Global.ATTACK_TYPE_RANGE,
         visible:false,
-      }
+      },
+      isUndead: true
     },
 
     // LIFE-CYCLE CALLBACKS:

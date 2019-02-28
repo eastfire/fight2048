@@ -56,12 +56,14 @@ cc.Class({
 
     if ( Global.currentRoom.turn % Global.ENEMY_LEVEL_POOL_CHANGE_PER_TURN == 0) {
       this.enemyMaxLevel ++;
+      var minLevel = Math.max(1, this.enemyMaxLevel - Global.MAX_ENEMY_LEVEL_DIFF)
       this.enemyLevelPool = [];
-      for ( var i = 1; i <= this.enemyMaxLevel; i++) {
-        for (var j = 0; j < i; j++){
-          this.enemyLevelPool.push(this.enemyMaxLevel-i+1);
+      for ( var i = minLevel; i <= this.enemyMaxLevel; i++) {
+        for (var j = 0; j < i - minLevel + 1; j++){
+          this.enemyLevelPool.push(this.enemyMaxLevel-i+minLevel);
         }
       }
+      cc.log("this.enemyLevelPool"+this.enemyLevelPool)
     }
 
     if ( Global.currentRoom.turn % Global.ENEMY_NUNBER_CHANGE_PER_TURN == 0) {

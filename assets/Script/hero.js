@@ -14,7 +14,8 @@ cc.Class({
     },
     maxHp: {
       get(){
-        return Global.BASE_HP+this.level*Global.HP_INFLATION_RATE;
+        return Global.BASE_HP+this.level*Global.HP_INFLATION_RATE+
+        this.constitution*Global.CONSTITUTION_EFFECT;
       },
     },
     hp: {
@@ -80,7 +81,13 @@ cc.Class({
     },
 
     luck: 0,
-    constituion: 0,
+    constitution: {
+      default:0,
+      notify(oldValue){
+        if (oldValue === this.constitution) return;
+        this.gainHp(Global.CONSTITUTION_EFFECT*(this.constitution - oldValue));
+      }
+    },
     dexterity: 0,
     dodge: 0,
     cunning: 0,

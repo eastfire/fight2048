@@ -247,24 +247,32 @@ cc.Class({
       skill.addComponent(skillName)
       skill.y = 0;
       skill.x = 0;
-      this.skillLayout.node.addChild(skill)
       this.skills[skillName] = skill;
-      skill.getComponent("skill").onGain();
-      if ( this.room.hero.getComponent("hero").getStatus("forbid") ) {
-        setTimeout(function(){
-          skill.getComponent("skill").forbid = true
-        },1)
+      if ( skill.getComponent("skill").isPassive ) {
+        skill.removeComponent(cc.Node)
+        skill.removeComponent(cc.Layout)
+        skill.getComponent("skill").onGain();
+      } else {
+        this.skillLayout.node.addChild(skill)
+        skill.getComponent("skill").onGain();
+        if ( this.room.hero.getComponent("hero").getStatus("forbid") ) {
+          setTimeout(function(){
+            skill.getComponent("skill").forbid = true
+          },1)
+        }
       }
     },
     getSkill(skillName){
       return this.skills[skillName];
     },
-    skillCount(){
-      var count = 0;
+    activeSkillCount(){
+      return this.skillLayout.node.children.length
+      /*var count = 0;
       for ( var i in this.skills ) {
-        count++;
+        if ( !this.skills[i].getComponent("skill").isPassive )
+          count++;
       }
-      return count;
+      return count;*/
     },
     forEachSkill(callback, context){
       for ( var i in this.skills ) {

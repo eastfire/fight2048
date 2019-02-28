@@ -40,7 +40,8 @@ cc.Class({
           return Math.min(83, this.level*(this.level+1)/2+5);
         },
         override: true
-      }
+      },
+      isUndead: true
     },
 
     // LIFE-CYCLE CALLBACKS:
