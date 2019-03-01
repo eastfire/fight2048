@@ -62,6 +62,13 @@ export default {
     price: 50,
     type:"skill",
     icon: "Texture/Skill/bigWhirlSkill"
+  },{
+    name:"crossSlashSkill",
+    displayName:"战士的十字斩",
+    prerequests: ["backwardSlashSkill"],
+    price: 50,
+    type:"skill",
+    icon: "Texture/Skill/crossSlashSkill"
   },
   {
     name:"warriorPerkSlot2",
@@ -142,12 +149,19 @@ export default {
       Storage.progress.maxSkill.cleric = 5;
       Storage.saveProgress();
     }
+  },{
+    name:"turnUndeadSkill",
+    displayName:"牧师的的驱逐死灵技能",
+    prerequests: ["cleric"],
+    price: 50,
+    type:"skill",
+    icon: "Texture/Skill/turnUndeadSkill"
   },
   {
     name:"wizard",
     displayName:"法师",
     prerequests: null,
-    price: 300,
+    price: 200,
     type:"hero",
     icon: "Texture/Hero/unlockWizard"
   },{
@@ -185,14 +199,63 @@ export default {
       Storage.progress.maxSkill.wizard = 5;
       Storage.saveProgress();
     }
+  },{
+    name:"teleportSkill",
+    displayName:"法师的的传送技能",
+    prerequests: ["wizard"],
+    price: 50,
+    type:"skill",
+    icon: "Texture/Skill/teleportSkill"
+  },{
+    name:"meteorShowerSkill",
+    displayName:"法师的的陨石雨技能",
+    prerequests: ["wizard"],
+    price: 500,
+    type:"skill",
+    icon: "Texture/Skill/meteorShowerSkill"
   },
   {
     name:"thief",
     displayName:"盗贼",
     prerequests: null,
-    price: 100,
+    price: 300,
     type:"hero",
-    icon: "Texture/unlockHero"
+    icon: "Texture/Hero/unlockThief"
+  },{
+    name:"thiefSkillSlot3",
+    displayName:"盗贼的第3个技能槽",
+    prerequests: ["thiefSkillSlot3"],
+    price: 100,
+    type:"skillSlot",
+    icon: "Texture/skillSlot",
+    onUnlock:function(){
+      Storage.progress.maxSkill.thief = 3;
+      Storage.saveProgress();
+    }
+  },
+  {
+    name:"thiefSkillSlot4",
+    displayName:"盗贼的第4个技能槽",
+    prerequests: ["thiefSkillSlot3"],
+    price: 300,
+    type:"skillSlot",
+    icon: "Texture/skillSlot",
+    onUnlock:function(){
+      Storage.progress.maxSkill.thief = 4;
+      Storage.saveProgress();
+    }
+  },
+  {
+    name:"thiefSkillSlot5",
+    displayName:"盗贼的第5个技能槽",
+    prerequests: ["thiefSkillSlot4"],
+    price: 1000,
+    type:"skillSlot",
+    icon: "Texture/skillSlot",
+    onUnlock:function(){
+      Storage.progress.maxSkill.thief = 5;
+      Storage.saveProgress();
+    }
   },
 ]
 }
