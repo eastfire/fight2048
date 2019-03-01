@@ -18,25 +18,34 @@ export default {
     cc.sys.localStorage.setItem("star",amount)
   },
   loadGame(){
-    this.game = JSON.parse(cc.sys.localStorage.getItem('game')) || {};
+    var v = cc.sys.localStorage.getItem('game');
+    this.game = v ? JSON.parse(v) : {};
+  },
+  saveGame(){
+    cc.sys.localStorage.setItem("statistics",JSON.stringify(this.game))
   },
   loadProgress(){
-    this.progress = JSON.parse(cc.sys.localStorage.getItem('progress')) || {
+    var v = cc.sys.localStorage.getItem('progress')
+    this.progress = v ? JSON.parse(v) : {
       maxSkill:{},
       maxPerk:{},
     }
   },
   loadRewardTaken(){
-    this.rewardTaken = JSON.parse(cc.sys.localStorage.getItem('rewardTaken')) || {};
+    var v = cc.sys.localStorage.getItem('rewardTaken');
+    this.rewardTaken = v ? JSON.parse(v) : {};
   },
   loadAchievement(){
-    this.achievement = JSON.parse(cc.sys.localStorage.getItem('achievement')) || {};
+    var v = cc.sys.localStorage.getItem('achievement');
+    this.achievement = v ? JSON.parse(v) : {};
   },
   loadUnlock(){
-    this.unlocked = JSON.parse(cc.sys.localStorage.getItem('unlocked')) || {};
+    var v = cc.sys.localStorage.getItem('unlocked')
+    this.unlocked = v ? JSON.parse(v) : {};
   },
   loadStatistics(){
-    this.statistics = JSON.parse(cc.sys.localStorage.getItem('statistics')) || {
+    var v = cc.sys.localStorage.getItem('statistics')
+    this.statistics = v ? JSON.parse(v) : {
       gameTime: 0
     };
   },

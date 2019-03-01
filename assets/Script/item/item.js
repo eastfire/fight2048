@@ -1,7 +1,6 @@
 const Movable = require("movable");
 const Global = require("global")
 const Common = require("common")
-const Hero = require("../hero")
 
 cc.Class({
   extends: Movable,
@@ -31,7 +30,7 @@ cc.Class({
   },
 
   afterMergeTo(movable) {
-    if ( movable instanceof Hero ) {
+    if ( movable.getComponent("hero") ) {
       this.onTaken(movable)
       Global.currentRoomScene.gainScore(this.score);
     }

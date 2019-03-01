@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>hero-normal0stand0.png</key>
+            <key>hero-cleric0stand0.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -19,7 +19,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>hero-normal1stand0.png</key>
+            <key>hero-cleric1stand0.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -34,7 +34,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>hero-normal2stand0.png</key>
+            <key>hero-cleric2stand0.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -49,7 +49,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>hero-normal3stand0.png</key>
+            <key>hero-cleric3stand0.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -70,13 +70,13 @@
             <key>format</key>
             <integer>3</integer>
             <key>realTextureFileName</key>
-            <string>hero-normal.png</string>
+            <string>hero-cleric.png</string>
             <key>size</key>
             <string>{480,120}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:b64654f96312cacf9c1cf8cdeda23de0:8538bc0c5d0e02840916a10f81f89536:32aea5573de80301634ae4d10f49bf62$</string>
+            <string>$TexturePacker:SmartUpdate:8d453c306b611f64ce1d242771cc5252:7bdab739d125dba6e980e1fadb39bcc6:17a17464d86bd78a028c4944c36ba198$</string>
             <key>textureFileName</key>
-            <string>hero-normal.png</string>
+            <string>hero-cleric.png</string>
         </dict>
     </dict>
 </plist>

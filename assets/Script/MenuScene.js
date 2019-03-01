@@ -51,6 +51,8 @@ cc.Class({
   },
 
   starGame(){
+    Storage.game.prevHeroType = Global.currentHeroType;
+    Storage.saveGame();
     cc.director.loadScene("RoomScene");
   }
   // update (dt) {},

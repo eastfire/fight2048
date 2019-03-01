@@ -388,6 +388,7 @@ cc.Class({
     initHero() {
       var hero;
       hero = cc.instantiate(this.movablePrefabMap["hero"]);
+      hero.getComponent("hero").subtype = Global.currentHeroType
       var heroX = 3;
       var heroY = 3;
       this.hero = hero;

@@ -27,6 +27,7 @@ export default {
       icon:"Texture/"+skill.icon,
       desc:skill.desc,
       validate(){
+        if ( skill.isPassive ) return !Global.currentRoomScene.getSkill(opt.name);
         var skillCount = Global.currentRoomScene.activeSkillCount();
         return !Global.currentRoomScene.getSkill(opt.name) && skillCount < Global.currentRoom.hero.getComponent("hero").maxSkill &&
           skillCount >= opt.minSkillCount;

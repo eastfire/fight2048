@@ -1,17 +1,17 @@
 {
   "ver": "1.2.4",
-  "uuid": "6070df35-e0a5-4384-b3c0-beb4f9185a61",
-  "rawTextureUuid": "f5c99ac2-a611-4fa1-b84b-fd08c06be45b",
+  "uuid": "26d7edd4-9227-4ffe-9b9c-c00a8eadde5c",
+  "rawTextureUuid": "465fe4cd-b840-454b-9d77-b1ca7bcb5431",
   "size": {
     "width": 480,
     "height": 120
   },
   "type": "Texture Packer",
   "subMetas": {
-    "hero-normal0stand0.png": {
+    "hero-wizard0stand0.png": {
       "ver": "1.0.3",
-      "uuid": "128474a8-5c99-404f-bfff-ad82f27d9f0e",
-      "rawTextureUuid": "f5c99ac2-a611-4fa1-b84b-fd08c06be45b",
+      "uuid": "0141f074-df43-45b8-a329-c771f64973f9",
+      "rawTextureUuid": "465fe4cd-b840-454b-9d77-b1ca7bcb5431",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -30,10 +30,10 @@
       "spriteType": "normal",
       "subMetas": {}
     },
-    "hero-normal1stand0.png": {
+    "hero-wizard1stand0.png": {
       "ver": "1.0.3",
-      "uuid": "b69a19ff-ebd3-43ce-b70a-91a11664e3b3",
-      "rawTextureUuid": "f5c99ac2-a611-4fa1-b84b-fd08c06be45b",
+      "uuid": "bd395051-e186-42c6-b7e9-9cbfd7a09704",
+      "rawTextureUuid": "465fe4cd-b840-454b-9d77-b1ca7bcb5431",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -52,10 +52,10 @@
       "spriteType": "normal",
       "subMetas": {}
     },
-    "hero-normal2stand0.png": {
+    "hero-wizard2stand0.png": {
       "ver": "1.0.3",
-      "uuid": "2c3b4bec-d18e-42f4-b0c2-fe6c07dab180",
-      "rawTextureUuid": "f5c99ac2-a611-4fa1-b84b-fd08c06be45b",
+      "uuid": "da111b67-8351-475b-abfa-66a9221f92c2",
+      "rawTextureUuid": "465fe4cd-b840-454b-9d77-b1ca7bcb5431",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -74,10 +74,10 @@
       "spriteType": "normal",
       "subMetas": {}
     },
-    "hero-normal3stand0.png": {
+    "hero-wizard3statnd0.png": {
       "ver": "1.0.3",
-      "uuid": "81a018ff-d4ff-4720-b7fe-2b029a9061b0",
-      "rawTextureUuid": "f5c99ac2-a611-4fa1-b84b-fd08c06be45b",
+      "uuid": "a14b0148-e56c-4b6b-8695-b120be805f89",
+      "rawTextureUuid": "465fe4cd-b840-454b-9d77-b1ca7bcb5431",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

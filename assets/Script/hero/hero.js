@@ -98,6 +98,7 @@ cc.Class({
 
   // LIFE-CYCLE CALLBACKS:
   ctor: function () {
+    cc.log("hero ctor")
     this.isAllFaceSame = false;
     this.type = "hero";
     this.subtype = "normal";
@@ -299,13 +300,13 @@ cc.Class({
     this.hp = Math.max(0, this.hp - damage)
     if ( !this.dead && this.hp == 0 ) {
       this.dead = true;
-      if ( this.onDead(reason) ) {
+      if ( this.checkDead(reason) ) {
         reason.damage = damage;
         Global.currentRoomScene.gameOver(reason);
       }
     }
   },
-  onDead(reason){
+  checkDead(reason){
     return true;//real dead
   },
   afterTakeDamage(enemy, damage){

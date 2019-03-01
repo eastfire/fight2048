@@ -16,7 +16,6 @@ cc.Class({
     // onLoad () {},
 
     start () {
-      Global.currentRoom.setAcceptInput(false);
       Storage.statistics.gameTime ++;
       Storage.saveStatistics();
     },
@@ -26,13 +25,15 @@ cc.Class({
       this.scoreLabel.string += "分数："+Global.currentRoomScene.score+"\n"
       this.scoreLabel.string += "经过"+Global.currentRoom.turn+"回合\n"
       this.scoreLabel.string += "升到Lv"+Global.currentRoom.hero.getComponent("hero").level+"\n"
+      this.scoreLabel.string += "受到"+reason.damage+"伤害"
       this.scoreLabel.string += "死于"
 
       if ( reason.type === "poison" ) {
         this.scoreLabel.string += "中毒"
       } else if ( reason.type === "enemy" ) {
-        this.scoreLabel.string += "LV"+reason.enemy.level+" "+reason.enemy.title
+        this.scoreLabel.string += "LV"+reason.enemy.level+reason.enemy.title
       }
+      Global.currentRoom.node.active = false;
     },
     home() {
       cc.director.loadScene("MenuScene");

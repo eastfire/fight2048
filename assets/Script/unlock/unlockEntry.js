@@ -105,7 +105,43 @@ export default {
     prerequests: null,
     price: 100,
     type:"hero",
-    icon: "Texture/unlockHero"
+    icon: "Texture/Hero/unlockCleric"
+  },
+  {
+    name:"clericSkillSlot3",
+    displayName:"牧师的第3个技能槽",
+    prerequests: ["clericSkillSlot3"],
+    price: 5,
+    type:"skillSlot",
+    icon: "Texture/skillSlot",
+    onUnlock:function(){
+      Storage.progress.maxSkill.cleric = 3;
+      Storage.saveProgress();
+    }
+  },
+  {
+    name:"clericSkillSlot4",
+    displayName:"牧师的第4个技能槽",
+    prerequests: ["clericSkillSlot3"],
+    price: 20,
+    type:"skillSlot",
+    icon: "Texture/skillSlot",
+    onUnlock:function(){
+      Storage.progress.maxSkill.cleric = 4;
+      Storage.saveProgress();
+    }
+  },
+  {
+    name:"clericSkillSlot5",
+    displayName:"牧师的第5个技能槽",
+    prerequests: ["clericSkillSlot4"],
+    price: 100,
+    type:"skillSlot",
+    icon: "Texture/skillSlot",
+    onUnlock:function(){
+      Storage.progress.maxSkill.cleric = 5;
+      Storage.saveProgress();
+    }
   },
   {
     name:"wizard",
@@ -113,7 +149,7 @@ export default {
     prerequests: null,
     price: 100,
     type:"hero",
-    icon: "Texture/unlockHero"
+    icon: "Texture/Hero/unlockWizard"
   },
   {
     name:"thief",

@@ -7,15 +7,15 @@ cc.Class({
   extends: cc.Component,
 
   properties: {
-    unlockNameLabel:{
+    achievementTitle:{
       default: null,
       type: cc.Label
     },
-    unlockIcon:{
+    achievementIcon:{
       default: null,
       type: cc.Sprite
     },
-    unlockButton:{
+    rewardButton:{
       default: null,
       type: cc.Button
     },
@@ -23,7 +23,11 @@ cc.Class({
       default: null,
       type: cc.Sprite
     },
-    priceLabel:{
+    rewardLabel:{
+      default: null,
+      type: cc.Label
+    },
+    descLabel:{
       default: null,
       type: cc.Label
     }
