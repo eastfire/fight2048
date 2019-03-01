@@ -46,6 +46,9 @@ cc.Class({
   clearData(){
     Storage.clearData("unlocked")
     Storage.clearData("star")
+    Storage.clearData("rewardTaken")
+    Storage.clearData("progress")
+    cc.director.loadScene("IntroScene")
   },
   clearStatistics(){
     Storage.clearData("statistics")

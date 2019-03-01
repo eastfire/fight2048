@@ -44,7 +44,7 @@ export default {
     name:"backwardSlashSkill",
     displayName:"战士的拖刀技",
     prerequests: null,
-    price: 10,
+    price: 5,
     type:"skill",
     icon: "Texture/Skill/backwardSlashSkill"
   },
@@ -52,7 +52,7 @@ export default {
     name:"whirlSkill",
     displayName:"战士的回旋斩",
     prerequests: null,
-    price: 10,
+    price: 5,
     type:"skill",
     icon: "Texture/Skill/whirlSkill"
   },{
@@ -111,7 +111,7 @@ export default {
     name:"clericSkillSlot3",
     displayName:"牧师的第3个技能槽",
     prerequests: ["clericSkillSlot3"],
-    price: 5,
+    price: 50,
     type:"skillSlot",
     icon: "Texture/skillSlot",
     onUnlock:function(){
@@ -123,7 +123,7 @@ export default {
     name:"clericSkillSlot4",
     displayName:"牧师的第4个技能槽",
     prerequests: ["clericSkillSlot3"],
-    price: 20,
+    price: 100,
     type:"skillSlot",
     icon: "Texture/skillSlot",
     onUnlock:function(){
@@ -135,7 +135,7 @@ export default {
     name:"clericSkillSlot5",
     displayName:"牧师的第5个技能槽",
     prerequests: ["clericSkillSlot4"],
-    price: 100,
+    price: 400,
     type:"skillSlot",
     icon: "Texture/skillSlot",
     onUnlock:function(){
@@ -147,9 +147,44 @@ export default {
     name:"wizard",
     displayName:"法师",
     prerequests: null,
-    price: 100,
+    price: 300,
     type:"hero",
     icon: "Texture/Hero/unlockWizard"
+  },{
+    name:"wizardSkillSlot3",
+    displayName:"法师的第3个技能槽",
+    prerequests: ["wizardSkillSlot3"],
+    price: 100,
+    type:"skillSlot",
+    icon: "Texture/skillSlot",
+    onUnlock:function(){
+      Storage.progress.maxSkill.wizard = 3;
+      Storage.saveProgress();
+    }
+  },
+  {
+    name:"wizardSkillSlot4",
+    displayName:"法师的第4个技能槽",
+    prerequests: ["wizardSkillSlot3"],
+    price: 300,
+    type:"skillSlot",
+    icon: "Texture/skillSlot",
+    onUnlock:function(){
+      Storage.progress.maxSkill.wizard = 4;
+      Storage.saveProgress();
+    }
+  },
+  {
+    name:"wizardSkillSlot5",
+    displayName:"法师的第5个技能槽",
+    prerequests: ["wizardSkillSlot4"],
+    price: 1000,
+    type:"skillSlot",
+    icon: "Texture/skillSlot",
+    onUnlock:function(){
+      Storage.progress.maxSkill.wizard = 5;
+      Storage.saveProgress();
+    }
   },
   {
     name:"thief",

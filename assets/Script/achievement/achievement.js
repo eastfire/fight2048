@@ -57,7 +57,11 @@ cc.Class({
   validate() {
     if ( this.passPrerequest() && this.passUnlock() ) {
       if ( this.check() ) {
-        this.availableButton();
+        if ( Storage.rewardTaken[this.achievementName] ) {
+          this.takenButton()
+        } else {
+          this.availableButton();
+        }
       } else {
         this.unachievedButton();
       }
@@ -83,12 +87,13 @@ cc.Class({
 
   takenButton(){
     this.rewardButton.interactable = false;
-    this.starIcon.destroy()
+    this.starIcon.node.active = false;
     this.rewardLabel.string = "已领取"
     this.node.color = cc.Color.GRAY;
   },
 
   click(){
+    if ( Storage.rewardTaken[this.achievementName] )  return;
     Global.MenuScene.star += this.reward;
     Storage.takeReward(this.achievementName)
     this.takenButton();

@@ -249,5 +249,88 @@ export default {
       return Storage.statistics.kill.slimeLevel >= Global.STAR_THRESHOLD*5;
     },
   },
+  {
+    name:"takeDamage",
+    title:"啊,好痛!",
+    desc: "被30点以上伤害杀死",
+    reward: 20,
+    check:function(){
+      return Storage.statistics.gameOver.damage >= 30;
+    },
+  },
+  {
+    name:"takeDamage2",
+    title:"稀巴烂",
+    desc: "被50点以上伤害杀死",
+    prerequests: ["takeDamage"],
+    reward: 50,
+    check:function(){
+      return Storage.statistics.gameOver.damage >= 50;
+    },
+  },
+  {
+    name:"takeDamage3",
+    title:"车祸现场",
+    desc: "被100点以上伤害杀死",
+    prerequests: ["takeDamage2"],
+    reward: 200,
+    check:function(){
+      return Storage.statistics.gameOver.damage >= 100;
+    },
+  },
+  {
+    name:"test1",
+    title:"车祸现场",
+    desc: "被100点以上伤害杀死",
+    reward: 200,
+    check:function(){
+      return Storage.statistics.gameOver.damage >= 100;
+    },
+  },
+  {
+    name:"test1",
+    title:"车祸现场",
+    desc: "被100点以上伤害杀死",
+    reward: 200,
+    check:function(){
+      return Storage.statistics.gameOver.damage >= 100;
+    },
+  },
+  {
+    name:"test1",
+    title:"车祸现场",
+    desc: "被100点以上伤害杀死",
+    reward: 200,
+    check:function(){
+      return Storage.statistics.gameOver.damage >= 100;
+    },
+  },
+  {
+    name:"test1",
+    title:"车祸现场",
+    desc: "被100点以上伤害杀死",
+    reward: 200,
+    check:function(){
+      return Storage.statistics.gameOver.damage >= 100;
+    },
+  },
+  {
+    name:"test1",
+    title:"车祸现场",
+    desc: "被100点以上伤害杀死",
+    reward: 200,
+    check:function(){
+      return Storage.statistics.gameOver.damage >= 100;
+    },
+  },
+  {
+    name:"test1",
+    title:"车祸现场",
+    desc: "被100点以上伤害杀死",
+    reward: 200,
+    check:function(){
+      return Storage.statistics.gameOver.damage >= 100;
+    },
+  },
 ]
 }

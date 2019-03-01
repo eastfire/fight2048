@@ -44,7 +44,7 @@ cc.Class({
       achievement.check = entry.check;
       // achievement.icon = entry.icon;
       achievement.prerequests = entry.prerequests;
-
+      achievement.needUnlocks = entry.needUnlocks;
       this.achievementList.node.addChild(achievementNode)
 
     },

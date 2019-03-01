@@ -292,8 +292,7 @@ cc.Class({
                             stepCount++;
                             movable._shiftResult = Common.SHIFT_RESULT_MERGE_AND_DISAPPEAR;
                             break;
-                        } else if (targetMovable.canMergeTo(movable,direction)) {
-                            cc.log("SHIFT_RESULT_MERGE_AND_STAY")
+                        } else if (targetMovable.canMergeTo(movable,direction)) {                            
                             //can merge
                             stepCount++;
                             movable._shiftResult = Common.SHIFT_RESULT_MERGE_AND_STAY;

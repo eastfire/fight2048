@@ -57,11 +57,8 @@ export default {
       }
     }
     this.statistics.kill = this.statistics.kill || {}
-    this.statistics.damage = this.statistics.damage || {}
     this.statistics.gameOver = this.statistics.gameOver || {}
     this.statistics.info = this.statistics.info || {}
-
-    cc.log(this.statistics)
   },
   recordKill(enemyType, enemyLevel){
     this.statistics.kill[enemyType+"Count"] = this.statistics.kill[enemyType+"Count"] || 0;

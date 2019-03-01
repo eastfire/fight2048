@@ -31,7 +31,7 @@ cc.Class({
       },
       attack: {
         get(){  //一般
-          return this.level*2-1;
+          return (this.level+this.star)*2-1;
         },
         override: true
       },

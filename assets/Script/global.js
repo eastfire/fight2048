@@ -28,9 +28,11 @@ export default {
   ORIGIN_CONSTITUTION_EFFECT : 5,
   ORIGIN_CHOICE_NUMBER : 3,
 
+  ENEMY_LUCK_EFFECT: 0.006,
   LUCK_EFFECT : 0.01,
   CUNNING_EFFECT : 0.01,
   BASE_DEXTERITY : 0.02,
+  ENEMY_DEXTERITY_EFFECT : 0.01,
   DEXTERITY_EFFECT : 0.02,
   DODGE_EFFECT : 0.01,
   RECOVERY_EFFECT : 0.01,
@@ -54,8 +56,8 @@ export default {
   currentHeroType: "normal",
   currentSkillPool: [],
 
-  basicSkill: ["dexteritySkill"],
-  // basicSkill: ["healSkill","coolingSkill","constitutionSkill","dexteritySkill"],
+  basicSkill: ["luckSkill"],
+  // basicSkill: ["healSkill","coolingSkill","constitutionSkill","dexteritySkill","luckSkill"],
   heroBasicSkill: {
     normal: ["forwardSlashSkill","horizontalSlashSkill","verticalSlashSkill"],
     wizard: ["dispelSkill","missileSkill","spiderWebSkill"],
