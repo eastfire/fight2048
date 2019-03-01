@@ -251,86 +251,43 @@ export default {
   },
   {
     name:"takeDamage",
+    title:"破点皮没事的",
+    desc: "被10点以上伤害杀死",
+    reward: 10,
+    check:function(){
+      return Storage.statistics.gameOver.damage >= 10;
+    },
+  },
+  {
+    name:"takeDamage2",
     title:"啊,好痛!",
     desc: "被30点以上伤害杀死",
+    prerequests: ["takeDamage"],
     reward: 20,
     check:function(){
       return Storage.statistics.gameOver.damage >= 30;
     },
   },
   {
-    name:"takeDamage2",
+    name:"takeDamage3",
     title:"稀巴烂",
     desc: "被50点以上伤害杀死",
-    prerequests: ["takeDamage"],
+    prerequests: ["takeDamage2"],
     reward: 50,
     check:function(){
       return Storage.statistics.gameOver.damage >= 50;
     },
   },
   {
-    name:"takeDamage3",
+    name:"takeDamage4",
     title:"车祸现场",
     desc: "被100点以上伤害杀死",
-    prerequests: ["takeDamage2"],
+    prerequests: ["takeDamage3"],
     reward: 200,
     check:function(){
       return Storage.statistics.gameOver.damage >= 100;
     },
   },
-  {
-    name:"test1",
-    title:"车祸现场",
-    desc: "被100点以上伤害杀死",
-    reward: 200,
-    check:function(){
-      return Storage.statistics.gameOver.damage >= 100;
-    },
-  },
-  {
-    name:"test1",
-    title:"车祸现场",
-    desc: "被100点以上伤害杀死",
-    reward: 200,
-    check:function(){
-      return Storage.statistics.gameOver.damage >= 100;
-    },
-  },
-  {
-    name:"test1",
-    title:"车祸现场",
-    desc: "被100点以上伤害杀死",
-    reward: 200,
-    check:function(){
-      return Storage.statistics.gameOver.damage >= 100;
-    },
-  },
-  {
-    name:"test1",
-    title:"车祸现场",
-    desc: "被100点以上伤害杀死",
-    reward: 200,
-    check:function(){
-      return Storage.statistics.gameOver.damage >= 100;
-    },
-  },
-  {
-    name:"test1",
-    title:"车祸现场",
-    desc: "被100点以上伤害杀死",
-    reward: 200,
-    check:function(){
-      return Storage.statistics.gameOver.damage >= 100;
-    },
-  },
-  {
-    name:"test1",
-    title:"车祸现场",
-    desc: "被100点以上伤害杀死",
-    reward: 200,
-    check:function(){
-      return Storage.statistics.gameOver.damage >= 100;
-    },
-  },
+
 ]
 }
