@@ -48,7 +48,11 @@ cc.Class({
     if ( !this.prerequests || (this.prerequests && Common.all(this.prerequests,function(request){
       return Storage.unlocked[request];
     },this) ) ) {
-      this.availableButton();
+      if ( Storage.unlocked[this.unlockName] ) {
+        this.unlockedButton();
+      } else {
+        this.availableButton();
+      }
     } else {
       this.unavailableButton();
     }
@@ -66,7 +70,7 @@ cc.Class({
 
   unlockedButton(){
     this.unlockButton.interactable = false;
-    this.starIcon.destroy()
+    this.starIcon.node.active = false;
     this.priceLabel.string = "已解锁"
     this.node.color = cc.Color.GRAY;
   },
