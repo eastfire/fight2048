@@ -56,11 +56,11 @@ export default {
   currentHeroType: "normal",
   currentSkillPool: [],
 
-  // basicSkill: ["luckSkill"],
+  // basicSkill: ["iceWallSkill"],
   basicSkill: ["healSkill","coolingSkill","constitutionSkill","dexteritySkill","luckSkill"],
   heroBasicSkill: {
     normal: ["forwardSlashSkill","horizontalSlashSkill","verticalSlashSkill"],
-    wizard: ["dispelSkill","missileSkill","spiderWebSkill"],
+    wizard: ["missileSkill","spiderWebSkill","iceWallSkill"],
     cleric: ["dispelSkill"],
     thief: []
   },

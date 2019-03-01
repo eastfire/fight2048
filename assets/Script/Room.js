@@ -52,7 +52,7 @@ cc.Class({
       this.initStatusPrefabMap()
       this.initHero();
 
-      this.seen = {"slime":true};
+      this.seen = {"slime":true,"iceWall":true};
 
       this.scheduleOnce(this.turnStart, 0.5);
     },
@@ -292,7 +292,7 @@ cc.Class({
                             stepCount++;
                             movable._shiftResult = Common.SHIFT_RESULT_MERGE_AND_DISAPPEAR;
                             break;
-                        } else if (targetMovable.canMergeTo(movable,direction)) {                            
+                        } else if (targetMovable.canMergeTo(movable,direction)) {
                             //can merge
                             stepCount++;
                             movable._shiftResult = Common.SHIFT_RESULT_MERGE_AND_STAY;
@@ -424,24 +424,27 @@ cc.Class({
     generateOneItemLevel(enemyLevel){
       return Math.min(9,Math.ceil(enemyLevel/4));
     },
-    generateOneItem(position, enemyLevel){
+    generateOneRandomItem(position, enemyLevel){
       if ( this.itemPool.length ) {
         var itemLevel = this.generateOneItemLevel(enemyLevel) + Global.ITEM_LEVEL_ADJUST;
         if ( itemLevel <= 0 ) return;
 
         var itemType = this.generateOneItemType();
-        if ( this.movablePrefabMap[itemType] ) {
-          var item = cc.instantiate(this.movablePrefabMap[itemType]);
-          item.getComponent("item").level = itemLevel;
-          this.addMovable(item, position.x, position.y)
+        this.generateOneItem(position, itemType, itemLevel);
+      }
+    },
+    generateOneItem(position, itemType, itemLevel){
+      if ( this.movablePrefabMap[itemType] ) {
+        var item = cc.instantiate(this.movablePrefabMap[itemType]);
+        item.getComponent("item").level = itemLevel;
+        this.addMovable(item, position.x, position.y)
 
-          if ( !this.seen[itemType] ) {
-            this.seen[itemType] = true;
-            item.getComponent("movable").showDescDialog();
-          }
-        } else {
-          cc.error("item type:"+itemType+" not registered")
+        if ( !this.seen[itemType] ) {
+          this.seen[itemType] = true;
+          item.getComponent("movable").showDescDialog();
         }
+      } else {
+        cc.error("item type:"+itemType+" not registered")
       }
     },
     generateOneEnemy(x,y, typeObj, level){
