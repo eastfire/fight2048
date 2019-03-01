@@ -98,7 +98,6 @@ cc.Class({
 
   // LIFE-CYCLE CALLBACKS:
   ctor: function () {
-    cc.log("hero ctor")
     this.isAllFaceSame = false;
     this.type = "hero";
     this.subtype = "normal";
@@ -255,6 +254,7 @@ cc.Class({
     } else {
       Global.currentRoom.setAcceptInput(true);
     }
+    Storage.saveStatistics();
   },
   beforeBeAttacked(enemy){
 
@@ -300,14 +300,16 @@ cc.Class({
     this.hp = Math.max(0, this.hp - damage)
     if ( !this.dead && this.hp == 0 ) {
       this.dead = true;
-      if ( this.checkDead(reason) ) {
-        reason.damage = damage;
-        Global.currentRoomScene.gameOver(reason);
-      }
+      reason.damage = damage;
+      this.deadReason = reason;
     }
   },
-  checkDead(reason){
-    return true;//real dead
+  checkDead(){
+    if ( this.dead ) {//real dead
+      Global.currentRoomScene.gameOver(this.deadReason);
+      return true;
+    }
+    return false
   },
   afterTakeDamage(enemy, damage){
   },
@@ -335,6 +337,12 @@ cc.Class({
     Global.currentRoomScene.forEachSkill(function(skill){
       skill.disturb(amount)
     })
+  },
+  onTurnEnd(){
+    if ( this.hp === 1) {
+      Storage.recordInfo("survive1hp");
+    }
+    this._super();
   }
     // update (dt) {},
 });

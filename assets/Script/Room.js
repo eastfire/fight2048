@@ -5,6 +5,7 @@ import Enemy from "enemy";
 import Common from "common";
 import EnemyFactory from "enemyFactory"
 const Global = require("global");
+import Storage from "storage"
 
 cc.Class({
     extends: cc.Component,
@@ -378,7 +379,8 @@ cc.Class({
       this._movables.forEach(function(movable){
         movable.onTurnEnd();
       },this)
-      if ( this.hero.getComponent("hero").dead ) {
+      Storage.saveStatistics()
+      if ( this.hero.getComponent("hero").checkDead() ) {
         return;
       }
       this.turn++;

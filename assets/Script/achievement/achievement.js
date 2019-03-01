@@ -38,54 +38,61 @@ cc.Class({
   // onLoad () {},
 
   start () {
-    this.priceLabel.string = this.price;
-    this.unlockNameLabel.string = this.displayName;
+    this.rewardLabel.string = this.reward;
+    this.achievementTitle.string = this.title;
+    this.descLabel.string = this.desc;
 
-    cc.loader.loadRes(this.icon, cc.SpriteFrame,
-      (err, frame)=>{
-        this.unlockIcon.spriteFrame = frame;
-    })
     this.validate()
   },
-
+  passPrerequest(){
+    return !this.prerequests || (this.prerequests && Common.all(this.prerequests,function(request){
+      return Storage.rewardTaken[request];
+    },this) )
+  },
+  passUnlock(){
+    return !this.needUnlocks || (this.needUnlocks && Common.all(this.needUnlocks,function(unlock){
+      return Storage.unlocked[unlock];
+    },this) )
+  },
   validate() {
-    if ( !this.prerequests || (this.prerequests && Common.all(this.prerequests,function(request){
-      return Storage.unlocked[request];
-    },this) ) ) {
-      this.availableButton();
+    if ( this.passPrerequest() && this.passUnlock() ) {
+      if ( this.check() ) {
+        this.availableButton();
+      } else {
+        this.unachievedButton();
+      }
     } else {
       this.unavailableButton();
     }
   },
 
   unavailableButton(){
-    this.unlockButton.interactable = false;
+    this.rewardButton.interactable = false;
     this.node.active = false
   },
 
   availableButton(){
-    this.unlockButton.interactable = Storage.star >= this.price;
+    this.rewardButton.interactable = true;
     this.node.active = true
   },
 
-  unlockedButton(){
-    this.unlockButton.interactable = false;
+  unachievedButton(){
+    this.rewardButton.interactable = false;
+    this.node.active = true
+  },
+
+  takenButton(){
+    this.rewardButton.interactable = false;
     this.starIcon.destroy()
-    this.priceLabel.string = "已解锁"
+    this.rewardLabel.string = "已领取"
     this.node.color = cc.Color.GRAY;
   },
 
   click(){
-    if ( Global.MenuScene.star >= this.price ) {
-      Global.MenuScene.star -= this.price;
-      Storage.unlock(this.unlockName)
-      if ( this.onUnlock ) {
-        this.onUnlock();
-      }
-      this.unlockedButton();
-
-      Global.UnlockScene.refresh();
-    }
+    Global.MenuScene.star += this.reward;
+    Storage.takeReward(this.achievementName)
+    this.takenButton();
+    Global.AchievementScene.refresh();
   },
   // update (dt) {},
 });

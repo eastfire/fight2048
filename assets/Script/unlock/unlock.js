@@ -81,6 +81,8 @@ cc.Class({
       this.unlockedButton();
 
       Global.UnlockScene.refresh();
+      Global.AchievementScene.refresh();
+      Global.ModeSelectScene.refresh();
     }
   },
   // update (dt) {},

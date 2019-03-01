@@ -1,6 +1,7 @@
 const Movable = require("movable");
 const Global = require("global")
 const Common = require("common")
+const Storage = require("storage")
 
 cc.Class({
     extends: Movable,
@@ -134,12 +135,12 @@ cc.Class({
         this.beforeDie(hero);
         this.afterDie(hero);
     },
-    afterDie(hero){ //called by view
+    afterDie(hero){
       var realExp = this.exp;
       hero.gainExp(realExp);
       Global.currentRoomScene.gainScore(this.score);
 
-      // currentRoom.logEnemyDie(this);
+      Storage.recordKill(this.type, this.level);
       var enemyLevel = this.level;
       var dropItem = false;
       var p = null;

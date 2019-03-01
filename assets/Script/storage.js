@@ -41,13 +41,56 @@ export default {
   },
   loadUnlock(){
     var v = cc.sys.localStorage.getItem('unlocked')
-    this.unlocked = v ? JSON.parse(v) : {};
+    this.unlocked = v ? JSON.parse(v) : {
+      "normal":1 //warrior
+    };
   },
   loadStatistics(){
     var v = cc.sys.localStorage.getItem('statistics')
-    this.statistics = v ? JSON.parse(v) : {
-      gameTime: 0
-    };
+    try {
+      this.statistics = v ? JSON.parse(v) : {
+        gameTime: 0
+      }
+    } catch (e) {
+      this.statistics = {
+        gameTime: 0
+      }
+    }
+    this.statistics.kill = this.statistics.kill || {}
+    this.statistics.damage = this.statistics.damage || {}
+    this.statistics.gameOver = this.statistics.gameOver || {}
+    this.statistics.info = this.statistics.info || {}
+
+    cc.log(this.statistics)
+  },
+  recordKill(enemyType, enemyLevel){
+    this.statistics.kill[enemyType+"Count"] = this.statistics.kill[enemyType+"Count"] || 0;
+    this.statistics.kill[enemyType+"Count"]++;
+    this.statistics.kill[enemyType+"Level"] = this.statistics.kill[enemyType+"Level"] || enemyLevel;
+    if ( enemyLevel > this.statistics.kill[enemyType+"Level"] )
+      this.statistics.kill[enemyType+"Level"] = enemyLevel;
+  },
+  recordInfo(info){
+    this.statistics.info[info] = this.statistics.info[info] || 0;
+    this.statistics.info[info]++;
+  },
+  recordGameOver(reason, room, hero){
+    this.statistics.gameTime ++;
+    this.statistics.gameOver.turn = this.statistics.gameOver.turn || 0;
+    this.statistics.gameOver.turn = Math.max(
+      room.turn, this.statistics.gameOver.turn);
+    this.statistics.gameOver[hero.subtype+"Turn"] = this.statistics.gameOver[hero.subtype+"Turn"] || 0;
+    this.statistics.gameOver[hero.subtype+"Turn"] = Math.max(
+      room.turn, this.statistics.gameOver[hero.subtype+"Turn"]);
+    this.statistics.gameOver[reason.type] = this.statistics.gameOver[reason.type] || 0;
+    this.statistics.gameOver[reason.type]++;
+    this.statistics.gameOver.damage = this.statistics.gameOver.damage || 0;
+    this.statistics.gameOver.damage = Math.max(
+      reason.damage, this.statistics.gameOver.damage);
+cc.log("gameoOver record")
+    this.saveStatistics();
+  },
+  recordDamage(hero){
   },
   saveStatistics(){
     cc.sys.localStorage.setItem("statistics",JSON.stringify(this.statistics))
@@ -58,6 +101,10 @@ export default {
   unlock(unlockName){
     this.unlocked[unlockName] = 1;
     cc.sys.localStorage.setItem("unlocked",JSON.stringify(this.unlocked))
+  },
+  takeReward(name){
+    this.rewardTaken[name] = 1;
+    cc.sys.localStorage.setItem("rewardTaken",JSON.stringify(this.rewardTaken))
   },
   clearData(item){
     cc.sys.localStorage.removeItem(item)

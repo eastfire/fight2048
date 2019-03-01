@@ -16,11 +16,10 @@ cc.Class({
     // onLoad () {},
 
     start () {
-      Storage.statistics.gameTime ++;
-      Storage.saveStatistics();
     },
 
     setReason(reason){
+      Storage.recordGameOver(reason, Global.currentRoom, Global.currentRoom.hero.getComponent("hero"));
       this.scoreLabel.string = "";
       this.scoreLabel.string += "分数："+Global.currentRoomScene.score+"\n"
       this.scoreLabel.string += "经过"+Global.currentRoom.turn+"回合\n"

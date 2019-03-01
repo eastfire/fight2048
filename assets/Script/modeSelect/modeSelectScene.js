@@ -13,16 +13,9 @@ cc.Class({
     // onLoad () {},
 
     start () {
+      Global.ModeSelectScene = this;
       this.selectHeroType(Storage.game.prevHeroType || "normal");
-      var self = this;
-      this.heroTypeOptions.forEach(function(sprite){
-        var type = sprite.getComponent("heroOption").heroType;
-        (function(type){
-          sprite.node.on("touchend", ( event ) => {
-            self.selectHeroType(type)
-          })
-        })(type)
-      }, this)
+      this.scheduleOnce(this.refresh, 1)
     },
 
     selectHeroType(heroType){
@@ -36,7 +29,11 @@ cc.Class({
       Global.currentHeroType = heroType;
     },
 
-
+    refresh(){
+      this.heroTypeOptions.forEach(function(sprite){
+        sprite.getComponent("heroOption").validate()
+      },this)
+    }
 
     // update (dt) {},
 });

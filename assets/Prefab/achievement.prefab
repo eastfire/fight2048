@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "unlock",
+    "_name": "achievement",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -163,7 +163,9 @@
     "_enabled": true,
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": null,
+    "_spriteFrame": {
+      "__uuid__": "5aa56247-f45c-4247-b929-3dc292d13586"
+    },
     "_type": 0,
     "_sizeMode": 0,
     "_fillType": 0,
@@ -211,9 +213,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 0,
+      "g": 0,
+      "b": 0,
       "a": 255
     },
     "_contentSize": {
@@ -783,7 +785,7 @@
       "__id__": 1
     },
     "component": "",
-    "_componentId": "79669+Ly59K2aB/BX0LelG9",
+    "_componentId": "51dc7H7cidNsrptJom7m4Vo",
     "handler": "click",
     "customEventData": ""
   },

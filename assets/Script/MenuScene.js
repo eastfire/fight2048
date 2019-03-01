@@ -15,7 +15,6 @@ cc.Class({
         if ( this.star == oldValue ) return;
         Storage.saveMoney(this.star);
         this.moneyLabel.string = this.star;
-        cc.log("money"+Storage.star)
       },
       visible:false
     },
@@ -33,7 +32,6 @@ cc.Class({
   },
 
   start () {
-    cc.log("Storage.star"+Storage.star)
     this.star = Storage.star;
     this.moneyLabel.string = Storage.star;
   },
@@ -49,7 +47,9 @@ cc.Class({
     Storage.clearData("unlocked")
     Storage.clearData("star")
   },
-
+  clearStatistics(){
+    Storage.clearData("statistics")
+  },
   starGame(){
     Storage.game.prevHeroType = Global.currentHeroType;
     Storage.saveGame();
