@@ -320,8 +320,6 @@ cc.Class({
       if (!this.statusList) return;
       delete this.status[status];
       var s = cc.find(status, this.statusList.node);
-      cc.log("XXXXX")
-      cc.log(s)
       if ( s ) {
         if ( s.getComponent("status").onLost) {
           s.getComponent("status").onLost(this);

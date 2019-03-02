@@ -478,6 +478,10 @@ cc.Class({
         },
       this)
       var number = this.enemyFactory.generateEnemyNumber();
+      //skill calm FIXME 改为更好的oo设计
+      if ( this.hero.getComponent("hero").getStatus("calm") ) {
+        number = 0;
+      }
       var candidates = [];
       candidates = Common.sample(tiles, number );
 

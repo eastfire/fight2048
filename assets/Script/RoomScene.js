@@ -78,7 +78,6 @@ cc.Class({
         default: 0,
         notify(oldValue){
           if ( oldValue == this.star ) return;
-          cc.log("this.star"+this.star)
           Storage.saveMoney(this.star)
           this.moneyLabel.string = this.star;
         }
