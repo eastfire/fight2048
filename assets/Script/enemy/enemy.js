@@ -214,11 +214,12 @@ cc.Class({
     },
     beforeDamageHero(hero, damage){
     },
-    damageHero(hero, damage){
+    damageHero(hero, attackDetail){
       this.beforeDamageHero(hero);
-      return damage;
+      attackDetail.damage = attackDetail.originDamage
+      return attackDetail;
     },
-    beBlocked(hero, attackPoint){
+    beBlocked(hero, attackDetail){
 
     },
     miss(hero) {
@@ -227,18 +228,19 @@ cc.Class({
     hitOrMiss(hero){
       if (hero.checkHit(this)) {
         //hit
-        var attackPoint = this.hit(hero); //输出
-        if ( this.getStatus("angry") ) {
-          attackPoint*=2;
+        var attackDetail = {
+          originAttackPoint: this.hit(hero) //怪物输出
         }
-        var damage = hero.beHit(this, attackPoint); //调整
-        if ( damage > 0 ) { //能造成伤害
-          damage = this.damageHero(hero, damage); //第二次调整
-          hero.takeDamage(this, damage); //real damage
+        attackDetail.attackPoint = this.getStatus("angry") ?  attackDetail.originAttackPoint*2: attackDetail.originAttackPoint;
+
+        attackDetail = hero.beHit(this, attackDetail); //调整
+        if ( attackDetail.originDamage > 0 ) { //能造成伤害
+          attackDetail = this.damageHero(hero, attackDetail); //第二次调整
+          hero.takeDamage(this, attackDetail); //real damage
         } else {
           //blocked
-          this.beBlocked(hero, attackPoint);
-          hero.blocked(attackPoint)
+          this.beBlocked(hero, attackDetail);
+          hero.blocked(attackDetail)
         }
         return true;
       } else {

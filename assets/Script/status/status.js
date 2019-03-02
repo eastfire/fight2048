@@ -19,7 +19,7 @@ cc.Class({
   onTurnEnd(movable){
     if ( this.duration !== -1 ) { //如果不是永久有效
       this.duration = Math.max(0,this.duration-1)
-      if ( this.duration === 0 ) {
+      if ( this.duration == 0 ) {
         movable.lostStatus(this.statusName)
       }
     }

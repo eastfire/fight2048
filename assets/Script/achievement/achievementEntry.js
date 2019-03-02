@@ -52,6 +52,25 @@ export default {
     },
   },
   {
+    name:"allFull",
+    title:"怪满为患",
+    desc: "在回合结束时所有格子都满",
+    reward: 50,
+    check:function(){
+      return Storage.statistics.info.allFull > 0;
+    },
+  },
+  {
+    name:"allClear",
+    title:"扫荡四合",
+    desc: "在回合结束时场上没有任何怪物",
+    prerequests: ["allFull"],
+    reward: 400,
+    check:function(){
+      return Storage.statistics.info.allClear > 0;
+    },
+  },
+  {
     name:"warriorTurn1",
     title:"战士试炼I",
     desc: "坚持30回合",

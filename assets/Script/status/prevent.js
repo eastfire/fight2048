@@ -5,10 +5,6 @@ cc.Class({
   extends: Status,
 
   properties: {
-    dispelPrefab:{
-      type: cc.Prefab,
-      default: null,
-    }
   },
 
   // LIFE-CYCLE CALLBACKS:

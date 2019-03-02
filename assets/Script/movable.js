@@ -285,6 +285,7 @@ cc.Class({
       )
     },
     gainStatus(status, turn) {
+      cc.log("gainStatus "+status+" turn:"+turn);
       if (!this.statusList) return;
       turn = turn || 1;
       if ( this.getStatus(status) ) {
@@ -299,6 +300,7 @@ cc.Class({
         statusPrefab = Global.currentRoom.statusMap["noIconStatus"]
         statusNode = cc.instantiate(statusPrefab)
         statusNode.addComponent(status);
+        statusNode.name = status;
       }
 
       this.statusList.node.addChild(statusNode)
@@ -318,6 +320,8 @@ cc.Class({
       if (!this.statusList) return;
       delete this.status[status];
       var s = cc.find(status, this.statusList.node);
+      cc.log("XXXXX")
+      cc.log(s)
       if ( s ) {
         if ( s.getComponent("status").onLost) {
           s.getComponent("status").onLost(this);

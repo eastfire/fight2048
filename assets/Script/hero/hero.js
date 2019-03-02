@@ -91,9 +91,11 @@ cc.Class({
     dexterity: 0,
     dodge: 0,
     cunning: 0,
+    defend: 0,
 
     maxSkill: Storage.progress.maxSkill.normal || 2,
     maxPerk: Storage.progress.maxPerk.normal || 1,
+
   },
 
   // LIFE-CYCLE CALLBACKS:
@@ -263,6 +265,7 @@ cc.Class({
     return Math.random()>this.dexterity*Global.DEXTERITY_EFFECT;
   },
   beforeBeHit(enemy, attackDetail){
+    attackDetail.originDamage = Math.max(0, attackDetail.attackPoint - this.defend )
     return attackDetail;
   },
   beHit(enemy, attackDetail){
@@ -272,7 +275,7 @@ cc.Class({
     this.afterBeAttacked(enemy)
   },
   blocked(attackPoint){
-    //TODO block effect
+    Common.labelEffect("Block",cc.Color.BLUE,this.node)
   },
   beforeDodgeAttack(enemy){
   },
@@ -284,11 +287,11 @@ cc.Class({
   afterDodgeAttack(enemy){
     this.afterBeAttacked(enemy);
   },
-  beforeTakeDamage(enemy, damage){
+  beforeTakeDamage(enemy, attackDetail){
   },
-  takeDamage(enemy, damage){
-      this.beforeTakeDamage(enemy, damage)
-      this.loseHp(damage, {type:"enemy", enemy });
+  takeDamage(enemy, attackDetail){
+      this.beforeTakeDamage(enemy, attackDetail)
+      this.loseHp(attackDetail.damage, {type:"enemy", enemy });
   },
   loseHp(damage, reason){
     if (reason.type == "poison") {
@@ -339,9 +342,29 @@ cc.Class({
     })
   },
   onTurnEnd(){
+    //achievement "survive1hp"
     if ( this.hp === 1) {
       Storage.recordInfo("survive1hp");
     }
+      //achievement "allClear" "allFull"
+    var haveEnemy = false;
+    var haveEmpty = true;
+    Global.currentRoom.foreachTile(function(tile){
+      var movable = Global.currentRoom.getMovableByTile(tile);
+      if ( movable ) {
+        haveEmpty = false;
+        if ( movable.getComponent("enemy") ) {
+          haveEnemy = true;
+        }
+      }
+    },this)
+    if (!haveEnemy) {
+      Storage.recordInfo("allClear");
+    }
+    if (!haveEmpty) {
+      Storage.recordInfo("allFull");
+    }
+
     this._super();
   }
     // update (dt) {},
