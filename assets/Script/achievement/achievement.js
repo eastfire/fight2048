@@ -97,6 +97,7 @@ cc.Class({
     Global.MenuScene.star += this.reward;
     Storage.takeReward(this.achievementName)
     this.takenButton();
+    Global.UnlockScene.refresh();
     Global.AchievementScene.refresh();
   },
   // update (dt) {},

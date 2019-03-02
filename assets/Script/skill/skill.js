@@ -28,32 +28,23 @@ cc.Class({
         this.countDownIcon.fillRange = (this.coolDown - this.countDown)/this.coolDown;
       }
     },
-    _forbid:false,
     forbid: {
-      get(){
-        return this._forbid;
-      },
-      set(value){
-        this._forbid = value;
-        if ( value ) {
-          this.forbidIcon.node.opacity = 255;
-        } else {
-          this.forbidIcon.node.opacity = 0;
-        }
+      default: false,
+      notify(oldValue){
+        this.forbidIcon.node.active = this.forbid;
       }
     }
   },
   onLoad(){
-
-  },
-  start() {
-    cc.find("skillName",this.node).getComponent(cc.Label).string = this.displayName;
     var iconLayout = cc.find("iconLayout",this.node);
     this.iconBg = cc.find("iconBg",iconLayout).getComponent(cc.Sprite);
     this.countDownIcon = cc.find("countDownIcon",iconLayout).getComponent(cc.Sprite);
     this.countDownLabel = cc.find("countDown",iconLayout).getComponent(cc.Label);
     this.forbidIcon = cc.find("forbidIcon",iconLayout).getComponent(cc.Sprite);
-
+  },
+  start() {
+    this.forbidIcon.node.active = this.forbid;
+    cc.find("skillName",this.node).getComponent(cc.Label).string = this.displayName;
     this.countDownLabel.string = "";
     cc.loader.loadRes("Texture/"+this.icon, cc.SpriteFrame, (err, spriteFrame) => {
       this.iconBg.spriteFrame = this.countDownIcon.spriteFrame = spriteFrame;

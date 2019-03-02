@@ -49,7 +49,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>hero-wizard3statnd0.png</key>
+            <key>hero-wizard3stand0.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -74,7 +74,7 @@
             <key>size</key>
             <string>{480,120}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:c70bc130f98a59915e461d2381f88e7b:9cf7e7c75d0fb9a18efb6941f623e08c:1602597f7e74da236c97d657f75f33c3$</string>
+            <string>$TexturePacker:SmartUpdate:bdf4acad2a72d48cb79453f630ec532c:9cf7e7c75d0fb9a18efb6941f623e08c:1602597f7e74da236c97d657f75f33c3$</string>
             <key>textureFileName</key>
             <string>hero-wizard.png</string>
         </dict>

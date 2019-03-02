@@ -62,11 +62,12 @@ export default {
     normal: ["forwardSlashSkill","horizontalSlashSkill","verticalSlashSkill"],
     wizard: ["missileSkill","spiderWebSkill","iceWallSkill"],
     cleric: ["dispelSkill","shieldSkill","calmSkill"],
-    thief: []
+    thief: [] //four arrow, four diagnal arrow， bomb
   },
   heroUnlockableSkill: {
-    normal: ["backwardSlashSkill","whirlSkill","bigWhirlSkill","crossSlashSkill"],
-    wizard: ["teleportSkill","meteorShowerSkill"],
-    cleric: ["turnUndeadSkill"]
+    normal: ["backwardSlashSkill","whirlSkill","bigWhirlSkill","crossSlashSkill"], //charge
+    wizard: ["teleportSkill","meteorShowerSkill"], //fireball， tornado
+    cleric: ["turnUndeadSkill"],  //wisdom
+    thief: [] //8 arrow, smokebomb
   }
 }

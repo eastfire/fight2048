@@ -348,14 +348,15 @@ cc.Class({
     }
       //achievement "allClear" "allFull"
     var haveEnemy = false;
-    var haveEmpty = true;
+    var haveEmpty = false;
     Global.currentRoom.foreachTile(function(tile){
       var movable = Global.currentRoom.getMovableByTile(tile);
       if ( movable ) {
-        haveEmpty = false;
         if ( movable.getComponent("enemy") ) {
           haveEnemy = true;
         }
+      } else {
+        haveEmpty = true;
       }
     },this)
     if (!haveEnemy) {
