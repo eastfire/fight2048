@@ -232,7 +232,7 @@ cc.Class({
       var maxStep = this._realShift(direction);
       this.scheduleOnce(()=>{
         this.checkAllMovableMoved();
-      }, Global.STEP_TIME * (maxStep+1) )
+      }, Global.STEP_TIME * (maxStep)+0.02 )
     },
     setAcceptInput(accept) {
       this._acceptInput = accept;
