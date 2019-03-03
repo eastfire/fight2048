@@ -160,7 +160,14 @@ export default {
     name:"resurrectionSkill",
     displayName:"牧师的的复活技能",
     prerequests: ["cleric"],
-    price: 100,
+    price: 150,
+    type:"skill",
+    icon: "Texture/Skill/resurrectionSkill"
+  },{
+    name:"wisdomSkill",
+    displayName:"牧师的的睿智技能",
+    prerequests: ["cleric"],
+    price: 300,
     type:"skill",
     icon: "Texture/Skill/resurrectionSkill"
   },
