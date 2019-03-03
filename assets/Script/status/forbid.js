@@ -21,13 +21,15 @@ cc.Class({
     this.duration = duration;
   },
   onGain(){
-    Global.currentRoomScene.forEachSkill(function(skill){
-      skill.getComponent("skill").forbid = true
+    Global.currentRoomScene.forEachActiveSkill(function(skill){
+      if ( !skill.isPassive )
+        skill.getComponent("skill").forbid = true
     },this)
   },
   onLost(){
-    Global.currentRoomScene.forEachSkill(function(skill){
-      skill.getComponent("skill").forbid = false
+    Global.currentRoomScene.forEachActiveSkill(function(skill){
+      if ( !skill.isPassive )
+        skill.getComponent("skill").forbid = false
     },this)
   },
   // update (dt) {},

@@ -284,7 +284,13 @@ cc.Class({
         callback.call(context, this.skills[i].getComponent("skill"))
       }
     },
-
+    forEachActiveSkill(callback, context){
+      for ( var i in this.skills ) {
+        var skill = this.skills[i].getComponent("skill")
+        if ( !skill.isPassive )
+          callback.call(context, skill)
+      }
+    },
     gameOver(reason){
       var dialog = cc.instantiate(this.gameOverDialog)
       dialog.getComponent("gameOverDialog").setReason(reason);

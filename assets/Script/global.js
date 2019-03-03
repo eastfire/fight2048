@@ -27,6 +27,7 @@ export default {
 
   ORIGIN_CONSTITUTION_EFFECT : 5,
   ORIGIN_CHOICE_NUMBER : 3,
+  ORIGIN_SKILL_WAIT_ADJUST: 0,
 
   ENEMY_LUCK_EFFECT: 0.006,
   LUCK_EFFECT : 0.01,
@@ -67,7 +68,7 @@ export default {
   heroUnlockableSkill: {
     normal: ["backwardSlashSkill","whirlSkill","bigWhirlSkill","crossSlashSkill"], //charge
     wizard: ["teleportSkill","meteorShowerSkill"], //fireball， tornado
-    cleric: ["turnUndeadSkill"],  //wisdom
+    cleric: ["turnUndeadSkill"],  //wisdom, resurrection
     thief: [] //8 arrow, smokebomb
   }
 }

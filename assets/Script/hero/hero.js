@@ -337,7 +337,7 @@ cc.Class({
   },
   getDisturb(amount){
     if ( this.getStatus("prevent") ) return;
-    Global.currentRoomScene.forEachSkill(function(skill){
+    Global.currentRoomScene.forEachActiveSkill(function(skill){
       skill.disturb(amount)
     })
   },
