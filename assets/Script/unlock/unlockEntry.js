@@ -156,6 +156,13 @@ export default {
     price: 50,
     type:"skill",
     icon: "Texture/Skill/turnUndeadSkill"
+  },{
+    name:"resurrectionSkill",
+    displayName:"牧师的的复活技能",
+    prerequests: ["cleric"],
+    price: 100,
+    type:"skill",
+    icon: "Texture/Skill/resurrectionSkill"
   },
   {
     name:"wizard",

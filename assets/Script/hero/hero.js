@@ -69,7 +69,7 @@ cc.Class({
     maxExp: {
       get() {
         var lv = this.level;
-        return Math.round((Math.log10(lv) * lv * 16.61 + 10) * (1 - (Global.CUNNING_EFFECT / 100) * this.cunning) * Global.EXP_INFLATION_RATE);
+        return Math.round((Math.log10(lv) * lv * 16.61 + 10) * Global.EXP_INFLATION_RATE);
       }
     },
     extraExp: 0,
@@ -90,7 +90,7 @@ cc.Class({
     },
     dexterity: 0,
     dodge: 0,
-    cunning: 0,
+    wisdom: 0,
     defend: 0,
 
     maxSkill: Storage.progress.maxSkill.normal || 2,
@@ -204,6 +204,9 @@ cc.Class({
       },this)
     ))
   },
+  adjustExp(exp){
+    return Math.round((1+this.wisdom*Global.WISDOM_EFFECT)*exp);
+  },
   gainExp(exp){
     if ( exp+this.exp <= this.maxExp ) {
       this.exp += exp;
@@ -309,6 +312,13 @@ cc.Class({
   },
   checkDead(){
     if ( this.dead ) {//real dead
+      var resurrection = this.getStatus("resurrection");
+      if ( resurrection ) {
+        this.gainHp(Math.round(this.maxHp*resurrection.effect))
+        this.dead = false;
+        this.deadReason = null;
+        return false;
+      }
       Global.currentRoomScene.gameOver(this.deadReason);
       return true;
     }
@@ -331,9 +341,9 @@ cc.Class({
       },this)
     ))
   },
-  gainStatus(statusName, amount){
+  gainStatus(statusName, amount, extra){
     if ( this.getStatus("prevent") && Common.contains(Global.NEGATIVE_EFFECTS, statusName) ) return;
-    this._super(statusName, amount)
+    this._super(statusName, amount, extra)
   },
   getDisturb(amount){
     if ( this.getStatus("prevent") ) return;

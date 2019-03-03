@@ -38,6 +38,7 @@ export default {
   DODGE_EFFECT : 0.01,
   RECOVERY_EFFECT : 0.01,
   CONSTITUTION_EFFECT : 5,
+  WISDOM_EFFECT: 0.05,
 
   NEGATIVE_EFFECT_TIME_ADJUST : 0,
   ITEM_LEVEL_ADJUST: 0,
@@ -57,8 +58,8 @@ export default {
   currentHeroType: "normal",
   currentSkillPool: [],
 
-  // basicSkill: ["calmSkill"],
   basicSkill: ["healSkill","coolingSkill","constitutionSkill","dexteritySkill","luckSkill"],
+  basicSkill: ["wisdomSkill"],
   heroBasicSkill: {
     normal: ["forwardSlashSkill","horizontalSlashSkill","verticalSlashSkill"],
     wizard: ["missileSkill","spiderWebSkill","iceWallSkill"],
@@ -68,7 +69,7 @@ export default {
   heroUnlockableSkill: {
     normal: ["backwardSlashSkill","whirlSkill","bigWhirlSkill","crossSlashSkill"], //charge
     wizard: ["teleportSkill","meteorShowerSkill"], //fireball， tornado
-    cleric: ["turnUndeadSkill"],  //wisdom, resurrection
+    cleric: ["turnUndeadSkill","resurrectionSkill","wisdomSkill"], //
     thief: [] //8 arrow, smokebomb
   }
 }

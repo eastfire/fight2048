@@ -136,7 +136,7 @@ cc.Class({
         this.afterDie(hero);
     },
     afterDie(hero){
-      var realExp = this.exp;
+      var realExp = hero.adjustExp(this.exp);
       hero.gainExp(realExp);
       Global.currentRoomScene.gainScore(this.score);
 
@@ -183,7 +183,7 @@ cc.Class({
       }
     },
     checkDropItem(){
-      // cc.log(this.getDropRate());
+      // cc.log("drop rate"+this.getDropRate());
       return Math.random() < this.getDropRate();
     },
     getDropRate(){

@@ -37,7 +37,7 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-      this._acceptInput = true;
+      this._acceptInput = 0;
       this._movables = [];
 
       Global.currentRoomScene.turnLabel.string = this.turn;
@@ -235,13 +235,17 @@ cc.Class({
       }, Global.STEP_TIME * (maxStep)+0.02 )
     },
     setAcceptInput(accept) {
-      this._acceptInput = accept;
+      if ( accept ) {
+        this._acceptInput++;
+      } else {
+        this._acceptInput--;
+      }
     },
     isAcceptInput(){
-      return this._acceptInput;
+      return this._acceptInput > 0;
     },
     _realShift(direction){
-      this._acceptInput = false;
+      this.setAcceptInput(false);
       var maxStep = 0;
       var movableMapResult = [];
       for ( var i = 0; i < this.width; i++){
@@ -498,7 +502,7 @@ cc.Class({
     },
     afterGenEnemy(){
       this._phase="waitUserInput";
-      this._acceptInput = true;
+      this.setAcceptInput(true);
     },
     heroAttack(){
       this._phase = "heroAttack"

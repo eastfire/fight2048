@@ -250,7 +250,7 @@ cc.Class({
       //merge status
       for (var key in movable.status){
         var s = movable.status[key];
-        this.gainStatus(s.getComponent("status").statusName, s.duration);
+        this.gainStatus(s.getComponent("status").statusName, s.duration, s.extra);
       }
 
       this.beforeLevelUp(this.level);
@@ -284,12 +284,14 @@ cc.Class({
         // )
       )
     },
-    gainStatus(status, turn) {
+    gainStatus(status, turn, extra) {
       cc.log("gainStatus "+status+" turn:"+turn);
       if (!this.statusList) return;
       turn = turn || 1;
       if ( this.getStatus(status) ) {
         this.getStatus(status).addDuration(turn);
+        if ( extra )
+          this.getStatus(status).setExtra(extra)
         return;
       }
       var statusNode;
@@ -312,6 +314,8 @@ cc.Class({
       ))
       var s = statusNode.getComponent("status")
       s.duration = turn;
+      if ( extra )
+        s.setExtra(extra);
       if ( s.onGain )
         s.onGain(this);
       this.status[status] = s
