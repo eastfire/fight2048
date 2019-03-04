@@ -85,7 +85,7 @@ cc.Class({
       default:0,
       notify(oldValue){
         if (oldValue === this.constitution) return;
-        this.gainHp(Global.CONSTITUTION_EFFECT*(this.constitution - oldValue));
+        this.gainHp(Math.round(Global.CONSTITUTION_EFFECT*(this.constitution - oldValue)));
       }
     },
     dexterity: 0,
