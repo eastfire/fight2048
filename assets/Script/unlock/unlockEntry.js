@@ -263,6 +263,13 @@ export default {
     price: 500,
     type:"skill",
     icon: "Texture/Skill/meteorShowerSkill"
+  },{
+    name:"lighteningSkill",
+    displayName:"法师的的闪电链技能",
+    prerequests: ["wizard"],
+    price: 1000,
+    type:"skill",
+    icon: "Texture/Skill/lighteningSkill"
   },
   {
     name:"wizardPerkSlot2",

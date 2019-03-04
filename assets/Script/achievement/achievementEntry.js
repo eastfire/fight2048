@@ -63,7 +63,7 @@ var achievements = [
   name:"allClear",
   title:"扫荡四合",
   desc: "在回合结束时场上没有任何怪物",
-  prerequests: ["allFull"],
+  prerequests: null,
   reward: 400,
   check:function(){
     return Storage.statistics.info.allClear > 0;
