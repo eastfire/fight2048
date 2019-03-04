@@ -25,7 +25,7 @@ cc.Class({
   },
   start () {
     this._super()
-    this.coolDown = 13;
+    this.coolDown = 13+Global.SKILL_WAIT_ADJUST;
   },
   onLevelUp(level){
     this.coolDown-=1;
@@ -56,7 +56,7 @@ cc.Class({
     if ( tile && tile.isPassable(hero) ) {
       var enemy = Global.currentRoom.getMovableByPosition(tilePosition);
       if ( enemy && enemy.getComponent("enemy") ) {
-        
+
       }
     }
 

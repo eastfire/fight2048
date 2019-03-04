@@ -15,7 +15,7 @@ cc.Class({
     coolDown: {
       default: 5,
       notify(oldValue){
-        if ( oldValue == this.coolDown ) return;
+        if ( oldValue == this.coolDown || this.countDownIcon == null ) return;
         this.countDownIcon.fillRange = (this.coolDown - this.countDown)/this.coolDown;
       }
     },
@@ -23,7 +23,7 @@ cc.Class({
     countDown: {
       default: 0,
       notify(oldValue){
-        if ( oldValue == this.countDown ) return;
+        if ( oldValue == this.countDown || this.countDownLabel == null) return;
         this.countDownLabel.string = this.countDown == 0 ? "":this.countDown;
         this.countDownIcon.fillRange = (this.coolDown - this.countDown)/this.coolDown;
       }

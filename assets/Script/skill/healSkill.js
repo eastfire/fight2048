@@ -24,7 +24,7 @@ cc.Class({
   },
   start () {
     this._super()
-    this.coolDown = 5;
+    this.coolDown = 5+Global.SKILL_WAIT_ADJUST;
   },
   effectOfLevel(level){
     return 5*level+5;

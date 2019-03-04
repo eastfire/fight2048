@@ -60,6 +60,16 @@ export default {
     }
   },
   {
+    name:"lessWait",
+    title:"天生聪明",
+    desc:"所有技能冷却时间-1回合",
+    value: -3,
+    icon: "Texture/Perk/lessWait",
+    apply(){
+      Global.SKILL_WAIT_ADJUST--;
+    }
+  },
+  {
     name:"forwardAfterKill",
     title:"莽撞",
     desc:"杀死普通敌人后前进\n而不是退回原地",
@@ -122,6 +132,16 @@ export default {
     icon: "Texture/Perk/moreNegativeTime",
     apply(){
       Global.NEGATIVE_EFFECT_TIME_ADJUST++;
+    }
+  },
+  {
+    name:"moreWait",
+    title:"笨手笨脚",
+    desc:"所有技能冷却时间+1回合",
+    value: 3,
+    icon: "Texture/Perk/moreWait",
+    apply(){
+      Global.SKILL_WAIT_ADJUST++;
     }
   },
 ]}
