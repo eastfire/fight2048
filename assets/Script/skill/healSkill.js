@@ -20,7 +20,7 @@ cc.Class({
     this.desc = "治疗"+this.effect+"生命";
   },
   levelUpDesc(level){
-    return "多治疗"+(this.effectOfLevel(level)-this.effectOfLevel(level-1))+"生命,但冷却时间多1回合"
+    return "多治疗"+(this.effectOfLevel(level)-this.effectOfLevel(level-1))+"生命,但冷却时间多2回合"
   },
   start () {
     this._super()
@@ -30,7 +30,7 @@ cc.Class({
     return 5*level+5;
   },
   onLevelUp(level){
-    this.coolDown ++;
+    this.coolDown +=2;
   },
   onUsed() {
     var hero = Global.currentRoom.hero.getComponent("hero");

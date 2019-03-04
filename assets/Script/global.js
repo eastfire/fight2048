@@ -40,11 +40,11 @@ export default {
   NEGATIVE_EFFECTS : ["frozen","cursed","dizzy","forbid","poison","blind","stun"],
 
   ENEMY_POOL_CHANGE_PER_TURN: 29,
-  ENEMY_LEVEL_POOL_CHANGE_PER_TURN: 89,
+  ENEMY_LEVEL_POOL_CHANGE_PER_TURN: 47,
   ENEMY_NUNBER_CHANGE_PER_TURN: 501,
   MAX_ENEMY_TYPE_IN_FIELD:4,
   MAX_GEN_ENEMY_NUMBER: 4,
-  MAX_ENEMY_LEVEL_DIFF: 3,
+  MAX_ENEMY_LEVEL_DIFF: 2,
 
   MAX_PERK: 4,
   PERK_SCORE_ADJUST: 0.05,
@@ -53,12 +53,12 @@ export default {
   selectedPerk: [],
   currentSkillPool: [],
 
-  basicSkill: ["healSkill","coolingSkill","constitutionSkill","dexteritySkill","luckSkill"],
+  basicSkill: ["coolingSkill","constitutionSkill","dexteritySkill","luckSkill"],
   // basicSkill: ["lighteningSkill"],
   heroBasicSkill: {
     normal: ["forwardSlashSkill","horizontalSlashSkill","verticalSlashSkill"],
     wizard: ["missileSkill","spiderWebSkill","iceWallSkill"],
-    cleric: ["dispelSkill","shieldSkill","calmSkill"],
+    cleric: ["healSkill","dispelSkill","shieldSkill","calmSkill"],
     thief: [] //four arrow, four diagnal arrow， bomb
   },
   heroUnlockableSkill: {
