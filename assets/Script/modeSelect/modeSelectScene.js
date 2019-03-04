@@ -8,26 +8,15 @@ cc.Class({
     properties: {
       heroTypeOptions: [cc.Sprite],
 
-      perk:{
-        type: cc.Prefab,
-        default: null,
-      },
-      selectedPerkList:{
-        type: cc.Layout,
-        default: null
-      },
+      perk:cc.Prefab,
+      selectedPerkList:cc.Layout,
       availablePerkList:{
         type: cc.Layout,
         default: null
       },
-      scoreAdjustLabel: {
-        type: cc.Label,
-        default: null
-      },
-      scoreAdjustTitle: {
-        type: cc.Label,
-        default: null
-      }
+      scoreAdjustLabel: cc.Label,
+      scoreAdjustTitle: cc.Label,
+      perkScroll: cc.ScrollView,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -97,18 +86,20 @@ cc.Class({
       }
     },
     initPerkList(){
-      perks.perks.forEach(function(perkEntry){
-        this.addPerk(perkEntry)
-      },this)
+      // perks.perks.forEach(function(perkEntry){
+      //   this.addPerk(perkEntry)
+      // },this)
+      this.perkScroll.getComponent("listCtrl").setDataset(perks.perks)
+      this.perkScroll.getComponent("listCtrl").initialize()
     },
-    addPerk(entry){
-      var perkNode = cc.instantiate(this.perk)
-      perkNode.x = 0;
-      var perk = perkNode.getComponent("perk")
-      perk.perkEntry = entry;
-
-      this.availablePerkList.node.addChild(perkNode)
-    },
+    // addPerk(entry){
+    //   var perkNode = cc.instantiate(this.perk)
+    //   perkNode.x = 0;
+    //   var perk = perkNode.getComponent("perk")
+    //   perk.perkEntry = entry;
+    //
+    //   this.availablePerkList.node.addChild(perkNode)
+    // },
 
     selectPerk(perk) {
       //find first empty perkSlot

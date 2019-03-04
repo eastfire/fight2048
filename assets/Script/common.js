@@ -232,7 +232,7 @@ var getPointDistance = function(p1,p2) {
     return Math.abs(p1.x - p2.x) + Math.abs(p1.y - p2.y)
 }
 
-var labelEffect = function(str, color, parent) {
+var labelEffect = function(str, color, parent, position) {
   var label = new cc.Node();
   label.addComponent(cc.Label)
   label.getComponent(cc.Label).string = str;
