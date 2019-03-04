@@ -2,9 +2,11 @@
 <data version="1.0">
     <struct type="Settings">
         <key>fileFormatVersion</key>
-        <int>4</int>
+        <int>3</int>
         <key>texturePackerVersion</key>
-        <string>4.12.0</string>
+        <string>4.0.1</string>
+        <key>fileName</key>
+        <string>F:/REPO/CocosDungeon2048/raw/hero-normal.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -27,12 +29,14 @@
         </array>
         <key>allowRotation</key>
         <true/>
+        <key>premultiplyAlpha</key>
+        <false/>
         <key>shapeDebug</key>
         <false/>
         <key>dpi</key>
         <uint>72</uint>
         <key>dataFormat</key>
-        <string>cocos2d-x</string>
+        <string>cocos2d</string>
         <key>textureFileName</key>
         <filename></filename>
         <key>flipPVR</key>
@@ -45,8 +49,6 @@
         <uint>32768</uint>
         <key>etc1CompressionQuality</key>
         <enum type="SettingsBase::Etc1CompressionQuality">ETC1_QUALITY_LOW_PERCEPTUAL</enum>
-        <key>etc2CompressionQuality</key>
-        <enum type="SettingsBase::Etc2CompressionQuality">ETC2_QUALITY_LOW_PERCEPTUAL</enum>
         <key>dxtCompressionMode</key>
         <enum type="SettingsBase::DxtCompressionMode">DXT_PERCEPTUAL</enum>
         <key>jxrColorFormat</key>
@@ -79,8 +81,6 @@
         <uint>101</uint>
         <key>textureSubPath</key>
         <string></string>
-        <key>atfFormats</key>
-        <string></string>
         <key>textureFormat</key>
         <enum type="SettingsBase::TextureFormat">png</enum>
         <key>borderPadding</key>
@@ -99,6 +99,8 @@
             <key>height</key>
             <int>-1</int>
         </QSize>
+        <key>reduceBorderArtifacts</key>
+        <false/>
         <key>algorithmSettings</key>
         <struct type="AlgorithmSettings">
             <key>algorithm</key>
@@ -109,6 +111,8 @@
             <enum type="AlgorithmSettings::SizeConstraints">AnySize</enum>
             <key>forceSquared</key>
             <false/>
+            <key>forceWordAligned</key>
+            <true/>
             <key>maxRects</key>
             <struct type="AlgorithmMaxRectsSettings">
                 <key>heuristic</key>
@@ -121,24 +125,29 @@
                 <key>order</key>
                 <enum type="AlgorithmBasicSettings::Order">Ascending</enum>
             </struct>
-            <key>polygon</key>
-            <struct type="AlgorithmPolygonSettings">
-                <key>alignToGrid</key>
-                <uint>1</uint>
+        </struct>
+        <key>andEngine</key>
+        <struct type="AndEngine">
+            <key>minFilter</key>
+            <enum type="AndEngine::MinFilter">Linear</enum>
+            <key>packageName</key>
+            <string>Texture</string>
+            <key>wrap</key>
+            <struct type="AndEngineWrap">
+                <key>s</key>
+                <enum type="AndEngineWrap::Wrap">Clamp</enum>
+                <key>t</key>
+                <enum type="AndEngineWrap::Wrap">Clamp</enum>
             </struct>
+            <key>magFilter</key>
+            <enum type="AndEngine::MagFilter">MagLinear</enum>
         </struct>
         <key>dataFileNames</key>
         <map type="GFileNameMap">
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../assets/Texture/Hero/hero-normal.plist</filename>
-            </struct>
-            <key>header</key>
-            <key>source</key>
-            <struct type="DataFile">
-                <key>name</key>
-                <filename></filename>
+                <filename>../assets/resources/Texture/Hero/hero-normal.plist</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -147,8 +156,6 @@
         <false/>
         <key>outputFormat</key>
         <enum type="SettingsBase::OutputFormat">RGBA8888</enum>
-        <key>alphaHandling</key>
-        <enum type="SettingsBase::AlphaHandling">ClearTransparentPixels</enum>
         <key>contentProtection</key>
         <struct type="ContentProtection">
             <key>key</key>
@@ -160,7 +167,7 @@
         <false/>
         <key>prependSmartFolderName</key>
         <false/>
-        <key>autodetectAnimations</key>
+        <key>cleanTransparentPixels</key>
         <true/>
         <key>globalSpriteSettings</key>
         <struct type="SpriteSettings">
@@ -180,68 +187,15 @@
             <int>200</int>
             <key>heuristicMask</key>
             <false/>
-            <key>defaultPivotPoint</key>
-            <point_f>0.5,0.5</point_f>
-            <key>writePivotPoints</key>
-            <false/>
+            <key>pivotPoint</key>
+            <enum type="SpriteSettings::PivotPoint">Center</enum>
         </struct>
-        <key>individualSpriteSettings</key>
-        <map type="IndividualSpriteSettingsMap">
-            <key type="filename">hero-normal0attack0.png</key>
-            <key type="filename">hero-normal0attack1.png</key>
-            <key type="filename">hero-normal0attack2.png</key>
-            <key type="filename">hero-normal0attack3.png</key>
-            <key type="filename">hero-normal0stand0.png</key>
-            <key type="filename">hero-normal1attack0.png</key>
-            <key type="filename">hero-normal1attack1.png</key>
-            <key type="filename">hero-normal1attack2.png</key>
-            <key type="filename">hero-normal1attack3.png</key>
-            <key type="filename">hero-normal1stand0.png</key>
-            <key type="filename">hero-normal2attack0.png</key>
-            <key type="filename">hero-normal2attack1.png</key>
-            <key type="filename">hero-normal2attack2.png</key>
-            <key type="filename">hero-normal2attack3.png</key>
-            <key type="filename">hero-normal2stand0.png</key>
-            <key type="filename">hero-normal3attack0.png</key>
-            <key type="filename">hero-normal3attack1.png</key>
-            <key type="filename">hero-normal3attack2.png</key>
-            <key type="filename">hero-normal3attack3.png</key>
-            <key type="filename">hero-normal3stand0.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>30,30,60,60</rect>
-                <key>scale9Paddings</key>
-                <rect>30,30,60,60</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-        </map>
         <key>fileList</key>
         <array>
-            <filename>hero-normal0attack0.png</filename>
-            <filename>hero-normal0attack1.png</filename>
-            <filename>hero-normal0attack2.png</filename>
-            <filename>hero-normal0attack3.png</filename>
-            <filename>hero-normal0stand0.png</filename>
-            <filename>hero-normal1attack0.png</filename>
-            <filename>hero-normal1attack1.png</filename>
-            <filename>hero-normal1attack2.png</filename>
-            <filename>hero-normal1attack3.png</filename>
             <filename>hero-normal1stand0.png</filename>
-            <filename>hero-normal2attack0.png</filename>
-            <filename>hero-normal2attack1.png</filename>
-            <filename>hero-normal2attack2.png</filename>
-            <filename>hero-normal2attack3.png</filename>
             <filename>hero-normal2stand0.png</filename>
-            <filename>hero-normal3attack0.png</filename>
-            <filename>hero-normal3attack1.png</filename>
-            <filename>hero-normal3attack2.png</filename>
-            <filename>hero-normal3attack3.png</filename>
             <filename>hero-normal3stand0.png</filename>
+            <filename>hero-normal0stand0.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
@@ -263,7 +217,5 @@
         <string></string>
         <key>normalMapSheetFileName</key>
         <filename></filename>
-        <key>exporterProperties</key>
-        <map type="ExporterProperties"/>
     </struct>
 </data>

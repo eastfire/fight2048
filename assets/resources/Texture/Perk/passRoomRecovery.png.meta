@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "a5b8c709-f30d-4422-a367-961e28c36263",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "passRoomRecovery": {
+      "ver": "1.0.3",
+      "uuid": "042d73db-4a98-4701-b72d-40872b737048",
+      "rawTextureUuid": "a5b8c709-f30d-4422-a367-961e28c36263",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 32,
+      "height": 32,
+      "rawWidth": 32,
+      "rawHeight": 32,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

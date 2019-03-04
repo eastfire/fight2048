@@ -93,8 +93,8 @@ cc.Class({
     wisdom: 0,
     defend: 0,
 
-    maxSkill: Storage.progress.maxSkill.normal || 2,
-    maxPerk: Storage.progress.maxPerk.normal || 1,
+    maxSkill: Storage.progress.maxSkill[Global.currentHeroType] || 2,
+    maxPerk: Storage.progress.maxPerk[Global.currentHeroType] || 1,
 
   },
 

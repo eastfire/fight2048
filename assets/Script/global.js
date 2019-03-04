@@ -55,7 +55,11 @@ export default {
   MAX_GEN_ENEMY_NUMBER: 4,
   MAX_ENEMY_LEVEL_DIFF: 3,
 
+  MAX_PERK: 4,
+  PERK_SCORE_ADJUST: 0.05,
+
   currentHeroType: "normal",
+  selectedPerk: [],
   currentSkillPool: [],
 
   basicSkill: ["healSkill","coolingSkill","constitutionSkill","dexteritySkill","luckSkill"],
