@@ -55,6 +55,10 @@ cc.Class({
         this.iconSprite.spriteFrame = frame;
     })
     this.validate()
+
+    this.node.on("touchend",function(){
+      this.toggle.isChecked = !this.toggle.isChecked;
+    },this)
   },
 
   click() {

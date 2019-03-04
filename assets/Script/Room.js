@@ -420,6 +420,9 @@ cc.Class({
         movable.onTurnStart();
       },this)
       this.generateEnemy();
+      if ( this.hero.getComponent("hero").checkDead() ) {
+        return;
+      }
     },
     generateOneItemType(){
       return Common.sample( this.itemPool );

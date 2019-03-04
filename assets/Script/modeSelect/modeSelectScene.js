@@ -52,12 +52,17 @@ cc.Class({
         }
       }, this)
       Global.currentHeroType = heroType;
+      this.refreshPerkSlot();
+      this.refreshPerkList();
     },
 
     refresh(){
       this.heroTypeOptions.forEach(function(sprite){
         sprite.getComponent("heroOption").validate()
       },this)
+      this.refreshPerkSlot();
+    },
+    refreshPerkSlot(){
       var maxPerk = Storage.progress.maxPerk[Global.currentHeroType] || 1;
       for ( var i = 0; i < maxPerk; i++ ){
         this.selectedPerkList.node.children[i].getComponent("perkSlot").unlock();
@@ -170,7 +175,7 @@ cc.Class({
       Global.selectedPerk = [];
       for ( var i = 0; i < Global.MAX_PERK; i++ ){
         var slot = this.selectedPerkList.node.children[i].getComponent("perkSlot");
-        slot.empty(perkName)
+        slot.empty()
       }
     }
 

@@ -475,7 +475,6 @@ allEnemyType.forEach(function(entry){
         prerequests: i==0?null:["kill"+i+"star"+entry.type],
         reward: entry.reward(i),
         check:function(){
-          cc.log("check kill"+i+"star"+entry.type+" "+i)
           return Storage.statistics.kill[entry.type+"Level"] >= Global.STAR_THRESHOLD*i;
         },
       })

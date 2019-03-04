@@ -411,7 +411,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 170,
+      "x": 201,
       "y": -155,
       "z": 0
     },
@@ -714,7 +714,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -170,
+      "x": -201,
       "y": -155,
       "z": 0
     },
@@ -1007,7 +1007,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 150,
+      "width": 200,
       "height": 50
     },
     "_anchorPoint": {
@@ -1070,7 +1070,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100,
+      "width": 200,
       "height": 40
     },
     "_anchorPoint": {
@@ -1116,8 +1116,8 @@
     "_srcBlendFactor": 1,
     "_dstBlendFactor": 771,
     "_useOriginalSize": false,
-    "_string": "回到首页",
-    "_N$string": "回到首页",
+    "_string": "去解锁更多东西",
+    "_N$string": "去解锁更多东西",
     "_fontSize": 20,
     "_lineHeight": 40,
     "_enableWrapText": false,

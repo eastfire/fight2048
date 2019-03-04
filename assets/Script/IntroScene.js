@@ -38,6 +38,7 @@ cc.Class({
 
     if ( Storage.statistics.gameTime === 0 ) {
       //first time game
+      Global.reset();
       Global.currentHeroType = "normal"
       cc.director.loadScene("RoomScene");
     } else {
