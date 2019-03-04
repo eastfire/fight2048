@@ -136,7 +136,7 @@ cc.Class({
         this.afterDie(hero);
     },
     afterDie(hero){
-      var realExp = hero.adjustExp(this.exp);
+      var realExp = hero.adjustExp(this.exp, this);
       hero.gainExp(realExp);
       Global.currentRoomScene.gainScore(this.score);
 

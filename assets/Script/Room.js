@@ -411,8 +411,7 @@ cc.Class({
       this.enemyFactory = new EnemyFactory();
     },
     initItem() {
-      this.itemPool = ["potion"]
-      // this.itemPool = ["poisonPotion"]
+      this.itemPool = Global.ITEM_POOL;
     },
 //PHASE
     turnStart(){

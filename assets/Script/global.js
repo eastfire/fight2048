@@ -68,6 +68,7 @@ export default {
     thief: [] //8 arrow, smokebomb
   },
   reset(){
+    this.ITEM_POOL = ["potion"]
     this.BASE_HP = this.ORIGIN_BASE_HP
     this.HP_PER_LEVEL = this.ORIGIN_HP_PER_LEVEL
     this.SCORE_INFLATION_RATE = this.ORIGIN_SCORE_INFLATION_RATE

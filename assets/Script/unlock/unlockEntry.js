@@ -1,4 +1,4 @@
-import Global from "global";
+clericimport Global from "global";
 import Common from "common";
 import Storage from "storage";
 
@@ -86,7 +86,7 @@ export default {
     name:"warriorPerkSlot3",
     displayName:"战士的第3个特质槽",
     prerequests: ["warriorPerkSlot2"],
-    price: 20,
+    price: 50,
     type:"perkSlot",
     icon: "Texture/perkSlot",
     onUnlock:function(){
@@ -98,7 +98,7 @@ export default {
     name:"warriorPerkSlot4",
     displayName:"战士的第4个特质槽",
     prerequests: ["warriorPerkSlot3"],
-    price: 20,
+    price: 200,
     type:"perkSlot",
     icon: "Texture/perkSlot",
     onUnlock:function(){
@@ -172,6 +172,42 @@ export default {
     icon: "Texture/Skill/resurrectionSkill"
   },
   {
+    name:"clericPerkSlot2",
+    displayName:"牧师的第2个特质槽",
+    prerequests: null,
+    price: 50,
+    type:"perkSlot",
+    icon: "Texture/perkSlot",
+    onUnlock:function(){
+      Storage.progress.maxPerk.cleric = 2;
+      Storage.saveProgress();
+    }
+  },
+  {
+    name:"clericPerkSlot3",
+    displayName:"牧师的第3个特质槽",
+    prerequests: ["clericPerkSlot2"],
+    price: 200,
+    type:"perkSlot",
+    icon: "Texture/perkSlot",
+    onUnlock:function(){
+      Storage.progress.maxPerk.cleric = 3;
+      Storage.saveProgress();
+    }
+  },
+  {
+    name:"clericPerkSlot4",
+    displayName:"牧师的第4个特质槽",
+    prerequests: ["clericPerkSlot3"],
+    price: 1000,
+    type:"perkSlot",
+    icon: "Texture/perkSlot",
+    onUnlock:function(){
+      Storage.progress.maxPerk.cleric = 4;
+      Storage.saveProgress();
+    }
+  },
+  {
     name:"wizard",
     displayName:"法师",
     prerequests: null,
@@ -229,6 +265,42 @@ export default {
     icon: "Texture/Skill/meteorShowerSkill"
   },
   {
+    name:"wizardPerkSlot2",
+    displayName:"法师的第2个特质槽",
+    prerequests: null,
+    price: 50,
+    type:"perkSlot",
+    icon: "Texture/perkSlot",
+    onUnlock:function(){
+      Storage.progress.maxPerk.wizard = 2;
+      Storage.saveProgress();
+    }
+  },
+  {
+    name:"wizardPerkSlot3",
+    displayName:"法师的第3个特质槽",
+    prerequests: ["wizardPerkSlot2"],
+    price: 200,
+    type:"perkSlot",
+    icon: "Texture/perkSlot",
+    onUnlock:function(){
+      Storage.progress.maxPerk.wizard = 3;
+      Storage.saveProgress();
+    }
+  },
+  {
+    name:"wizardPerkSlot4",
+    displayName:"法师的第4个特质槽",
+    prerequests: ["wizardPerkSlot3"],
+    price: 1000,
+    type:"perkSlot",
+    icon: "Texture/perkSlot",
+    onUnlock:function(){
+      Storage.progress.maxPerk.wizard = 4;
+      Storage.saveProgress();
+    }
+  },
+  {
     name:"thief",
     displayName:"盗贼",
     prerequests: null,
@@ -268,6 +340,42 @@ export default {
     icon: "Texture/skillSlot",
     onUnlock:function(){
       Storage.progress.maxSkill.thief = 5;
+      Storage.saveProgress();
+    }
+  },
+  {
+    name:"thiefPerkSlot2",
+    displayName:"盗贼的第2个特质槽",
+    prerequests: null,
+    price: 50,
+    type:"perkSlot",
+    icon: "Texture/perkSlot",
+    onUnlock:function(){
+      Storage.progress.maxPerk.thief = 2;
+      Storage.saveProgress();
+    }
+  },
+  {
+    name:"thiefPerkSlot3",
+    displayName:"盗贼的第3个特质槽",
+    prerequests: ["thiefPerkSlot2"],
+    price: 200,
+    type:"perkSlot",
+    icon: "Texture/perkSlot",
+    onUnlock:function(){
+      Storage.progress.maxPerk.thief = 3;
+      Storage.saveProgress();
+    }
+  },
+  {
+    name:"thiefPerkSlot4",
+    displayName:"盗贼的第4个特质槽",
+    prerequests: ["thiefPerkSlot3"],
+    price: 1000,
+    type:"perkSlot",
+    icon: "Texture/perkSlot",
+    onUnlock:function(){
+      Storage.progress.maxPerk.thief = 4;
       Storage.saveProgress();
     }
   },

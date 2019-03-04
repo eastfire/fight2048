@@ -70,6 +70,19 @@ export default {
     }
   },
   {
+    name:"moreExpAbove12",
+    title:"精英猎手",
+    desc:"杀死12级或以上的怪物得到的经验值加40%",
+    value: -2,
+    icon: "Texture/Perk/moreExpAbove12",
+    apply(){
+      Global.MORE_EXP_ABOVE_12 = true;
+    },
+  },
+  //userOthersSkill
+  //regeneration1
+
+  {
     name:"forwardAfterKill",
     title:"莽撞",
     desc:"杀死普通敌人后前进\n而不是退回原地",
@@ -143,5 +156,35 @@ export default {
     apply(){
       Global.SKILL_WAIT_ADJUST++;
     }
+  },
+  {
+    name:"initHp5",
+    title:"重伤登场",
+    desc:"以5生命开始游戏",
+    value: 1,
+    icon: "Texture/Perk/initHp5",
+    apply(){
+      Global.INIT_HP = 5;
+    },
+  },
+  {
+    name:"lessExpBelow6",
+    title:"挑肥拣瘦",
+    desc:"杀死6级或以下的怪物得到的经验值减少40%",
+    value: 2,
+    icon: "Texture/Perk/lessExpBelow6",
+    apply(){
+      Global.LESS_EXP_BELOW_6 = true;
+    },
+  },
+  {
+    name:"poisonPotion",
+    title:"质量问题",
+    desc:"掉落道具时可能会掉落毒药",
+    value: 2,
+    icon: "Texture/Perk/poisonPotion",
+    apply(){
+      Global.ITEM_POOL.push("poisonPotion")
+    },
   },
 ]}
