@@ -56,6 +56,17 @@ cc.Class({
   starGame(){
     Storage.game.prevHeroType = Global.currentHeroType;
     Storage.saveGame();
+
+    Global.reset();
+    var positiveCount = 0;
+    var negativeCount = 0;
+    Global.selectedPerk.forEach(function(perkEntry){
+      perkEntry.apply();
+    },this)
+    var adjust = Global.ModeSelectScene.calculateScoreAdjust()
+    cc.log(adjust)
+    Global.SCORE_INFLATION_RATE = Global.ORIGIN_SCORE_INFLATION_RATE * (1+adjust.scoreAdjust*Global.PERK_SCORE_ADJUST)
+
     cc.director.loadScene("RoomScene");
   }
   // update (dt) {},

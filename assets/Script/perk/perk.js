@@ -35,10 +35,10 @@ cc.Class({
   start () {
     this.toggle.isChecked = false;
 
-    this.titleLabel.string = this.title;
-    this.descLabel.string = this.desc;
-    if ( this.value ) {
-      var adjust = Math.round(this.value * Global.PERK_SCORE_ADJUST*100)
+    this.titleLabel.string = this.perkEntry.title;
+    this.descLabel.string = this.perkEntry.desc;
+    if ( this.perkEntry.value ) {
+      var adjust = Math.round(this.perkEntry.value * Global.PERK_SCORE_ADJUST*100)
       if ( adjust > 0 ) {
         this.valueLabel.string = "+"+adjust+"%"
         this.valueLabel.color = cc.Color.BLUE
@@ -50,7 +50,7 @@ cc.Class({
       this.valueLabel.string = ""
     }
 
-    cc.loader.loadRes(this.icon, cc.SpriteFrame,
+    cc.loader.loadRes(this.perkEntry.icon, cc.SpriteFrame,
       (err, frame)=>{
         this.iconSprite.spriteFrame = frame;
     })
@@ -66,11 +66,11 @@ cc.Class({
   },
 
   select() {
-    Global.ModeSelectScene.selectPerk(this.perkName,this.icon)
+    Global.ModeSelectScene.selectPerk(this.perkEntry)
   },
 
   unselect() {
-    Global.ModeSelectScene.unselectPerk(this.perkName)
+    Global.ModeSelectScene.unselectPerk(this.perkEntry.name)
   },
 
   validate(){

@@ -126,7 +126,7 @@ cc.Class({
       this.star = Storage.star;
     },
     gainScore(score) {
-      this.score += score;
+      this.score = Math.round(this.score+score);
     },
     gainStar(star){
       this.star += star;

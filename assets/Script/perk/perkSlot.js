@@ -14,6 +14,11 @@ cc.Class({
     perkSprite: {
       default: null,
       type: cc.Sprite
+    },
+    isEmpty:{
+      get(){
+        return this.perkName == null
+      }
     }
   },
 
@@ -23,14 +28,13 @@ cc.Class({
 
   start () {
   },
-
   unlock() {
     this.lockSprite.node.active = false;
   },
   lock() {
     this.lockSprite.node.active = true;
   },
-  select(perkName, perkIcon) {
+  fill(perkName, perkIcon) {
     this.background = this.perkSprite.spriteFrame;
     this.perkName = perkName;
     cc.loader.loadRes(perkIcon, cc.SpriteFrame,
@@ -39,7 +43,7 @@ cc.Class({
     })
   },
 
-  unselect() {
+  empty() {
     this.perkSprite.spriteFrame = this.background;
     this.perkName = null;
   },

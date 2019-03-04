@@ -14,12 +14,12 @@ cc.Class({
     },
     maxHp: {
       get(){
-        return Global.BASE_HP+this.level*Global.HP_INFLATION_RATE+
-        this.constitution*Global.CONSTITUTION_EFFECT;
+        return Math.round(Global.BASE_HP+(this.level-1)*Global.HP_PER_LEVEL+
+        this.constitution*Global.CONSTITUTION_EFFECT);
       },
     },
     hp: {
-      default: Global.HP_INFLATION_RATE,
+      default: 0,
       notify(oldValue) {
           //减少无效赋值
         if (oldValue === this.hp) {
@@ -76,7 +76,7 @@ cc.Class({
 
     choiceNumber:{
       get(){
-        return Global.ORIGIN_CHOICE_NUMBER
+        return Global.CHOICE_NUMBER
       }
     },
 
@@ -104,7 +104,7 @@ cc.Class({
     this.type = "hero";
     this.subtype = "normal";
     this.isMergeToSelfType = false;
-    this.forwardAfterKill = false;
+    this.forwardAfterKill = Global.FORWARD_AFTER_KILL;
     this.accept = ["potion","poisonPotion"]
     this.dead = false;
   },
@@ -121,6 +121,12 @@ cc.Class({
   },
 
   start () {
+    if ( Global.INIT_HP )
+      this.hp = Global.INIT_HP
+    else this.hp = Global.BASE_HP
+    if ( Global.currentRoomScene ) {
+      Global.currentRoomScene.lifeLabel.string = this.hp+"/"+this.maxHp;
+    }
     this._super();
   },
   beforeNormalAttack(){
@@ -172,11 +178,14 @@ cc.Class({
   hit(enemy){
     this.beforeHit(enemy);
     if ( this.forwardAfterKill ) {
-      var p = Global.currentRoom.getDrawPosition(Common.getIncrementPosition(this.positions[0], this.face));
+      var newPosition = Common.getIncrementPosition(this.positions[0], this.face)
+      var p = Global.currentRoom.getDrawPosition(newPosition);
       this.node.runAction(cc.sequence(
         cc.moveTo(Global.HERO_ATTACK_TIME/2+0.1, p.x, p.y ), //留时间给enemy做特效
         cc.callFunc(function(){
-            this.afterHit(enemy);
+          this.__removeOldMapping();
+          this.setNewPosition(newPosition);
+          this.afterHit(enemy);
         },this)
       ))
     } else {
@@ -184,7 +193,7 @@ cc.Class({
       this.node.runAction(cc.sequence(
         cc.moveTo(Global.HERO_ATTACK_TIME/2+0.1, p.x, p.y ), //留时间给enemy做特效
         cc.callFunc(function(){
-            this.afterHit(enemy);
+          this.afterHit(enemy);
         },this)
       ))
     }

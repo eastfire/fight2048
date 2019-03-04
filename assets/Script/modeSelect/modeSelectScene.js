@@ -19,6 +19,14 @@ cc.Class({
       availablePerkList:{
         type: cc.Layout,
         default: null
+      },
+      scoreAdjustLabel: {
+        type: cc.Label,
+        default: null
+      },
+      scoreAdjustTitle: {
+        type: cc.Label,
+        default: null
       }
     },
 
@@ -65,6 +73,23 @@ cc.Class({
       this.availablePerkList.node.children.forEach(function(perkNode){
         perkNode.getComponent("perk").validate();
       },this)
+      var adjust = this.calculateScoreAdjust();
+      if ( adjust.scoreAdjust == 0 ) {
+        this.scoreAdjustLabel.node.active = false;
+        this.scoreAdjustTitle.node.active = false;
+      } else {
+        this.scoreAdjustLabel.node.active = true;
+        this.scoreAdjustTitle.node.active = true;
+        this.scoreAdjustLabel.string = Math.round(100+adjust.scoreAdjust*Global.PERK_SCORE_ADJUST*100)+"%";
+        // if ( adjust.extra ) {
+        //   if ( adjust.extra > 0 ) {
+        //     this.scoreAdjustLabel.string += "\n(额外奖励"
+        //   } else {
+        //     this.scoreAdjustLabel.string += "\n(额外惩罚"
+        //   }
+        //   this.scoreAdjustLabel.string +=Math.round(adjust.extra*Global.PERK_SCORE_ADJUST*100)+"%)"
+        // }
+      }
     },
     initPerkList(){
       perks.perks.forEach(function(perkEntry){
@@ -75,27 +100,23 @@ cc.Class({
       var perkNode = cc.instantiate(this.perk)
       perkNode.x = 0;
       var perk = perkNode.getComponent("perk")
-      perk.title = entry.title;
-      perk.desc = entry.desc;
-      perk.value = entry.value;
-      perk.icon = entry.icon;
-      perk.perkName = entry.name;
+      perk.perkEntry = entry;
 
       this.availablePerkList.node.addChild(perkNode)
     },
 
-    selectPerk(perkName, perkIcon) {
+    selectPerk(perk) {
       //find first empty perkSlot
       var maxPerk = Storage.progress.maxPerk[Global.currentHeroType] || 1;
       for ( var i = 0; i < maxPerk; i++ ){
         var slot = this.selectedPerkList.node.children[i].getComponent("perkSlot");
-        if ( !slot.perkName ) {
-          slot.fill(perkName, perkIcon)
+        if ( slot.isEmpty ) {
+          slot.fill(perk.name, perk.icon)
           break;
         }
       }
 
-      Global.selectedPerk.push(perkName)
+      Global.selectedPerk.push(perk)
 
       this.refreshPerkList();
     },
@@ -110,12 +131,36 @@ cc.Class({
       }
 
       for ( var i = 0 ; i < Global.selectedPerk.length; i++ ){
-        if ( Global.selectedPerk[i] === perkName ) {
+        if ( Global.selectedPerk[i].name === perkName ) {
           Global.selectedPerk.splice(i,1)
           break;
         }
       }
       this.refreshPerkList();
+    },
+    calculateScoreAdjust(){
+      var positiveCount = 0;
+      var negativeCount = 0;
+      var scoreAdjust = 0
+      Global.selectedPerk.forEach(function(perkEntry){
+        if ( perkEntry.value > 0 ) {
+          negativeCount ++
+        } else if ( perkEntry.value < 0 ) {
+          positiveCount ++;
+        }
+        scoreAdjust += perkEntry.value
+      },this)
+      var extra = 0;
+      // if ( negativeCount > positiveCount+1) {
+      //   extra = negativeCount-positiveCount-1
+      // } else if ( negativeCount + 1 < positiveCount) {
+      //   extra = -(positiveCount-negativeCount-1)
+      // }
+      scoreAdjust += extra;
+      return {
+        scoreAdjust,
+        extra
+      }
     },
     clearSelectedPerk(){
       this.availablePerkList.node.children.forEach(function(perkNode){
