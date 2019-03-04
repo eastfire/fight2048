@@ -54,6 +54,7 @@ cc.Class({
   onDestroy(){
   },
   levelUp(level) {
+    //允许超过最大等级，检查是否超过由choiceFactory决定
     level = level || 1;
     this.level += level;
     this.onLevelUp();

@@ -30,6 +30,36 @@ export default {
     }
   },
   {
+    name:"moreMaxLevel",
+    title:"巨大潜力",
+    desc:"所有技能最大等级加1",
+    value: -1,
+    icon: "Texture/Perk/moreMaxLevel",
+    apply(){
+      Global.MAX_LEVEL_ADJUST++;
+    }
+  },
+  {
+    name:"moreItemLevel",
+    title:"招财进宝",
+    desc:"道具掉落的等级+1",
+    value: -2,
+    icon: "Texture/Perk/moreItemLevel",
+    apply(){
+      Global.ITEM_LEVEL_ADJUST++;
+    }
+  },
+  {
+    name:"lessNegativeTime",
+    title:"超强免疫",
+    desc:"异常状态影响-1回合/效果",
+    value: -2,
+    icon: "Texture/Perk/lessNegativeTime",
+    apply(){
+      Global.NEGATIVE_EFFECT_TIME_ADJUST--;
+    }
+  },
+  {
     name:"forwardAfterKill",
     title:"莽撞",
     desc:"杀死普通敌人后前进\n而不是退回原地",
@@ -63,5 +93,35 @@ export default {
     apply(){
       Global.CHOICE_NUMBER--;
     }
-  }
+  },
+  {
+    name:"lessMaxLevel",
+    title:"潜力不足",
+    desc:"所有技能最大等级减1",
+    value: 1,
+    icon: "Texture/Perk/lessMaxLevel",
+    apply(){
+      Global.MAX_LEVEL_ADJUST--;
+    }
+  },
+  {
+    name:"lessItemLevel",
+    title:"穷神附体",
+    desc:"道具掉落的等级-1\n可能造成不掉落",
+    value: 2,
+    icon: "Texture/Perk/lessItemLevel",
+    apply(){
+      Global.ITEM_LEVEL_ADJUST--;
+    }
+  },
+  {
+    name:"moreNegativeTime",
+    title:"过敏体质",
+    desc:"异常状态影响+1回合/效果",
+    value: 2,
+    icon: "Texture/Perk/moreNegativeTime",
+    apply(){
+      Global.NEGATIVE_EFFECT_TIME_ADJUST++;
+    }
+  },
 ]}

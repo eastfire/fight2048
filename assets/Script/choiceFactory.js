@@ -11,7 +11,7 @@ function levelUpSkill(opt){
         skill.levelUp(opt.number || 1);
       },
       validate(){
-        return skill && skill.level < skill.maxLevel
+        return skill && skill.level < skill.maxLevel+Global.MAX_LEVEL_ADJUST
       }
     }
   }

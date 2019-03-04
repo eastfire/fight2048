@@ -351,7 +351,12 @@ cc.Class({
     ))
   },
   gainStatus(statusName, amount, extra){
-    if ( this.getStatus("prevent") && Common.contains(Global.NEGATIVE_EFFECTS, statusName) ) return;
+    if ( Common.contains(Global.NEGATIVE_EFFECTS, statusName) ) {
+      if ( this.getStatus("prevent") ) return;
+      if ( amount !== -1) //非永久
+        amount += Global.NEGATIVE_EFFECT_TIME_ADJUST
+    }
+
     this._super(statusName, amount, extra)
   },
   getDisturb(amount){
