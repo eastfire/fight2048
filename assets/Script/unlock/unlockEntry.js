@@ -1,4 +1,4 @@
-clericimport Global from "global";
+import Global from "global";
 import Common from "common";
 import Storage from "storage";
 
@@ -117,7 +117,7 @@ export default {
   {
     name:"clericSkillSlot3",
     displayName:"牧师的第3个技能槽",
-    prerequests: ["clericSkillSlot3"],
+    prerequests: ["cleric"],
     price: 50,
     type:"skillSlot",
     icon: "Texture/skillSlot",
@@ -174,7 +174,7 @@ export default {
   {
     name:"clericPerkSlot2",
     displayName:"牧师的第2个特质槽",
-    prerequests: null,
+    prerequests: ["cleric"],
     price: 50,
     type:"perkSlot",
     icon: "Texture/perkSlot",
@@ -217,7 +217,7 @@ export default {
   },{
     name:"wizardSkillSlot3",
     displayName:"法师的第3个技能槽",
-    prerequests: ["wizardSkillSlot3"],
+    prerequests: ["wizard"],
     price: 100,
     type:"skillSlot",
     icon: "Texture/skillSlot",
@@ -267,7 +267,7 @@ export default {
   {
     name:"wizardPerkSlot2",
     displayName:"法师的第2个特质槽",
-    prerequests: null,
+    prerequests: ["wizard"],
     price: 50,
     type:"perkSlot",
     icon: "Texture/perkSlot",
@@ -303,14 +303,14 @@ export default {
   {
     name:"thief",
     displayName:"盗贼",
-    prerequests: null,
+    prerequests: ["cleric","wizard"],
     price: 300,
     type:"hero",
     icon: "Texture/Hero/unlockThief"
   },{
     name:"thiefSkillSlot3",
     displayName:"盗贼的第3个技能槽",
-    prerequests: ["thiefSkillSlot3"],
+    prerequests: ["thief"],
     price: 100,
     type:"skillSlot",
     icon: "Texture/skillSlot",
@@ -346,7 +346,7 @@ export default {
   {
     name:"thiefPerkSlot2",
     displayName:"盗贼的第2个特质槽",
-    prerequests: null,
+    prerequests: ["thief"],
     price: 50,
     type:"perkSlot",
     icon: "Texture/perkSlot",
@@ -378,6 +378,6 @@ export default {
       Storage.progress.maxPerk.thief = 4;
       Storage.saveProgress();
     }
-  },
+  }
 ]
 }
