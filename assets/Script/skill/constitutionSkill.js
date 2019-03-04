@@ -12,12 +12,12 @@ cc.Class({
     this.skillName = "constitutionSkill"
     this.icon="Skill/constitutionSkill";
     this.displayName = "体质（被动）"
-    this.desc = "增加生命上限"+Global.CONSTITUTION_EFFECT;
+    this.desc = "增加生命上限"+Math.round(Global.CONSTITUTION_EFFECT);
     this.isPassive = true;
     this.maxLevel = 100;
   },
   levelUpDesc(level){
-    return "增加生命上限"+Global.CONSTITUTION_EFFECT;
+    return "增加生命上限"+Math.round(Global.CONSTITUTION_EFFECT);
   },
   start () {
     this._super()
