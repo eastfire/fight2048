@@ -19,7 +19,7 @@ cc.Class({
     this.displayName = "敏捷（被动）"
     this.desc = Math.round(100*Global.DEXTERITY_EFFECT)+"%的概率闪躲敌人的攻击";
     this.isPassive = true;
-    this.maxLevel = 10;
+    this.maxLevel = 5;
   },
   levelUpDesc(level){
     return "增加闪躲概率"+Math.round(100*Global.DEXTERITY_EFFECT)+"%";
