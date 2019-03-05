@@ -315,9 +315,19 @@ cc.Class({
   },
   loseHp(damage, reason){
     if (reason.type == "poison") {
-      Common.labelEffect("-"+damage, cc.Color.GREEN, this.node)
+      Common.labelEffect("-"+damage, cc.Color.GREEN, this.node, {x:0,y:0})
     } else if (reason.type == "enemy") {
-      Common.labelEffect("-"+damage, cc.Color.RED, this.node)
+      let r = 50;
+      let heroPosition = this.positions[0]
+      let enemyPosition = reason.enemy.positions[0];
+      let dx = enemyPosition.x - heroPosition.x;
+      let dy = enemyPosition.y - heroPosition.y;
+      let distance = Math.sqrt(dx*dx+dy*dy)
+      let p = {
+        x: r/distance*dx+heroPosition.x,
+        y: r/distance*dy+heroPosition.y
+      }
+      Common.labelEffect("-"+damage, cc.Color.RED, this.node, p)
     }
 
     this.hp = Math.max(0, this.hp - damage)

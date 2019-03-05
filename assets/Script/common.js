@@ -236,11 +236,12 @@ var labelEffect = function(str, color, parent, position) {
   var label = new cc.Node();
   label.addComponent(cc.Label)
   label.getComponent(cc.Label).string = str;
-  label.x = Math.random()*40-20;
-  label.y = Math.random()*40-20;
+  position = position || {x:Math.random()*40-20,y:Math.random()*40-20}
+  label.x = position.x;
+  label.y = position.y;
   label.color = color;
   parent.addChild(label);
-  label.runAction(cc.sequence(cc.moveBy(0.5, 0, 70),
+  label.runAction(cc.sequence(cc.moveBy(0.4+Math.random()*0.2, 0, 60+Math.random()*20),
     cc.fadeOut(0.2),
     cc.removeSelf()
   ))
