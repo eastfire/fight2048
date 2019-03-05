@@ -31,21 +31,24 @@ cc.Class({
 
   onLoad: function () {
     this.node.on('touchend', function () {
-      console.log("Item " + this.itemID + ' clicked');
-      if ( this.toggle.active === true ) {
-        if ( this.toggle.isChecked ) {
-          this.toggle.isChecked = false;
-          Global.ModeSelectScene.unselectPerk(this.perkEntry.name)
-        } else {
-          this.toggle.isChecked = true;
-          Global.ModeSelectScene.selectPerk(this.perkEntry)
-        }
-      }
+      this.click();
     }, this);
   },
 
-  updateItem: function(entry, itemId) {
-    this.itemID = itemId;
+  click(){
+    if ( this.perkEntry.active === true ) {
+      if ( this.perkEntry.isSelected ) {
+        this.perkEntry.isSelected = false;
+        Global.ModeSelectScene.unselectPerk(this.perkEntry.name)
+      } else {
+        this.perkEntry.isSelected = true;
+        Global.ModeSelectScene.selectPerk(this.perkEntry)
+      }
+    }
+  },
+
+  updateItem: function(entry, itemID) {
+    this.itemID = itemID;
     this.perkEntry = entry;
     this.titleLabel.string = this.perkEntry.title;
     this.descLabel.string = this.perkEntry.desc;
@@ -62,15 +65,14 @@ cc.Class({
       this.valueLabel.string = ""
     }
     if ( this.perkEntry.isSelected ) {
-      this.toggle.active = true;
+      this.toggle.node.active = true;
       this.toggle.isChecked = true;
     } else {
-      var maxPerk = Storage.progress.maxPerk[Global.currentHeroType] || 1;
-      if ( Global.selectedPerk.length >= maxPerk ) {
-        this.toggle.active = false;
-      } else {
-        this.toggle.active = true;
+      if (this.perkEntry.active) {
+        this.toggle.node.active = true;
         this.toggle.isChecked = false;
+      } else {
+        this.toggle.node.active = false;
       }
     }
 

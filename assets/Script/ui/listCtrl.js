@@ -4,7 +4,7 @@ cc.Class({
     properties: {
       itemTemplate: { // item template to instantiate other items
         default: null,
-        type: cc.Node
+        type: cc.Prefab
       },
       scrollView: {
       	default: null,
@@ -27,7 +27,7 @@ cc.Class({
     },
 
     initialize: function () {
-      this.content.height = this.totalCount * (this.itemTemplate.height + this.spacing) + this.spacing; // get total content height
+      this.content.height = this.totalCount * (this.itemTemplate.data.height + this.spacing) + this.spacing; // get total content height
     	for (let i = 0; i < this.spawnCount; ++i) { // spawn items, we only need to do this once
     		let item = cc.instantiate(this.itemTemplate);
     		this.content.addChild(item);
@@ -43,6 +43,15 @@ cc.Class({
         return viewPos;
     },
 
+    refresh(){
+      let items = this.items;
+      var itemIDs = "";
+      for (let i = 0; i < items.length; ++i) {
+        let item = items[i].getComponent(this.itemCompnentName)
+        item.updateItem(this.data[item.itemID], item.itemID)
+      }
+    },
+
     update: function(dt) {
       this.updateTimer += dt;
       if (this.updateTimer < this.updateInterval) return; // we don't need to do the math every frame
@@ -50,7 +59,7 @@ cc.Class({
       let items = this.items;
       let buffer = this.bufferZone;
       let isDown = this.scrollView.content.y < this.lastContentPosY; // scrolling direction
-      let offset = (this.itemTemplate.height + this.spacing) * items.length;
+      let offset = (this.itemTemplate.data.height + this.spacing) * items.length;
       for (let i = 0; i < items.length; ++i) {
         let viewPos = this.getPositionInView(items[i]);
         if (isDown) {
@@ -58,16 +67,16 @@ cc.Class({
           if (viewPos.y < -buffer && items[i].y + offset < 0) {
             items[i].y = items[i].y + offset;
             let item = items[i].getComponent(this.itemCompnentName);
-            let itemId = item.itemID - items.length; // update item id
-            item.updateItem(this.data[itemId],itemId);
+            let itemID = item.itemID - items.length; // update item id
+            item.updateItem(this.data[itemID],itemID);
           }
         } else {
           // if away from buffer zone and not reaching bottom of content
           if (viewPos.y > buffer && items[i].y - offset > -this.content.height) {
             items[i].y = items[i].y - offset;
             let item = items[i].getComponent(this.itemCompnentName);
-            let itemId = item.itemID + items.length;
-            item.updateItem(this.data[itemId],itemId);
+            let itemID = item.itemID + items.length;
+            item.updateItem(this.data[itemID],itemID);
           }
         }
       }
@@ -82,7 +91,7 @@ cc.Class({
     setDataset(data){
       this.data = data;
       this.totalCount = this.data.length;
-      //refresh TODO
+      this.refresh();
     },
 
     // addItem: function() {
@@ -111,8 +120,8 @@ cc.Class({
     //     if (item.y + offset < 0) {
     //         item.y = item.y + offset;
     //         let itemComp = item.getComponent('Item');
-    //         let itemId = itemComp.itemID - length;
-    //         itemComp.updateItem(length-1, itemId);
+    //         let itemID = itemComp.itemID - length;
+    //         itemComp.updateItem(length-1, itemID);
     //     }
     // },
 

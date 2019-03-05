@@ -67,42 +67,44 @@ cc.Class({
       // this.availablePerkList.node.children.forEach(function(perkNode){
       //   perkNode.getComponent("perk").validate();
       // },this)
-      // var adjust = this.calculateScoreAdjust();
-      // if ( adjust.scoreAdjust == 0 ) {
-      //   this.scoreAdjustLabel.node.active = false;
-      //   this.scoreAdjustTitle.node.active = false;
-      // } else {
-      //   this.scoreAdjustLabel.node.active = true;
-      //   this.scoreAdjustTitle.node.active = true;
-      //   this.scoreAdjustLabel.string = Math.round(100+adjust.scoreAdjust*Global.PERK_SCORE_ADJUST*100)+"%";
-      //   // if ( adjust.extra ) {
-      //   //   if ( adjust.extra > 0 ) {
-      //   //     this.scoreAdjustLabel.string += "\n(额外奖励"
-      //   //   } else {
-      //   //     this.scoreAdjustLabel.string += "\n(额外惩罚"
-      //   //   }
-      //   //   this.scoreAdjustLabel.string +=Math.round(adjust.extra*Global.PERK_SCORE_ADJUST*100)+"%)"
-      //   // }
-      // }
+      var adjust = this.calculateScoreAdjust();
+      if ( adjust.scoreAdjust == 0 ) {
+        this.scoreAdjustLabel.node.active = false;
+        this.scoreAdjustTitle.node.active = false;
+      } else {
+        this.scoreAdjustLabel.node.active = true;
+        this.scoreAdjustTitle.node.active = true;
+        this.scoreAdjustLabel.string = Math.round(100+adjust.scoreAdjust*Global.PERK_SCORE_ADJUST*100)+"%";
+        // if ( adjust.extra ) {
+        //   if ( adjust.extra > 0 ) {
+        //     this.scoreAdjustLabel.string += "\n(额外奖励"
+        //   } else {
+        //     this.scoreAdjustLabel.string += "\n(额外惩罚"
+        //   }
+        //   this.scoreAdjustLabel.string +=Math.round(adjust.extra*Global.PERK_SCORE_ADJUST*100)+"%)"
+        // }
+      }
+
+      var maxPerk = Storage.progress.maxPerk[Global.currentHeroType] || 1;
+      var isActive = Global.selectedPerk.length < maxPerk;
+      perks.perks.forEach(function(perk){
+        if ( !perk.isSelected ) {
+          perk.active = isActive;
+        } else {
+          perk.active = true;
+        }
+      },this)
+      this.perkScroll.getComponent("listCtrl").refresh();
     },
     initPerkList(){
-      // perks.perks.forEach(function(perkEntry){
-      //   this.addPerk(perkEntry)
-      // },this)
       for ( var i = 0; i < perks.perks.length; i++){
-        perks.perks[i].itemId = i;
+        perks.perks[i].itemID = i;
+        perks.perks[i].active = true;
+        perks.perks[i].isSelected = false;
       }
       this.perkScroll.getComponent("listCtrl").setDataset(perks.perks)
       this.perkScroll.getComponent("listCtrl").initialize()
     },
-    // addPerk(entry){
-    //   var perkNode = cc.instantiate(this.perk)
-    //   perkNode.x = 0;
-    //   var perk = perkNode.getComponent("perk")
-    //   perk.perkEntry = entry;
-    //
-    //   this.availablePerkList.node.addChild(perkNode)
-    // },
 
     selectPerk(perk) {
       //find first empty perkSlot
