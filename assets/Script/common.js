@@ -229,22 +229,12 @@ var all = function(array, callback, context) {
 }
 
 var getPointDistance = function(p1,p2) {
-    return Math.abs(p1.x - p2.x) + Math.abs(p1.y - p2.y)
+  return Math.abs(p1.x - p2.x) + Math.abs(p1.y - p2.y)
 }
 
-var labelEffect = function(str, color, parent, position) {
-  var label = new cc.Node();
-  label.addComponent(cc.Label)
-  label.getComponent(cc.Label).string = str;
-  position = position || {x:Math.random()*40-20,y:Math.random()*40-20}
-  label.x = position.x;
-  label.y = position.y;
-  label.color = color;
-  parent.addChild(label);
-  label.runAction(cc.sequence(cc.moveBy(0.4+Math.random()*0.2, 0, 60+Math.random()*20),
-    cc.fadeOut(0.2),
-    cc.removeSelf()
-  ))
+var distance = function(p1,p2){
+  return Math.sqrt((p1.x - p2.x)*(p1.x - p2.x)
+    + (p1.y - p2.y)*(p1.y - p2.y))
 }
 
 var ATTACK_TYPE_MELEE = 1;
@@ -273,8 +263,8 @@ export default {
   any,
   all,
   getPointDistance,
+  distance,
 
-  labelEffect,
 
   ATTACK_TYPE_MELEE,
   ATTACK_TYPE_RANGE,

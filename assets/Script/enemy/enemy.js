@@ -2,6 +2,7 @@ const Movable = require("movable");
 const Global = require("global")
 const Common = require("common")
 const Storage = require("storage")
+const Effect = require("effect")
 
 cc.Class({
     extends: Movable,
@@ -75,7 +76,7 @@ cc.Class({
       else return true;
     },
     dodgeAttack(hero, fromPosition){
-      Common.labelEffect("Miss",cc.Color.BLUE,hero.node)
+      Effect.labelEffect("Miss",cc.Color.BLUE,hero.node)
     },
     onLevelUp(levelUp){
       var starNumber = this.starOfLevel(this.level)

@@ -1,5 +1,6 @@
 import Global from "global"
 const Enemy = require("enemy");
+import Effect from "effect"
 
 cc.Class({
     extends: Enemy,
@@ -54,6 +55,10 @@ cc.Class({
       this.type = "troll"
     },
 
+    beforeAttack(hero){
+      Effect.projectStone(this.node.position, hero.node.position)
+      this._super(hero)
+    },
     afterAttack(hero){
       this.checkSpecialEffect(hero);
       this._super(hero);

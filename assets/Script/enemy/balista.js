@@ -1,5 +1,6 @@
 import Global from "global"
 const Enemy = require("enemy");
+import Effect from "effect"
 
 cc.Class({
     extends: Enemy,
@@ -43,6 +44,10 @@ cc.Class({
         default: Global.ATTACK_TYPE_RANGE,
         visible:false,
       }
+    },
+    beforeAttack(hero){
+      Effect.projectArrow(this.node.position, hero.node.position)
+      this._super(hero)
     },
     checkRange:function(hero){
       var myPosition = this.positions[0];

@@ -3,6 +3,7 @@ import Global from "global";
 import Common from "common";
 import Enemy from "enemy";
 import Storage from "storage"
+import Effect from "effect"
 
 cc.Class({
   extends: Movable,
@@ -239,7 +240,7 @@ cc.Class({
       this.lostStatus("cursed");
     }
 
-    Common.labelEffect("+"+amount, cc.Color.RED, this.node)
+    Effect.labelEffect("+"+amount, cc.Color.RED, this.node)
 
     this.hp += amount;
     this.lostStatus("poison");
@@ -295,14 +296,14 @@ cc.Class({
     this.afterBeAttacked(enemy)
   },
   blocked(attackPoint){
-    Common.labelEffect("Block",cc.Color.BLUE,this.node)
+    Effect.labelEffect("Block",cc.Color.BLUE,this.node)
   },
   beforeDodgeAttack(enemy){
   },
   dodgeAttack(enemy){
     this.beforeDodgeAttack(enemy);
 
-    Common.labelEffect("Miss",cc.Color.BLUE,enemy.node)
+    Effect.labelEffect("Miss",cc.Color.BLUE,enemy.node)
   },
   afterDodgeAttack(enemy){
     this.afterBeAttacked(enemy);
@@ -315,7 +316,7 @@ cc.Class({
   },
   loseHp(damage, reason){
     if (reason.type == "poison") {
-      Common.labelEffect("-"+damage, cc.Color.GREEN, this.node, {x:0,y:0})
+      Effect.labelEffect("-"+damage, cc.Color.GREEN, this.node, {x:0,y:0})
     } else if (reason.type == "enemy") {
       let r = 50;
       let heroPosition = this.positions[0]
@@ -327,7 +328,7 @@ cc.Class({
         x: r/distance*dx+heroPosition.x,
         y: r/distance*dy+heroPosition.y
       }
-      Common.labelEffect("-"+damage, cc.Color.RED, this.node, p)
+      Effect.labelEffect("-"+damage, cc.Color.RED, this.node, p)
     }
 
     this.hp = Math.max(0, this.hp - damage)

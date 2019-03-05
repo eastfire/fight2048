@@ -27,12 +27,12 @@
       "enable": false
     }
   },
-  "fit-height": true,
+  "fit-height": false,
   "fit-width": true,
   "group-list": [
     "default"
   ],
-  "last-module-event-record-time": 1551149194869,
+  "last-module-event-record-time": 1551771651461,
   "simulator-orientation": false,
   "simulator-resolution": {
     "height": 640,

@@ -1,5 +1,6 @@
 import Global from "global"
 const Enemy = require("enemy");
+import Effect from "effect";
 
 cc.Class({
     extends: Enemy,
@@ -52,7 +53,10 @@ cc.Class({
       },
       isUndead: true
     },
-
+    beforeAttack(hero){
+      Effect.projectArrow(this.node.position, hero.node.position)
+      this._super(hero)
+    },
     // LIFE-CYCLE CALLBACKS:
     ctor: function () {
       this.type = "archer"

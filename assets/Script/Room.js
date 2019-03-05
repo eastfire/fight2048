@@ -16,6 +16,8 @@ cc.Class({
       movablePrefabs:[cc.Prefab],
       starPrefab:cc.Prefab,
       cloudPrefab:cc.Prefab,
+      arrowPrefab:cc.Prefab,
+      stonePrefab:cc.Prefab,
       statusPrefabs:[cc.Prefab],
       turn: {
         default: 1,
