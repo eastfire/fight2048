@@ -228,11 +228,11 @@ cc.Class({
       this.node.runAction(cc.fadeOut(Global.STEP_TIME/2))
       movable.beforeBeMerged(this);
       movable.node.runAction(cc.sequence(
-        cc.scaleTo((Global.STEP_TIME-0.01)/2, 1.4),
-        cc.scaleTo((Global.STEP_TIME-0.01)/2, 1),
-        cc.callFunc(function(){
+        cc.callFunc(function(){ //合并后立刻移除，否则会怪物影响攻击逻辑
           this.afterMergeTo(movable)
-        },this)
+        },this),
+        cc.scaleTo((Global.STEP_TIME-0.01)/2, 1.4),
+        cc.scaleTo((Global.STEP_TIME-0.01)/2, 1)
       ))
 
       movable.beMerged(this)
