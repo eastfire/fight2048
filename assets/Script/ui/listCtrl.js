@@ -20,13 +20,16 @@ cc.Class({
     onLoad: function () {
     	this.content = this.scrollView.content;
       this.items = []; // array to store spawned items
-    	// this.initialize();
+
       this.updateTimer = 0;
       this.updateInterval = 0.2;
       this.lastContentPosY = 0; // use this variable to detect if we are scrolling up or down
     },
 
     initialize: function () {
+      this.content.removeAllChildren(true);
+      this.items = [];
+
       this.content.height = this.totalCount * (this.itemTemplate.data.height + this.spacing) + this.spacing; // get total content height
     	for (let i = 0; i < this.spawnCount; ++i) { // spawn items, we only need to do this once
     		let item = cc.instantiate(this.itemTemplate);

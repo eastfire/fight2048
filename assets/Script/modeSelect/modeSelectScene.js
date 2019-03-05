@@ -8,12 +8,8 @@ cc.Class({
     properties: {
       heroTypeOptions: [cc.Sprite],
 
-      perk:cc.Prefab,
       selectedPerkList:cc.Layout,
-      availablePerkList:{
-        type: cc.Layout,
-        default: null
-      },
+
       scoreAdjustLabel: cc.Label,
       scoreAdjustTitle: cc.Label,
       perkScroll: cc.ScrollView,
@@ -64,9 +60,6 @@ cc.Class({
       }
     },
     refreshPerkList(){
-      // this.availablePerkList.node.children.forEach(function(perkNode){
-      //   perkNode.getComponent("perk").validate();
-      // },this)
       var adjust = this.calculateScoreAdjust();
       if ( adjust.scoreAdjust == 0 ) {
         this.scoreAdjustLabel.node.active = false;
@@ -164,10 +157,7 @@ cc.Class({
       }
     },
     clearSelectedPerk(){
-      this.availablePerkList.node.children.forEach(function(perkNode){
-        perkNode.getComponent("perk").toggle.isChecked = false;
-        perkNode.getComponent("perk").toggle.interactable = true;
-      },this)
+
       Global.selectedPerk = [];
       for ( var i = 0; i < Global.MAX_PERK; i++ ){
         var slot = this.selectedPerkList.node.children[i].getComponent("perkSlot");

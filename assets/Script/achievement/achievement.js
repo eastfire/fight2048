@@ -38,67 +38,27 @@ cc.Class({
   // onLoad () {},
 
   start () {
-    this.rewardLabel.string = this.reward;
-    this.achievementTitle.string = this.title;
-    this.descLabel.string = this.desc;
 
-    this.validate()
   },
-  passPrerequest(){
-    return !this.prerequests || (this.prerequests && Common.all(this.prerequests,function(request){
-      return Storage.rewardTaken[request];
-    },this) )
-  },
-  passUnlock(){
-    return !this.needUnlocks || (this.needUnlocks && Common.all(this.needUnlocks,function(unlock){
-      return Storage.unlocked[unlock];
-    },this) )
-  },
-  validate() {
-    if ( this.passPrerequest() && this.passUnlock() ) {
-      if ( this.check() ) {
-        if ( Storage.rewardTaken[this.achievementName] ) {
-          this.takenButton()
-        } else {
-          this.availableButton();
-        }
-      } else {
-        this.unachievedButton();
-      }
+
+  updateItem: function(entry, itemID) {
+    this.itemID = itemID;
+    this.entry = entry;
+
+    this.rewardLabel.string = this.entry.reward;
+    this.achievementTitle.string = this.entry.title;
+    this.descLabel.string = this.entry.desc;
+
+    if ( this.entry.avaiable ) {
+      this.rewardButton.interactable = true;
     } else {
-      this.unavailableButton();
+      this.rewardButton.interactable = false;
     }
   },
 
-  unavailableButton(){
-    this.rewardButton.interactable = false;
-    this.node.active = false
-  },
-
-  availableButton(){
-    this.rewardButton.interactable = true;
-    this.node.active = true
-  },
-
-  unachievedButton(){
-    this.rewardButton.interactable = false;
-    this.node.active = true
-  },
-
-  takenButton(){
-    this.rewardButton.interactable = false;
-    this.starIcon.node.active = false;
-    this.rewardLabel.string = "已领取"
-    this.node.color = cc.Color.GRAY;
-  },
-
   click(){
-    if ( Storage.rewardTaken[this.achievementName] )  return;
-    Global.MenuScene.star += this.reward;
-    Storage.takeReward(this.achievementName)
-    this.takenButton();
-    Global.UnlockScene.refresh();
-    Global.AchievementScene.refresh();
+    if ( Storage.rewardTaken[this.entry.name] )  return;
+    Global.AchievementScene.takeReward(this.entry)
   },
   // update (dt) {},
 });

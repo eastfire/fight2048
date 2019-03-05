@@ -1,4 +1,5 @@
 import Global from "global"
+import Common from "common"
 import Storage from "storage"
 import achievements from "achievementEntry"
 
@@ -6,19 +7,22 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-      achievementList:{
-        default: null,
-        type:cc.Layout
-      },
-      achievement:{
-        default:null,
-        type:cc.Prefab
-      }
+      achievementScroll: cc.ScrollView,
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     // onLoad () {},
+    passPrerequest(entry){
+      return !entry.prerequests || (entry.prerequests && Common.all(entry.prerequests,function(request){
+        return Storage.rewardTaken[request];
+      },this) )
+    },
+    passUnlock(entry){
+      return !entry.needUnlocks || (entry.needUnlocks && Common.all(entry.needUnlocks,function(unlock){
+        return Storage.unlocked[unlock];
+      },this) )
+    },
 
     start () {
       cc.log("Storage.rewardTaken")
@@ -26,33 +30,37 @@ cc.Class({
       cc.log("Storage.statistics")
       cc.log(Storage.statistics)
       Global.AchievementScene = this;
+
+      this.initData();
+      this.achievementScroll.getComponent("listCtrl").setDataset(this.currentAchievements)
+      this.achievementScroll.getComponent("listCtrl").initialize()
+
+      this.refresh();
+    },
+
+    initData(){
+      var i = 0;
+      this.currentAchievements = [];
       achievements.achievements.forEach(function(entry){
-        if ( !Storage.rewardTaken[entry.name] ){
-          this.addAchievement(entry)
+        if ( !Storage.rewardTaken[entry.name] && this.passPrerequest(entry) && this.passUnlock(entry) ) {
+          this.currentAchievements.push(entry)
+          entry.itemID = i;
+          entry.avaiable = entry.check();
         }
+        i++;
       },this)
     },
 
-    addAchievement(entry){
-      var achievementNode = cc.instantiate(this.achievement)
-      achievementNode.x = 0;
-      var achievement = achievementNode.getComponent("achievement")
-      achievement.achievementName = entry.name;
-      achievement.title = entry.title;
-      achievement.desc = entry.desc;
-      achievement.reward = entry.reward;
-      achievement.check = entry.check;
-      // achievement.icon = entry.icon;
-      achievement.prerequests = entry.prerequests;
-      achievement.needUnlocks = entry.needUnlocks;
-      this.achievementList.node.addChild(achievementNode)
-
-    },
     refresh(){
-      this.achievementList.node.children.forEach(function(child){
-        child.getComponent("achievement").validate();
-      })
+      this.initData();
+      this.achievementScroll.getComponent("listCtrl").setDataset(this.currentAchievements)
+      this.achievementScroll.getComponent("listCtrl").initialize();
+    },
+    takeReward(entry){
+      Global.MenuScene.star += entry.reward;
+      Storage.takeReward(entry.name)
+      Global.UnlockScene.refresh();
+      this.refresh();
     }
-
     // update (dt) {},
 });
