@@ -34,6 +34,7 @@ cc.Class({
       }
       Global.currentRoom.node.active = false;
       Global.currentRoomScene.effectLayer.active = false;
+      Global.currentRoomScene.exitButton.node.active = false;
     },
     home() {
       cc.director.loadScene("MenuScene");

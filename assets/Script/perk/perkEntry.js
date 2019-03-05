@@ -8,7 +8,7 @@ export default {
     name:"halfHpMore",
     title:"强壮",
     desc:"生命多５０％",
-    value: -3,
+    value: -4,
     icon: "Texture/Perk/halfHpMore",
     apply(){
       var rate = Global.BASE_HP/Global.ORIGIN_BASE_HP + 0.5;
@@ -81,7 +81,16 @@ export default {
   },
   //userOthersSkill
   //regeneration1
-
+  {
+    name:"manySkill",
+    title:"博采众长",
+    desc:"可以学习到其他英雄的已解锁技能",
+    value: -3,
+    icon: "Texture/Perk/manySkill",
+    apply(){
+      Global.MANY_SKILL = true;
+    }
+  },
   {
     name:"forwardAfterKill",
     title:"莽撞",
@@ -96,7 +105,7 @@ export default {
     name:"halfHpLess",
     title:"虚弱",
     desc:"生命少５０％",
-    value: 3,
+    value: 4,
     icon: "Texture/Perk/halfHpLess",
     apply(){
       var rate = Global.BASE_HP/Global.ORIGIN_BASE_HP - 0.5;

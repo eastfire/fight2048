@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "6443b697-354d-420d-b6a5-05b35aae5342",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "hero-thief": {
+      "ver": "1.0.3",
+      "uuid": "b0965143-1084-4aeb-bce5-d98157627e41",
+      "rawTextureUuid": "6443b697-354d-420d-b6a5-05b35aae5342",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 1.5,
+      "offsetY": 0,
+      "trimX": 12,
+      "trimY": 12,
+      "width": 203,
+      "height": 32,
+      "rawWidth": 224,
+      "rawHeight": 56,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

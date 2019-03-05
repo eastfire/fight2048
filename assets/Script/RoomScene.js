@@ -35,6 +35,7 @@ cc.Class({
       skillSlotLayout: cc.Layout,
       skillPrefab: cc.Prefab,
       effectLayer: cc.Node,
+      exitButton: cc.Button,
 
       score:{
         default: "",
@@ -183,14 +184,29 @@ cc.Class({
       Global.basicSkill.forEach(function(choice){
         Global.currentChoicePool.push(ChoiceFactory.getSkill({name:choice, minSkillCount: choice == "coolingSkill"?1:0}))
       },this)
-      Global.heroBasicSkill[Global.currentHeroType].forEach(function(choice){
-        Global.currentChoicePool.push(ChoiceFactory.getSkill({name:choice, minSkillCount: 0}))
-      },this)
-      Global.heroUnlockableSkill[Global.currentHeroType].forEach(function(choice){
-        if ( Storage.unlocked[choice] ) {
+      if ( Global.MANY_SKILL ) {
+        ["normal","cleric","wizard","thief"].forEach(function(heroType){
+          if ( Storage.unlocked[heroType] ) {
+            Global.heroBasicSkill[heroType].forEach(function(choice){
+              Global.currentChoicePool.push(ChoiceFactory.getSkill({name:choice, minSkillCount: 0}))
+            },this)
+            Global.heroUnlockableSkill[heroType].forEach(function(choice){
+              if ( Storage.unlocked[choice] ) {
+                Global.currentChoicePool.push(ChoiceFactory.getSkill({name:choice, minSkillCount: 0}))
+              }
+            },this)
+          }
+        },this)
+      } else {
+        Global.heroBasicSkill[Global.currentHeroType].forEach(function(choice){
           Global.currentChoicePool.push(ChoiceFactory.getSkill({name:choice, minSkillCount: 0}))
-        }
-      },this)
+        },this)
+        Global.heroUnlockableSkill[Global.currentHeroType].forEach(function(choice){
+          if ( Storage.unlocked[choice] ) {
+            Global.currentChoicePool.push(ChoiceFactory.getSkill({name:choice, minSkillCount: 0}))
+          }
+        },this)
+      }
     },
     initSkill(){
       this.skills={};
