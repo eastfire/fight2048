@@ -35,7 +35,7 @@ cc.Class({
       skillSlotLayout: cc.Layout,
       skillPrefab: cc.Prefab,
       effectLayer: cc.Node,
-      
+
       score:{
         default: "",
         notify(oldValue){
@@ -51,22 +51,11 @@ cc.Class({
           this.moneyLabel.string = this.star;
         }
       },
-      descDialog: {
-        default: null,
-        type: cc.Prefab,
-      },
-      gameOverDialog: {
-        default: null,
-        type: cc.Prefab,
-      },
-      dieDialog: {
-        default: null,
-        type: cc.Prefab,
-      },
-      shiftArrowSprite: {
-        default: null,
-        type: cc.Sprite
-      }
+      descDialog: cc.Prefab,
+      gameOverDialog: cc.Prefab,
+      dieDialog: cc.Prefab,
+      shiftArrowSprite: cc.Sprite,
+      exitDialog: cc.Prefab,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -264,6 +253,12 @@ cc.Class({
       var dialog = cc.instantiate(this.gameOverDialog)
       dialog.getComponent("gameOverDialog").setReason(reason);
       Global.currentRoomScene.node.addChild(dialog)
+    },
+
+    exitGame(){
+      //show Level Up dialog
+      var dialog = cc.instantiate(this.exitDialog);
+      this.node.addChild(dialog)
     }
     // update (dt) {},
 });
