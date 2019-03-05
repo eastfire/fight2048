@@ -19,19 +19,22 @@ cc.Class({
       },
       score: {
         get(){
-          return (this.level+1)*this.level/2*Global.SCORE_INFLATION_RATE
+          var l = this.level+this.star
+          return (l+1)*l/2*Global.SCORE_INFLATION_RATE
         },
         override: true
       },
       exp: {
         get(){  //很高
-          return (Math.round(Math.log(this.level+1)*this.level)*2)*Global.EXP_INFLATION_RATE
+          var l = this.level+this.star
+          return (Math.round(Math.log(l+1)*l)*2)*Global.EXP_INFLATION_RATE
         },
         override: true
       },
       attack: {
         get(){  //很高
-          return Math.round(Math.log(this.level+1)*this.level)*2;
+          var l = this.level+this.star
+          return Math.round(Math.log(l+1)*l)*2;
         },
         override: true
       },

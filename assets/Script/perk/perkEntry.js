@@ -21,7 +21,7 @@ export default {
   },
   {
     name:"moreChoice",
-    title:"灵活",
+    title:"灵活多变",
     desc:"升级时多１选择项",
     value: -2,
     icon: "Texture/Perk/moreChoice",
@@ -52,7 +52,7 @@ export default {
   {
     name:"lessNegativeTime",
     title:"超强免疫",
-    desc:"异常状态影响-1回合/效果",
+    desc:"异常状态影响-1回合或-1效果",
     value: -2,
     icon: "Texture/Perk/lessNegativeTime",
     apply(){
@@ -159,7 +159,7 @@ export default {
   },
   {
     name:"initHp5",
-    title:"重伤登场",
+    title:"身受重伤",
     desc:"以5生命开始游戏",
     value: 1,
     icon: "Texture/Perk/initHp5",

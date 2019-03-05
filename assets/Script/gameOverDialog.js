@@ -33,6 +33,7 @@ cc.Class({
         this.scoreLabel.string += "LV"+reason.enemy.level+reason.enemy.title
       }
       Global.currentRoom.node.active = false;
+      Global.currentRoomScene.effectLayer.active = false;
     },
     home() {
       cc.director.loadScene("MenuScene");

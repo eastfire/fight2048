@@ -23,50 +23,19 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-      scoreLabel:{
-        default: null,
-        type: cc.Label
-      },
-      turnLabel:{
-        default: null,
-        type: cc.Label
-      },
-      moneyLabel:{
-        default: null,
-        type: cc.Label
-      },
-      lifeLabel:{
-        default: null,
-        type: cc.Label
-      },
-      levelLabel:{
-        default: null,
-        type: cc.Label
-      },
-      expLabel:{
-        default: null,
-        type: cc.Label
-      },
-      room: {
-        default: null,
-        type: Room
-      },
-      skillLayout:{
-        default: null,
-        type: cc.Layout
-      },
-      skillSlotFrame: {
-        default: null,
-        type: cc.SpriteFrame
-      },
-      skillSlotLayout:{
-        default: null,
-        type: cc.Layout
-      },
-      skillPrefab: {
-        default: null,
-        type: cc.Prefab
-      },
+      scoreLabel: cc.Label,
+      turnLabel: cc.Label,
+      moneyLabel: cc.Label,
+      lifeLabel: cc.Label,
+      levelLabel: cc.Label,
+      expLabel: cc.Label,
+      room: Room,
+      skillLayout: cc.Layout,
+      skillSlotFrame:  cc.SpriteFrame,
+      skillSlotLayout: cc.Layout,
+      skillPrefab: cc.Prefab,
+      effectLayer: cc.Node,
+      
       score:{
         default: "",
         notify(oldValue){

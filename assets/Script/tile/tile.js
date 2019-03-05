@@ -1,12 +1,5 @@
-// Learn cc.Class:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/class.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/class.html
-// Learn Attribute:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/reference/attributes.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
-//  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
+import Global from "global"
+import Common from "common"
 
 cc.Class({
     extends: cc.Component,
@@ -56,6 +49,57 @@ cc.Class({
     start () {
       var frame = this.atlas.getSpriteFrame(this.type+"-"+this.subtype);
       this.node.getComponent(cc.Sprite).spriteFrame = frame;
+      this.status = {};
+    },
+    getStatus(statusName){
+      if ( !this.status ) return null;
+      return this.status[status];
+    },
+    gainStatus(statusName, turn, extra) {
+      turn = turn || 1;
+      if ( this.getStatus(statusName) ) {
+        this.getStatus(statusName).addDuration(turn);
+        if ( extra )
+          this.getStatus(statusName).setExtra(extra)
+        return;
+      }
+      var status = new cc.Node()
+      status.addComponent(statusName)
+      status = status.getComponent(statusName)
+      status.duration = turn;
+      if ( extra )
+        status.setExtra(extra)
+      status.name = statusName;
+      if ( status.onGain ) {
+        status.onGain(this)
+      }
+      this.status[statusName]=status
+    },
+    lostStatus(statusName){
+      var status = this.status[statusName]
+      if ( status ) {
+        if ( status.onLost ) {
+          status.onLost(this)
+        }
+        delete this.status[statusName
+        ];
+      }
+    },
+    onTurnStart(){
+      for ( var key in this.status ){
+        var status = this.status[key]
+        if ( status.onTurnStart ) {
+          status.onTurnStart(this)
+        }
+      }
+    },
+    onTurnEnd(){
+      for ( var key in this.status ){
+        var status = this.status[key]
+        if ( status.onTurnEnd ) {
+          status.onTurnEnd(this)
+        }
+      }
     },
     // update (dt) {},
 });

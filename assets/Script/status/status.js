@@ -18,7 +18,7 @@ cc.Class({
   setExtra(extra){
     this.extra = extra;
   },
-  onTurnEnd(movable){
+  onTurnEnd(movable){ //can be tile
     if ( this.duration !== -1 ) { //如果不是永久有效
       this.duration = Math.max(0,this.duration-1)
       if ( this.duration == 0 ) {

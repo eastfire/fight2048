@@ -14,10 +14,8 @@ cc.Class({
 
       tilePrefabs:[cc.Prefab],
       movablePrefabs:[cc.Prefab],
-      starPrefab:{
-        type:cc.Prefab,
-        default: null,
-      },
+      starPrefab:cc.Prefab,
+      cloudPrefab:cc.Prefab,
       statusPrefabs:[cc.Prefab],
       turn: {
         default: 1,
@@ -382,6 +380,9 @@ cc.Class({
       this._movables.forEach(function(movable){
         movable.onTurnEnd();
       },this)
+      this.foreachTile(function(tile){
+        tile.onTurnEnd();
+      },this)
       Storage.saveStatistics()
       if ( this.hero.getComponent("hero").checkDead() ) {
         return;
@@ -418,6 +419,9 @@ cc.Class({
       this._phase = "turnStart"
       this._movables.forEach(function(movable){
         movable.onTurnStart();
+      },this)
+      this.foreachTile(function(tile){
+        tile.onTurnStart();
       },this)
       this.generateEnemy();
       if ( this.hero.getComponent("hero").checkDead() ) {
