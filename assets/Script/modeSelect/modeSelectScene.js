@@ -64,31 +64,34 @@ cc.Class({
       }
     },
     refreshPerkList(){
-      this.availablePerkList.node.children.forEach(function(perkNode){
-        perkNode.getComponent("perk").validate();
-      },this)
-      var adjust = this.calculateScoreAdjust();
-      if ( adjust.scoreAdjust == 0 ) {
-        this.scoreAdjustLabel.node.active = false;
-        this.scoreAdjustTitle.node.active = false;
-      } else {
-        this.scoreAdjustLabel.node.active = true;
-        this.scoreAdjustTitle.node.active = true;
-        this.scoreAdjustLabel.string = Math.round(100+adjust.scoreAdjust*Global.PERK_SCORE_ADJUST*100)+"%";
-        // if ( adjust.extra ) {
-        //   if ( adjust.extra > 0 ) {
-        //     this.scoreAdjustLabel.string += "\n(额外奖励"
-        //   } else {
-        //     this.scoreAdjustLabel.string += "\n(额外惩罚"
-        //   }
-        //   this.scoreAdjustLabel.string +=Math.round(adjust.extra*Global.PERK_SCORE_ADJUST*100)+"%)"
-        // }
-      }
+      // this.availablePerkList.node.children.forEach(function(perkNode){
+      //   perkNode.getComponent("perk").validate();
+      // },this)
+      // var adjust = this.calculateScoreAdjust();
+      // if ( adjust.scoreAdjust == 0 ) {
+      //   this.scoreAdjustLabel.node.active = false;
+      //   this.scoreAdjustTitle.node.active = false;
+      // } else {
+      //   this.scoreAdjustLabel.node.active = true;
+      //   this.scoreAdjustTitle.node.active = true;
+      //   this.scoreAdjustLabel.string = Math.round(100+adjust.scoreAdjust*Global.PERK_SCORE_ADJUST*100)+"%";
+      //   // if ( adjust.extra ) {
+      //   //   if ( adjust.extra > 0 ) {
+      //   //     this.scoreAdjustLabel.string += "\n(额外奖励"
+      //   //   } else {
+      //   //     this.scoreAdjustLabel.string += "\n(额外惩罚"
+      //   //   }
+      //   //   this.scoreAdjustLabel.string +=Math.round(adjust.extra*Global.PERK_SCORE_ADJUST*100)+"%)"
+      //   // }
+      // }
     },
     initPerkList(){
       // perks.perks.forEach(function(perkEntry){
       //   this.addPerk(perkEntry)
       // },this)
+      for ( var i = 0; i < perks.perks.length; i++){
+        perks.perks[i].itemId = i;
+      }
       this.perkScroll.getComponent("listCtrl").setDataset(perks.perks)
       this.perkScroll.getComponent("listCtrl").initialize()
     },
