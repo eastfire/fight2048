@@ -25,18 +25,25 @@ var projectArrow = function( from, to ) {
   if ( from.x == to.x ) {
     if ( from.y > to.y ) {
       angle = 90
-    } if ( from.y == to.y ) {
+    } else if ( from.y < to.y ) {
       angle = -90
     } else {
+      cc.log("x==x y==y")
       return;
     }
+  } else if ( from.y == to.y ) {
+      if ( from.x > to.x ) {
+        angle = 180
+      } else if ( from.x < to.x ) {
+        angle = 0
+      }
   } else {
     angle = radianToAngle(Math.atan((to.y-from.y)/(to.x-from.x)));
   }
   var arrow = cc.instantiate(Global.currentRoom.arrowPrefab)
   arrow.x = from.x;
   arrow.y = from.y;
-  arrow.rotation = -angle;
+  arrow.rotation = angle;
   Global.currentRoom.node.addChild(arrow)
   arrow.runAction(cc.sequence(
     cc.moveTo(Global.ENEMY_ATTACK_TIME/2, to.x, to.y ),
@@ -49,18 +56,25 @@ var projectFireball = function( from, to ) {
   if ( from.x == to.x ) {
     if ( from.y > to.y ) {
       angle = 90
-    } if ( from.y == to.y ) {
+    } else if ( from.y < to.y ) {
       angle = -90
     } else {
+      cc.log("x==x y==y")
       return;
     }
+  } else if ( from.y == to.y ) {
+      if ( from.x > to.x ) {
+        angle = 180
+      } else if ( from.x < to.x ) {
+        angle = 0
+      }
   } else {
     angle = radianToAngle(Math.atan((to.y-from.y)/(to.x-from.x)));
   }
   var projectile = cc.instantiate(Global.currentRoom.fireballPrefab)
   projectile.x = from.x;
   projectile.y = from.y;
-  projectile.rotation = -angle;
+  projectile.rotation = angle;
   Global.currentRoom.node.addChild(projectile)
   projectile.runAction(cc.sequence(
     cc.moveTo(Global.ENEMY_ATTACK_TIME/2, to.x, to.y ),
@@ -86,5 +100,6 @@ var projectStone = function( from, to ) {
 export default {
   labelEffect,
   projectArrow,
-  projectStone
+  projectStone,
+  projectFireball,
 }

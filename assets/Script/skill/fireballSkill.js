@@ -24,7 +24,7 @@ cc.Class({
     this.maxLevel = 3;
   },
   levelUpDesc(level){
-    return "爆炸范围加大，但冷却时间增加3回合"
+    return "爆炸范围加大，但冷却时间增加4回合"
   },
   onLoad () {
     this._super()
@@ -34,7 +34,7 @@ cc.Class({
     this.coolDown = 6+Global.SKILL_WAIT_ADJUST;
   },
   onLevelUp(level){
-    this.coolDown+=3;
+    this.coolDown+=4;
   },
   onUsed() {
     var hero = Global.currentRoom.hero.getComponent("hero");
@@ -73,20 +73,23 @@ cc.Class({
     }
 
     var attackDetail = {
-      fromPosition: heroPosition,
+      fromPosition: position,
       type: Common.ATTACK_TYPE_SKILL
     }
-    Effect.projectFireball(heroPosition, position)
+    Effect.projectFireball(Global.currentRoom.getDrawPosition(heroPosition), Global.currentRoom.getDrawPosition(position))
     positions.forEach(function(p){
       var movable = Global.currentRoom.getMovableByPosition(p)
-      if ( movable.getComponent("enemy") ) {
-        if ( movable.checkHit(hero, attackDetail) ) {
-          movable.beHit(hero, attackDetail);
-        } else {
-          //miss
-          movable.dodgeAttack(hero, attackDetail);
+      if (movable){
+        if ( movable.getComponent("enemy") ) {
+          if ( movable.checkHit(hero, attackDetail) ) {
+            movable.beHit(hero, attackDetail);
+          } else {
+            //miss
+            movable.dodgeAttack(hero, attackDetail);
+          }
+        } else if ( movable.getComponent("item") ) {
+          movable.crash(attackDetail)
         }
-      } else if ( movable.getComponent("item") ) {
       }
     },this)
 

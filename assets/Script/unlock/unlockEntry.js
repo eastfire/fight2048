@@ -264,10 +264,17 @@ export default {
     type:"skill",
     icon: "Texture/Skill/meteorShowerSkill"
   },{
+    name:"fireballSkill",
+    displayName:"法师的的火球术技能",
+    prerequests: ["wizard"],
+    price: 1000,
+    type:"skill",
+    icon: "Texture/Skill/fireballSkill"
+  },{
     name:"lighteningSkill",
     displayName:"法师的的闪电链技能",
     prerequests: ["wizard"],
-    price: 1000,
+    price: 1500,
     type:"skill",
     icon: "Texture/Skill/lighteningSkill"
   },

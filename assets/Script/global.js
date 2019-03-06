@@ -54,7 +54,7 @@ export default {
   currentSkillPool: [],
 
   basicSkill: ["coolingSkill","constitutionSkill","dexteritySkill","luckSkill"],
-  basicSkill: ["fireballSkill"],
+  // basicSkill: ["fireballSkill"],
   heroBasicSkill: {
     normal: ["forwardSlashSkill","horizontalSlashSkill","verticalSlashSkill"],
     wizard: ["missileSkill","spiderWebSkill","iceWallSkill"],
@@ -63,7 +63,7 @@ export default {
   },
   heroUnlockableSkill: {
     normal: ["backwardSlashSkill","whirlSkill","bigWhirlSkill","crossSlashSkill"], //charge
-    wizard: ["teleportSkill","meteorShowerSkill","lighteningSkill"], //fireball， tornado, lightening
+    wizard: ["teleportSkill","meteorShowerSkill","lighteningSkill","fireballSkill"], //tornado
     cleric: ["turnUndeadSkill","resurrectionSkill","wisdomSkill"], //
     thief: [] //8 arrow, smokebomb
   },

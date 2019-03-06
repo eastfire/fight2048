@@ -188,6 +188,7 @@ cc.Class({
       return Math.random() < this.getDropRate();
     },
     getDropRate(){
+      return 0.5
       return Math.min(0.6, (this.level+this.star) * Global.ENEMY_LUCK_EFFECT
         + Global.currentRoom.hero.getComponent("hero").luck * Global.LUCK_EFFECT )
     },
