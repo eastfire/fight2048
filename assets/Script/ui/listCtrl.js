@@ -32,11 +32,13 @@ cc.Class({
 
       this.content.height = this.totalCount * (this.itemTemplate.data.height + this.spacing) + this.spacing; // get total content height
     	for (let i = 0; i < this.spawnCount; ++i) { // spawn items, we only need to do this once
-    		let item = cc.instantiate(this.itemTemplate);
-    		this.content.addChild(item);
-    		item.setPosition(0, -item.height * (0.5 + i) - this.spacing * (i + 1));
-    		item.getComponent(this.itemCompnentName).updateItem(this.data[i], i);
-        this.items.push(item);
+        if ( this.data[i] ) {
+      		let item = cc.instantiate(this.itemTemplate);
+      		this.content.addChild(item);
+      		item.setPosition(0, -item.height * (0.5 + i) - this.spacing * (i + 1));
+      		item.getComponent(this.itemCompnentName).updateItem(this.data[i], i);
+          this.items.push(item);
+        }
     	}
     },
 

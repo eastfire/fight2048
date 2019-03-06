@@ -35,7 +35,7 @@ cc.Class({
       this.achievementScroll.getComponent("listCtrl").setDataset(this.currentAchievements)
       this.achievementScroll.getComponent("listCtrl").initialize()
 
-      this.refresh();
+      // this.refresh();
     },
 
     initData(){

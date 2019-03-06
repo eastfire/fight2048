@@ -34,59 +34,29 @@ cc.Class({
   // onLoad () {},
 
   start () {
-    this.priceLabel.string = this.price;
-    this.unlockNameLabel.string = this.displayName;
+  },
 
-    cc.loader.loadRes(this.icon, cc.SpriteFrame,
+  updateItem: function(entry, itemID) {
+    this.itemID = itemID;
+    this.entry = entry;
+    this.priceLabel.string = this.entry.price;
+    this.unlockNameLabel.string = this.entry.displayName;
+    cc.loader.loadRes(this.entry.icon, cc.SpriteFrame,
       (err, frame)=>{
         this.unlockIcon.spriteFrame = frame;
     })
-    this.validate()
-  },
 
-  validate() {
-    if ( !this.prerequests || (this.prerequests && Common.all(this.prerequests,function(request){
-      return Storage.unlocked[request];
-    },this) ) ) {
-      if ( Storage.unlocked[this.unlockName] ) {
-        this.unlockedButton();
-      } else {
-        this.availableButton();
-      }
+    if ( this.entry.avaiable ) {
+      this.unlockButton.interactable = true;
     } else {
-      this.unavailableButton();
+      this.unlockButton.interactable = false;
     }
   },
 
-  unavailableButton(){
-    this.unlockButton.interactable = false;
-    this.node.active = false
-  },
-
-  availableButton(){
-    this.unlockButton.interactable = Storage.star >= this.price;
-    this.node.active = true
-  },
-
-  unlockedButton(){
-    this.unlockButton.interactable = false;
-    this.starIcon.node.active = false;
-    this.priceLabel.string = "已解锁"
-    this.node.color = cc.Color.GRAY;
-  },
-
   click(){
-    if ( Global.MenuScene.star >= this.price ) {
-      Global.MenuScene.star -= this.price;
-      Storage.unlock(this.unlockName)
-      if ( this.onUnlock ) {
-        this.onUnlock();
-      }
-      this.unlockedButton();
-
-      Global.UnlockScene.refresh();
-      Global.AchievementScene.refresh();
-      Global.ModeSelectScene.refresh();
+    if ( Global.MenuScene.star >= this.entry.price
+    && !Storage.unlocked[this.entry.name]) {
+      Global.UnlockScene.unlock(this.entry);
     }
   },
   // update (dt) {},

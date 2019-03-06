@@ -7,14 +7,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-      unlockList:{
-        default: null,
-        type:cc.Layout
-      },
-      unlock:{
-        default:null,
-        type:cc.Prefab
-      }
+      unlockScroll: cc.ScrollView,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -26,34 +19,43 @@ cc.Class({
       cc.log(Storage.unlocked)
       Global.UnlockScene = this;
 
+      this.initData()
+      this.unlockScroll.getComponent("listCtrl").setDataset(this.unlocks)
+      this.unlockScroll.getComponent("listCtrl").initialize()
+
+      // this.refresh();
+    },
+
+    initData(){
+      var i = 0;
+      this.unlocks = [];
       unlocks.unlocks.forEach(function(entry){
-        if ( !Storage.unlocked[entry.name] ){
-          this.addUnlock(entry)
+        if ( !Storage.unlocked[entry.name] && this.passPrerequest(entry) ) {
+          this.unlocks.push(entry)
+          entry.itemID = i;
+          entry.avaiable = Global.MenuScene.star >= entry.price;
         }
+        i++;
       },this)
-
+    },
+    passPrerequest(entry){
+      return !entry.prerequests || (entry.prerequests && Common.all(entry.prerequests,function(request){
+        return Storage.unlocked[request];
+      },this) )
+    },
+    unlock(entry){
+      Storage.unlock(entry.name);
+      if ( entry.onUnlock ) {
+        entry.onUnlock();
+      }
+      this.refresh();
+      Global.ModeSelectScene.refresh();
     },
 
-    addUnlock(entry){
-      var unlockNode = cc.instantiate(this.unlock)
-      unlockNode.x = 0;
-      var unlock = unlockNode.getComponent("unlock")
-      unlock.unlockName = entry.name;
-      unlock.displayName = entry.displayName;
-      unlock.type = entry.type;
-      unlock.price = entry.price;
-      unlock.icon = entry.icon;
-      unlock.prerequests = entry.prerequests;
-      unlock.onUnlock = entry.onUnlock;
-
-      this.unlockList.node.addChild(unlockNode)
-
-    },
     refresh(){
-      this.unlockList.node.children.forEach(function(child){
-        child.getComponent("unlock").validate();
-      })
-      // this.unlockList.getComponent(cc.Layout).updateLayout();
+      this.initData();
+      this.unlockScroll.getComponent("listCtrl").setDataset(this.unlocks)
+      this.unlockScroll.getComponent("listCtrl").initialize();
     }
     // update (dt) {},
 });
