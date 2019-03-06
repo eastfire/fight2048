@@ -44,6 +44,30 @@ var projectArrow = function( from, to ) {
   ))
 }
 
+var projectFireball = function( from, to ) {
+  var angle = 0;
+  if ( from.x == to.x ) {
+    if ( from.y > to.y ) {
+      angle = 90
+    } if ( from.y == to.y ) {
+      angle = -90
+    } else {
+      return;
+    }
+  } else {
+    angle = radianToAngle(Math.atan((to.y-from.y)/(to.x-from.x)));
+  }
+  var projectile = cc.instantiate(Global.currentRoom.fireballPrefab)
+  projectile.x = from.x;
+  projectile.y = from.y;
+  projectile.rotation = -angle;
+  Global.currentRoom.node.addChild(projectile)
+  projectile.runAction(cc.sequence(
+    cc.moveTo(Global.ENEMY_ATTACK_TIME/2, to.x, to.y ),
+    cc.removeSelf()
+  ))
+}
+
 var projectStone = function( from, to ) {
   var stone = cc.instantiate(Global.currentRoom.stonePrefab)
   stone.x = from.x;

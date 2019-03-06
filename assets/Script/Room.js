@@ -18,6 +18,7 @@ cc.Class({
       cloudPrefab:cc.Prefab,
       arrowPrefab:cc.Prefab,
       stonePrefab:cc.Prefab,
+      fireballPrefab:cc.Prefab,
       statusPrefabs:[cc.Prefab],
       turn: {
         default: 1,

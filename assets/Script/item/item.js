@@ -36,5 +36,19 @@ cc.Class({
     }
     this._super(movable);
   },
+
+  crash(detail){
+    var fromPosition = detail.fromPosition
+    var point = this.getClosestPoint(fromPosition)
+    var deltaX = Global.TILE_WIDTH*(Math.max(-1,Math.min(1,fromPosition.x - point.x)) )/4;
+    var deltaY = Global.TILE_HEIGHT*(Math.max(-1,Math.min(1,fromPosition.y - point.y)) )/4;
+    this.node.runAction(cc.sequence(
+      cc.moveBy(Global.HERO_ATTACK_TIME/2, -deltaX, -deltaY ).easing(cc.easeCubicActionOut()),
+      cc.callFunc(function(){
+        Global.currentRoomScene.gainScore(this.score);
+        Global.currentRoom.removeMovable(this);
+      },this)
+    ))
+  }
   // update (dt) {},
 });

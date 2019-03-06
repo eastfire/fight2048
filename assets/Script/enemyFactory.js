@@ -12,6 +12,7 @@ cc.Class({
     // this.enemyPool = [{type:"summoner"}]
     var enemyList = ["archer","balista","catapult","gargoyle","ghost","golem","killerBee","kobold","medusa","mimic","minotaur",
     "mummy","orcChief","orge","ratman","skeleton","shaman","snake","summoner","treant","troll","vampire"]
+    var enemyList = ["summoner"]
     this.waitingEnemyPool = [];
     enemyList.forEach(function(type){
       this.waitingEnemyPool.push({type:type})
