@@ -44,7 +44,9 @@ cc.Class({
   },
 
   empty() {
-    this.perkSprite.spriteFrame = this.background;
+    if ( this.background ) {
+      this.perkSprite.spriteFrame = this.background;
+    }
     this.perkName = null;
   },
    // update (dt) {},

@@ -64,7 +64,6 @@ cc.Class({
       perkEntry.apply();
     },this)
     var adjust = Global.ModeSelectScene.calculateScoreAdjust()
-    Global.selectedPerk = []; //TODO remove this line ,show Global.selectedPerk in modeSelect
 
     Global.SCORE_INFLATION_RATE = Global.ORIGIN_SCORE_INFLATION_RATE * (1+adjust.scoreAdjust*Global.PERK_SCORE_ADJUST)
 

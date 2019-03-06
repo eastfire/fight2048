@@ -1,5 +1,6 @@
 import Global from "global"
 import Storage from "storage"
+import Common from "common"
 import perks from "../perk/perkEntry"
 
 cc.Class({
@@ -23,8 +24,7 @@ cc.Class({
       Global.ModeSelectScene = this;
       this.selectHeroType(Storage.game.prevHeroType || "normal");
       this.scheduleOnce(this.refresh, 1)
-      this.selectedPerk = [];
-
+      this.selectHeroType(Global.currentHeroType);
       this.initPerkList();
     },
 
@@ -97,6 +97,13 @@ cc.Class({
       }
       this.perkScroll.getComponent("listCtrl").setDataset(perks.perks)
       this.perkScroll.getComponent("listCtrl").initialize()
+
+      var tempSelectedPerk = Global.selectedPerk;
+      Global.selectedPerk = [];
+      tempSelectedPerk.forEach(function(entry){
+        perks.perks[entry.itemID].isSelected = true;
+        this.selectPerk(entry)
+      }, this);
     },
 
     selectPerk(perk) {
@@ -162,6 +169,10 @@ cc.Class({
       for ( var i = 0; i < Global.MAX_PERK; i++ ){
         var slot = this.selectedPerkList.node.children[i].getComponent("perkSlot");
         slot.empty()
+      }
+      for ( var i = 0; i < perks.perks.length; i++){
+        perks.perks[i].active = true;
+        perks.perks[i].isSelected = false;
       }
     }
 
