@@ -55,18 +55,18 @@ export default {
   currentSkillPool: [],
 
   basicSkill: ["coolingSkill","constitutionSkill","dexteritySkill","luckSkill"],
-  // basicSkill: ["fireballSkill"],
+  // basicSkill: ["eightArrowSkill"],
   heroBasicSkill: {
     normal: ["forwardSlashSkill","horizontalSlashSkill","verticalSlashSkill"],
     wizard: ["missileSkill","spiderWebSkill","iceWallSkill"],
     cleric: ["healSkill","dispelSkill","shieldSkill","calmSkill"],
-    thief: [] //four arrow, four diagnal arrow， bomb
+    thief: ["fourArrowSkill","fourDiagnalArrowSkill"] // bomb
   },
   heroUnlockableSkill: {
     normal: ["backwardSlashSkill","whirlSkill","bigWhirlSkill","crossSlashSkill"], //charge
     wizard: ["teleportSkill","meteorShowerSkill","lighteningSkill","fireballSkill"], //tornado
     cleric: ["turnUndeadSkill","resurrectionSkill","wisdomSkill"], //
-    thief: [] //8 arrow, smokebomb
+    thief: ["eightArrowSkill"] //8 arrow, smokebomb
   },
   initEnemyPool: [{type:"slime",subtype:"R"},{type:"slime",subtype:"B"},{type:"slime",subtype:"Y"}],
   enemyList:["archer","balista","catapult","gargoyle","ghost","golem","killerBee","kobold","medusa","mimic","minotaur",

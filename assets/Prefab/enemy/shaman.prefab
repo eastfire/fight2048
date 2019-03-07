@@ -604,6 +604,7 @@
     "_N$level": 1,
     "attackType": 1,
     "dexterity": 0,
+    "immune": [],
     "_id": ""
   },
   {
