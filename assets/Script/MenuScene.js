@@ -67,6 +67,9 @@ cc.Class({
 
     Global.SCORE_INFLATION_RATE = Global.ORIGIN_SCORE_INFLATION_RATE * (1+adjust.scoreAdjust*Global.PERK_SCORE_ADJUST)
 
+    Global.ModeSelectScene = null;
+    Global.UnlockScene = null;
+    Global.AchievementScene = null;
     cc.director.loadScene("RoomScene");
   }
   // update (dt) {},

@@ -37,6 +37,9 @@ cc.Class({
       Global.currentRoomScene.exitButton.node.active = false;
     },
     home() {
+      Global.currentRoom.destroy();
+      Global.currentRoom = null;
+      Global.currentRoomScene = null;
       cc.director.loadScene("MenuScene");
     },
     restart(){
