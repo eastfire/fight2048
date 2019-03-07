@@ -56,11 +56,13 @@ cc.Class({
       this._super();
       this.attackOver = true;
       this.starList = cc.find("levelIcon/starList",this.node);
-      this.starList = this.starList && this.starList.getComponent(cc.Layout);
-      this.star = this.starOfLevel(this.level)
-      for ( var i = 0; i < this.star; i++){
-        var star = cc.instantiate(Global.currentRoom.starPrefab)
-        this.starList.node.addChild(star)
+      if ( this.starList ) {
+        this.starList = this.starList.getComponent(cc.Layout);
+        this.star = this.starOfLevel(this.level)
+        for ( var i = 0; i < this.star; i++){
+          var star = cc.instantiate(Global.currentRoom.starPrefab)
+          this.starList.node.addChild(star)
+        }
       }
     },
 
@@ -79,12 +81,14 @@ cc.Class({
       Effect.labelEffect("Miss",cc.Color.BLUE,hero.node)
     },
     onLevelUp(levelUp){
-      var starNumber = this.starOfLevel(this.level)
-      for ( var i = this.star; i < starNumber; i++){
-        var star = cc.instantiate(Global.currentRoom.starPrefab)
-        this.starList.node.addChild(star)
+      if ( this.starList ) {
+        var starNumber = this.starOfLevel(this.level)
+        for ( var i = this.star; i < starNumber; i++){
+          var star = cc.instantiate(Global.currentRoom.starPrefab)
+          this.starList.node.addChild(star)
+        }
+        this.star = starNumber
       }
-      this.star = starNumber
       this._super();
     },
     getClosestPoint(p){
@@ -188,7 +192,6 @@ cc.Class({
       return Math.random() < this.getDropRate();
     },
     getDropRate(){
-      return 0.5
       return Math.min(0.6, (this.level+this.star) * Global.ENEMY_LUCK_EFFECT
         + Global.currentRoom.hero.getComponent("hero").luck * Global.LUCK_EFFECT )
     },

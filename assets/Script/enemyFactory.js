@@ -22,6 +22,31 @@ cc.Class({
     this.enemyMaxLevel = 1;
     this.enemyNumber = 2;
   },
+
+  generateEnemy(){
+    var tiles = Global.currentRoom.filterTile(function(tile){
+        return tile.canGenEnemy() && !Global.currentRoom.getMovableByTile(tile)
+      },
+    this)
+    var number = this.generateEnemyNumber();
+    //skill calm FIXME 改为更好的oo设计
+    if ( Global.currentRoom.hero.getComponent("hero").getStatus("calm") ) {
+      number = 0;
+    }
+    var candidates = [];
+    candidates = Common.sample(tiles, number );
+
+    if ( candidates.length ) {
+      candidates.forEach(function(tile){
+        this.generateOneEnemy( tile.x, tile.y, this.generateOneEnemyType(), this.generateOneEnemyLevel());
+      },this);
+      setTimeout(()=>{
+        Global.currentRoom.afterGenEnemy();
+      }, Global.GENERATE_TIME * 1.2*1000);
+    } else {
+      Global.currentRoom.afterGenEnemy();
+    }
+  },
   generateEnemyNumber(){
     return this.enemyNumber;
   },

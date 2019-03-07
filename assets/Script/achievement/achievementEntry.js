@@ -43,7 +43,7 @@ var achievements = [
 },
 {
   name:"killByPoison",
-  title:"啊，一个苹果",
+  title:"一个苹果",
   desc: "死于中毒",
   reward: 20,
   check:function(){

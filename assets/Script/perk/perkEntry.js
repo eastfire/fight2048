@@ -6,7 +6,7 @@ export default {
   perks:[
   {
     name:"halfHpMore",
-    title:"强壮",
+    title:"身强体壮",
     desc:"生命多５０％",
     value: -4,
     icon: "Texture/Perk/halfHpMore",
@@ -93,7 +93,7 @@ export default {
   },
   {
     name:"forwardAfterKill",
-    title:"莽撞",
+    title:"鲁莽冲撞",
     desc:"杀死普通敌人后前进\n而不是退回原地",
     value: 0,
     icon: "Texture/Perk/forwardAfterKill",
@@ -103,7 +103,7 @@ export default {
   },
   {
     name:"halfHpLess",
-    title:"虚弱",
+    title:"体弱多病",
     desc:"生命少５０％",
     value: 4,
     icon: "Texture/Perk/halfHpLess",
@@ -118,7 +118,7 @@ export default {
   },
   {
     name:"lessChoice",
-    title:"僵化",
+    title:"冥顽不灵",
     desc:"升级时少１选择项",
     value: 2,
     icon: "Texture/Perk/lessChoice",
