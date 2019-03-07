@@ -147,7 +147,7 @@ cc.Class({
       hero.gainExp(realExp);
       Global.currentRoomScene.gainScore(this.score);
 
-      Storage.recordKill(this.type, this.level);
+      Storage.recordKill(this.type, this.level, Global.currentRoom.turn);
       var enemyLevel = this.level;
       var dropItem = false;
       var p = null;

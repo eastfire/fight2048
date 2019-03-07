@@ -65,7 +65,17 @@ export default {
     this.statistics.gameOver = this.statistics.gameOver || {}
     this.statistics.info = this.statistics.info || {}
   },
-  recordKill(enemyType, enemyLevel){
+  recordKill(enemyType, enemyLevel, turn){
+    if ( this.currentTurn !== turn ) {
+      this.currentTurn = turn;
+      this.killInOneTurn = 1;
+      if ( !this.statistics.kill.oneTurn )
+        this.statistics.kill.oneTurn = 1;
+    } else {
+      this.killInOneTurn++;
+      if ( this.killInOneTurn > this.statistics.kill.oneTurn )
+        this.statistics.kill.oneTurn = this.killInOneTurn;
+    }
     this.statistics.kill[enemyType+"Count"] = this.statistics.kill[enemyType+"Count"] || 0;
     this.statistics.kill[enemyType+"Count"]++;
     this.statistics.kill[enemyType+"Level"] = this.statistics.kill[enemyType+"Level"] || enemyLevel;

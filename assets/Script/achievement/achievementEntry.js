@@ -305,6 +305,55 @@ var achievements = [
   check:function(){
     return Storage.statistics.gameOver.damage >= 100;
   },
+},
+{
+  name:"oneTurnKill",
+  title:"大开无双",
+  desc: "一回合内杀死8个以上敌人",
+  reward: 100,
+  check:function(){
+    return Storage.statistics.kill.oneTurn >= 8;
+  },
+},
+{
+  name:"oneTurnKill2",
+  title:"大开无双II",
+  desc: "一回合内杀死12个以上敌人",
+  prerequests: ["oneTurnKill"],
+  reward: 200,
+  check:function(){
+    return Storage.statistics.kill.oneTurn >= 12;
+  },
+},
+{
+  name:"oneTurnKill3",
+  title:"大开无双III",
+  desc: "一回合内杀死16个以上敌人",
+  prerequests: ["oneTurnKill2"],
+  reward: 400,
+  check:function(){
+    return Storage.statistics.kill.oneTurn >= 16;
+  },
+},
+{
+  name:"oneTurnKill4",
+  title:"大开无双III",
+  desc: "一回合内杀死20个以上敌人",
+  prerequests: ["oneTurnKill3"],
+  reward: 800,
+  check:function(){
+    return Storage.statistics.kill.oneTurn >= 20;
+  },
+},
+{
+  name:"oneTurnKill5",
+  title:"大开无双V",
+  desc: "一回合内杀死24个以上敌人",
+  prerequests: ["oneTurnKill4"],
+  reward: 1600,
+  check:function(){
+    return Storage.statistics.kill.oneTurn >= 24;
+  },
 }
 ];
 
