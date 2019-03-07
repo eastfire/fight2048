@@ -43,7 +43,7 @@ var projectArrow = function( from, to ) {
   var arrow = cc.instantiate(Global.currentRoom.arrowPrefab)
   arrow.x = from.x;
   arrow.y = from.y;
-  arrow.rotation = angle;
+  arrow.rotation = -angle;
   Global.currentRoom.node.addChild(arrow)
   arrow.runAction(cc.sequence(
     cc.moveTo(Global.ENEMY_ATTACK_TIME/2, to.x, to.y ),
