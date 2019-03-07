@@ -23,7 +23,11 @@ cc.Class({
         return Storage.unlocked[unlock];
       },this) )
     },
-
+    passSeen(entry){
+      return !entry.needSeen || (entry.needSeen && Common.all(entry.needSeen,function(obj){
+        return Storage.progress.seen[obj];
+      },this) )
+    },
     start () {
       cc.log("Storage.rewardTaken")
       cc.log(Storage.rewardTaken)
@@ -42,7 +46,7 @@ cc.Class({
       var i = 0;
       this.currentAchievements = [];
       achievements.achievements.forEach(function(entry){
-        if ( !Storage.rewardTaken[entry.name] && this.passPrerequest(entry) && this.passUnlock(entry) ) {
+        if ( !Storage.rewardTaken[entry.name] && this.passPrerequest(entry) && this.passUnlock(entry) && this.passSeen(entry) ) {
           this.currentAchievements.push(entry)
           entry.itemID = i;
           entry.avaiable = entry.check();

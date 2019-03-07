@@ -168,7 +168,7 @@ cc.Class({
 
       Global.currentRoom.removeMovable(this);
       if ( dropItem ) {
-        Global.currentRoom.generateOneRandomItem(p, enemyLevel)
+        Global.currentRoom.itemFactory.generateOneRandomItem(p, enemyLevel)
       }
       //drop start
       var drawPosition = Global.currentRoom.getDrawPosition(this.positions[0].x, this.positions[0].y)

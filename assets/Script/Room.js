@@ -4,6 +4,7 @@ import Movable from "movable";
 import Enemy from "enemy";
 import Common from "common";
 import EnemyFactory from "enemyFactory"
+import ItemFactory from "itemFactory"
 const Global = require("global");
 import Storage from "storage"
 
@@ -52,8 +53,6 @@ cc.Class({
       this.initItem();
       this.initStatusPrefabMap()
       this.initHero();
-
-      this.seen = {"slime":true,"iceWall":true};
 
       this.scheduleOnce(this.turnStart, 0.5);
     },
@@ -415,7 +414,7 @@ cc.Class({
       this.enemyFactory = new EnemyFactory();
     },
     initItem() {
-      this.itemPool = Global.ITEM_POOL;
+      this.itemFactory = new ItemFactory();
     },
 //PHASE
     turnStart(){
@@ -431,35 +430,7 @@ cc.Class({
         return;
       }
     },
-    generateOneItemType(){
-      return Common.sample( this.itemPool );
-    },
-    generateOneItemLevel(enemyLevel){
-      return Math.min(9,Math.ceil(enemyLevel/4));
-    },
-    generateOneRandomItem(position, enemyLevel){
-      if ( this.itemPool.length ) {
-        var itemLevel = this.generateOneItemLevel(enemyLevel) + Global.ITEM_LEVEL_ADJUST;
-        if ( itemLevel <= 0 ) return;
 
-        var itemType = this.generateOneItemType();
-        this.generateOneItem(position, itemType, itemLevel);
-      }
-    },
-    generateOneItem(position, itemType, itemLevel){
-      if ( this.movablePrefabMap[itemType] ) {
-        var item = cc.instantiate(this.movablePrefabMap[itemType]);
-        item.getComponent("item").level = itemLevel;
-        this.addMovable(item, position.x, position.y)
-
-        if ( !this.seen[itemType] ) {
-          this.seen[itemType] = true;
-          item.getComponent("movable").showDescDialog();
-        }
-      } else {
-        cc.error("item type:"+itemType+" not registered")
-      }
-    },
     generateEnemy(){
       this._phase = "generateEnemy"
 

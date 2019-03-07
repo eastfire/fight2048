@@ -1,4 +1,5 @@
 const Global = require("global");
+const Storage = require("storage");
 const Common = require("common");
 const Boss = require("boss")
 
@@ -9,13 +10,13 @@ cc.Class({
   },
 
   ctor(){
-    this.enemyPool = [{type:"slime",subtype:"R"},{type:"slime",subtype:"B"},{type:"slime",subtype:"Y"}];
+    this.enemyPool = [];
+    Global.initEnemyPool.forEach(function(entry){ //克隆一份
+      this.enemyPool.push(entry)
+    },this);
     // this.enemyPool = [{type:"summoner"}]
-    var enemyList = ["archer","balista","catapult","gargoyle","ghost","golem","killerBee","kobold","medusa","mimic","minotaur",
-    "mummy","orcChief","orge","ratman","skeleton","shaman","snake","summoner","treant","troll","vampire"]
-    // var enemyList = ["summoner"]
     this.waitingEnemyPool = [];
-    enemyList.forEach(function(type){
+    Global.enemyList.forEach(function(type){
       this.waitingEnemyPool.push({type:type})
     },this)
 
@@ -112,8 +113,9 @@ cc.Class({
       Global.currentRoom.addMovable(enemy, x, y);
       enemy.getComponent("movable").generate();
 
-      if ( !Global.currentRoom.seen[type] ) {
-        Global.currentRoom.seen[type] = true;
+      if ( !Storage.progress.seen[type] ) {
+        Storage.progress.seen[type] = 1;
+        Storage.saveProgress();
         enemy.getComponent("movable").showDescDialog();
       }
     } else {

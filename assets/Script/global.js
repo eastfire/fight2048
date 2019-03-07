@@ -68,6 +68,9 @@ export default {
     cleric: ["turnUndeadSkill","resurrectionSkill","wisdomSkill"], //
     thief: [] //8 arrow, smokebomb
   },
+  initEnemyPool: [{type:"slime",subtype:"R"},{type:"slime",subtype:"B"},{type:"slime",subtype:"Y"}],
+  enemyList:["archer","balista","catapult","gargoyle","ghost","golem","killerBee","kobold","medusa","mimic","minotaur",
+  "mummy","orcChief","orge","ratman","skeleton","shaman","snake","summoner","treant","troll","vampire"],
   reset(){
     this.ITEM_POOL = ["potion"]
     this.BASE_HP = this.ORIGIN_BASE_HP

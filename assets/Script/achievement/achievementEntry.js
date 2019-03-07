@@ -473,6 +473,7 @@ allEnemyType.forEach(function(entry){
         title:entry.displayName+"杀手"+TITLE_SURFIX[i],
         desc: "杀死"+(i+1)+"星以上"+entry.displayName,
         prerequests: i==0?null:["kill"+i+"star"+entry.type],
+        needSeen: i==0?[entry.type]:null,
         reward: entry.reward(i),
         check:function(){
           return Storage.statistics.kill[entry.type+"Level"] >= Global.STAR_THRESHOLD*i;

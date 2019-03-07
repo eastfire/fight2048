@@ -65,7 +65,7 @@ cc.Class({
   },
 
   generateWall(position){
-    Global.currentRoom.generateOneItem(position, "iceWall", this.effect)
+    Global.currentRoom.itemFactory.generateOneItem(position, "iceWall", this.effect)
   }
   // update (dt) {},
 });

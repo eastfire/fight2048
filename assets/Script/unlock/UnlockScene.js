@@ -44,12 +44,15 @@ cc.Class({
       },this) )
     },
     unlock(entry){
-      Storage.unlock(entry.name);
-      if ( entry.onUnlock ) {
-        entry.onUnlock();
+      if ( Global.MenuScene.star >= entry.price) {
+        Global.MenuScene.star -= entry.price;
+        Storage.unlock(entry.name);
+        if ( entry.onUnlock ) {
+          entry.onUnlock();
+        }
+        this.refresh();
+        Global.ModeSelectScene.refresh();
       }
-      this.refresh();
-      Global.ModeSelectScene.refresh();
     },
 
     refresh(){

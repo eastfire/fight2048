@@ -96,7 +96,6 @@ cc.Class({
     setDataset(data){
       this.data = data;
       this.totalCount = this.data.length;
-      this.refresh();
     },
 
     // addItem: function() {
