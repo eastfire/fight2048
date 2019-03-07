@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.7475517165492958,
-      "y": 0.7475517165492958,
+      "x": 0.4872831157588648,
+      "y": 0.4872831157588648,
       "z": 1
     },
     "_quat": {
@@ -2338,7 +2338,7 @@
       "__id__": 45
     },
     "_enabled": true,
-    "heroType": "wizard",
+    "heroType": "thief",
     "lockIcon": {
       "__id__": 47
     },
@@ -4293,6 +4293,9 @@
       },
       {
         "__id__": 43
+      },
+      {
+        "__id__": 48
       }
     ],
     "selectedPerkList": {
@@ -4897,7 +4900,7 @@
       "__id__": 105
     },
     "itemCompnentName": "unlock",
-    "spawnCount": 15,
+    "spawnCount": 18,
     "spacing": 2,
     "bufferZone": 300,
     "_id": "55fh8IedlOMLOjX4qh468q"
@@ -5531,9 +5534,9 @@
       "__id__": 121
     },
     "itemCompnentName": "achievement",
-    "spawnCount": 16,
+    "spawnCount": 17,
     "spacing": 2,
-    "bufferZone": 600,
+    "bufferZone": 400,
     "_id": "fc1Ji7lQlOt6GYuptmsib9"
   },
   {
