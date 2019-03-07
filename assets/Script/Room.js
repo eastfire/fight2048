@@ -460,54 +460,10 @@ cc.Class({
         cc.error("item type:"+itemType+" not registered")
       }
     },
-    generateOneEnemy(x,y, typeObj, level){
-      var type = typeof typeObj === "string" ? typeObj: typeObj.type;
-      var subtype = typeof typeObj === "string" ? typeObj: typeObj.subtype;
-      var prefab = this.movablePrefabMap[type];
-      if ( !prefab ) {
-        prefab = this.movablePrefabMap[type+subtype];
-      }
-      if ( prefab ) {
-        //FIXME : only single block enemy here
-        var enemy = cc.instantiate( prefab );
-        enemy.getComponent("enemy").subtype = subtype;
-        enemy.getComponent("enemy").level = level;
-        this.addMovable(enemy, x, y);
-        enemy.getComponent(Movable).generate();
-
-        if ( !this.seen[type] ) {
-          this.seen[type] = true;
-          enemy.getComponent("movable").showDescDialog();
-        }
-      } else {
-        cc.error("enemy type:"+type+" not registered")
-      }
-    },
     generateEnemy(){
       this._phase = "generateEnemy"
 
-      var tiles = this.filterTile(function(tile){
-          return tile.canGenEnemy() && !this.getMovableByTile(tile)
-        },
-      this)
-      var number = this.enemyFactory.generateEnemyNumber();
-      //skill calm FIXME 改为更好的oo设计
-      if ( this.hero.getComponent("hero").getStatus("calm") ) {
-        number = 0;
-      }
-      var candidates = [];
-      candidates = Common.sample(tiles, number );
-
-      if ( candidates.length ) {
-        candidates.forEach(function(tile){
-          this.generateOneEnemy( tile.x, tile.y, this.enemyFactory.generateOneEnemyType(), this.enemyFactory.generateOneEnemyLevel());
-        },this);
-        setTimeout(()=>{
-          this.afterGenEnemy();
-        }, Global.GENERATE_TIME * 1.2*1000);
-      } else {
-        this.afterGenEnemy();
-      }
+      this.enemyFactory.generateEnemy();
     },
     afterGenEnemy(){
       this._phase="waitUserInput";

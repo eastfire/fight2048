@@ -35,11 +35,11 @@ cc.Class({
     var hero = Global.currentRoom.hero.getComponent("hero");
     var heroPosition = hero.positions[0];
 
-    var alreadyAttacked = true;
     var attackDetail = {
       fromPosition:heroPosition,
       type:Common.ATTACK_TYPE_SKILL
     };
+    var attacked = {};
     [{ x:heroPosition.x-1, y:heroPosition.y},
     { x:heroPosition.x+1, y:heroPosition.y},
     { x:heroPosition.x, y:heroPosition.y-1},
@@ -49,7 +49,9 @@ cc.Class({
     { x:heroPosition.x+1, y:heroPosition.y-1},
     { x:heroPosition.x+1, y:heroPosition.y+1}].forEach( function(position){
       var enemy = Global.currentRoom.getMovableByPosition(position.x, position.y);
-      if (enemy && enemy.getComponent("enemy") ) {
+        if (enemy && enemy.getComponent("enemy") ) {
+          if ( attacked[enemy._id]) return;
+          attacked[enemy._id]=1;
           if ( enemy.checkHit(hero, attackDetail) ) {
             enemy.beHit(hero, attackDetail);
           } else {

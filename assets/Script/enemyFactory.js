@@ -1,5 +1,6 @@
 const Global = require("global");
 const Common = require("common");
+const Boss = require("boss")
 
 cc.Class({
   extends: cc.Component,
@@ -12,18 +13,34 @@ cc.Class({
     // this.enemyPool = [{type:"summoner"}]
     var enemyList = ["archer","balista","catapult","gargoyle","ghost","golem","killerBee","kobold","medusa","mimic","minotaur",
     "mummy","orcChief","orge","ratman","skeleton","shaman","snake","summoner","treant","troll","vampire"]
-    var enemyList = ["summoner"]
+    // var enemyList = ["summoner"]
     this.waitingEnemyPool = [];
     enemyList.forEach(function(type){
       this.waitingEnemyPool.push({type:type})
     },this)
 
+    this.lastBossAppearTurn = 0;
+    this.bossAppearTime = 0;
     this.enemyLevelPool = [1];
     this.enemyMaxLevel = 1;
     this.enemyNumber = 2;
+
+    this.bossList = ["bossHydra"]
   },
 
   generateEnemy(){
+    if ( this.lastBossAppearTurn + Global.BOSS_APPEAR_PER_TURN < Global.currentRoom.turn ) {
+      var boss = this.generateBoss();
+      if ( boss ) {
+        this.lastBossAppearTurn = Global.currentRoom.turn;
+        this.bossAppearTime++;
+        setTimeout(()=>{
+          Global.currentRoom.afterGenEnemy();
+        }, Global.GENERATE_TIME * 1.2*1000);
+        return;
+      }
+    }
+
     var tiles = Global.currentRoom.filterTile(function(tile){
         return tile.canGenEnemy() && !Global.currentRoom.getMovableByTile(tile)
       },
@@ -47,6 +64,64 @@ cc.Class({
       Global.currentRoom.afterGenEnemy();
     }
   },
+
+  generateBoss(){
+    if ( Global.currentRoom.filterMovable(function(movable){
+      return movable.isBoss;
+    },this).length ) {
+      return null;
+    }
+    var boss = null;
+    var tiles = Global.currentRoom.filterTile(function(tile){
+        return this.checkTileForBoss(tile)
+      },
+    this)
+    var candidate = Common.sample(tiles)
+    if ( candidate ) {
+      boss = this.generateOneEnemy( candidate.x, candidate.y, Common.sample(this.bossList), this.bossAppearTime+1);
+    } else {
+    }
+    return boss;
+  },
+
+  checkTileForBoss(tile){
+    var tempBoss = new Boss();
+    for ( var i = 0; i < tempBoss.relativePositions.length; i++){
+      var position = tempBoss.relativePositions[i];
+      var x = tile.x + position.x;
+      var y = tile.y + position.y;
+      var checkTile = Global.currentRoom.getTile(x,y)
+      if ( !checkTile || !checkTile.canGenEnemy() || Global.currentRoom.getMovableByTile(checkTile) )
+        return false;
+    }
+    return true;
+  },
+
+  generateOneEnemy(x,y, typeObj, level){
+    var type = typeof typeObj === "string" ? typeObj: typeObj.type;
+    var subtype = typeof typeObj === "string" ? typeObj: typeObj.subtype;
+    var prefab = Global.currentRoom.movablePrefabMap[type];
+    if ( !prefab ) {
+      prefab = Global.currentRoom.movablePrefabMap[type+subtype];
+    }
+    var enemy = null;
+    if ( prefab ) {
+      enemy = cc.instantiate( prefab );
+      enemy.getComponent("enemy").subtype = subtype;
+      enemy.getComponent("enemy").level = level;
+      Global.currentRoom.addMovable(enemy, x, y);
+      enemy.getComponent("movable").generate();
+
+      if ( !Global.currentRoom.seen[type] ) {
+        Global.currentRoom.seen[type] = true;
+        enemy.getComponent("movable").showDescDialog();
+      }
+    } else {
+      cc.error("enemy type:"+type+" not registered")
+    }
+    return enemy;
+  },
+
   generateEnemyNumber(){
     return this.enemyNumber;
   },

@@ -39,9 +39,12 @@ cc.Class({
       fromPosition:heroPosition,
       type:Common.ATTACK_TYPE_SKILL
     };
+    var attacked = {}
     for ( var i = 0; i < Global.currentRoom.height; i++ ) {
       var enemy = Global.currentRoom.getMovableByPosition(heroPosition.x,i);
       if (enemy && enemy.getComponent("enemy") ) {
+        if ( attacked[enemy._id]) continue;
+        attacked[enemy._id]=1;
         if ( enemy.checkHit(hero, attackDetail) ) {
           enemy.beHit(hero, attackDetail);
         } else {

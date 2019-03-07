@@ -46,8 +46,11 @@ cc.Class({
     beHit(hero, detail){
       if ( detail.type === Common.ATTACK_TYPE_SKILL ) {
         this.level++;
-      }
-      this._super(hero, detail)
+        this._super(hero, detail);
+        return false;
+      } else {
+        return this._super(hero, detail);
+      }    
     },
     willDieAfterBeHit(hero, detail){
       if ( detail.type === Common.ATTACK_TYPE_SKILL ) {

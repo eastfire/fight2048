@@ -164,10 +164,23 @@ cc.Class({
       fromPosition:this.positions[0],
       type:Common.ATTACK_TYPE_MELEE
     }
-    if ( enemy.checkHit(this, attackDetail) ) {
-        //hit
-      this.hit(enemy);
-      enemy.beHit(this, attackDetail);
+    if ( enemy.checkHit(this, attackDetail) ) { //是否命中
+      this.beforeHit(enemy);
+      if ( enemy.beHit(this, attackDetail) ) { //是否死亡
+        if ( this.forwardAfterKill ) {
+          this.forward(function(){
+            this.afterHit(enemy);
+          },this);
+        } else {
+          this.backward(function(){
+            this.afterHit(enemy);
+          },this);
+        }
+      } else {
+        this.backward(function(){
+          this.afterHit(enemy);
+        },this);
+      }
       return true;
     } else {
       //miss
@@ -176,28 +189,24 @@ cc.Class({
       return false;
     }
   },
-  hit(enemy){
-    this.beforeHit(enemy);
-    if ( this.forwardAfterKill ) {
-      var newPosition = Common.getIncrementPosition(this.positions[0], this.face)
-      var p = Global.currentRoom.getDrawPosition(newPosition);
-      this.node.runAction(cc.sequence(
-        cc.moveTo(Global.HERO_ATTACK_TIME/2+0.1, p.x, p.y ), //留时间给enemy做特效
-        cc.callFunc(function(){
-          this.__removeOldMapping();
-          this.setNewPosition(newPosition);
-          this.afterHit(enemy);
-        },this)
-      ))
-    } else {
-      var p = Global.currentRoom.getDrawPosition(this.positions[0])
-      this.node.runAction(cc.sequence(
-        cc.moveTo(Global.HERO_ATTACK_TIME/2+0.1, p.x, p.y ), //留时间给enemy做特效
-        cc.callFunc(function(){
-          this.afterHit(enemy);
-        },this)
-      ))
-    }
+  forward(callback, context){
+    var newPosition = Common.getIncrementPosition(this.positions[0], this.face)
+    var p = Global.currentRoom.getDrawPosition(newPosition);
+    this.node.runAction(cc.sequence(
+      cc.moveTo(Global.HERO_ATTACK_TIME/2+0.1, p.x, p.y ), //留时间给enemy做特效
+      cc.callFunc(function(){
+        this.__removeOldMapping();
+        this.setNewPosition(newPosition);
+      },this),
+      cc.callFunc(callback, context)
+    ))
+  },
+  backward(callback, context){
+    var p = Global.currentRoom.getDrawPosition(this.positions[0])
+    this.node.runAction(cc.sequence(
+      cc.moveTo(Global.HERO_ATTACK_TIME/2+0.1, p.x, p.y ), //留时间给enemy做特效
+      cc.callFunc(callback, context)
+    ))
   },
   beforeHit(enemy){
 

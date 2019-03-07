@@ -23,11 +23,12 @@ cc.Class({
   },
   beforeNormalAttack(hero){
     this.scheduleOnce(()=>{
+      var forwardPosition = Common.getIncrementPosition(hero.positions[0], hero.face)
       var enemy2 = Global.currentRoom.getMovableByPosition(
-        Common.getIncrementPosition(Common.getIncrementPosition(hero.positions[0], hero.face), hero.face));
+        Common.getIncrementPosition(forwardPosition, hero.face));
       if ( enemy2 && enemy2.getComponent("enemy") ){
         var attackDetail = {
-          fromPosition: hero.positions[0],
+          fromPosition: forwardPosition,
           type: Common.ATTACK_TYPE_MELEE
         }
         if ( enemy2.checkHit(hero, attackDetail) ) {

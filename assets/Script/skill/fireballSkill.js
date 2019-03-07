@@ -76,11 +76,14 @@ cc.Class({
       fromPosition: position,
       type: Common.ATTACK_TYPE_SKILL
     }
+    var attacked = {};
     Effect.projectFireball(Global.currentRoom.getDrawPosition(heroPosition), Global.currentRoom.getDrawPosition(position))
     positions.forEach(function(p){
       var movable = Global.currentRoom.getMovableByPosition(p)
       if (movable){
         if ( movable.getComponent("enemy") ) {
+          if ( attacked[enemy._id]) return;
+          attacked[enemy._id]=1;
           if ( movable.checkHit(hero, attackDetail) ) {
             movable.beHit(hero, attackDetail);
           } else {

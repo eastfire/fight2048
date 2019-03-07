@@ -35,6 +35,11 @@ cc.Class({
       movable.x = 0;
       movable.y = 0;
       movable.removeComponent(m.type)
+      movable.anchorX = 0.5
+      movable.anchorY = 0.5
+      if ( movable.getComponent("boss") ) {
+        movable.setScale(0.5) //TODO 适配更多形状的boss
+      }
 
       this.icon.addChild(movable)
       this.titleLabel.string = m.title

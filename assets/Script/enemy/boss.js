@@ -1,4 +1,5 @@
 import Global from "global"
+import Common from "common"
 const Enemy = require("enemy");
 import Effect from "effect"
 
@@ -6,20 +7,69 @@ cc.Class({
     extends: Enemy,
 
     properties: {
-      isBoss: true,
+      weakPoint: cc.Sprite,
+      hpList: cc.Layout,
+      life: {
+        default: 3,
+        notify(oldValue) {
+          if ( oldValue == this.life ) return;
+          this.setLife(this.life)
+        }
+      }
+    },
+
+    ctor: function() {
+      this.isBoss = true;
+      this.life = 3;
+      this.maxLife = 3;
+      this.relativePositions = [{x:0, y:0},
+      {x:1,y:0},
+      {x:1,y:1},
+      {x:0,y:1}];
     },
 
     start(){
-      this.life = 3;
-      this.weakPoint = {
-        x: 0,
-        y: 0
+      this._super();
+
+      this.resetWeakPoint();
+      this.setLife(this.life)
+    },
+    resetWeakPoint(){
+      this.weakPointRelativePosition = Common.sample(this.relativePositions);
+      this.weakPoint.node.x = Global.TILE_WIDTH*this.weakPointRelativePosition.x
+      this.weakPoint.node.y = Global.TILE_HEIGHT*this.weakPointRelativePosition.y
+    },
+    setLife(life){
+      for ( var  i = 0; i < this.hpList.node.children.length; i++ ) {
+        var hp = this.hpList.node.children[i]
+        if ( i+1 > life ) {
+          hp.children[0].active = false;
+        } else {
+          hp.children[0].active = true;
+        }
       }
-      //TODO show life
+    },
+    willDieAfterBeHit(hero, detail){
+      this.life--;
+      if ( this.life > 0 ) {
+        if ( detail.type == Common.ATTACK_TYPE_MELEE
+          && this.checkHitWeakPoint(detail.fromPosition) ) {
+            this.gainStatus("stun")
+          }
+        return false;
+      }
+      return true;
+    },
 
-      //TODO show weakPoint
-
-
+    checkHitWeakPoint(position){
+      var weakPointX = this.weakPointRelativePosition.x + this.positions[0].x
+      var weakPointY = this.weakPointRelativePosition.y + this.positions[0].y
+      if ( ( position.x == weakPointX && Math.abs(position.y-weakPointY)==1) ||
+        ( position.y == weakPointY && Math.abs(position.x-weakPointX)==1) ) {
+          this.resetWeakPoint();
+          return true;
+        }
+      return false;
     }
     // update (dt) {},
 });

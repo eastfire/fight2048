@@ -114,6 +114,7 @@ cc.Class({
           },this)
         ))
         this.node.runAction( cc.fadeOut(Global.HERO_ATTACK_TIME/2).easing(cc.easeCubicActionIn()) );
+        return true;
       } else {
         this.node.runAction(cc.sequence(
           cc.moveBy(Global.HERO_ATTACK_TIME/2, -deltaX, -deltaY ).easing(cc.easeCubicActionOut()),
@@ -122,6 +123,7 @@ cc.Class({
           },this),
           cc.moveBy(Global.HERO_ATTACK_TIME/2, deltaX, deltaY ).easing(cc.easeCubicActionIn()),
         ))
+        return false;
       }
     },
     willDieAfterBeHit(hero, detail){
