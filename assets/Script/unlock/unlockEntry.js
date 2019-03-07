@@ -151,21 +151,21 @@ export default {
     }
   },{
     name:"turnUndeadSkill",
-    displayName:"牧师的的驱逐死灵技能",
+    displayName:"牧师的驱逐死灵技能",
     prerequests: ["cleric"],
     price: 50,
     type:"skill",
     icon: "Texture/Skill/turnUndeadSkill"
   },{
     name:"resurrectionSkill",
-    displayName:"牧师的的复活技能",
+    displayName:"牧师的复活技能",
     prerequests: ["cleric"],
     price: 150,
     type:"skill",
     icon: "Texture/Skill/resurrectionSkill"
   },{
     name:"wisdomSkill",
-    displayName:"牧师的的睿智技能",
+    displayName:"牧师的睿智技能",
     prerequests: ["cleric"],
     price: 300,
     type:"skill",
@@ -251,28 +251,28 @@ export default {
     }
   },{
     name:"teleportSkill",
-    displayName:"法师的的传送技能",
+    displayName:"法师的传送技能",
     prerequests: ["wizard"],
     price: 50,
     type:"skill",
     icon: "Texture/Skill/teleportSkill"
   },{
     name:"meteorShowerSkill",
-    displayName:"法师的的陨石雨技能",
+    displayName:"法师的陨石雨技能",
     prerequests: ["wizard"],
     price: 500,
     type:"skill",
     icon: "Texture/Skill/meteorShowerSkill"
   },{
     name:"fireballSkill",
-    displayName:"法师的的火球术技能",
+    displayName:"法师的火球术技能",
     prerequests: ["wizard"],
     price: 1000,
     type:"skill",
     icon: "Texture/Skill/fireballSkill"
   },{
     name:"lighteningSkill",
-    displayName:"法师的的闪电链技能",
+    displayName:"法师的闪电链技能",
     prerequests: ["wizard"],
     price: 1500,
     type:"skill",
@@ -356,6 +356,13 @@ export default {
       Storage.progress.maxSkill.thief = 5;
       Storage.saveProgress();
     }
+  },{
+    name:"eightArrowSkill",
+    displayName:"盗贼的八方箭技能",
+    prerequests: ["thief"],
+    price: 500,
+    type:"skill",
+    icon: "Texture/Skill/eightArrowSkill"
   },
   {
     name:"thiefPerkSlot2",
