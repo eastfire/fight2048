@@ -56,7 +56,7 @@ cc.Class({
     this._super(movable);
     if ( movable.getComponent("summoner") ) {
       var emptyTiles = Global.currentRoom.filterTile(function(tile){
-        return tile.getComponent("tile").isPassable() && !tile.getComponent("tile").getStatus("cloud")
+        return tile.getComponent("tile").isPassable(this) && !tile.getComponent("tile").getStatus("cloud")
       },this)
       Common.sample(emptyTiles, this.getCloudNumber() ).forEach(function(tile){
         tile.getComponent("tile").gainStatus("cloud", this.getCloudTime())

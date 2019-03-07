@@ -33,6 +33,7 @@ cc.Class({
       this._isPassable = true;
       this._isCapture = false;
       this._canGenEnemy = false;
+      this.status = {};
     },
     // LIFE-CYCLE CALLBACKS:
 
@@ -49,11 +50,10 @@ cc.Class({
     start () {
       var frame = this.atlas.getSpriteFrame(this.type+"-"+this.subtype);
       this.node.getComponent(cc.Sprite).spriteFrame = frame;
-      this.status = {};
     },
     getStatus(statusName){
       if ( !this.status ) return null;
-      return this.status[status];
+      return this.status[statusName];
     },
     gainStatus(statusName, turn, extra) {
       turn = turn || 1;
