@@ -169,7 +169,7 @@ export default {
     prerequests: ["cleric"],
     price: 300,
     type:"skill",
-    icon: "Texture/Skill/resurrectionSkill"
+    icon: "Texture/Skill/wisdomSkill"
   },
   {
     name:"clericPerkSlot2",
