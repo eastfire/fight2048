@@ -28,15 +28,7 @@ cc.Class({
     },
     attack: {
       get(){
-        var l = this.level+this.star
-        return l; //较低
-      },
-      override: true
-    },
-    score:{
-      get(){
-        var l = this.level+this.star
-        return (l+1)*l/2*Global.SCORE_INFLATION_RATE
+        return this.level; //较低
       },
       override: true
     },

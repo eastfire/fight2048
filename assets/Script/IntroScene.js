@@ -27,6 +27,9 @@ cc.Class({
   onTouchMoved: function (touch, event) {
   },
   onTouchEnded(event){
+    cc.log(cc.sys.language)
+    cc.log(cc.DEBUG)
+    cc.log(cc.sys)
     //Load data
     Storage.loadMoney();
     Storage.loadGame();

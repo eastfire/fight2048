@@ -21,19 +21,14 @@ cc.Class({
     },
     exp: {
       get(){
-        return  (this.level*2-1)*Global.EXP_INFLATION_RATE;
+        var l = this.level + this.star;
+        return  (l*2-1)*Global.EXP_INFLATION_RATE;
       },
       override: true
     },
     attack: {
       get(){
         return this.level*2-1;
-      },
-      override: true
-    },
-    score:{
-      get(){
-        return (this.level+1)*this.level/2*Global.SCORE_INFLATION_RATE
       },
       override: true
     },

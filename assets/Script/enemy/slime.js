@@ -17,12 +17,6 @@ cc.Class({
       },
       override:true
     },
-    score: {
-      get(){
-        return this.level*Global.SCORE_INFLATION_RATE
-      },
-      override: true
-    },
     exp: {
       get(){
         return this.level*Global.EXP_INFLATION_RATE

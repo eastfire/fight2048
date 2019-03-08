@@ -18,13 +18,6 @@ cc.Class({
         },
         override: true,
       },
-      score: {
-        get(){
-          var l = this.level+this.star
-          return (l+1)*l/2*Global.SCORE_INFLATION_RATE
-        },
-        override: true
-      },
       exp: {
         get(){  //很高
           var l = this.level+this.star
@@ -34,8 +27,8 @@ cc.Class({
       },
       attack: {
         get(){  //很高
-          var l = this.level+this.star
-          return Math.round(Math.log(l+1)*l)*2;
+          var l = this.star
+          return Math.round(Math.log(l+1)*l)*2; //2, 4, 8, 12, 18, 24, 30, 36, 42, 48
         },
         override: true
       },

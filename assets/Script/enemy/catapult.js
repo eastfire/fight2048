@@ -18,15 +18,10 @@ cc.Class({
         },
         override: true,
       },
-      score: {
-        get(){
-          return (this.level+1)*this.level/2*Global.SCORE_INFLATION_RATE
-        },
-        override: true
-      },
       exp: {
         get(){  //很高
-          return (Math.round(Math.log(this.level+1)*this.level)*2-1)*Global.EXP_INFLATION_RATE;
+          var l = this.level + this.star;
+          return (Math.round(Math.log(l+1)*l)*2-1)*Global.EXP_INFLATION_RATE;
         },
         override: true
       },

@@ -8,9 +8,8 @@ cc.Class({
   properties: {
     score: {
       get(){
-        return this.level
-      },
-      override: true
+        return (this.level+1)*this.level*Global.SCORE_INFLATION_RATE
+      }
     },
   },
 

@@ -17,15 +17,10 @@ cc.Class({
         },
         override: true,
       },
-      score: {
-        get(){
-          return (2*this.level-1)*Global.SCORE_INFLATION_RATE
-        },
-        override: true
-      },
       exp: {
         get(){  //一般
-          return Math.round(this.level*1.5*Global.EXP_INFLATION_RATE)
+          var l = this.level + this.star;
+          return Math.round(l*1.5*Global.EXP_INFLATION_RATE)
         },
         override: true
       },

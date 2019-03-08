@@ -21,19 +21,14 @@ cc.Class({
     },
     exp: {
       get(){//一般
-        return Math.round(this.level*Global.EXP_INFLATION_RATE*2.5)
+        var l = this.level + this.star;
+        return Math.round(l*Global.EXP_INFLATION_RATE*2.5)
       },
       override: true
     },
     attack: {
       get(){//一般
         return 2*this.level-1;
-      },
-      override: true
-    },
-    score:{
-      get(){
-        return (this.level+1)*this.level/2*Global.SCORE_INFLATION_RATE
       },
       override: true
     },

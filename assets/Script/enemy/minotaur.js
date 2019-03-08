@@ -17,15 +17,9 @@ cc.Class({
         },
         override: true,
       },
-      score: {
-        get(){
-          return (this.level+1)*this.level*Global.SCORE_INFLATION_RATE
-        },
-        override: true
-      },
       exp: {
         get(){ //超高
-          return (this.level*this.level+1)*Global.EXP_INFLATION_RATE
+          return (this.level*this.level+this.star+1)*Global.EXP_INFLATION_RATE
         },
         override: true
       },

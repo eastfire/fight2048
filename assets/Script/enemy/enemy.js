@@ -14,12 +14,6 @@ cc.Class({
         },
         visible: false
       },
-      score: {
-        get() {
-          return 1;
-        },
-        visible: false
-      },
       exp: {
         get() {
           return 1;
@@ -31,6 +25,11 @@ cc.Class({
           return 1;
         },
         visible: false
+      },
+      score: {
+        get(){
+          return (this.level+1)*this.level*Global.SCORE_INFLATION_RATE
+        }
       },
       attackType:{
         default:Common.ATTACK_TYPE_MELEE,

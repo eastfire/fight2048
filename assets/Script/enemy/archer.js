@@ -25,13 +25,6 @@ cc.Class({
         visible: false,
         override: true
       },
-      score: {
-        get(){
-          var l = this.level+this.star
-          return (l+1)*l/2*Global.SCORE_INFLATION_RATE
-        },
-        override: true
-      },
       exp: {
         get(){  //一般
           var l = this.level+this.star
@@ -41,8 +34,8 @@ cc.Class({
       },
       attack: {
         get(){  //很低
-          var l = this.level+this.star
-          return Math.round(l/2);
+          var l = this.level
+          return Math.ceil(l/3); //1，1，1，2，2，2，3，3，3,4
         },
         override: true
       },
