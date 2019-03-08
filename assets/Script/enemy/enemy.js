@@ -104,7 +104,9 @@ cc.Class({
       var point = this.getClosestPoint(fromPosition)
       var deltaX = Global.TILE_WIDTH*(Math.max(-1,Math.min(1,fromPosition.x - point.x)) )/4;
       var deltaY = Global.TILE_HEIGHT*(Math.max(-1,Math.min(1,fromPosition.y - point.y)) )/4;
-      if ( this.willDieAfterBeHit(hero, detail) ) {
+      detail.enemyDie = this.willDieAfterBeHit(hero, detail)
+      if ( detail.enemyDie ) {
+        detail.dropItemPosition = this.willDropItem();
         this.node.runAction(cc.sequence(
           cc.moveBy(Global.HERO_ATTACK_TIME/2, -deltaX, -deltaY ).easing(cc.easeCubicActionOut()),
           cc.callFunc(function(){
@@ -113,7 +115,7 @@ cc.Class({
           },this)
         ))
         this.node.runAction( cc.fadeOut(Global.HERO_ATTACK_TIME/2).easing(cc.easeCubicActionIn()) );
-        return true;
+        return detail;
       } else {
         this.node.runAction(cc.sequence(
           cc.moveBy(Global.HERO_ATTACK_TIME/2, -deltaX, -deltaY ).easing(cc.easeCubicActionOut()),
@@ -122,7 +124,7 @@ cc.Class({
           },this),
           cc.moveBy(Global.HERO_ATTACK_TIME/2, deltaX, deltaY ).easing(cc.easeCubicActionIn()),
         ))
-        return false;
+        return detail;
       }
     },
     willDieAfterBeHit(hero, detail){
@@ -141,6 +143,14 @@ cc.Class({
         this.beforeDie(hero);
         this.afterDie(hero);
     },
+    willDropItem() {
+      if (this.checkDropItem()) {
+        this.dropItemPosition = Common.sample(this.positions);
+      } else {
+        this.dropItemPosition = null;
+      }
+      return this.dropItemPosition;
+    },
     afterDie(hero){
       var realExp = hero.adjustExp(this.exp, this);
       hero.gainExp(realExp);
@@ -148,26 +158,10 @@ cc.Class({
 
       Storage.recordKill(this.type, this.level, Global.currentRoom.turn);
       var enemyLevel = this.level;
-      var dropItem = false;
-      var p = null;
-      if ( this.__dropItemPredetermined ) {
-        if ( this.__willDropItem ) {
-            dropItem = true;
-            p = this.positions[0];
-        }
-      } else {
-        Common.any(this.positions, function (position) { //generate one item is enough ?
-          if (this.checkDropItem()) {
-              dropItem = true;
-              p = position;
-              return true;
-          }
-        }, this);
-      }
 
       Global.currentRoom.removeMovable(this);
-      if ( dropItem ) {
-        Global.currentRoom.itemFactory.generateOneRandomItem(p, enemyLevel)
+      if ( this.dropItemPosition ) {
+        Global.currentRoom.itemFactory.generateOneRandomItem(this.dropItemPosition, enemyLevel)
       }
       //drop start
       var drawPosition = Global.currentRoom.getDrawPosition(this.positions[0].x, this.positions[0].y)

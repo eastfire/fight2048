@@ -136,17 +136,24 @@ cc.Class({
   maintain(turnNumber){
     if ( (Global.currentRoom.turn+16) % Global.ENEMY_POOL_CHANGE_PER_TURN == 0) {
       var monsterType;
-      var pass = false;
-      do {
-        monsterType = Common.sample(this.waitingEnemyPool)
-        pass = true;
+      var candidateEnemyPool = [];
+      this.waitingEnemyPool.forEach(function(monsterType){
+        var pass = true;
         for ( var i =0 ; i < this.enemyPool.length; i++ ) {
           if ( this.enemyPool[i].type === monsterType.type ) {
             pass = false;
             break;
           }
         }
-      } while(!pass);
+        if ( pass ) {
+          candidateEnemyPool.push(monsterType)
+        }
+      },this);
+      if ( candidateEnemyPool.length <= 0 ) {
+        cc.warn("this.waitingEnemyPool is too small")
+        return;
+      }
+      monsterType = Common.sample(candidateEnemyPool)
 
       if ( Global.MAX_ENEMY_TYPE_IN_FIELD > this.enemyPool.length ){
         this.enemyPool.unshift( monsterType )

@@ -196,20 +196,19 @@ cc.Class({
       var currentX = this.positions[0].x + step*Common.INCREMENTS[direction].x
       var currentY = this.positions[0].y + step*Common.INCREMENTS[direction].y
       if ( opt.result === Common.SHIFT_RESULT_MERGE_AND_DISAPPEAR ) {
-          var movable = Global.currentRoom.getMovableByPosition(currentX, currentY);
-          this.mergeTo(movable);
+        var movable = Global.currentRoom.getMovableByPosition(currentX, currentY);
+        this.mergeTo(movable);
       } else if ( opt.result === Common.SHIFT_RESULT_MERGE_AND_STAY ) {
-        cc.log("SHIFT_RESULT_MERGE_AND_STAY")
-          var movable = Global.currentRoom.getMovableByPosition(currentX, currentY);
-          movable.mergeTo(this);
+        var movable = Global.currentRoom.getMovableByPosition(currentX, currentY);
+        movable.mergeTo(this);
       }
       if ( opt.result !== Common.SHIFT_RESULT_MERGE_AND_DISAPPEAR ) {
-          this.positions.forEach(function(position){
-              position.x += step*Common.INCREMENTS[direction].x;
-              position.y += step*Common.INCREMENTS[direction].y;
-              Global.currentRoom.__movableMap[position.x][position.y] = this;
-          },this);
-          this.calculateEdgePositions();
+        this.positions.forEach(function(position){
+          position.x += step*Common.INCREMENTS[direction].x;
+          position.y += step*Common.INCREMENTS[direction].y;
+          Global.currentRoom.__movableMap[position.x][position.y] = this;
+        },this);
+        this.calculateEdgePositions();
       }
     },
     beforeMergeTo(movable){

@@ -166,8 +166,14 @@ cc.Class({
     }
     if ( enemy.checkHit(this, attackDetail) ) { //是否命中
       this.beforeHit(enemy);
-      if ( enemy.beHit(this, attackDetail) ) { //是否死亡
-        if ( this.forwardAfterKill ) {
+      var hitResult = enemy.beHit(this, attackDetail)
+      if ( hitResult.enemyDie ) { //是否死亡
+        //前方是否为空
+        var newPosition = Common.getIncrementPosition(this.positions[0],this.face);
+        var noItemAhead = !hitResult.dropItemPosition || hitResult.dropItemPosition.x !== newPosition.x ||
+        hitResult.dropItemPosition.y !== newPosition.y;
+
+        if ( this.forwardAfterKill && this.isMovable() && noItemAhead ) {
           this.forward(function(){
             this.afterHit(enemy);
           },this);
