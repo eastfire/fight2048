@@ -357,6 +357,13 @@ export default {
       Storage.saveProgress();
     }
   },{
+    name:"smokingBombSkill",
+    displayName:"盗贼的烟雾弹技能",
+    prerequests: ["thief"],
+    price: 200,
+    type:"skill",
+    icon: "Texture/Skill/smokingBombSkill"
+  },{
     name:"eightArrowSkill",
     displayName:"盗贼的八方箭技能",
     prerequests: ["thief"],

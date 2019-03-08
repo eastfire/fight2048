@@ -18,7 +18,7 @@ cc.Class({
     this.desc = "所有敌人不能移动1回合";
   },
   levelUpDesc(level){
-    return "冷却时间减少2回合"
+    return "冷却时间减少3回合"
   },
   onLoad () {
     this._super()

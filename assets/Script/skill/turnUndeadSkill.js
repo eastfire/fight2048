@@ -7,11 +7,6 @@ cc.Class({
   extends: Skill,
 
   properties: {
-    effect:{
-      get(){
-        return 5+this.level;
-      }
-    },
   },
 
   // LIFE-CYCLE CALLBACKS:

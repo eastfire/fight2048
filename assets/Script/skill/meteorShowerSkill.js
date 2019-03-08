@@ -22,17 +22,17 @@ cc.Class({
     this.desc = "随机攻击6个敌人";
   },
   levelUpDesc(level){
-    return "多攻击1个敌人，但冷却时间增加2回合"
+    return "多攻击1个敌人，但冷却时间增加1回合"
   },
   onLoad () {
     this._super()
   },
   start () {
     this._super()
-    this.coolDown = 24+Global.SKILL_WAIT_ADJUST;
+    this.coolDown = 25+Global.SKILL_WAIT_ADJUST;
   },
   onLevelUp(level){
-    this.coolDown+=2;
+    this.coolDown+=1;
   },
   onUsed() {
     var hero = Global.currentRoom.hero.getComponent("hero");
