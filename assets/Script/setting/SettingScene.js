@@ -13,7 +13,7 @@ cc.Class({
     // onLoad () {},
 
     start () {
-      if ( wx ) {
+      if ( cc.sys.platform === cc.sys.WECHAT_GAME ) {
         wx.showShareMenu(
           {withShareTicket:true}
         )
@@ -37,18 +37,18 @@ cc.Class({
       }
     },
     wxGetInfo() {
-      if ( !wx ) return;
+      if ( cc.sys.platform !== cc.sys.WECHAT_GAME ) return;
       const button = wx.createUserInfoButton({
         type: 'text',
-        text: '获取用户信息',
+        text: '登入排行榜',
         style: {
-          left: 10,
-          top: 76,
+          left: cc.winSize.width/2,
+          top: cc.winSize.height/2,
           width: 200,
           height: 40,
           lineHeight: 40,
-          backgroundColor: '#ff0000',
-          color: '#ffffff',
+          backgroundColor: '#ffffff',
+          color: '#000000',
           textAlign: 'center',
           fontSize: 16,
           borderRadius: 4
@@ -59,7 +59,7 @@ cc.Class({
       })
     },
     wxShare() {
-      if ( !wx ) return;
+      if ( cc.sys.platform !== cc.sys.WECHAT_GAME ) return;
 
       cc.loader.loadRes("Texture/Enemy/golem",function(err,data){
         cc.log(err)

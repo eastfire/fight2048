@@ -39,20 +39,6 @@ cc.Class({
   toPage(event, index){
     this.pageView.scrollToPage(index,0.2)
   },
-  addStar(){
-    this.star += 100;
-    Global.UnlockScene.refresh();
-  },
-  clearData(){
-    Storage.clearData("unlocked")
-    Storage.clearData("star")
-    Storage.clearData("rewardTaken")
-    Storage.clearData("progress")
-    cc.director.loadScene("IntroScene")
-  },
-  clearStatistics(){
-    Storage.clearData("statistics")
-  },
   starGame(){
     Storage.game.prevHeroType = Global.currentHeroType;
     Storage.saveGame();

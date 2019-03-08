@@ -74,7 +74,8 @@ export default {
   // enemyList:["archer"],
   reset(){
     this.ITEM_POOL = ["potion"]
-    this.BASE_HP = this.ORIGIN_BASE_HP
+    this.BASE_HP = this.ORIGIN_BASE_HP;
+    this.INIT_HP = null;
     this.HP_PER_LEVEL = this.ORIGIN_HP_PER_LEVEL
     this.SCORE_INFLATION_RATE = this.ORIGIN_SCORE_INFLATION_RATE
     this.EXP_INFLATION_RATE = this.ORIGIN_EXP_INFLATION_RATE

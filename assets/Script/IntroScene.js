@@ -27,8 +27,7 @@ cc.Class({
   onTouchMoved: function (touch, event) {
   },
   onTouchEnded(event){
-    // cc._initDebugSetting(cc.debug.DebugMode.INFO);
-    cc.debug._resetDebugSetting(cc.debug.DebugMode.INFO);
+    // cc.debug._resetDebugSetting(cc.debug.DebugMode.INFO);
     cc.log(cc.sys)
     //Load data
     Storage.loadMoney();
