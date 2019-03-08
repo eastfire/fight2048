@@ -6,26 +6,11 @@ cc.Class({
   extends: cc.Component,
 
   properties: {
-    titleLabel:{
-      default: null,
-      type: cc.Label
-    },
-    descLabel:{
-      default: null,
-      type: cc.Label
-    },
-    valueLabel:{
-      default: null,
-      type: cc.Label
-    },
-    iconSprite:{
-      default: null,
-      type: cc.Sprite
-    },
-    toggle:{
-      default: null,
-      type: cc.Toggle
-    },
+    titleLabel: cc.Label,
+    descLabel: cc.Label,
+    valueLabel: cc.Label,
+    iconSprite: cc.Sprite,
+    toggle: cc.Toggle,
     itemID: 0
   },
 
@@ -76,7 +61,7 @@ cc.Class({
       }
     }
 
-    cc.loader.loadRes(this.perkEntry.icon, cc.SpriteFrame,
+    cc.loader.loadRes("Texture/Perk/"+this.perkEntry.name, cc.SpriteFrame,
       (err, frame)=>{
         this.iconSprite.spriteFrame = frame;
     })
