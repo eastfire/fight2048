@@ -27,7 +27,7 @@ cc.Class({
       },
       attack: {
         get(){  //很高
-          var l = this.star
+          var l = this.level
           return Math.round(Math.log(l+1)*l)*2; //2, 4, 8, 12, 18, 24, 30, 36, 42, 48
         },
         override: true
