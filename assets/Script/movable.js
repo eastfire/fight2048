@@ -27,7 +27,7 @@ cc.Class({
           }
         }
       },
-
+      moveStep: 100, //无限
     },
 
     // LIFE-CYCLE CALLBACKS:

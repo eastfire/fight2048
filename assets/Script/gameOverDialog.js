@@ -55,22 +55,6 @@ cc.Class({
         this.skillPerkList.node.addChild(slot)
       },this);
 
-
-      // for ( var i = 0; i < Global.selectedPerk.length; i++){
-      //   var entry = Global.selectedPerk[i]
-      //   var iconNode = cc.instantiate(slot)
-      //   (function(sprite, name){
-      //     cc.loader.loadRes("Texture/Perk/"+name, cc.SpriteFrame,
-      //       (err, frame)=>{
-      //         sprite.spriteFrame = frame;
-      //     })
-      //   })(iconNode.getComponent(cc.Sprite), entry.name)
-      //   iconNode.y = 0;
-      //   iconNode.width = 50
-      //   iconNode.height = 50
-      //   this.skillPerkList.node.addChild(iconNode)
-      // }
-
       Global.currentRoom.node.active = false;
       Global.currentRoomScene.effectLayer.active = false;
       Global.currentRoomScene.exitButton.node.active = false;

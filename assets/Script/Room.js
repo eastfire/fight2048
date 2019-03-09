@@ -309,7 +309,7 @@ cc.Class({
                 } else {
                     break;
                 }
-              } while (true);
+              } while (stepCount < movable.moveStep);
             }
             if ( movable._step > stepCount) {
                 movable._step = stepCount;
