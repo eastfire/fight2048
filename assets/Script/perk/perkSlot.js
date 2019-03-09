@@ -34,10 +34,10 @@ cc.Class({
   lock() {
     this.lockSprite.node.active = true;
   },
-  fill(perkName, perkIcon) {
+  fill(perkName) {
     this.background = this.perkSprite.spriteFrame;
     this.perkName = perkName;
-    cc.loader.loadRes(perkIcon, cc.SpriteFrame,
+    cc.loader.loadRes("Texture/Perk/"+perkName, cc.SpriteFrame,
       (err, frame)=>{
         this.perkSprite.spriteFrame = frame;
     })

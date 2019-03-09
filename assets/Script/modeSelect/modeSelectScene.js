@@ -112,7 +112,7 @@ cc.Class({
       for ( var i = 0; i < maxPerk; i++ ){
         var slot = this.selectedPerkList.node.children[i].getComponent("perkSlot");
         if ( slot.isEmpty ) {
-          slot.fill(perk.name, perk.icon)
+          slot.fill(perk.name)
           break;
         }
       }

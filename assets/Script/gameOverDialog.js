@@ -5,10 +5,8 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-      scoreLabel: {
-        default: null,
-        type: cc.Label,
-      },
+      scoreLabel: cc.Label,
+      skillPerkList: cc.Layout
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -16,6 +14,15 @@ cc.Class({
     // onLoad () {},
 
     start () {
+    },
+
+    loadIcon(sprite, icon){
+      cc.loader.loadRes(icon, cc.SpriteFrame,
+        (err, frame)=>{
+          sprite.spriteFrame = frame;
+          sprite.node.width = 50
+          sprite.node.height = 50
+      })
     },
 
     setReason(reason){
@@ -32,6 +39,38 @@ cc.Class({
       } else if ( reason.type === "enemy" ) {
         this.scoreLabel.string += "LV"+reason.enemy.level+reason.enemy.title
       }
+
+      Global.currentRoomScene.forEachActiveSkill(function(skill){
+        var slot = new cc.Node()
+        slot.addComponent(cc.Sprite)
+        this.loadIcon(slot.getComponent(cc.Sprite),"Texture/Skill/"+skill.skillName)
+        slot.y = 0;
+        this.skillPerkList.node.addChild(slot)
+      },this)
+      Global.selectedPerk.forEach(function(entry){
+        var slot = new cc.Node()
+        slot.addComponent(cc.Sprite)
+        this.loadIcon(slot.getComponent(cc.Sprite),"Texture/Perk/"+entry.name)
+        slot.y = 0;
+        this.skillPerkList.node.addChild(slot)
+      },this);
+
+
+      // for ( var i = 0; i < Global.selectedPerk.length; i++){
+      //   var entry = Global.selectedPerk[i]
+      //   var iconNode = cc.instantiate(slot)
+      //   (function(sprite, name){
+      //     cc.loader.loadRes("Texture/Perk/"+name, cc.SpriteFrame,
+      //       (err, frame)=>{
+      //         sprite.spriteFrame = frame;
+      //     })
+      //   })(iconNode.getComponent(cc.Sprite), entry.name)
+      //   iconNode.y = 0;
+      //   iconNode.width = 50
+      //   iconNode.height = 50
+      //   this.skillPerkList.node.addChild(iconNode)
+      // }
+
       Global.currentRoom.node.active = false;
       Global.currentRoomScene.effectLayer.active = false;
       Global.currentRoomScene.exitButton.node.active = false;
