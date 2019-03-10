@@ -77,7 +77,7 @@ cc.Class({
       })
     },
     addStar(){
-      this.star += 100;
+      Global.MenuScene.star += 100;
       Global.UnlockScene.refresh();
     },
     clearData(){

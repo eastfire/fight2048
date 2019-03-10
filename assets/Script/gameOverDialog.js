@@ -37,7 +37,11 @@ cc.Class({
       if ( reason.type === "poison" ) {
         this.scoreLabel.string += "中毒"
       } else if ( reason.type === "enemy" ) {
-        this.scoreLabel.string += "LV"+reason.enemy.level+reason.enemy.title
+        if ( reason.enemy.isBoss ) {
+          this.scoreLabel.string += reason.enemy.title
+        } else {
+          this.scoreLabel.string += "LV"+reason.enemy.level+reason.enemy.title
+        }
       }
 
       Global.currentRoomScene.forEachActiveSkill(function(skill){

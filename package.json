@@ -1,0 +1,23 @@
+{
+  "name": "CocosDungeon2048",
+  "version": "1.0.0",
+  "description": "Hello world new project template.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eastfire/CocosDungeon2048.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eastfire/CocosDungeon2048/issues"
+  },
+  "homepage": "https://github.com/eastfire/CocosDungeon2048#readme",
+  "dependencies": {
+    "leancloud-storage": "^3.12.0"
+  }
+}

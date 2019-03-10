@@ -62,6 +62,10 @@ cc.Class({
   },
   checkFreeze(model){
     if (this.getFreezeRate(model) > Math.random() ){
+      var turn = Math.min(4, 2+Math.floor(this.level/12));
+      if ( model.getComponent("hero") ) {
+        turn += Global.NEGATIVE_EFFECT_TIME_ADJUST;
+      }
       model.gainStatus("frozen",2)
     }
   },
