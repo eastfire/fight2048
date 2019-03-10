@@ -17,7 +17,6 @@ cc.Class({
     // onLoad () {},
 
     start () {
-      this.dataSource = new LeanCloudDataSource();
       if ( Storage.userInfo ) {
         this.submitScore();
       } else {
@@ -31,10 +30,13 @@ cc.Class({
     },
 
     submitScore(callback, context){
+      if ( !Global.dataSource ) {
+        Global.dataSource = new LeanCloudDataSource();
+      }
       //TODO 显示loading
       this.scoreEntry.nickname = Storage.userInfo.nickname;
       this.scoreEntry.avatarUrl = Storage.userInfo.avatarUrl;
-      this.dataSource.submitScore(this.scoreEntry, {
+      Global.dataSource.submitScore(this.scoreEntry, {
         success(){
           //TODO 结束loading
           if ( callback ) {
@@ -50,16 +52,17 @@ cc.Class({
 
     getUserInfo(callback, context){
       if ( cc.sys.platform == cc.sys.WECHAT_GAME ) {
-        var position = Global.currentRoom.node.convertToWorldSpaceAR(this.submitButton.node.position)
+        var rect = this.submitButton.node.getBoundingBoxToWorld();
+        console.log("submitButton position"+JSON.stringify(rect))
         const button = wx.createUserInfoButton({
           type: 'text',
           text: '登入排行榜',
           style: {
-            left: position.x,
-            top: position.y,
-            width: 150,
-            height: 50,
-            lineHeight: 40,
+            left: rect.x,
+            top: rect.y,
+            width: rect.width,
+            height: rect.height,
+            lineHeight: rect.height,
             backgroundColor: '#ffffff',
             color: '#000000',
             textAlign: 'center',

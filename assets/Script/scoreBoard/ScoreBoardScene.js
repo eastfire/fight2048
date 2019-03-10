@@ -16,7 +16,9 @@ cc.Class({
 
     start () {
       //set datasource
-      this.dataSource = new LeanCloudDataSource();
+      if ( !Global.dataSource ) {
+        Global.dataSource = new LeanCloudDataSource();
+      }
       //get data
       this.scoreList = []
 
@@ -24,7 +26,7 @@ cc.Class({
     },
     fetchData(){
       //TODO show loading
-      this.dataSource.loadScore({
+      Global.dataSource.loadScore({
         success(list){
           //TODO hide loading
           this.scoreList = list;

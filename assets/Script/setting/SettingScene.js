@@ -36,28 +36,28 @@ cc.Class({
         })
       }
     },
-    wxGetInfo() {
-      if ( cc.sys.platform !== cc.sys.WECHAT_GAME ) return;
-      const button = wx.createUserInfoButton({
-        type: 'text',
-        text: '登入排行榜',
-        style: {
-          left: cc.winSize.width/2,
-          top: cc.winSize.height/2,
-          width: 200,
-          height: 40,
-          lineHeight: 40,
-          backgroundColor: '#ffffff',
-          color: '#000000',
-          textAlign: 'center',
-          fontSize: 16,
-          borderRadius: 4
-        }
-      })
-      button.onTap((res) => {
-        console.log(res)
-      })
-    },
+    // wxGetInfo() {
+    //   if ( cc.sys.platform !== cc.sys.WECHAT_GAME ) return;
+    //   const button = wx.createUserInfoButton({
+    //     type: 'text',
+    //     text: '登入排行榜',
+    //     style: {
+    //       left: cc.winSize.width/2,
+    //       top: cc.winSize.height/2,
+    //       width: 200,
+    //       height: 40,
+    //       lineHeight: 40,
+    //       backgroundColor: '#ffffff',
+    //       color: '#000000',
+    //       textAlign: 'center',
+    //       fontSize: 16,
+    //       borderRadius: 4
+    //     }
+    //   })
+    //   button.onTap((res) => {
+    //     console.log(res)
+    //   })
+    // },
     wxShare() {
       if ( cc.sys.platform !== cc.sys.WECHAT_GAME ) return;
 

@@ -50,7 +50,7 @@ cc.Class({
       var myPosition = this.positions[0];
       var heroPosition = Global.currentRoom.hero.getComponent("hero").positions[0];
       var rate = Math.max(0, Math.abs(heroPosition.x - myPosition.x)+Math.abs(heroPosition.y - myPosition.y)-3);
-      return Math.round(this.attack/2*rate);
+      return Math.round(this.attack*rate);
     },
     // LIFE-CYCLE CALLBACKS:
     ctor: function () {

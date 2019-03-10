@@ -1,6 +1,6 @@
 import DataSource from "DataSource";
-const AV = require('leancloud-storage');
-//const AV = require('leancloud-storage/dist/av-weapp-min.js'); //weixin小游戏
+// const AV = require('leancloud-storage');
+const AV = require('leancloud-storage/dist/av-weapp-min.js'); //weixin小游戏
 
 cc.Class({
     extends: DataSource,
