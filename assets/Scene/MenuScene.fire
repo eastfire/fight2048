@@ -6092,7 +6092,7 @@
     "scrollView": {
       "__id__": 137
     },
-    "itemCompnentName": "scoreItem",
+    "itemCompnentName": "score",
     "spawnCount": 14,
     "spacing": 2,
     "bufferZone": 320,

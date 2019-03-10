@@ -80,6 +80,7 @@ export default {
     onUnlock:function(){
       Storage.progress.maxPerk.normal = 2;
       Storage.saveProgress();
+      Global.ModeSelectScene.refresh();
     }
   },
   {
@@ -92,6 +93,7 @@ export default {
     onUnlock:function(){
       Storage.progress.maxPerk.normal = 3;
       Storage.saveProgress();
+      Global.ModeSelectScene.refresh();
     }
   },
   {
@@ -104,6 +106,7 @@ export default {
     onUnlock:function(){
       Storage.progress.maxPerk.normal = 4;
       Storage.saveProgress();
+      Global.ModeSelectScene.refresh();
     }
   },
   {
@@ -112,7 +115,7 @@ export default {
     prerequests: null,
     price: 100,
     type:"hero",
-    icon: "Texture/Hero/unlockCleric"
+    icon: "Texture/Hero/unlock-cleric"
   },
   {
     name:"clericSkillSlot3",
@@ -213,7 +216,7 @@ export default {
     prerequests: null,
     price: 200,
     type:"hero",
-    icon: "Texture/Hero/unlockWizard"
+    icon: "Texture/Hero/unlock-wizard"
   },{
     name:"wizardSkillSlot3",
     displayName:"法师的第3个技能槽",
@@ -320,7 +323,7 @@ export default {
     prerequests: ["cleric","wizard"],
     price: 300,
     type:"hero",
-    icon: "Texture/Hero/unlockThief"
+    icon: "Texture/Hero/unlock-thief"
   },{
     name:"thiefSkillSlot3",
     displayName:"盗贼的第3个技能槽",

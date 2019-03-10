@@ -394,7 +394,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 500,
+      "width": 550,
       "height": 50
     },
     "_anchorPoint": {
@@ -464,7 +464,7 @@
     "_enabled": true,
     "_layoutSize": {
       "__type__": "cc.Size",
-      "width": 500,
+      "width": 550,
       "height": 50
     },
     "_resize": 1,
@@ -1083,8 +1083,8 @@
       "__id__": 1
     },
     "component": "",
-    "_componentId": "a6dcaC4mppFtLslepl7WTx4",
-    "handler": "closeDialog",
+    "_componentId": "247e49nM+ZP26G7vrWzRbIo",
+    "handler": "toScoreBoard",
     "customEventData": ""
   },
   {
@@ -1472,6 +1472,12 @@
     },
     "skillPerkList": {
       "__id__": 12
+    },
+    "submitButton": {
+      "__id__": 27
+    },
+    "inputNameDialog": {
+      "__uuid__": "7e4d8ed9-4283-4a24-b928-55451e82e66c"
     },
     "_id": ""
   },

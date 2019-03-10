@@ -13,10 +13,10 @@ cc.Class({
 
     },
 
-    loadScore(callback, context){
+    loadScore(opt){
 
     },
-    submitScore(scoreEntry, callback, context){
+    submitScore(scoreEntry, opt){
 
     }
     // update (dt) {},

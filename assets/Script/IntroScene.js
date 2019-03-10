@@ -37,6 +37,7 @@ cc.Class({
     Storage.loadRewardTaken();
     Storage.loadAchievement();
     Storage.loadProgress();
+    Storage.loadUserInfo();
 
     if ( Storage.statistics.gameTime === 0 ) {
       //first time game

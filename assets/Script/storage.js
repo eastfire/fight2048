@@ -11,6 +11,7 @@ export default {
     maxPerk:{},
     seen:{slime:1,iceWall:1}
   },
+  userInfo: null,
   loadMoney() {
     this.star = parseInt(cc.sys.localStorage.getItem('star') || 0 );
   },
@@ -99,7 +100,6 @@ export default {
     this.statistics.gameOver.damage = this.statistics.gameOver.damage || 0;
     this.statistics.gameOver.damage = Math.max(
       reason.damage, this.statistics.gameOver.damage);
-cc.log("gameoOver record")
     this.saveStatistics();
   },
   recordDamage(hero){
@@ -120,5 +120,15 @@ cc.log("gameoOver record")
   },
   clearData(item){
     cc.sys.localStorage.removeItem(item)
+  },
+  loadUserInfo(){
+    var v = cc.sys.localStorage.getItem('userInfo');
+    this.userInfo = v ? JSON.parse(v) : null;
+  },
+  saveUserInfo(userInfo){
+    if ( userInfo ) {
+      this.userInfo = userInfo;
+    }
+    cc.sys.localStorage.setItem("userInfo",JSON.stringify(this.userInfo))
   }
 }
