@@ -105,6 +105,15 @@ cc.Class({
         perks.perks[entry.itemID].isSelected = true;
         this.selectPerk(entry)
       }, this);
+
+      for ( var i = 0; i < Global.MAX_PERK; i++ ){
+        var self = this;
+        (function(i){
+          self.selectedPerkList.node.children[i].on("touchend",function(event){
+            self.perkSlotClicked(i);
+          },self);
+        })(i);
+      }
     },
 
     selectPerk(perk) {
@@ -138,8 +147,26 @@ cc.Class({
           break;
         }
       }
+      for ( var i = 0; i < perks.perks.length; i++){
+        if ( perks.perks[i].name == perkName ) {
+          perks.perks[i].active = true;
+          perks.perks[i].isSelected = false;
+        }
+      }
       this.refreshPerkList();
     },
+
+    perkSlotClicked(index){
+      var slot = this.selectedPerkList.node.children[index].getComponent("perkSlot");
+      if ( slot.perkName ) {
+        this.unselectPerk(slot.perkName)
+      } else {
+        if ( slot.lockSprite.node.active ) {
+          Global.MenuScene.toPage(null, 1)
+        }
+      }
+    },
+
     calculateScoreAdjust(){
       var positiveCount = 0;
       var negativeCount = 0;

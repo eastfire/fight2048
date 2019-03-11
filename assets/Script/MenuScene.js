@@ -15,7 +15,8 @@ cc.Class({
         if ( this.star == oldValue ) return;
         Storage.saveMoney(this.star);
         this.moneyLabel.string = this.star;
-        Global.UnlockScene.refresh();
+        if ( Global.UnlockScene )
+          Global.UnlockScene.refresh();
       },
       visible:false
     },
