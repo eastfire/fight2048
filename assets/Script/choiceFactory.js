@@ -1,4 +1,5 @@
 import Global from "global";
+import Storage from "storage"
 
 function levelUpSkill(opt){
   return function(){
@@ -29,8 +30,8 @@ export default {
       validate(){
         if ( skill.isPassive ) return !Global.currentRoomScene.getSkill(opt.name);
         var skillCount = Global.currentRoomScene.activeSkillCount();
-        return !Global.currentRoomScene.getSkill(opt.name) && skillCount < Global.currentRoom.hero.getComponent("hero").maxSkill &&
-          skillCount >= opt.minSkillCount;
+        var maxSkill = Storage.progress.maxSkill[Global.currentHeroType]||2;
+        return !Global.currentRoomScene.getSkill(opt.name) && skillCount < maxSkill && skillCount >= opt.minSkillCount;
       },
       onChosen:function(){
         Global.currentRoomScene.gainSkill(opt.name, opt.level);

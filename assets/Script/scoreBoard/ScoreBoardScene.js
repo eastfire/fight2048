@@ -14,7 +14,7 @@ cc.Class({
 
     // onLoad () {},
 
-    start () {
+    start () {cc.log("XXXXXXXXXXXX")
       //set datasource
       if ( !Global.dataSource ) {
         Global.dataSource = new LeanCloudDataSource();
@@ -29,6 +29,7 @@ cc.Class({
       Global.dataSource.loadScore({
         success(list){
           //TODO hide loading
+          cc.log(list)
           this.scoreList = list;
           for ( var i = 0; i < this.scoreList.length; i++){
             this.scoreList[i].itemID = i;

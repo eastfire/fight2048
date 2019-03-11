@@ -26,7 +26,7 @@ cc.Class({
     this.enemyMaxLevel = 1;
     this.enemyNumber = 2;
 
-    this.bossList = ["bossHydra"]
+    this.bossList = Global.bossPool;
   },
 
   generateEnemy(){

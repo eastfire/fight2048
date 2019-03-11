@@ -18,6 +18,7 @@ cc.Class({
 
     start () {
       if ( Storage.userInfo ) {
+        cc.log("Storage.userInfo"+JSON.stringify(Storage.userInfo))
         this.submitScore();
       } else {
         //登入排行榜
@@ -53,31 +54,37 @@ cc.Class({
     getUserInfo(callback, context){
       if ( cc.sys.platform == cc.sys.WECHAT_GAME ) {
         var rect = this.submitButton.node.getBoundingBoxToWorld();
-        console.log("submitButton position"+JSON.stringify(rect))
-        const button = wx.createUserInfoButton({
+        var sysInfo = wx.getSystemInfoSync();
+        cc.log(sysInfo)
+        cc.log(cc.winSize)
+        var scaleRate = cc.winSize.width / sysInfo.screenWidth;
+        this.submitButton.node.active = false;
+
+        this.wxUserInfoButton = wx.createUserInfoButton({
           type: 'text',
           text: '登入排行榜',
           style: {
-            left: rect.x,
-            top: rect.y,
-            width: rect.width,
-            height: rect.height,
-            lineHeight: rect.height,
+            left: rect.x/scaleRate,
+            top: (cc.winSize.height - rect.y - rect.height)/scaleRate,
+            width: rect.width/scaleRate,
+            height: rect.height/scaleRate,
+            lineHeight: rect.height/scaleRate,
             backgroundColor: '#ffffff',
             color: '#000000',
             textAlign: 'center',
-            fontSize: 16,
+            fontSize: 14,
             borderRadius: 4
           }
         })
-        button.onTap((res) => {
+        this.wxUserInfoButton.onTap((res) => {
           console.log(res)
           if ( res ) {
             var userInfo = {
-              nickname: res.nickname,
-              avatarUrl: res.avatarUrl
+              nickname: res.userInfo.nickName,
+              avatarUrl: res.userInfo.avatarUrl
             }
             Storage.saveUserInfo(userInfo)
+            this.wxUserInfoButton.destroy()
             callback.call(context, userInfo)
           }
         })
@@ -107,9 +114,14 @@ cc.Class({
     },
 
     setReason(reason){
+      cc.log("setReason")
       this.scoreEntry = {
         detail:{}
       };
+      if ( Storage.userInfo ) {
+        this.scoreEntry.nickname = Storage.userInfo.nickname
+        this.scoreEntry.avatarUrl = Storage.userInfo.avatarUrl
+      }
 
       Storage.recordGameOver(reason, Global.currentRoom, Global.currentRoom.hero.getComponent("hero"));
       this.scoreLabel.string = "";
@@ -192,6 +204,11 @@ cc.Class({
           cc.director.loadScene("RoomScene")
         })
       ))
+    },
+    onDestroy(){
+      if ( this.wxUserInfoButton ) {
+        this.wxUserInfoButton.destroy()
+      }
     }
     // update (dt) {},
 });

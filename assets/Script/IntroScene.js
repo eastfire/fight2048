@@ -8,6 +8,9 @@ cc.Class({
 
   },
   onLoad: function() {
+    cc.debug._resetDebugSetting(cc.debug.DebugMode.INFO);
+    cc.log(cc.sys)
+
     this.node.on('touchend', this.onTouchEnded, this);
     this.node.on(cc.SystemEvent.EventType.KEY_DOWN, this.onTouchEnded, this);
   },
@@ -27,8 +30,6 @@ cc.Class({
   onTouchMoved: function (touch, event) {
   },
   onTouchEnded(event){
-    // cc.debug._resetDebugSetting(cc.debug.DebugMode.INFO);
-    cc.log(cc.sys)
     //Load data
     Storage.loadMoney();
     Storage.loadGame();

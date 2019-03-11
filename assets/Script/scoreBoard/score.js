@@ -1,8 +1,7 @@
-dateimport Global from "global";
+import Global from "global";
 import Common from "common"
 import Storage from "storage";
 import MenuScene from "MenuScene"
-
 
 
 cc.Class({
@@ -50,19 +49,22 @@ cc.Class({
     this.entry = entry;
     this.nicknameLabel.string = entry.nickname;
     this.scoreLabel.string = entry.score;
-    cc.log(entry)
     this.turnLabel.string = entry.turn;
-    this.timeLabel.string = this.formatDate(new Date(entry.time), "yyyy-MM-dd HH:mm");
+    this.timeLabel.string = this.formatDate(new Date(entry.createdAt), "yyyy-MM-dd HH:mm");
 
     if ( entry.avatarUrl ) {
       cc.loader.load({
         url: entry.avatarUrl,
-        type: "jpeg"
-      }, function (err, texture) {
+        // type: "jpeg"
+        type: "png"
+      }, (err, texture) => {
         if (err) {
+          cc.log(err)
           return;
         }
-        this.avatar.spriteFrame = new cc.SpriteFrame(texture);
+        var frame = new cc.SpriteFrame(texture)
+        this.avatar.spriteFrame = frame;
+        //TODO 自己回收frame
       });
     }
     this.layoutDetail();
@@ -108,8 +110,13 @@ cc.Class({
     },this)
 
     if ( this.entry.detail.killedBy.type == "enemy" ) {
-      this.killByLabel.string = "Lv"+this.entry.detail.killedBy.level;
       var enemyType = this.entry.detail.killedBy.enemy;
+      if ( Common.contains(Global.bossPool, enemyType) ) {
+        this.killByLabel.string = "";
+      } else {
+        this.killByLabel.string = "Lv"+this.entry.detail.killedBy.level;
+      }
+
       if ( enemyType == "slime" ) {
         enemyType = "slime-red"
       }

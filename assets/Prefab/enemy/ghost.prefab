@@ -595,6 +595,7 @@
     },
     "_enabled": true,
     "atlas": null,
+    "moveStep": 100,
     "_N$level": 1,
     "attackType": 1,
     "immune": [],

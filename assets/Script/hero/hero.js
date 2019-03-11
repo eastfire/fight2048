@@ -93,10 +93,6 @@ cc.Class({
     dodge: 0,
     wisdom: 0,
     defend: 0,
-
-    maxSkill: 2,
-    maxPerk: Storage.progress.maxPerk[Global.currentHeroType] || 1,
-
   },
 
   // LIFE-CYCLE CALLBACKS:
@@ -108,7 +104,6 @@ cc.Class({
     this.forwardAfterKill = Global.FORWARD_AFTER_KILL;
     this.accept = ["potion","poisonPotion"]
     this.dead = false;
-    this.maxSkill = Storage.progress.maxSkill[Global.currentHeroType] || 2;
   },
 
   onLoad () {

@@ -71,6 +71,7 @@ export default {
   initEnemyPool: [{type:"slime",subtype:"R"},{type:"slime",subtype:"B"},{type:"slime",subtype:"Y"}],
   enemyList:["archer","balista","catapult","gargoyle","ghost","golem","killerBee","kobold","medusa","mimic","minotaur",
   "mummy","orcChief","orge","ratman","skeleton","shaman","snake","summoner","treant","troll","vampire"],
+  bossPool:["bossHydra"],
   // enemyList:["archer"],
   reset(){
     this.ITEM_POOL = ["potion"]

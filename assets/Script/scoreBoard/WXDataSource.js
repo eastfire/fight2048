@@ -1,6 +1,4 @@
 import DataSource from "DataSource";
-// const AV = require('leancloud-storage');
-const AV = require('leancloud-storage/dist/av-weapp-min.js'); //weixin小游戏
 
 cc.Class({
     extends: DataSource,
@@ -13,12 +11,7 @@ cc.Class({
 
     // onLoad () {},
     ctor(){
-      var APP_ID = 'Eiq6lDsGb7LVEKxRHPCNv1QP-gzGzoHsz';
-      var APP_KEY = 'n3idGwvxn640x7suIE6Hrzso';
-      AV.init({
-        appId: APP_ID,
-        appKey: APP_KEY
-      });
+
     },
 
     start () {
@@ -55,21 +48,26 @@ cc.Class({
       });
     },
     submitScore(scoreEntry, opt){
-      var ScoreBoard = AV.Object.extend('ScoreBoard');
-      var scoreBoard = new ScoreBoard();
-      scoreBoard.set('nickname', scoreEntry.nickname);
-      scoreBoard.set('turn', scoreEntry.turn);
-      scoreBoard.set('score', scoreEntry.score);
-      scoreBoard.set('avatarUrl', scoreEntry.avatarUrl);
-      scoreBoard.set('platform', cc.sys.platform);
-      scoreBoard.set('detail', JSON.stringify(scoreEntry.detail));
-      scoreBoard.save().then(function() {
-        if ( opt.success ) {
-          opt.success.call(opt.context)
-        }
-      }, function(error) {
-        if ( opt.error ) {
-          opt.error.call(opt.context, error)
+      wx.setUserCloudStorage({
+        KVDataList: [{ key: 'score', value: scoreEntry.score+"" },
+        { key: 'turn', value: scoreEntry.turn+"" },
+        { key: 'detail', value: JSON.stringify(scoreEntry.detail) }],
+        success: res => {
+          console.log(res);
+          // 让子域更新当前用户的最高分，因为主域无法得到getUserCloadStorage;
+          let openDataContext = wx.getOpenDataContext();
+          openDataContext.postMessage({
+            type: 'updateMaxScore',
+          });
+          if ( opt.success ) {
+            opt.success.call(opt.context)
+          }
+        },
+        fail: res => {
+          console.log(res);
+          if ( opt.error ) {
+            opt.error.call(opt.context, error)
+          }
         }
       });
     }
