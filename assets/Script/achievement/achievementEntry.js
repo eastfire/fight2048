@@ -520,7 +520,7 @@ allEnemyType.forEach(function(entry){
       achievements.push({
         name:"kill"+(i+1)+"star"+entry.type,
         title:entry.displayName+"杀手"+TITLE_SURFIX[i],
-        desc: "杀死"+(i+1)+"星以上"+entry.displayName,
+        desc: "杀死"+(i+1)+"星等级以上"+entry.displayName,
         prerequests: i==0?null:["kill"+i+"star"+entry.type],
         needSeen: i==0?[entry.type]:null,
         reward: entry.reward(i),

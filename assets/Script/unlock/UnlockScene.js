@@ -54,7 +54,6 @@ cc.Class({
         Global.ModeSelectScene.refresh();
       }
     },
-
     refresh(){
       this.initData();
       this.unlockScroll.getComponent("listCtrl").setDataset(this.unlocks)
