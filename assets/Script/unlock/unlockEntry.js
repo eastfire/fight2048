@@ -184,6 +184,7 @@ export default {
     onUnlock:function(){
       Storage.progress.maxPerk.cleric = 2;
       Storage.saveProgress();
+      Global.ModeSelectScene.refresh();
     }
   },
   {
@@ -196,6 +197,7 @@ export default {
     onUnlock:function(){
       Storage.progress.maxPerk.cleric = 3;
       Storage.saveProgress();
+      Global.ModeSelectScene.refresh();
     }
   },
   {
@@ -208,6 +210,7 @@ export default {
     onUnlock:function(){
       Storage.progress.maxPerk.cleric = 4;
       Storage.saveProgress();
+      Global.ModeSelectScene.refresh();
     }
   },
   {
@@ -291,6 +294,7 @@ export default {
     onUnlock:function(){
       Storage.progress.maxPerk.wizard = 2;
       Storage.saveProgress();
+      Global.ModeSelectScene.refresh();
     }
   },
   {
@@ -303,6 +307,7 @@ export default {
     onUnlock:function(){
       Storage.progress.maxPerk.wizard = 3;
       Storage.saveProgress();
+      Global.ModeSelectScene.refresh();
     }
   },
   {
@@ -315,6 +320,7 @@ export default {
     onUnlock:function(){
       Storage.progress.maxPerk.wizard = 4;
       Storage.saveProgress();
+      Global.ModeSelectScene.refresh();
     }
   },
   {
@@ -384,6 +390,7 @@ export default {
     onUnlock:function(){
       Storage.progress.maxPerk.thief = 2;
       Storage.saveProgress();
+      Global.ModeSelectScene.refresh();
     }
   },
   {
@@ -396,6 +403,7 @@ export default {
     onUnlock:function(){
       Storage.progress.maxPerk.thief = 3;
       Storage.saveProgress();
+      Global.ModeSelectScene.refresh();
     }
   },
   {
@@ -408,6 +416,7 @@ export default {
     onUnlock:function(){
       Storage.progress.maxPerk.thief = 4;
       Storage.saveProgress();
+      Global.ModeSelectScene.refresh();
     }
   }
 ]

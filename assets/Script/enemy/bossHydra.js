@@ -14,7 +14,7 @@ cc.Class({
       },
       desc: {
         get(){
-          return "boss不会被你一击杀死\n如果普通攻击击中它的弱点，它就不会在本回合攻击你。\n攻击力"+this.attack+"。\n经验值很高。";
+          return "boss不会被你一击杀死\n如果普通攻击击中它的弱点，它就不会在本回合攻击你。\n攻击力"+this.attack+"。\n经验值非常高。";
         },
         override: true,
       },
@@ -26,7 +26,7 @@ cc.Class({
       },
       exp: {
         get(){
-          return this.level*100*Global.EXP_INFLATION_RATE
+          return this.level*200*Global.EXP_INFLATION_RATE
         },
         override: true
       },

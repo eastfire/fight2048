@@ -46,6 +46,7 @@ cc.Class({
         sprite.getComponent("heroOption").validate()
       },this)
       this.refreshPerkSlot();
+      this.refreshPerkList();
     },
     refreshPerkSlot(){
       var maxPerk = Storage.progress.maxPerk[Global.currentHeroType] || 1;

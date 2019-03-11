@@ -14,7 +14,7 @@ cc.Class({
 
     // onLoad () {},
 
-    start () {cc.log("XXXXXXXXXXXX")
+    start () {
       //set datasource
       if ( !Global.dataSource ) {
         Global.dataSource = new LeanCloudDataSource();
