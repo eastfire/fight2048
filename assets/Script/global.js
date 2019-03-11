@@ -66,7 +66,7 @@ export default {
     normal: ["backwardSlashSkill","whirlSkill","bigWhirlSkill","crossSlashSkill"], //charge
     wizard: ["teleportSkill","meteorShowerSkill","lighteningSkill","fireballSkill"], //tornado
     cleric: ["turnUndeadSkill","resurrectionSkill","wisdomSkill"], //
-    thief: ["eightArrowSkill","smokingBombSkill"] //
+    thief: ["eightArrowSkill","smokingBombSkill","treasureSkill"] //
   },
   initEnemyPool: [{type:"slime",subtype:"R"},{type:"slime",subtype:"B"},{type:"slime",subtype:"Y"}],
   enemyList:["archer","balista","catapult","gargoyle","ghost","golem","killerBee","kobold","medusa","mimic","minotaur",

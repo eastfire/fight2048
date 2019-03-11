@@ -373,6 +373,13 @@ export default {
     type:"skill",
     icon: "Texture/Skill/smokingBombSkill"
   },{
+    name:"treasureSkill",
+    displayName:"盗贼的寻宝技能",
+    prerequests: ["thief"],
+    price: 200,
+    type:"skill",
+    icon: "Texture/Skill/treasureSkill"
+  },{
     name:"eightArrowSkill",
     displayName:"盗贼的八方箭技能",
     prerequests: ["thief"],

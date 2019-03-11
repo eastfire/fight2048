@@ -144,7 +144,7 @@ cc.Class({
         this.afterDie(hero);
     },
     willDropItem() {
-      if (this.checkDropItem()) {
+      if (this.checkDropItem() || Global.currentRoom.hero.getComponent("hero").getStatus("treasure")) {
         this.dropItemPosition = Common.sample(this.positions);
       } else {
         this.dropItemPosition = null;

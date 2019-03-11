@@ -26,7 +26,7 @@ cc.Class({
         Global.currentRoom.hero.addChild(this.shieldSprite)
       }
     );
-    Global.currentRoom.hero.getComponent("hero").defend = 1;
+    Global.currentRoom.hero.getComponent("hero").defend = this.extra.effect;
   },
   onLost(){
     cc.log("onLost")

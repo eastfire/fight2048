@@ -21,21 +21,21 @@ cc.Class({
     this.desc = "接下来"+this.effect+"回合防御加1";
   },
   levelUpDesc(level){
-    return "持续多1回合，但冷却时间增加2回合"
+    return "持续多1回合，防御力加1，但冷却时间增加3回合"
   },
   start () {
     this._super()
-    this.coolDown = 9+Global.SKILL_WAIT_ADJUST;
+    this.coolDown = 8+Global.SKILL_WAIT_ADJUST;
   },
   effectOfLevel(level){
     return level+1;
   },
   onLevelUp(level){
-    this.coolDown+=2;
+    this.coolDown+=3;
   },
   onUsed() {
     var hero = Global.currentRoom.hero.getComponent("hero");
-    hero.gainStatus("shield",this.effect)
+    hero.gainStatus("shield",this.effect,{effect:this.effect})
     hero.afterUseSkill()
   }
   // update (dt) {},
