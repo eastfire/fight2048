@@ -37,6 +37,8 @@ cc.Class({
     this.moneyLabel.string = Storage.star;
     this.rewards = [5,10,15,20,25,30,50];
     this.checkCheckIn()
+
+    Global.reset();
   },
   checkCheckIn(){
     if ( Storage.progress.lastCheckInDay ) {
@@ -85,7 +87,7 @@ cc.Class({
     Storage.game.prevHeroType = Global.currentHeroType;
     Storage.saveGame();
 
-    Global.reset();
+
     var positiveCount = 0;
     var negativeCount = 0;
     Global.selectedPerk.forEach(function(perkEntry){

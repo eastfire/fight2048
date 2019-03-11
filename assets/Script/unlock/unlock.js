@@ -42,7 +42,7 @@ cc.Class({
         } else {
           var skill = new cc.Node();
           skill.addComponent(this.entry.name)
-          skill = skill.getComponent("skill")
+          skill = skill.getComponent(this.entry.name)
           this.unlockNameLabel.string = skill.desc;
           this.toggle = true;
         }
