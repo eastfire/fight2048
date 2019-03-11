@@ -34,6 +34,20 @@ cc.Class({
   // onLoad () {},
 
   start () {
+    this.node.on("touchend",function(){
+      if ( this.entry.name.indexOf("Skill") + 5 == this.entry.name.length ) {
+        if ( this.toggle ) {
+          this.unlockNameLabel.string = this.entry.displayName;
+          this.toggle = false;
+        } else {
+          var skill = new cc.Node();
+          skill.addComponent(this.entry.name)
+          skill = skill.getComponent("skill")
+          this.unlockNameLabel.string = skill.desc;
+          this.toggle = true;
+        }
+      }
+    },this)
   },
 
   updateItem: function(entry, itemID) {
@@ -51,6 +65,7 @@ cc.Class({
     } else {
       this.unlockButton.interactable = false;
     }
+    this.toggle = false;
   },
 
   click(){
