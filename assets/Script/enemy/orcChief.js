@@ -46,7 +46,7 @@ cc.Class({
     var position = this.positions[0];
     Common.INCREMENTS.forEach(function(increment){
         var model = Global.currentRoom.getMovableByPosition(position.x+increment.x, position.y+increment.y);
-        if ( model ) {
+        if ( model && model.getComponent("enemy") ) {
           model.level++;
         }
     },this);

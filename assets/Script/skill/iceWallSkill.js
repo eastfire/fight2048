@@ -19,7 +19,7 @@ cc.Class({
     this.skillName = "iceWallSkill"
     this.icon="Skill/iceWallSkill";
     this.displayName = "冰墙"
-    this.desc = "在身后产生一面冰墙，如果有敌人将杀死敌人";
+    this.desc = "在身后产生一面冰墙，如果有敌人，将其杀死";
   },
   levelUpDesc(level){
     return "冰墙持续时间变长"
