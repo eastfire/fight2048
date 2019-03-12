@@ -5,10 +5,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-      atlas: {
-        default: null,
-        type: cc.SpriteAtlas
-      },
+      atlas: cc.SpriteAtlas,
 
       title: {
         default: "",
@@ -27,7 +24,12 @@ cc.Class({
           }
         }
       },
-      moveStep: 100, //无限
+      moveStep: {
+        get(){
+          if ( this.getStatus("slowed") ) return 1;
+          return 100;
+        }
+      }
     },
 
     // LIFE-CYCLE CALLBACKS:

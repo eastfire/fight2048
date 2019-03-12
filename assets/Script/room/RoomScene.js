@@ -35,6 +35,7 @@ cc.Class({
       skillSlotLayout: cc.Layout,
       skillPrefab: cc.Prefab,
       effectLayer: cc.Node,
+      dyingIndicator: cc.Sprite,
       exitButton: cc.Button,
 
       score:{
@@ -275,6 +276,25 @@ cc.Class({
       //show Level Up dialog
       var dialog = cc.instantiate(this.exitDialog);
       this.node.addChild(dialog)
+    },
+
+    dying(isDying){
+      if ( isDying ) {
+        if ( this.dyingIndicator.node.active ) return;
+        this.dyingIndicator.node.active = true;
+        this.dyingIndicator.node.stopAllActions();
+        this.dyingIndicator.node.opacity = 0;
+        this.dyingIndicator.node.runAction(cc.repeatForever(
+          cc.sequence(
+            cc.fadeTo(1,55).easing(cc.easeIn(1)),
+            cc.fadeTo(1,0).easing(cc.easeOut(1))
+        )))
+      } else {
+        if ( !this.dyingIndicator.node.active ) return;
+        cc.log("not dying")
+        this.dyingIndicator.node.stopAllActions();
+        this.dyingIndicator.node.active = false;
+      }
     }
     // update (dt) {},
 });

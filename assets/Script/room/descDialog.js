@@ -4,18 +4,9 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-      icon:{
-        default: null,
-        type: cc.Node,
-      },
-      titleLabel: {
-        default: null,
-        type: cc.Label,
-      },
-      descLabel: {
-        default: null,
-        type: cc.Label,
-      },
+      icon: cc.Node,
+      titleLabel: cc.Label,
+      descLabel: cc.Label,
     },
 
     // LIFE-CYCLE CALLBACKS:

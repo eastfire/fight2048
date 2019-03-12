@@ -13,10 +13,7 @@ cc.Class({
         visible: false,
         default: "",
       },
-      atlas: {
-        default: null,
-        type: cc.SpriteAtlas
-      },
+      atlas: cc.SpriteAtlas,
       x: {
         default: 0,
         visible: false,

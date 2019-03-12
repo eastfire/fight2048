@@ -6,14 +6,8 @@ cc.Class({
 
   properties: {
     heroType: "",
-    lockIcon: {
-      type: cc.Sprite,
-      default: null
-    },
-    scene: {
-      type: cc.Sprite,
-      default: null
-    }
+    lockIcon: cc.Sprite,
+    scene: cc.Sprite,
   },
 
   start(){

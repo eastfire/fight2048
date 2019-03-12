@@ -7,14 +7,8 @@ cc.Class({
   extends: cc.Component,
 
   properties: {
-    lockSprite:{
-      default: null,
-      type: cc.Sprite
-    },
-    perkSprite: {
-      default: null,
-      type: cc.Sprite
-    },
+    lockSprite: cc.Sprite,
+    perkSprite: cc.Sprite,
     isEmpty:{
       get(){
         return this.perkName == null

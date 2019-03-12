@@ -7,30 +7,12 @@ cc.Class({
   extends: cc.Component,
 
   properties: {
-    achievementTitle:{
-      default: null,
-      type: cc.Label
-    },
-    achievementIcon:{
-      default: null,
-      type: cc.Sprite
-    },
-    rewardButton:{
-      default: null,
-      type: cc.Button
-    },
-    starIcon:{
-      default: null,
-      type: cc.Sprite
-    },
-    rewardLabel:{
-      default: null,
-      type: cc.Label
-    },
-    descLabel:{
-      default: null,
-      type: cc.Label
-    }
+    achievementTitle: cc.Label,
+    achievementIcon: cc.Sprite,
+    rewardButton: cc.Button,
+    starIcon: cc.Sprite,
+    rewardLabel: cc.Label,
+    descLabel: cc.Label,
   },
 
   // LIFE-CYCLE CALLBACKS:

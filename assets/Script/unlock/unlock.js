@@ -7,26 +7,11 @@ cc.Class({
   extends: cc.Component,
 
   properties: {
-    unlockNameLabel:{
-      default: null,
-      type: cc.Label
-    },
-    unlockIcon:{
-      default: null,
-      type: cc.Sprite
-    },
-    unlockButton:{
-      default: null,
-      type: cc.Button
-    },
-    starIcon:{
-      default: null,
-      type: cc.Sprite
-    },
-    priceLabel:{
-      default: null,
-      type: cc.Label
-    }
+    unlockNameLabel: cc.Label,
+    unlockIcon: cc.Sprite,
+    unlockButton: cc.Button,
+    starIcon:cc.Sprite,
+    priceLabel: cc.Label,
   },
 
   // LIFE-CYCLE CALLBACKS:

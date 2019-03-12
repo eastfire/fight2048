@@ -9,10 +9,7 @@ cc.Class({
   extends: Movable,
 
   properties: {
-    levelUpDialog:{
-      type: cc.Prefab,
-      default: null
-    },
+    levelUpDialog: cc.Prefab,
     maxHp: {
       get(){
         return Math.round(Global.BASE_HP+(this.level-1)*Global.HP_PER_LEVEL+
@@ -28,6 +25,11 @@ cc.Class({
         }
         if ( Global.currentRoomScene ) {
           Global.currentRoomScene.lifeLabel.string = this.hp+"/"+this.maxHp;
+          if ( this.hp <= this.maxHp/5 ) {
+            Global.currentRoomScene.dying(true)
+          } else {
+            Global.currentRoomScene.dying(false)
+          }
         }
       }
     },

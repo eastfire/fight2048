@@ -12,18 +12,9 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-      choiceIconSprite: {
-        default: null,
-        type: cc.Sprite,
-      },
-      choiceNameLabel: {
-        default: null,
-        type: cc.Label,
-      },
-      choiceDescLabel: {
-        default: null,
-        type: cc.Label
-      },
+      choiceIconSprite: cc.Sprite,
+      choiceNameLabel: cc.Label,
+      choiceDescLabel: cc.Label,
     },
 
     // LIFE-CYCLE CALLBACKS:

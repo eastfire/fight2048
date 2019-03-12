@@ -30,12 +30,17 @@ cc.Class({
         },
         override: true
       },
+      moveStep: {
+        get(){
+          return 1
+        },
+        override: true
+      }
     },
 
     // LIFE-CYCLE CALLBACKS:
     ctor: function () {
       this.type = "treant"
-      this.moveStep = 1;
     },
     // update (dt) {},
 });

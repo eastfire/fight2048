@@ -35,7 +35,10 @@ cc.Class({
         default:Common.ATTACK_TYPE_MELEE,
         visible:false,
       },
-      dexterity: 0,
+      dexterity: {
+        default:0,
+        visible:false,
+      },
 
       immune: [cc.String]
     },
