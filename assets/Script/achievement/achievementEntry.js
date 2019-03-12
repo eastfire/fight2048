@@ -373,7 +373,7 @@ var allEnemyType = [
     }
   },
   {
-    type:"balista",
+    type:"ballista",
     displayName:"弩车",
     reward(level){
       return [5,10,30,120,600][level]

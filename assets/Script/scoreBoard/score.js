@@ -97,15 +97,8 @@ cc.Class({
     this.entry.detail.perks.forEach(function(perkName){
       var slot = new cc.Node();
       slot.addComponent(cc.Sprite);
-      slot.getComponent(cc.Sprite).spriteFrame
-      cc.loader.loadRes("Texture/Perk/"+perkName, cc.SpriteFrame,
-        (err, frame)=>{
-          if ( err ) {
-            cc.log(err)
-          } else {
-            slot.spriteFrame = frame;
-          }
-      })
+      this.loadIcon(slot.getComponent(cc.Sprite),"Texture/Perk/"+perkName)
+      slot.y = 0;
       this.detailLayout.node.addChild(slot);
     },this)
 

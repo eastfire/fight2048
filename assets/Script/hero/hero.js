@@ -25,7 +25,7 @@ cc.Class({
         }
         if ( Global.currentRoomScene ) {
           Global.currentRoomScene.lifeLabel.string = this.hp+"/"+this.maxHp;
-          if ( this.hp <= this.maxHp/5 ) {
+          if ( this.hp <= this.maxHp/5 && this.hp !== 0 ) {
             Global.currentRoomScene.dying(true)
           } else {
             Global.currentRoomScene.dying(false)
