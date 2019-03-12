@@ -31,11 +31,9 @@ cc.Class({
     if ( Global.currentRoom.movablePrefabMap[itemType] ) {
       var item = cc.instantiate(Global.currentRoom.movablePrefabMap[itemType]);
       item.getComponent("item").level = itemLevel;
-      cc.log("XXX3")
       Global.currentRoom.addMovable(item, position.x, position.y)
-cc.log("XXX4")
-      if ( !Storage.progress.seen[itemType] ) {
-        Storage.progress.seen[itemType] = 1;
+      if ( !Storage.progress.seenItem[itemType] ) {
+        Storage.progress.seenItem[itemType] = 1;
         Storage.saveProgress();
         item.getComponent("movable").showDescDialog();
       }

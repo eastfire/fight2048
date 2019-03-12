@@ -70,6 +70,48 @@ var achievements = [
   },
 },
 {
+  name:"seenEnemy",
+  title:"见多识广",
+  desc: "见到过10种敌人",
+  prerequests: null,
+  reward: 20,
+  check:function(){
+    var count = 0;
+    for ( var key in Storage.progress.seen ) {
+      count ++;
+    }
+    return count >= 10;
+  },
+},
+{
+  name:"seenEnemy2",
+  title:"见多识广II",
+  desc: "见到过20种敌人",
+  prerequests: ["seenEnemy"],
+  reward: 40,
+  check:function(){
+    var count = 0;
+    for ( var key in Storage.progress.seen ) {
+      count ++;
+    }
+    return count >= 20;
+  },
+},
+{
+  name:"seenEnemy",
+  title:"见多识广III",
+  desc: "见到过30种敌人",
+  prerequests: ["seenEnemy2"],
+  reward: 100,
+  check:function(){
+    var count = 0;
+    for ( var key in Storage.progress.seen ) {
+      count ++;
+    }
+    return count >= 30;
+  },
+},
+{
   name:"warriorTurn1",
   title:"战士试炼I",
   desc: "坚持30回合",

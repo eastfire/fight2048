@@ -42,10 +42,10 @@ cc.Class({
       this.node.y = this.node.y+80;
       this.node.runAction(
         cc.spawn(
-          cc.moveBy(Global.HERO_ATTACK_TIME/2, 0, -80).easing(cc.easeIn(1),
+          cc.moveBy(Global.HERO_ATTACK_TIME/2, 0, -80).easing(cc.easeIn(1)),
           cc.scaleTo(Global.HERO_ATTACK_TIME/2, 1, 1),
         )
-      );
+      )
     },
 
     onTurnEnd() {

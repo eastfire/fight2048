@@ -9,7 +9,8 @@ export default {
   progress: {
     maxSkill:{},
     maxPerk:{},
-    seen:{slime:1,iceWall:1}
+    seen:{slime:1},
+    seenItem: {iceWall:1}
   },
   userInfo: null,
   loadMoney() {
@@ -31,11 +32,13 @@ export default {
     this.progress = v ? JSON.parse(v) : {
       maxSkill:{},
       maxPerk:{},
-      seen:{slime:1,iceWall:1}
+      seen:{slime:1},
+      seenItem: {iceWall:1}
     }
     this.progress.maxSkill = this.progress.maxSkill || {}
     this.progress.maxPerk = this.progress.maxPerk || {}
-    this.progress.seen = this.progress.seen || {slime:1,iceWall:1}
+    this.progress.seen = this.progress.seen || {slime:1};
+    this.progress.seenItem = this.progress.seenItem || {iceWall:1}
   },
   loadRewardTaken(){
     var v = cc.sys.localStorage.getItem('rewardTaken');
