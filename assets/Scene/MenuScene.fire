@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.7475517165492956,
-      "y": 0.7475517165492956,
+      "x": 0.4235255281690141,
+      "y": 0.4235255281690141,
       "z": 1
     },
     "_quat": {
@@ -1337,7 +1337,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 150,
+      "width": 160,
       "height": 40
     },
     "_anchorPoint": {
@@ -1372,29 +1372,30 @@
     "_id": "3d/PVbxCFHEKY8tNmxVPKE"
   },
   {
-    "__type__": "cc.Label",
+    "__type__": "e4f88adp3hERoJ48DZ2PSAl",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 26
     },
     "_enabled": true,
-    "_useOriginalSize": false,
+    "_useOriginalSize": true,
     "_string": "开始游戏",
     "_N$string": "开始游戏",
-    "_fontSize": 30,
+    "_fontSize": 40,
     "_lineHeight": 40,
-    "_enableWrapText": false,
+    "_enableWrapText": true,
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
     "_batchAsBitmap": false,
-    "_N$horizontalAlign": 1,
-    "_N$verticalAlign": 1,
+    "_N$horizontalAlign": 0,
+    "_N$verticalAlign": 0,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 1,
+    "_N$overflow": 0,
     "_N$cacheMode": 0,
-    "_id": "3bghUHlVxFXpz4fEEZgmO/"
+    "_N$textKey": "ModeSelectScene/start_game",
+    "_id": "25le9IQeNBgJWmpSNqBv0J"
   },
   {
     "__type__": "cc.Sprite",
@@ -1579,14 +1580,14 @@
     "_id": "f9pbkCxQhPI63L7vayElcl"
   },
   {
-    "__type__": "cc.Label",
+    "__type__": "e4f88adp3hERoJ48DZ2PSAl",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 31
     },
     "_enabled": true,
-    "_useOriginalSize": false,
+    "_useOriginalSize": true,
     "_string": "选择英雄",
     "_N$string": "选择英雄",
     "_fontSize": 40,
@@ -1596,12 +1597,13 @@
     "_isSystemFontUsed": true,
     "_spacingX": 0,
     "_batchAsBitmap": false,
-    "_N$horizontalAlign": 1,
-    "_N$verticalAlign": 1,
+    "_N$horizontalAlign": 0,
+    "_N$verticalAlign": 0,
     "_N$fontFamily": "Arial",
     "_N$overflow": 0,
     "_N$cacheMode": 0,
-    "_id": "60D3+5ZihEqaDPMJU2nCnI"
+    "_N$textKey": "ModeSelectScene/choose_hero",
+    "_id": "dcYi64Z9VO6qUCCOdI/U34"
   },
   {
     "__type__": "cc.Node",
@@ -2635,14 +2637,14 @@
     "_id": "0eRIZ/sVNFAbBPxDiOMxq3"
   },
   {
-    "__type__": "cc.Label",
+    "__type__": "e4f88adp3hERoJ48DZ2PSAl",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 57
     },
     "_enabled": true,
-    "_useOriginalSize": false,
+    "_useOriginalSize": true,
     "_string": "选择特质",
     "_N$string": "选择特质",
     "_fontSize": 40,
@@ -2652,12 +2654,13 @@
     "_isSystemFontUsed": true,
     "_spacingX": 0,
     "_batchAsBitmap": false,
-    "_N$horizontalAlign": 1,
-    "_N$verticalAlign": 1,
+    "_N$horizontalAlign": 0,
+    "_N$verticalAlign": 0,
     "_N$fontFamily": "Arial",
     "_N$overflow": 0,
     "_N$cacheMode": 0,
-    "_id": "7e8Ta4mr9JqaYFSCfdq6cA"
+    "_N$textKey": "ModeSelectScene/choose_perks",
+    "_id": "e7bIriyi5HeZXIfRo3nF3m"
   },
   {
     "__type__": "cc.Node",
@@ -4277,8 +4280,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 120,
-      "height": 30
+      "width": 160,
+      "height": 40
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -4312,29 +4315,30 @@
     "_id": "2cQdfNrlJKTpXimSsufpTK"
   },
   {
-    "__type__": "cc.Label",
+    "__type__": "e4f88adp3hERoJ48DZ2PSAl",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 99
     },
     "_enabled": true,
-    "_useOriginalSize": false,
+    "_useOriginalSize": true,
     "_string": "分数修正",
     "_N$string": "分数修正",
-    "_fontSize": 30,
-    "_lineHeight": 30,
+    "_fontSize": 40,
+    "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
     "_batchAsBitmap": false,
-    "_N$horizontalAlign": 1,
-    "_N$verticalAlign": 1,
+    "_N$horizontalAlign": 0,
+    "_N$verticalAlign": 0,
     "_N$fontFamily": "Arial",
     "_N$overflow": 0,
     "_N$cacheMode": 0,
-    "_id": "abtvuM3xxKTJ6qNdKTi+q+"
+    "_N$textKey": "ModeSelectScene/score_adjust",
+    "_id": "6cFlcsZf1GX4pTRI+W2liU"
   },
   {
     "__type__": "cc.Node",

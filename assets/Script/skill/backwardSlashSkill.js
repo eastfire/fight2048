@@ -2,6 +2,7 @@ import Skill from "skill";
 import Global from "../global"
 import Common from "../common";
 import Enemy from "../enemy/enemy"
+const i18n = require('i18n');
 
 cc.Class({
   extends: Skill,
@@ -14,11 +15,11 @@ cc.Class({
   ctor() {
     this.skillName = "backwardSlashSkill"
     this.icon="Skill/backwardSlashSkill";
-    this.displayName = "拖刀计"
-    this.desc = "本轮会对自己身后的敌人进行普通攻击";
+    this.displayName = i18n.t("backwardSlashSkill/name")
+    this.desc = i18n.t("backwardSlashSkill/desc");
   },
   levelUpDesc(level){
-    return "冷却时间减少1回合"
+    return i18n.t("backwardSlashSkill/levelUp")
   },
   onLoad () {
     this._super()

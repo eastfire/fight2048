@@ -1,12 +1,13 @@
 import Global from "global";
 import Common from "common";
 import Storage from "storage";
+const i18n = require('i18n');
 
 export default {
   unlocks:[
   {
     name:"warriorSkillSlot3",
-    displayName:"战士的第3个技能槽",
+    displayName:i18n.t("warriorSkillSlot3"),
     prerequests: null,
     price: 5,
     type:"skillSlot",
@@ -18,7 +19,7 @@ export default {
   },
   {
     name:"warriorSkillSlot4",
-    displayName:"战士的第4个技能槽",
+    displayName:i18n.t("warriorSkillSlot4"),
     prerequests: ["warriorSkillSlot3"],
     price: 20,
     type:"skillSlot",
@@ -30,7 +31,7 @@ export default {
   },
   {
     name:"warriorSkillSlot5",
-    displayName:"战士的第5个技能槽",
+    displayName:i18n.t("warriorSkillSlot5"),
     prerequests: ["warriorSkillSlot4"],
     price: 100,
     type:"skillSlot",

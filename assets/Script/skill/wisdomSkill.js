@@ -1,6 +1,7 @@
 import Skill from "skill";
 import Global from "../global"
 import Common from "../common"
+const i18n = require('i18n');
 
 cc.Class({
   extends: Skill,
@@ -17,11 +18,13 @@ cc.Class({
   ctor() {
     this.skillName = "wisdomSkill"
     this.icon="Skill/wisdomSkill";
-    this.displayName = "睿智"
-    this.desc = "本回合经验值收入增加"+Math.round(this.effect*Global.WISDOM_EFFECT*100)+"%";
+    this.displayName = i18n.t("wisdomSkill/name")
+    this.desc = i18n.t("wisdomSkill/desc", {
+      effect: Math.round(this.effect*Global.WISDOM_EFFECT*100)
+      });
   },
   levelUpDesc(level){
-    return "本回合经验值收入增加20%，但冷却时间也增加1回合"
+    return i18n.t("wisdomSkill/levelUp")
   },
   start () {
     this._super()

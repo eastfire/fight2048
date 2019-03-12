@@ -1,6 +1,17 @@
 const Polyglot = require('polyglot');
 
-let data = cc.sys.language === 'zh' ? require('zh') : require('en');
+let data;
+if ( cc.sys.language === 'zh' ) {
+  let languageCode = cc.sys.languageCode.toLowerCase();
+  languageCode = languageCode.replace("-","_")
+  if ( languageCode === 'zh' || languageCode === 'zh_cn' || languageCode === 'zh_hans' || languageCode === 'zh_chs' ) {
+    data = require('zh');
+  } else {
+    data = require('zh_tw');
+  }
+} else {
+  data = require('en');
+}
 // let polyglot = null;
 let polyglot = new Polyglot({phrases: data, allowMissing: true});
 

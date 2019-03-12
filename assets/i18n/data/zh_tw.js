@@ -12,7 +12,6 @@ module.exports = {
   "backwardSlashSkill/name":"拖刀计",
   "backwardSlashSkill/desc":"本轮会对自己身后的敌人进行普通攻击",
   "backwardSlashSkill/levelUp":"冷却时间减少1回合",
-
   "wisdomSkill/name":"睿智",
   "wisdomSkill/desc":"本回合经验值收入增加%{effect}%",
   "wisdomSkill/levelUp":"本回合经验值收入增加20%，但冷却时间也增加1回合",
