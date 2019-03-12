@@ -32,7 +32,7 @@ cc.Class({
   generateEnemy(){
     if ( this.lastBossAppearTurn + Global.BOSS_APPEAR_PER_TURN < Global.currentRoom.turn ) {
       var boss = this.generateBoss();
-      if ( boss ) {
+      if ( boss ) { //有地方产生boss
         this.lastBossAppearTurn = Global.currentRoom.turn;
         this.bossAppearTime++;
         setTimeout(()=>{
@@ -137,17 +137,21 @@ cc.Class({
     if ( (Global.currentRoom.turn+16) % Global.ENEMY_POOL_CHANGE_PER_TURN == 0) {
       var monsterType;
       var candidateEnemyPool = [];
+      var skillCount = Global.currentRoomScene.activeSkillCount()
       this.waitingEnemyPool.forEach(function(monsterType){
-        var pass = true;
+        var type = monsterType.type;
+        if ( skillCount <= 0 &&
+          //FIXME 改为更好的oo设计
+          (type === "gargoyle" || type === "kobold")) {
+          return;
+        }
         for ( var i =0 ; i < this.enemyPool.length; i++ ) {
-          if ( this.enemyPool[i].type === monsterType.type ) {
+          if ( this.enemyPool[i].type === type ) {
             pass = false;
-            break;
+            return;
           }
         }
-        if ( pass ) {
-          candidateEnemyPool.push(monsterType)
-        }
+        candidateEnemyPool.push(monsterType)
       },this);
       if ( candidateEnemyPool.length <= 0 ) {
         cc.warn("this.waitingEnemyPool is too small")
