@@ -60,7 +60,7 @@ export default {
     normal: ["forwardSlashSkill","horizontalSlashSkill","verticalSlashSkill"],
     wizard: ["missileSkill","spiderWebSkill","iceWallSkill"],
     cleric: ["healSkill","dispelSkill","shieldSkill","calmSkill"],
-    thief: ["fourArrowSkill","fourDiagnalArrowSkill"] // bomb
+    thief: ["fourArrowSkill","fourDiagnalArrowSkill","bombSkill"]
   },
   heroUnlockableSkill: {
     normal: ["backwardSlashSkill","whirlSkill","bigWhirlSkill","crossSlashSkill"], //charge
