@@ -13,12 +13,10 @@
     "Spine Skeleton",
     "RichText",
     "MotionStreak",
-    "PageViewIndicator",
     "AudioSource",
     "Collider",
     "Physics",
-    "NodePool",
-    "Native Socket"
+    "NodePool"
   ],
   "facebook": {
     "appID": "",
@@ -35,13 +33,13 @@
   "group-list": [
     "default"
   ],
-  "last-module-event-record-time": 1551771651461,
+  "last-module-event-record-time": 1552377297931,
   "simulator-orientation": false,
   "simulator-resolution": {
     "height": 640,
     "width": 960
   },
   "start-scene": "2d2f792f-a40c-49bb-a189-ed176a246e49",
-  "use-customize-simulator": true,
+  "use-customize-simulator": false,
   "use-project-simulator-setting": false
 }

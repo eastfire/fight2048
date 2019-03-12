@@ -5,35 +5,18 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-      okButton: {
-        type: cc.Button,
-        default: null,
-      },
-      refreshButton: {
-        type: cc.Button,
-        default: null,
-      },
-      choiceList: {
-        type: cc.Layout,
-        default: null
-      },
-      title:{
-        type: cc.Label,
-        default: null
-      },
-      choicePrefab: {
-        type: cc.Prefab,
-        default: null
-      },
-      priceLabel: {
-        type: cc.Label,
-        default: null
-      },
+      okButton: cc.Button,
+      refreshButton: cc.Button,
+      choiceList: cc.Layout,
+      title: cc.Label,
+      choicePrefab: cc.Prefab,
+      priceLabel: cc.Label,
       price: {
         default: 1,
         notify(oldValue){
           if ( oldValue == this.price ) return;
           this.priceLabel.string = "-"+this.price;
+          this.refreshButton.interactable = Global.currentRoomScene.star >= this.price;
         }
       }
     },
@@ -45,6 +28,7 @@ cc.Class({
     start () {
       this.title.string = "恭喜你升到第"+Global.currentRoom.hero.getComponent("hero").level+"级";
       this.priceLabel.string = "-"+this.price;
+      this.refreshButton.interactable = Global.currentRoomScene.star >= this.price;
       this.currentChoice = null;
     },
     initChoicePool(pool, choiceNumber, callback, context) {
