@@ -67,6 +67,7 @@ export default {
     }
     this.statistics.kill = this.statistics.kill || {}
     this.statistics.gameOver = this.statistics.gameOver || {}
+    this.statistics.lastGame = this.statistics.lastGame || {}
     this.statistics.info = this.statistics.info || {}
   },
   recordKill(enemyType, enemyLevel, turn){
@@ -103,6 +104,15 @@ export default {
     this.statistics.gameOver.damage = this.statistics.gameOver.damage || 0;
     this.statistics.gameOver.damage = Math.max(
       reason.damage, this.statistics.gameOver.damage);
+
+    this.saveStatistics();
+  },
+  recordLastGame(room, hero, perks) {
+    this.statistics.lastGame.turn = room.turn;
+    this.statistics.lastGame.level = hero.level;
+    this.statistics.lastGame.type = hero.subtype;
+    this.statistics.lastGame.perks = perks;
+
     this.saveStatistics();
   },
   recordDamage(hero){

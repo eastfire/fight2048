@@ -13,6 +13,7 @@ cc.Class({
     scoreLabel:cc.Label,
     turnLabel:cc.Label,
     detailLayout: cc.Layout,
+    heroLevelLabel: cc.Label,
     killByLabel: cc.Label,
     killByIcon: cc.Sprite,
     timeLabel: cc.Label
@@ -51,6 +52,7 @@ cc.Class({
     this.scoreLabel.string = entry.score;
     this.turnLabel.string = entry.turn;
     this.timeLabel.string = this.formatDate(new Date(entry.createdAt), "yyyy-MM-dd HH:mm");
+    this.heroLevelLabel.string = "Lv"+entry.level;
 
     if ( entry.avatarUrl ) {
       cc.loader.load({

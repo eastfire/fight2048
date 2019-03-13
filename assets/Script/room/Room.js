@@ -122,6 +122,14 @@ cc.Class({
       var scaleRate = (cc.winSize.width - Global.ROOM_PADDING*2)/((maxSize-2)*Global.TILE_WIDTH);
       this.node.scaleX = scaleRate;
       this.node.scaleY = scaleRate;
+
+      this.corners = [
+        {x:1,y:1},
+        {x:1,y:this.width-1},
+        {x:this.height-1,y:this.width-1},
+        {x:this.height-1,y:1},
+      ];
+      cc.log(this.corners)
     },
 
     start () {
@@ -445,6 +453,7 @@ cc.Class({
       this._phase = "generateEnemy"
 
       this.enemyFactory.generateEnemy();
+      this.itemFactory.generateItemOnTurnStar();
     },
     afterGenEnemy(){
       this._phase="waitUserInput";

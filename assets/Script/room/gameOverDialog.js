@@ -166,6 +166,8 @@ cc.Class({
         this.skillPerkList.node.addChild(slot)
       },this);
 
+      Storage.recordLastGame(Global.currentRoom, Global.currentRoom.hero.getComponent("hero"), this.scoreEntry.detail.perks);
+
       Global.currentRoom.node.active = false;
       Global.currentRoomScene.effectLayer.active = false;
       Global.currentRoomScene.exitButton.node.active = false;

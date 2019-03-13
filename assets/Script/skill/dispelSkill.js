@@ -18,7 +18,7 @@ cc.Class({
     this.skillName = "dispelSkill"
     this.icon="Skill/dispelSkill";
     this.displayName = "驱散"
-    this.desc = "祛除所有异常效果，且保护"+this.effect+"回合不会获得异常效果";
+    this.desc = "祛除所有异常效果，且保护1回合不会获得异常效果";
   },
   levelUpDesc(level){
     return "多保持1回合，但冷却时间也增加1回合"

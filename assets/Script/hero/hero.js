@@ -104,7 +104,7 @@ cc.Class({
     this.subtype = "normal";
     this.isMergeToSelfType = false;
     this.forwardAfterKill = Global.FORWARD_AFTER_KILL;
-    this.accept = ["potion","poisonPotion"]
+    this.accept = ["potion","poisonPotion","tomb"]
     this.dead = false;
   },
 
