@@ -170,18 +170,10 @@ cc.Class({
       var hero = Global.currentRoom.hero.getComponent("hero")
       var heroPosition = Global.currentRoom.getDrawPosition(hero.positions[0].x, hero.positions[0].y)
       for ( var i = 0; i < this.star; i++ ){
-        var star = cc.instantiate(Global.currentRoom.starPrefab);
-        star.x = Math.random()*Global.TILE_WIDTH + drawPosition.x - Global.TILE_WIDTH/2;
-        star.y = Math.random()*Global.TILE_HEIGHT + drawPosition.y - Global.TILE_HEIGHT/2;
-        star.setScale(2)
-        Global.currentRoom.node.addChild(star);
-        star.runAction(cc.sequence(
-          cc.moveTo(Global.GET_STAR_TIME, heroPosition.x, heroPosition.y).easing(cc.easeQuadraticActionIn()),
-          cc.callFunc(function(){
-            Global.currentRoomScene.gainStar(1)
-          },this),
-          cc.removeSelf()
-        ))
+        Effect.gainStarInRoom({
+          x:Math.random()*Global.TILE_WIDTH + drawPosition.x - Global.TILE_WIDTH/2,
+          y:Math.random()*Global.TILE_HEIGHT + drawPosition.y - Global.TILE_HEIGHT/2
+        })
       }
     },
     checkDropItem(){

@@ -97,9 +97,53 @@ var projectStone = function( from, to ) {
   ))
 }
 
+var gainStarInRoom = function(fromPosition, callback, context) {
+  var star = cc.instantiate(Global.currentRoom.starPrefab);
+  let worldPos = Global.currentRoom.node.convertToWorldSpaceAR(
+    {
+      x: fromPosition.x,
+      y: fromPosition.y
+    }
+  );
+  let viewPos = Global.currentRoomScene.effectLayer.convertToNodeSpaceAR(worldPos);
+  star.position = viewPos;
+  star.setScale(2)
+  Global.currentRoomScene.node.addChild(star);
+
+  let destPos = Global.currentRoomScene.moneyLabel.node.position;
+  star.runAction(cc.sequence(
+    cc.moveTo(Global.GET_STAR_TIME, destPos.x, destPos.y).easing(cc.easeQuadraticActionIn()),
+    cc.callFunc(function(){
+      Global.currentRoomScene.gainStar(1)
+      Global.currentRoomScene.moneyLabel.node.stopAllActions();
+      Global.currentRoomScene.moneyLabel.node.runAction(cc.sequence(
+        cc.scaleTo(Global.GET_STAR_TIME/2,1.3),
+        cc.scaleTo(Global.GET_STAR_TIME/2,1)
+      ))
+    },this),
+    cc.removeSelf()
+  ))
+}
+
+var useStarInRoom = function(){
+
+}
+
+var gainStarInMenu = function(){
+
+}
+
+var useStarInMenu = function(){
+
+}
+
 export default {
   labelEffect,
   projectArrow,
   projectStone,
   projectFireball,
+  gainStarInRoom,
+  useStarInRoom,
+  gainStarInMenu,
+  useStarInMenu,
 }
