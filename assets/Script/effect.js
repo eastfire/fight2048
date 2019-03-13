@@ -125,8 +125,34 @@ var gainStarInRoom = function(fromPosition, callback, context) {
   ))
 }
 
-var useStarInRoom = function(){
+var useStarInRoom = function(toPosition, toParentNode, amount){
+  var star = cc.instantiate(Global.currentRoom.starPrefab);
+  let fromPos = Global.currentRoomScene.moneyLabel.node.position;
 
+  star.position = fromPos;
+  star.setScale(2)
+
+  let worldPos = toParentNode.convertToWorldSpaceAR(
+    {
+      x: toPosition.x,
+      y: toPosition.y
+    }
+  );
+  let toPos = Global.currentRoomScene.effectLayer.convertToNodeSpaceAR(worldPos);
+
+  Global.currentRoomScene.node.addChild(star);
+
+  Global.currentRoomScene.star -= amount;
+  Global.currentRoomScene.moneyLabel.node.stopAllActions();
+  Global.currentRoomScene.moneyLabel.node.runAction(cc.sequence(
+    cc.scaleTo(Global.GET_STAR_TIME/2,0.7),
+    cc.scaleTo(Global.GET_STAR_TIME/2,1)
+  ))
+
+  star.runAction(cc.sequence(
+    cc.moveTo(Global.GET_STAR_TIME, toPos.x, toPos.y).easing(cc.easeQuadraticActionIn()),
+    cc.removeSelf()
+  ))
 }
 
 var gainStarInMenu = function(){

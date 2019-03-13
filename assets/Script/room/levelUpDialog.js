@@ -1,5 +1,6 @@
 import Global from "global";
 import Common from "common";
+import Effect from "effect";
 
 cc.Class({
     extends: cc.Component,
