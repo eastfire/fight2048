@@ -123,13 +123,14 @@ cc.Class({
       this.node.scaleX = scaleRate;
       this.node.scaleY = scaleRate;
 
+      //TODO get corner from entry
       this.corners = [
         {x:1,y:1},
-        {x:1,y:this.width-1},
-        {x:this.height-1,y:this.width-1},
-        {x:this.height-1,y:1},
+        {x:1,y:this.width-2},
+        {x:this.height-2,y:this.width-2},
+        {x:this.height-2,y:1},
       ];
-      cc.log(this.corners)
+
     },
 
     start () {

@@ -44,13 +44,14 @@ cc.Class({
   },
 
   generateItemOnTurnStar(){
-    cc.log(Storage.statistics.lastGame)
     if ( !this.heroTombGenerated &&
       Storage.statistics.lastGame.turn &&
       Storage.statistics.lastGame.turn >= Global.HERO_TOMB_THRESHOLD &&
       Global.currentRoom.turn > Storage.statistics.lastGame.turn  ) {
+    // if ( !this.heroTombGenerated ) {
       //find a position for tomb
       var position = Common.sample(Global.currentRoom.corners);
+      cc.log(position)
       if ( !Global.currentRoom.getMovableByPosition(position) ) {
         this.heroTombGenerated = true;
         this.generateOneItem(position, "tomb", Storage.statistics.lastGame.level)
