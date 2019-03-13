@@ -18,7 +18,7 @@ cc.Class({
   ctor() {
     this.skillName = "exchangeSkill"
     this.icon="Skill/exchangeSkill";
-    this.displayName = "转化道具"
+    this.displayName = "安装炸弹"
     this.desc = "将所有道具变为炸弹";
   },
   levelUpDesc(level){

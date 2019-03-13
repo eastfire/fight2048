@@ -20,7 +20,7 @@ cc.Class({
 
   start () {
     this.node.on("touchend",function(){
-      if ( this.entry.name.indexOf("Skill") + 5 == this.entry.name.length ) {
+      if ( this.entry.type == "skill" ) {
         if ( this.toggle ) {
           this.unlockNameLabel.string = this.entry.displayName;
           this.toggle = false;

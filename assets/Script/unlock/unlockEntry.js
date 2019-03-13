@@ -381,6 +381,13 @@ export default {
     type:"skill",
     icon: "Texture/Skill/treasureSkill"
   },{
+    name:"exchangeSkill",
+    displayName:"盗贼的安装炸弹技能",
+    prerequests: ["treasureSkill"],
+    price: 500,
+    type:"skill",
+    icon: "Texture/Skill/exchangeSkill"
+  },{
     name:"eightArrowSkill",
     displayName:"盗贼的八方箭技能",
     prerequests: ["thief"],

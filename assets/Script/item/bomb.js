@@ -30,6 +30,7 @@ cc.Class({
     ctor: function () {
       this.type="bomb"
       this.exchangeable = false;
+      this.isMergeToSelfType = false;
     },
 
     onLoad () {
