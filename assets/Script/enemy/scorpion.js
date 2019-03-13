@@ -9,26 +9,27 @@ cc.Class({
   properties: {
     title: {
       get(){
-        return "美杜莎";
+        return "蝎子";
       },
       override: true,
     },
     desc: {
       get(){
-        return "合并或攻击时有可能冻结周围角色（等级越高概率越高，时间越长）。\n攻击力一般。\n经验值一般。";
+        return "合并或攻击时有可能使周围角色不能进行普通攻击1回合（等级越高概率越高）。\n攻击力很低。\n经验值一般。";
       },
       override: true,
     },
-    exp: { //一般
-      get(){
+    exp: {
+      get(){ //一般
         var l = this.level + this.star;
         return (Math.round(l*2.5)-1)*Global.EXP_INFLATION_RATE
       },
       override: true
     },
     attack: {
-      get(){ //一般
-        return this.level*2-1;
+      get(){ //很低
+        var l = this.level+this.star
+        return Math.round(l/2);
       },
       override: true
     },
@@ -36,7 +37,7 @@ cc.Class({
 
   // LIFE-CYCLE CALLBACKS:
   ctor: function () {
-    this.type = "medusa"
+    this.type = "scorpion"
   },
 
   afterBeMerged(movable){
@@ -58,17 +59,14 @@ cc.Class({
   },
   getEffectRate(hero){
        // return 1;
-    return Math.min(0.7,this.level*5/200+0.1);
+    return Math.min(0.25,(this.level+this.star+1)/100);
   },
   checkEffect(model, turn){
     if (model.getComponent("item")) return;
-    if (this.getEffectRate(model) > Math.random() ){
-      turn += Math.min(2, Math.floor(this.level/12));
-      if ( model.getComponent("hero") ) {
-        turn += Global.NEGATIVE_EFFECT_TIME_ADJUST;
-      }
-      model.gainStatus("frozen",turn)
+    if ( model.getComponent("hero") ) {
+      turn += Global.NEGATIVE_EFFECT_TIME_ADJUST;
     }
+    model.gainStatus("stun",turn)
   },
   // update (dt) {},
 });

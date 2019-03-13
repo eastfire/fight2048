@@ -70,9 +70,9 @@ export default {
   },
   initEnemyPool: [{type:"slime",subtype:"R"},{type:"slime",subtype:"B"},{type:"slime",subtype:"Y"}],
   enemyList:["archer","ballista","catapult","gargoyle","ghost","golem","killerBee","kobold","medusa","mimic","minotaur",
-  "mummy","orcChief","orge","ratman","skeleton","shaman","snake","summoner","treant","troll","vampire"],
+  "mummy","ooze","orcChief","orge","ratman","scorpion","skeleton","shaman","snake","summoner","treant","troll","vampire"],
   bossPool:["bossHydra"],
-  // enemyList:["archer"],
+  // enemyList:["ooze"],
   reset(){
     this.ITEM_POOL = ["potion"]
     this.BASE_HP = this.ORIGIN_BASE_HP;

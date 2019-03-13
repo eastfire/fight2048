@@ -9,13 +9,13 @@ cc.Class({
   properties: {
     title: {
       get(){
-        return "美杜莎";
+        return "软泥怪";
       },
       override: true,
     },
     desc: {
       get(){
-        return "合并或攻击时有可能冻结周围角色（等级越高概率越高，时间越长）。\n攻击力一般。\n经验值一般。";
+        return "史莱姆的亲戚\n合并或攻击时有可能使周围角色减速（等级越高概率越高，时间越长）。\n攻击力一般。\n经验值一般。";
       },
       override: true,
     },
@@ -36,7 +36,7 @@ cc.Class({
 
   // LIFE-CYCLE CALLBACKS:
   ctor: function () {
-    this.type = "medusa"
+    this.type = "ooze"
   },
 
   afterBeMerged(movable){
@@ -47,7 +47,7 @@ cc.Class({
     Common.INCREMENTS.forEach(function(increment){
         var model = Global.currentRoom.getMovableByPosition(position.x+increment.x, position.y+increment.y);
         if ( model ) {
-          this.checkEffect(model, 1);
+          this.checkEffect(model, 2);
         }
     },this);
 
@@ -67,7 +67,7 @@ cc.Class({
       if ( model.getComponent("hero") ) {
         turn += Global.NEGATIVE_EFFECT_TIME_ADJUST;
       }
-      model.gainStatus("frozen",turn)
+      model.gainStatus("slowed",turn)
     }
   },
   // update (dt) {},
