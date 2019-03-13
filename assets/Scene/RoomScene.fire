@@ -463,6 +463,9 @@
       },
       {
         "__uuid__": "d2e77599-1d8c-4db9-8838-2bbf8e325062"
+      },
+      {
+        "__uuid__": "7efafc1d-184b-41db-b32a-9c78c5482dd2"
       }
     ],
     "starPrefab": {
@@ -507,6 +510,12 @@
       },
       {
         "__uuid__": "318f03f3-b9d1-44d0-8da2-5fd7dcf99d61"
+      },
+      {
+        "__uuid__": "e599bbca-078c-4408-a388-ad6c1eabc343"
+      },
+      {
+        "__uuid__": "ed7e948a-8b84-4a63-ae74-d5e7e1bf28d8"
       }
     ],
     "_N$turn": 1,

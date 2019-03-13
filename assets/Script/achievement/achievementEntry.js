@@ -429,6 +429,13 @@ var allEnemyType = [
     }
   },
   {
+    type:"fireElement",
+    displayName:"火元素",
+    reward(level){
+      return [5,10,30,120,600][level]
+    }
+  },
+  {
     type:"gargoyle",
     displayName:"石像鬼",
     reward(level){
@@ -499,6 +506,13 @@ var allEnemyType = [
     }
   },
   {
+    type:"ooze",
+    displayName:"软泥怪",
+    reward(level){
+      return [5,10,30,120,600][level]
+    }
+  },
+  {
     type:"orcChief",
     displayName:"兽人酋长",
     reward(level){
@@ -515,6 +529,13 @@ var allEnemyType = [
   {
     type:"ratman",
     displayName:"鼠人",
+    reward(level){
+      return [5,10,30,120,600][level]
+    }
+  },
+  {
+    type:"scorpion",
+    displayName:"蝎子",
     reward(level){
       return [5,10,30,120,600][level]
     }

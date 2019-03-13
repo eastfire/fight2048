@@ -13,7 +13,7 @@ cc.Class({
       },
       desc: {
         get(){
-          return "攻击力高。\n经验值高。";
+          return "攻击力较高。\n经验值较高。";
         },
         override: true,
       },

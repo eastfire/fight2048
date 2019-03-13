@@ -69,10 +69,10 @@ export default {
     thief: ["eightArrowSkill","smokingBombSkill","treasureSkill","exchangeSkill"] //
   },
   initEnemyPool: [{type:"slime",subtype:"R"},{type:"slime",subtype:"B"},{type:"slime",subtype:"Y"}],
-  enemyList:["archer","ballista","catapult","gargoyle","ghost","golem","killerBee","kobold","medusa","mimic","minotaur",
+  enemyList:["archer","ballista","catapult","fireElement","gargoyle","ghost","golem","killerBee","kobold","medusa","mimic","minotaur",
   "mummy","ooze","orcChief","orge","ratman","scorpion","skeleton","shaman","snake","summoner","treant","troll","vampire"],
   bossPool:["bossHydra"],
-  // enemyList:["ooze"],
+  // enemyList:["fireElement"],
   reset(){
     this.ITEM_POOL = ["potion"]
     this.BASE_HP = this.ORIGIN_BASE_HP;

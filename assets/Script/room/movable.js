@@ -53,6 +53,7 @@ cc.Class({
     },
     start () {
       this.currentFrameNumber = 0;
+      this.levelIcon = cc.find("levelIcon",this.node);
       this.levelLabel = cc.find("levelIcon/levelLabel", this.node);//this.node.getChildByName("levelLabel")
       if ( this.levelLabel ) {
         this.levelLabel = this.levelLabel.getComponent(cc.Label)
@@ -72,6 +73,10 @@ cc.Class({
     },
     onDestroy() {
       this.node.destroy();
+    },
+    hideLevel(hide){
+      if (!this.levelIcon) return
+      this.levelIcon.active = !hide;
     },
     isMovable(){
       return this._isMovable && !this.getStatus("frozen");
@@ -269,11 +274,19 @@ cc.Class({
       },this)
     },
     generate(){
+
+
       this.node.setScale(0.1);
       this.node.runAction(
-        // cc.sequence(
+        cc.sequence(
+          cc.callFunc(function(){
+            //TODO FIXME more oo method
+            if ( Global.currentRoom.hero.getComponent("hero").getStatus("blind") ) {
+              this.hideLevel(true)
+            }
+          },this),
           cc.scaleTo( Global.GENERATE_TIME, 1,1)
-        // )
+        )
       )
     },
     gainStatus(status, turn, extra) {

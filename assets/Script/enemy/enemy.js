@@ -67,7 +67,6 @@ cc.Class({
         }
       }
     },
-
     starOfLevel(level){
       return Math.min(Global.MAX_STAR, Math.floor(this.level/Global.STAR_THRESHOLD))
     },

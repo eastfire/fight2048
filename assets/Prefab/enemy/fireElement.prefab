@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "archer",
+    "_name": "fireElement",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -46,8 +46,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 67,
-      "height": 67
+      "width": 40,
+      "height": 86
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -244,7 +244,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "dc2e2db8-bcb3-4d42-9251-3033279f0f16"
+      "__uuid__": "7efafc1d-184b-41db-b32a-9c78c5482dd2"
     },
     "fileId": "1fKEOSBHBOt7+9/w8fj1y5",
     "sync": false
@@ -379,7 +379,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "dc2e2db8-bcb3-4d42-9251-3033279f0f16"
+      "__uuid__": "7efafc1d-184b-41db-b32a-9c78c5482dd2"
     },
     "fileId": "9eELkHbDBCoLsYeclBrcUB",
     "sync": false
@@ -418,7 +418,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "dc2e2db8-bcb3-4d42-9251-3033279f0f16"
+      "__uuid__": "7efafc1d-184b-41db-b32a-9c78c5482dd2"
     },
     "fileId": "32ncZl851LLIg15tO+t4+Q",
     "sync": false
@@ -553,7 +553,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "dc2e2db8-bcb3-4d42-9251-3033279f0f16"
+      "__uuid__": "7efafc1d-184b-41db-b32a-9c78c5482dd2"
     },
     "fileId": "80bHsYTA9AV7PClBOHB/YQ",
     "sync": false
@@ -567,7 +567,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "26267e7d-2581-4f04-9555-e9ec7782ed49"
+      "__uuid__": "68a829cf-1d4a-4b44-91ea-3b699b9a3410"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -587,7 +587,7 @@
     "_id": ""
   },
   {
-    "__type__": "d003aBxuJNGUo8NodfdYImr",
+    "__type__": "02e98/4A45G/YlKvSgZohV2",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -596,9 +596,9 @@
     "_enabled": true,
     "atlas": null,
     "_N$level": 1,
+    "attackType": 1,
     "dexterity": 0,
     "immune": [],
-    "isUndead": true,
     "_id": ""
   },
   {
@@ -607,7 +607,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "dc2e2db8-bcb3-4d42-9251-3033279f0f16"
+      "__uuid__": "7efafc1d-184b-41db-b32a-9c78c5482dd2"
     },
     "fileId": "8boshtil9PNLzd/g2UM8Bp",
     "sync": false

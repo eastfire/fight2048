@@ -61,5 +61,8 @@ cc.Class({
         ))
       }
     },
+    hideLevel(hide){
+      //not Effect by blind
+    }
     // update (dt) {},
 });

@@ -416,9 +416,9 @@ cc.Class({
       // Global.currentRoomScene.gainSkill("horizontalSlashSkill")
       // Global.currentRoomScene.gainSkill("treasureSkill")
       // setTimeout(()=>{
-      //   this.hero.getComponent("hero").gainStatus("dizzy",-1)
-      //   this.hero.getComponent("hero").gainStatus("poison",-1)
-      // },1);
+        // this.hero.getComponent("hero").gainStatus("blind",3)
+        //this.hero.getComponent("hero").gainStatus("poison",-1)
+      // },1000);
     },
     initGenEnemyStrategy() {
       this.enemyFactory = new EnemyFactory();
