@@ -32,6 +32,17 @@ cc.Class({
       this.exchangeable = false;
     },
 
+    start () {
+      this._super();
+      this.node.y = this.node.y-80;
+      this.node.runAction(
+        cc.spawn(
+          cc.moveBy(Global.HERO_ATTACK_TIME/2, 0, 80).easing(cc.easeIn(1)),
+          cc.fadeIn(Global.HERO_ATTACK_TIME/2),
+        )
+      );
+    },
+    
     hideLevel(hide){
       //not Effect by blind
     },
