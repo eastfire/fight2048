@@ -52,7 +52,7 @@ cc.Class({
     this.scoreLabel.string = entry.score;
     this.turnLabel.string = entry.turn;
     this.timeLabel.string = this.formatDate(new Date(entry.createdAt), "yyyy-MM-dd HH:mm");
-    this.heroLevelLabel.string = "Lv"+entry.level;
+    this.heroLevelLabel.string = "Lv"+entry.detail.level;
 
     if ( entry.avatarUrl ) {
       cc.loader.load({

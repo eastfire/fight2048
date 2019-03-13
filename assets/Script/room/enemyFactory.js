@@ -147,7 +147,6 @@ cc.Class({
         }
         for ( var i =0 ; i < this.enemyPool.length; i++ ) {
           if ( this.enemyPool[i].type === type ) {
-            pass = false;
             return;
           }
         }
@@ -166,6 +165,7 @@ cc.Class({
         this.enemyPool.pop();
         this.enemyPool.unshift( monsterType )
       }
+      cc.log(this.enemyPool)
     }
 
     if ( Global.currentRoom.turn % Global.ENEMY_LEVEL_POOL_CHANGE_PER_TURN == 0) {
