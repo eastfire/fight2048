@@ -42,13 +42,13 @@ cc.Class({
         )
       );
     },
-    
+
     hideLevel(hide){
       //not Effect by blind
     },
 
     onTaken() {
-      Global.currentRoom.hero.getComponent("hero").gainExp((this.level+1)*this.level/2*Global.EXP_INFLATION_RATE)
+      Global.currentRoom.hero.getComponent("hero").gainExp(this.level*this.level*Global.EXP_INFLATION_RATE)
     },
     // update (dt) {},
 });
