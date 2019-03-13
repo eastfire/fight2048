@@ -98,7 +98,7 @@ var achievements = [
   },
 },
 {
-  name:"seenEnemy",
+  name:"seenEnemy3",
   title:"见多识广III",
   desc: "见到过30种敌人",
   prerequests: ["seenEnemy2"],
