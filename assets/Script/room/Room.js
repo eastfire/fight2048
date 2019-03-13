@@ -379,6 +379,7 @@ cc.Class({
     },
     turnEnd(){
       this._phase = "turnEnd";
+      this.delayPhaseTime = 0;
       this._movables.forEach(function(movable){
         movable.onTurnEnd();
       },this)
@@ -389,6 +390,15 @@ cc.Class({
       if ( this.hero.getComponent("hero").checkDead() ) {
         return;
       }
+      this.scheduleOnce(()=>{
+        if ( this.hero.getComponent("hero").checkLevelUp() ) {
+
+        } else {
+          this.afterTurnEnd();
+        }
+      },this.delayPhaseTime)
+    },
+    afterTurnEnd(){
       this.turn++;
       this.enemyFactory.maintain(this.turn);
       this.turnStart();
@@ -402,9 +412,9 @@ cc.Class({
       this.hero = hero;
       this.addMovable(this.hero, heroX, heroY)
 
-      // Global.currentRoomScene.gainSkill("forwardSlashSkill")
-      // Global.currentRoomScene.gainSkill("backwardSlashSkill")
-      // Global.currentRoomScene.gainSkill("healSkill")
+      // Global.currentRoomScene.gainSkill("exchangeSkill")
+      // Global.currentRoomScene.gainSkill("horizontalSlashSkill")
+      // Global.currentRoomScene.gainSkill("treasureSkill")
       // setTimeout(()=>{
       //   this.hero.getComponent("hero").gainStatus("dizzy",-1)
       //   this.hero.getComponent("hero").gainStatus("poison",-1)

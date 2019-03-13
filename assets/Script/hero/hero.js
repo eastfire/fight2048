@@ -279,6 +279,8 @@ cc.Class({
     } else {
       if ( Global.currentRoom._phase == "heroAttack") {
         Global.currentRoom.node.emit("enemy-attack-start")
+      } else if ( Global.currentRoom._phase == "turnEnd") {
+        Global.currentRoom.afterTurnEnd();
       } else { //另一种phase是waitUserInput
         Global.currentRoom.setAcceptInput(true);
       }

@@ -29,6 +29,7 @@ cc.Class({
     ctor: function () {
       this.type="iceWall"
       this._isMovable = false;
+      this.exchangeable = false;
     },
 
     onLoad () {

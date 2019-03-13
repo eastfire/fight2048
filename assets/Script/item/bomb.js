@@ -29,7 +29,7 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
     ctor: function () {
       this.type="bomb"
-
+      this.exchangeable = false;
     },
 
     onLoad () {
@@ -66,6 +66,7 @@ cc.Class({
     },
 
     explode(){
+      Global.currentRoom.delayPhaseTime = Global.HERO_ATTACK_TIME/2+0.05;
       var hero = Global.currentRoom.hero.getComponent("hero");
       var bombPosition = this.positions[0]
       var attackDetail = {

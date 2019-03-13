@@ -11,6 +11,7 @@ cc.Class({
         return (this.level+1)*this.level*Global.SCORE_INFLATION_RATE
       }
     },
+    exchangeable: true
   },
 
   // LIFE-CYCLE CALLBACKS:
