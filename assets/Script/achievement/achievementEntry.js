@@ -429,6 +429,20 @@ var allEnemyType = [
     }
   },
   {
+    type:"centaur",
+    displayName:"半人马射手",
+    reward(level){
+      return [5,15,60,300,1800][level]
+    }
+  },
+  {
+    type:"chomper",
+    displayName:"藤蔓怪",
+    reward(level){
+      return [5,10,30,120,600][level]
+    }
+  },
+  {
     type:"fireElement",
     displayName:"火元素",
     reward(level){
