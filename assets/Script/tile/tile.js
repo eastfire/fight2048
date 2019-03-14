@@ -63,7 +63,7 @@ cc.Class({
     gainStatus(statusName, turn, extra) {
       turn = turn || 1;
       if ( this.getStatus(statusName) ) {
-        this.getStatus(statusName).addDuration(turn);
+        this.getStatus(statusName).setDuration(turn);
         if ( extra )
           this.getStatus(statusName).setExtra(extra)
         return;

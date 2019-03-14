@@ -13,9 +13,6 @@ cc.Class({
   ctor(){
     this.statusName = "shield"
   },
-  addDuration(duration){
-    this.duration = duration;
-  },
   onGain(){
     cc.loader.loadRes("Prefab/shield",
       cc.Prefab,

@@ -294,7 +294,7 @@ cc.Class({
       if (!this.statusList) return;
       turn = turn || 1;
       if ( this.getStatus(status) ) {
-        this.getStatus(status).addDuration(turn);
+        this.getStatus(status).setDuration(turn);
         if ( extra )
           this.getStatus(status).setExtra(extra)
         return;

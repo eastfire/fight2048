@@ -13,8 +13,6 @@ cc.Class({
   ctor(){
     this.statusName = "slowed"
   },
-  addDuration(duration){
-    this.duration = duration;
-  },
+
   // update (dt) {},
 });

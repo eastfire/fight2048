@@ -13,8 +13,5 @@ cc.Class({
   ctor(){
     this.statusName = "stun"
   },
-  addDuration(duration){
-    this.duration = duration;
-  },
   // update (dt) {},
 });

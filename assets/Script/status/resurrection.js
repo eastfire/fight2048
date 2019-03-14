@@ -13,9 +13,7 @@ cc.Class({
   ctor(){
     this.statusName = "resurrection"
   },
-  addDuration(duration){
-    this.duration = duration;
-  },
+
   onTurnStart(){
       Global.currentRoom.hero.getComponent("hero").lostStatus("resurrection")
   }

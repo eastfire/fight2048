@@ -26,8 +26,8 @@ cc.Class({
       }
     }
   },
-  addDuration(duration){
-    this.duration+=duration;
+  setDuration(duration){
+    this.duration = Math.max(this.duration, duration);
   }
   // update (dt) {},
 });

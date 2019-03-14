@@ -13,9 +13,7 @@ cc.Class({
   ctor(){
     this.statusName = "prevent"
   },
-  addDuration(duration){
-    this.duration = duration;
-  },
+
   onGain(){
     cc.loader.loadRes("Prefab/dispelShield",
       cc.Prefab,
