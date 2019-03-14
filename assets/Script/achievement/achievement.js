@@ -40,7 +40,8 @@ cc.Class({
 
   click(){
     if ( Storage.rewardTaken[this.entry.name] )  return;
-    Global.AchievementScene.takeReward(this.entry)
+    this.rewardButton.interactable = false;
+    Global.AchievementScene.takeReward(this.entry, this.rewardButton)
   },
   // update (dt) {},
 });

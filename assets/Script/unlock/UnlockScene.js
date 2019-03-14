@@ -1,6 +1,7 @@
 import Global from "global";
 import Common from "common"
 import Storage from "storage";
+import Effect from "effect"
 import unlocks from "unlockEntry";
 
 cc.Class({
@@ -43,15 +44,18 @@ cc.Class({
         return Storage.unlocked[request];
       },this) )
     },
-    unlock(entry){
+    unlock(entry, button){
       if ( Global.MenuScene.star >= entry.price) {
-        Global.MenuScene.star -= entry.price;
-        Storage.unlock(entry.name);
-        if ( entry.onUnlock ) {
-          entry.onUnlock();
-        }
-        this.refresh();
-        Global.ModeSelectScene.refresh();
+        Effect.useStarInMenu( button.node.position, button.node.parent,
+          entry.price,
+          function(){
+            Storage.unlock(entry.name);
+            if ( entry.onUnlock ) {
+              entry.onUnlock();
+            }
+            this.refresh();
+            Global.ModeSelectScene.refresh();
+          }, this);
       }
     },
     refresh(){

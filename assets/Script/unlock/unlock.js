@@ -56,7 +56,8 @@ cc.Class({
   click(){
     if ( Global.MenuScene.star >= this.entry.price
     && !Storage.unlocked[this.entry.name]) {
-      Global.UnlockScene.unlock(this.entry);
+      this.unlockButton.interactable = false;
+      Global.UnlockScene.unlock(this.entry, this.unlockButton);
     }
   },
   // update (dt) {},

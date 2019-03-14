@@ -1,6 +1,7 @@
 import Global from "global"
 import Common from "common"
 import Storage from "storage"
+import Effect from "effect"
 import achievements from "achievementEntry"
 
 cc.Class({
@@ -56,10 +57,13 @@ cc.Class({
       this.achievementScroll.getComponent("listCtrl").setDataset(this.currentAchievements)
       this.achievementScroll.getComponent("listCtrl").initialize();
     },
-    takeReward(entry){
-      Global.MenuScene.star += entry.reward;
+    takeReward(entry, button){
+      Effect.gainStarInMenu( button.node.position, button.node.parent, entry.reward,
+        function(){
+          if ( Global.UnlockScene )
+            Global.UnlockScene.refresh();
+        }, this);
       Storage.takeReward(entry.name)
-      Global.UnlockScene.refresh();
       this.refresh();
     }
     // update (dt) {},
