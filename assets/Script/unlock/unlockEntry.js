@@ -367,6 +367,13 @@ export default {
       Storage.saveProgress();
     }
   },{
+    name:"blinkSkill",
+    displayName:"盗贼的闪现技能",
+    prerequests: ["thief"],
+    price: 100,
+    type:"skill",
+    icon: "Texture/Skill/blinkSkill"
+  },{
     name:"smokingBombSkill",
     displayName:"盗贼的烟雾弹技能",
     prerequests: ["thief"],
@@ -391,7 +398,7 @@ export default {
     name:"eightArrowSkill",
     displayName:"盗贼的八方箭技能",
     prerequests: ["thief"],
-    price: 500,
+    price: 1500,
     type:"skill",
     icon: "Texture/Skill/eightArrowSkill"
   },
