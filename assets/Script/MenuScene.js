@@ -79,7 +79,6 @@ cc.Class({
     Effect.gainStarInMenu( this.checkInButton.node.position, this.node,
       this.rewards[Math.min(this.rewards.length -1,Storage.progress.continueCheckInDay)],
       function(){
-        cc.log("XXXXXXXXXXXXXX")
         if ( Global.UnlockScene )
           Global.UnlockScene.refresh();
       }, this);
