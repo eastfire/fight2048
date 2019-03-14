@@ -75,7 +75,6 @@ export default {
   enemyList:["archer","ballista","catapult","centaur","chomper","fireElement","gargoyle","ghost","golem","killerBee","kobold","medusa","mimic","minotaur",
   "mummy","ooze","orcChief","orge","ratman","scorpion","skeleton","shaman","snake","summoner","treant","troll","vampire"],
   // enemyList:["centaur"],
-
   bossPool:["bossHydra"],
 
   reset(){

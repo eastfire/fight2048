@@ -30,6 +30,8 @@ cc.Class({
       cc.log(Storage.rewardTaken)
       cc.log("Storage.statistics")
       cc.log(Storage.statistics)
+      cc.log("Storage.progress")
+      cc.log(Storage.progress)
       Global.AchievementScene = this;
 
       this.initData();
