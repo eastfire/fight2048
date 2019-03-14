@@ -258,6 +258,55 @@ var achievements = [
   check:function(){
     return Storage.statistics.gameOver.wizardTurn >= 250;
   },
+},{
+  name:"thiefTurn1",
+  title:"盗贼试炼I",
+  desc: "坚持30回合",
+  needUnlocks: ["thief"],
+  reward: 5,
+  check:function(){
+    return Storage.statistics.gameOver.thiefTurn >= 30;
+  },
+},
+{
+  name:"thiefTurn2",
+  title:"盗贼试炼II",
+  desc: "坚持60回合",
+  prerequests: ["thiefTurn1"],
+  reward: 20,
+  check:function(){
+    return Storage.statistics.gameOver.thiefTurn >= 60;
+  },
+},
+{
+  name:"thiefTurn3",
+  title:"盗贼试炼III",
+  desc: "坚持100回合",
+  prerequests: ["thiefTurn2"],
+  reward: 50,
+  check:function(){
+    return Storage.statistics.gameOver.thiefTurn >= 100;
+  },
+},
+{
+  name:"thiefTurn4",
+  title:"盗贼试炼IV",
+  desc: "坚持150回合",
+  prerequests: ["thiefTurn3"],
+  reward: 200,
+  check:function(){
+    return Storage.statistics.gameOver.thiefTurn >= 150;
+  },
+},
+{
+  name:"thiefTurn5",
+  title:"盗贼试炼V",
+  desc: "坚持250回合",
+  prerequests: ["thiefTurn4"],
+  reward: 1000,
+  check:function(){
+    return Storage.statistics.gameOver.thiefTurn >= 250;
+  },
 },
 {
   name:"kill1starSlime",
@@ -426,6 +475,20 @@ var allEnemyType = [
     displayName:"投石车",
     reward(level){
       return [5,15,60,300,1800][level]
+    }
+  },
+  {
+    type:"centaur",
+    displayName:"半人马射手",
+    reward(level){
+      return [5,15,60,300,1800][level]
+    }
+  },
+  {
+    type:"chomper",
+    displayName:"藤蔓怪",
+    reward(level){
+      return [5,10,30,120,600][level]
     }
   },
   {

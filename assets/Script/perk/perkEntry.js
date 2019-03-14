@@ -7,14 +7,14 @@ export default {
   {
     name:"halfHpMore",
     title:"身强体壮",
-    desc:"生命多５０％",
+    desc:"生命多4０％",
     value: -4,
     apply(){
-      var rate = Global.BASE_HP/Global.ORIGIN_BASE_HP + 0.5;
+      var rate = Global.BASE_HP/Global.ORIGIN_BASE_HP + 0.4;
       Global.BASE_HP = Global.ORIGIN_BASE_HP * rate;
-      rate = Global.HP_PER_LEVEL/Global.ORIGIN_HP_PER_LEVEL + 0.5;
+      rate = Global.HP_PER_LEVEL/Global.ORIGIN_HP_PER_LEVEL + 0.4;
       Global.HP_PER_LEVEL = Global.ORIGIN_HP_PER_LEVEL * rate;
-      rate = Global.CONSTITUTION_EFFECT/Global.ORIGIN_CONSTITUTION_EFFECT + 0.5;
+      rate = Global.CONSTITUTION_EFFECT/Global.ORIGIN_CONSTITUTION_EFFECT + 0.4;
       Global.CONSTITUTION_EFFECT = Global.ORIGIN_CONSTITUTION_EFFECT * rate;
     }
   },
@@ -95,14 +95,14 @@ export default {
   {
     name:"halfHpLess",
     title:"体弱多病",
-    desc:"生命少５０％",
+    desc:"生命少4０％",
     value: 4,
     apply(){
-      var rate = Global.BASE_HP/Global.ORIGIN_BASE_HP - 0.5;
+      var rate = Global.BASE_HP/Global.ORIGIN_BASE_HP - 0.4;
       Global.BASE_HP = Global.ORIGIN_BASE_HP * rate;
-      rate = Global.HP_PER_LEVEL/Global.ORIGIN_HP_PER_LEVEL - 0.5;
+      rate = Global.HP_PER_LEVEL/Global.ORIGIN_HP_PER_LEVEL - 0.4;
       Global.HP_PER_LEVEL = Global.ORIGIN_HP_PER_LEVEL * rate;
-      rate = Global.CONSTITUTION_EFFECT/Global.ORIGIN_CONSTITUTION_EFFECT - 0.5;
+      rate = Global.CONSTITUTION_EFFECT/Global.ORIGIN_CONSTITUTION_EFFECT - 0.4;
       Global.CONSTITUTION_EFFECT = Global.ORIGIN_CONSTITUTION_EFFECT * rate;
     },
   },

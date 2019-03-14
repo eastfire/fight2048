@@ -15,9 +15,6 @@ cc.Class({
 
   start () {
 
-  },
-  addDuration(duration){
-    this.duration = duration;
   }
   // update (dt) {},
 });

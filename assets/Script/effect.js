@@ -51,7 +51,7 @@ var projectArrow = function( from, to ) {
   ))
 }
 
-var projectFireball = function( from, to ) {
+var projectFireball = function( from, to, opt ) {
   var angle = 0;
   if ( from.x == to.x ) {
     if ( from.y > to.y ) {
@@ -76,6 +76,7 @@ var projectFireball = function( from, to ) {
   projectile.y = from.y;
   projectile.rotation = angle;
   Global.currentRoom.node.addChild(projectile)
+  cc.log("pro fireball")
   projectile.runAction(cc.sequence(
     cc.moveTo(Global.ENEMY_ATTACK_TIME/2, to.x, to.y ),
     cc.removeSelf()
@@ -151,7 +152,7 @@ var useStarInRoom = function(toPosition, toParentNode, amount){
     ))
 
     star.runAction(cc.sequence(
-      cc.delayTime(0.05*i),
+      cc.delayTime(0.1*i),
       cc.moveTo(Global.GET_STAR_TIME, toPos.x, toPos.y).easing(cc.easeQuadraticActionIn()),
       cc.removeSelf()
     ))
@@ -198,8 +199,53 @@ var gainStarInMenu = function(fromPosition, parentNode, amount, callback, contex
   }
 }
 
-var useStarInMenu = function(){
+var useStarInMenu = function(toPosition, parentNode, amount, callback, context){
+  var starCount = Math.min(amount, 5);
+  var amountLeft = amount;
+  for ( var i = 0; i < starCount; i++ ) {
+    var step = Math.round(amountLeft/(starCount-i));
+    amountLeft -= step;
 
+    var star = cc.instantiate(Global.MenuScene.starPrefab);
+    let fromPos = Global.MenuScene.moneyLabel.node.position;
+
+    star.position = fromPos;
+    star.setScale(2)
+
+    let worldPos = parentNode.convertToWorldSpaceAR(
+      {
+        x: toPosition.x,
+        y: toPosition.y
+      }
+    );
+    let toPos = Global.MenuScene.node.convertToNodeSpaceAR(worldPos);
+
+    Global.MenuScene.node.addChild(star);
+
+    Global.MenuScene.moneyLabel.node.stopAllActions();
+    Global.MenuScene.moneyLabel.node.runAction(cc.sequence(
+      cc.scaleTo(Global.GET_STAR_TIME/2,0.8),
+      cc.scaleTo(Global.GET_STAR_TIME/2,1)
+    ))
+
+    star.runAction(cc.sequence(
+      cc.delayTime(0.1*i),
+      cc.callFunc(function(){
+        Global.MenuScene.star -= step
+        Global.MenuScene.moneyLabel.node.stopAllActions();
+        Global.MenuScene.moneyLabel.node.runAction(cc.sequence(
+          cc.scaleTo(Global.GET_STAR_TIME/2,0.8),
+          cc.scaleTo(Global.GET_STAR_TIME/2,1)
+        ))
+      },this),
+      cc.moveTo(Global.GET_STAR_TIME, toPos.x, toPos.y).easing(cc.easeQuadraticActionIn()),
+      i==(starCount-1)?cc.callFunc(
+        callback,
+        context
+      ): cc.delayTime(0.01),
+      cc.removeSelf()
+    ))
+  }
 }
 
 export default {

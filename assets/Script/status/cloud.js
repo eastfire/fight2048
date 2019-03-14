@@ -13,9 +13,7 @@ cc.Class({
   ctor(){
     this.statusName = "cloud"
   },
-  addDuration(duration){
-    this.duration = duration;
-  },
+
   onGain(tile){
     this.cloudSprite = cc.instantiate(Global.currentRoom.cloudPrefab)
     let worldPos = Global.currentRoom.node.convertToWorldSpaceAR(

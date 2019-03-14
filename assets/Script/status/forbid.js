@@ -17,9 +17,7 @@ cc.Class({
   start () {
 
   },
-  addDuration(duration){
-    this.duration = duration;
-  },
+
   onGain(){
     Global.currentRoomScene.forEachActiveSkill(function(skill){
       if ( !skill.isPassive )

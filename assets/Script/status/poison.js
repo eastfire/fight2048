@@ -13,9 +13,7 @@ cc.Class({
   ctor(){
     this.statusName = "poison"
   },
-  addDuration(duration){
-    this.duration = duration;
-  },
+
   onTurnStart(){
     Global.currentRoom.hero.getComponent("hero").loseHp(1,{type:"poison", amount: 1})
   },

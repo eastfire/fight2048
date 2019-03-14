@@ -17,9 +17,7 @@ cc.Class({
   start () {
 
   },
-  addDuration(duration){
-    this.duration = duration;
-  },
+
   onGain(){
     Global.currentRoom.foreachMovable(function(movable){
       movable.hideLevel(true)

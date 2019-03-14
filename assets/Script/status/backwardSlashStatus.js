@@ -18,9 +18,7 @@ cc.Class({
   start () {
 
   },
-  addDuration(duration){
-    this.duration = duration;
-  },
+
   beforeNormalAttack(hero){
     this.scheduleOnce(()=>{
       var enemy2 = Global.currentRoom.getMovableByPosition(Common.getDecrementPosition(hero.positions[0], hero.face));

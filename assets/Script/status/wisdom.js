@@ -13,9 +13,6 @@ cc.Class({
   ctor(){
     this.statusName = "wisdom"
   },
-  addDuration(duration){
-    this.duration = duration;
-  },
   onGain(){
     var hero = Global.currentRoom.hero.getComponent("hero")
     hero.wisdom += this.extra.effect;

@@ -22,6 +22,14 @@ cc.Class({
         default: 0,
         visible: false,
       },
+      position: {
+        get(){
+          return {
+            x: this.x,
+            y: this.y
+          }
+        }
+      }
     },
 
     ctor: function () {
@@ -55,7 +63,7 @@ cc.Class({
     gainStatus(statusName, turn, extra) {
       turn = turn || 1;
       if ( this.getStatus(statusName) ) {
-        this.getStatus(statusName).addDuration(turn);
+        this.getStatus(statusName).setDuration(turn);
         if ( extra )
           this.getStatus(statusName).setExtra(extra)
         return;

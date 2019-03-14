@@ -18,9 +18,7 @@ cc.Class({
   start () {
 
   },
-  addDuration(duration){
-    this.duration = duration;
-  },
+
   beforeNormalAttack(hero){
     this.scheduleOnce(()=>{
       var forwardPosition = Common.getIncrementPosition(hero.positions[0], hero.face)

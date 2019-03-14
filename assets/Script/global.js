@@ -55,8 +55,10 @@ export default {
   selectedPerk: [],
   currentSkillPool: [],
 
+  heroInitSkill: [],
+  // heroInitSkill: ["meteorShowerSkill"],
   basicSkill: ["coolingSkill","constitutionSkill","dexteritySkill","luckSkill"],
-  // basicSkill: ["smokingBombSkill"],
+  // basicSkill: ["meteorShowerSkill"],
   heroBasicSkill: {
     normal: ["forwardSlashSkill","horizontalSlashSkill","verticalSlashSkill"],
     wizard: ["missileSkill","spiderWebSkill","iceWallSkill"],
@@ -67,13 +69,14 @@ export default {
     normal: ["backwardSlashSkill","whirlSkill","bigWhirlSkill","crossSlashSkill"], //charge
     wizard: ["teleportSkill","meteorShowerSkill","lighteningSkill","fireballSkill"], //tornado
     cleric: ["turnUndeadSkill","resurrectionSkill","wisdomSkill"], //
-    thief: ["eightArrowSkill","smokingBombSkill","treasureSkill","exchangeSkill"] //
+    thief: ["eightArrowSkill","smokingBombSkill","treasureSkill","exchangeSkill","blinkSkill"] //
   },
   initEnemyPool: [{type:"slime",subtype:"R"},{type:"slime",subtype:"B"},{type:"slime",subtype:"Y"}],
-  enemyList:["archer","ballista","catapult","fireElement","gargoyle","ghost","golem","killerBee","kobold","medusa","mimic","minotaur",
+  enemyList:["archer","ballista","catapult","centaur","chomper","fireElement","gargoyle","ghost","golem","killerBee","kobold","medusa","mimic","minotaur",
   "mummy","ooze","orcChief","orge","ratman","scorpion","skeleton","shaman","snake","summoner","treant","troll","vampire"],
+  // enemyList:["centaur"],
   bossPool:["bossHydra"],
-  // enemyList:["fireElement"],
+
   reset(){
     this.ITEM_POOL = ["potion"]
     this.BASE_HP = this.ORIGIN_BASE_HP;
