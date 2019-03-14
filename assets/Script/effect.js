@@ -158,8 +158,44 @@ var useStarInRoom = function(toPosition, toParentNode, amount){
   }
 }
 
-var gainStarInMenu = function(){
+var gainStarInMenu = function(fromPosition, parentNode, amount, callback, context){
+  var starCount = Math.min(amount, 5)
+  var amountLeft = amount;
+  for ( var i = 0; i < starCount; i++ ){
+    var step = Math.round(amountLeft/(starCount-i));
+    amountLeft -= step;
 
+    var star = cc.instantiate(Global.MenuScene.starPrefab);
+    let worldPos = parentNode.convertToWorldSpaceAR(
+      {
+        x: fromPosition.x,
+        y: fromPosition.y
+      }
+    );
+    let viewPos = Global.MenuScene.node.convertToNodeSpaceAR(worldPos);
+    star.position = viewPos;
+    star.setScale(2)
+    Global.MenuScene.node.addChild(star);
+
+    let destPos = Global.MenuScene.moneyLabel.node.position;
+    star.runAction(cc.sequence(
+      cc.delayTime(0.1*i),
+      cc.moveTo(Global.GET_STAR_TIME, destPos.x, destPos.y).easing(cc.easeQuadraticActionIn()),
+      cc.callFunc(function(){
+        Global.MenuScene.star += step
+        Global.MenuScene.moneyLabel.node.stopAllActions();
+        Global.MenuScene.moneyLabel.node.runAction(cc.sequence(
+          cc.scaleTo(Global.GET_STAR_TIME/2,1.3),
+          cc.scaleTo(Global.GET_STAR_TIME/2,1)
+        ))
+      },this),
+      i==(starCount-1)?cc.callFunc(
+        callback,
+        context
+      ): cc.delayTime(0.01),
+      cc.removeSelf()
+    ))
+  }
 }
 
 var useStarInMenu = function(){

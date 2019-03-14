@@ -9470,6 +9470,9 @@
     "checkedIcon": {
       "__id__": 15
     },
+    "starPrefab": {
+      "__uuid__": "8ad76baa-d0c1-4225-ba36-61e33a7d0148"
+    },
     "_N$star": 0,
     "_id": "4c5XZvaxdHKp45i2u00gTz"
   }

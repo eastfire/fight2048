@@ -1,5 +1,6 @@
 import Global from "global"
 import Storage from "storage"
+import Effect from "effect"
 
 const MS_OF_MINUTE = 60000;
 const MS_OF_DAY = 3600*24*1000;
@@ -15,8 +16,6 @@ cc.Class({
         if ( this.star == oldValue ) return;
         Storage.saveMoney(this.star);
         this.moneyLabel.string = this.star;
-        if ( Global.UnlockScene )
-          Global.UnlockScene.refresh();
       },
       visible:false
     },
@@ -24,6 +23,7 @@ cc.Class({
     checkInButton: cc.Button,
     checkInLabel: cc.Label,
     checkedIcon: cc.Sprite,
+    starPrefab: cc.Prefab,
   },
 
   // LIFE-CYCLE CALLBACKS:
@@ -76,7 +76,13 @@ cc.Class({
     Storage.progress.lastCheckInDay = nowDay;
     Storage.progress.continueCheckInDay = Storage.progress.continueCheckInDay || 0;
     //TODO show effect
-    this.star += this.rewards[Math.min(this.rewards.length -1,Storage.progress.continueCheckInDay)]
+    Effect.gainStarInMenu( this.checkInButton.node.position, this.node,
+      this.rewards[Math.min(this.rewards.length -1,Storage.progress.continueCheckInDay)],
+      function(){
+        cc.log("XXXXXXXXXXXXXX")
+        if ( Global.UnlockScene )
+          Global.UnlockScene.refresh();
+      }, this);
     Storage.progress.continueCheckInDay++;
     Storage.saveProgress();
     this.checkCheckIn();
