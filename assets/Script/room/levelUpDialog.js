@@ -55,6 +55,7 @@ cc.Class({
     onRefresh() {
       if ( Global.currentRoomScene.star >= this.price ) {
         Global.currentRoomScene.star -= this.price;
+        Effect.useStarInRoom(this.refreshButton.node.position, this.node, this.price)
         this.price = this.price*2;
         this.generateList();
       }

@@ -105,7 +105,7 @@ var gainStarInRoom = function(fromPosition, callback, context) {
       y: fromPosition.y
     }
   );
-  let viewPos = Global.currentRoomScene.effectLayer.convertToNodeSpaceAR(worldPos);
+  let viewPos = Global.currentRoomScene.node.convertToNodeSpaceAR(worldPos);
   star.position = viewPos;
   star.setScale(2)
   Global.currentRoomScene.node.addChild(star);
@@ -126,33 +126,36 @@ var gainStarInRoom = function(fromPosition, callback, context) {
 }
 
 var useStarInRoom = function(toPosition, toParentNode, amount){
-  var star = cc.instantiate(Global.currentRoom.starPrefab);
-  let fromPos = Global.currentRoomScene.moneyLabel.node.position;
+  var starCount = Math.min(amount, 5);
+  for ( var i = 0; i < starCount; i++ ) {
+    var star = cc.instantiate(Global.currentRoom.starPrefab);
+    let fromPos = Global.currentRoomScene.moneyLabel.node.position;
 
-  star.position = fromPos;
-  star.setScale(2)
+    star.position = fromPos;
+    star.setScale(2)
 
-  let worldPos = toParentNode.convertToWorldSpaceAR(
-    {
-      x: toPosition.x,
-      y: toPosition.y
-    }
-  );
-  let toPos = Global.currentRoomScene.effectLayer.convertToNodeSpaceAR(worldPos);
+    let worldPos = toParentNode.convertToWorldSpaceAR(
+      {
+        x: toPosition.x,
+        y: toPosition.y
+      }
+    );
+    let toPos = Global.currentRoomScene.node.convertToNodeSpaceAR(worldPos);
 
-  Global.currentRoomScene.node.addChild(star);
+    Global.currentRoomScene.node.addChild(star);
 
-  Global.currentRoomScene.star -= amount;
-  Global.currentRoomScene.moneyLabel.node.stopAllActions();
-  Global.currentRoomScene.moneyLabel.node.runAction(cc.sequence(
-    cc.scaleTo(Global.GET_STAR_TIME/2,0.7),
-    cc.scaleTo(Global.GET_STAR_TIME/2,1)
-  ))
+    Global.currentRoomScene.moneyLabel.node.stopAllActions();
+    Global.currentRoomScene.moneyLabel.node.runAction(cc.sequence(
+      cc.scaleTo(Global.GET_STAR_TIME/2,0.8),
+      cc.scaleTo(Global.GET_STAR_TIME/2,1)
+    ))
 
-  star.runAction(cc.sequence(
-    cc.moveTo(Global.GET_STAR_TIME, toPos.x, toPos.y).easing(cc.easeQuadraticActionIn()),
-    cc.removeSelf()
-  ))
+    star.runAction(cc.sequence(
+      cc.delayTime(0.05*i),
+      cc.moveTo(Global.GET_STAR_TIME, toPos.x, toPos.y).easing(cc.easeQuadraticActionIn()),
+      cc.removeSelf()
+    ))
+  }
 }
 
 var gainStarInMenu = function(){
