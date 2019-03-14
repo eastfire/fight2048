@@ -51,7 +51,7 @@ var projectArrow = function( from, to ) {
   ))
 }
 
-var projectFireball = function( from, to ) {
+var projectFireball = function( from, to, opt ) {
   var angle = 0;
   if ( from.x == to.x ) {
     if ( from.y > to.y ) {
@@ -76,6 +76,7 @@ var projectFireball = function( from, to ) {
   projectile.y = from.y;
   projectile.rotation = angle;
   Global.currentRoom.node.addChild(projectile)
+  cc.log("pro fireball")
   projectile.runAction(cc.sequence(
     cc.moveTo(Global.ENEMY_ATTACK_TIME/2, to.x, to.y ),
     cc.removeSelf()

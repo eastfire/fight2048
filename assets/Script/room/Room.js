@@ -421,13 +421,13 @@ cc.Class({
       this.hero = hero;
       this.addMovable(this.hero, heroX, heroY)
 
-      // Global.currentRoomScene.gainSkill("exchangeSkill")
-      // Global.currentRoomScene.gainSkill("horizontalSlashSkill")
-      // Global.currentRoomScene.gainSkill("treasureSkill")
+      Global.heroInitSkill.forEach(function(skillName){
+        Global.currentRoomScene.gainSkill(skillName)
+      })
       // setTimeout(()=>{
         // this.hero.getComponent("hero").gainStatus("blind",3)
         //this.hero.getComponent("hero").gainStatus("poison",-1)
-      // },1000);
+      // },1);
     },
     initGenEnemyStrategy() {
       this.enemyFactory = new EnemyFactory();

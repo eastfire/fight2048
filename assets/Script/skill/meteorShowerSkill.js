@@ -1,7 +1,7 @@
 import Skill from "skill";
 import Global from "../global"
 const Common = require("common");
-import Enemy from "../enemy/enemy"
+const Effect = require("effect")
 
 cc.Class({
   extends: Skill,
@@ -9,7 +9,7 @@ cc.Class({
   properties: {
     effect:{
       get(){
-        return 5+this.level;
+        return 6+this.level*2;
       }
     },
   },
@@ -19,49 +19,60 @@ cc.Class({
     this.skillName = "meteorShowerSkill"
     this.icon="Skill/meteorShowerSkill";
     this.displayName = "陨石雨"
-    this.desc = "随机攻击6个敌人";
+    this.desc = "天降8个陨石随机攻击，可能会打空";
   },
   levelUpDesc(level){
-    return "多攻击1个敌人，但冷却时间增加1回合"
+    return "多召唤2个陨石，但冷却时间增加2回合"
   },
   onLoad () {
     this._super()
   },
   start () {
     this._super()
-    this.coolDown = 25+Global.SKILL_WAIT_ADJUST;
+    this.coolDown = 18+Global.SKILL_WAIT_ADJUST;
   },
   onLevelUp(level){
-    this.coolDown+=1;
+    this.coolDown+=2;
   },
   onUsed() {
     var hero = Global.currentRoom.hero.getComponent("hero");
     var heroPosition = hero.positions[0];
 
-    Common.sample(Global.currentRoom.filterMovable(function(movable){
-      return movable instanceof Enemy;
+    Common.sample(Global.currentRoom.filterTile(function(tile){
+      return tile.isPassable(hero);
     },this), this.effect).forEach(
-        function(enemy){
-          var attackDetail = {
-            fromPosition:{
-              x:enemy.positions[0].x,
-              y:enemy.positions[0].y+1
-            },
-            type:Common.ATTACK_TYPE_SKILL
-          };
-          if ( enemy.checkHit(hero, attackDetail) ) {
-            enemy.beHit(hero, attackDetail);
-          } else {
-            //miss
-            enemy.dodgeAttack(hero, attackDetail);
-          }
+        function(tile){
+          var movable = Global.currentRoom.getMovableByTile(tile);
+          //TODO fireball effect
+          var drawPostion = Global.currentRoom.getDrawPosition(tile.position)
+          Global.currentRoomScene.scheduleOnce(()=>{
+            Effect.projectFireball({
+              x:drawPostion.x,
+              y:drawPostion.y+80
+            },drawPostion)
+            if ( movable && movable.getComponent("enemy") ) {
+              var attackDetail = {
+                fromPosition:{
+                  x:movable.positions[0].x,
+                  y:movable.positions[0].y+1
+                },
+                type:Common.ATTACK_TYPE_SKILL
+              };
+              if ( movable.checkHit(hero, attackDetail) ) {
+                movable.beHit(hero, attackDetail);
+              } else {
+                //miss
+                movable.dodgeAttack(hero, attackDetail);
+              }
+            }
+          },Math.random()*Global.HERO_ATTACK_TIME)
         }
     ,this)
 
     //TODO skill EFFECT
     this.scheduleOnce(function(){
       hero.afterUseSkill()
-    }, Global.HERO_ATTACK_TIME);
+    }, Global.HERO_ATTACK_TIME*2);
   }
   // update (dt) {},
 });

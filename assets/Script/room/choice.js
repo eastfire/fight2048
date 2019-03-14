@@ -30,6 +30,7 @@ cc.Class({
       this.node.on("touchend",this.choose,this)
     },
     choose(){
+      this.node.off("touchend",this.choose,this)
       this.choice.onChosen();
       this.dialog.onOk();
     }

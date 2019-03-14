@@ -22,6 +22,14 @@ cc.Class({
         default: 0,
         visible: false,
       },
+      position: {
+        get(){
+          return {
+            x: this.x,
+            y: this.y
+          }
+        }
+      }
     },
 
     ctor: function () {

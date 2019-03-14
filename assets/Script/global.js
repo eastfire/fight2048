@@ -55,8 +55,10 @@ export default {
   selectedPerk: [],
   currentSkillPool: [],
 
+  heroInitSkill: [],
+  heroInitSkill: ["meteorShowerSkill"],
   basicSkill: ["coolingSkill","constitutionSkill","dexteritySkill","luckSkill"],
-  // basicSkill: ["blinkSkill"],
+  // basicSkill: ["meteorShowerSkill"],
   heroBasicSkill: {
     normal: ["forwardSlashSkill","horizontalSlashSkill","verticalSlashSkill"],
     wizard: ["missileSkill","spiderWebSkill","iceWallSkill"],
