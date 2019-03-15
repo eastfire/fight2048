@@ -58,7 +58,7 @@ export default {
   heroInitSkill: [],
   // heroInitSkill: ["meteorShowerSkill"],
   basicSkill: ["coolingSkill","constitutionSkill","dexteritySkill","luckSkill"],
-  basicSkill: ["fireballSkill"],
+  // basicSkill: ["fireballSkill"],
   heroBasicSkill: {
     normal: ["forwardSlashSkill","horizontalSlashSkill","verticalSlashSkill"],
     wizard: ["missileSkill","spiderWebSkill","iceWallSkill"],
