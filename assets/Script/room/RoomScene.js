@@ -291,7 +291,6 @@ cc.Class({
         )))
       } else {
         if ( !this.dyingIndicator.node.active ) return;
-        cc.log("not dying")
         this.dyingIndicator.node.stopAllActions();
         this.dyingIndicator.node.active = false;
       }

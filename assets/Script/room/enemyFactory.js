@@ -3,8 +3,26 @@ const Storage = require("storage");
 const Common = require("common");
 const Boss = require("boss")
 
-cc.Class({
+var EnemyFactory = cc.Class({
   extends: cc.Component,
+
+  statics: {
+    checkTileForBoss(tile, considerMovable){
+      var tempBoss = new Boss();
+      for ( var i = 0; i < tempBoss.relativePositions.length; i++){
+        var position = tempBoss.relativePositions[i];
+        var x = tile.x + position.x;
+        var y = tile.y + position.y;
+        var checkTile = Global.currentRoom.getTile(x,y)
+        if ( !checkTile || !checkTile.canGenEnemy() ) {
+          return false;
+        } else if ( considerMovable && Global.currentRoom.getMovableByTile(checkTile) ) {
+          return false;
+        }
+      }
+      return true;
+    },
+  },
 
   properties: {
   },
@@ -74,7 +92,7 @@ cc.Class({
     }
     var boss = null;
     var tiles = Global.currentRoom.filterTile(function(tile){
-        return this.checkTileForBoss(tile)
+        return EnemyFactory.checkTileForBoss(tile, true)
       },
     this)
     var candidate = Common.sample(tiles)
@@ -85,18 +103,7 @@ cc.Class({
     return boss;
   },
 
-  checkTileForBoss(tile){
-    var tempBoss = new Boss();
-    for ( var i = 0; i < tempBoss.relativePositions.length; i++){
-      var position = tempBoss.relativePositions[i];
-      var x = tile.x + position.x;
-      var y = tile.y + position.y;
-      var checkTile = Global.currentRoom.getTile(x,y)
-      if ( !checkTile || !checkTile.canGenEnemy() || Global.currentRoom.getMovableByTile(checkTile) )
-        return false;
-    }
-    return true;
-  },
+
 
   generateOneEnemy(x,y, typeObj, level){
     var type = typeof typeObj === "string" ? typeObj: typeObj.type;
