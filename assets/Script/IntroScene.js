@@ -1,11 +1,12 @@
 import Storage from "storage"
 import Global from "global"
+import Common from "common"
 
 cc.Class({
   extends: cc.Component,
 
   properties: {
-
+    loading: cc.Prefab
   },
   onLoad: function() {
     cc.debug._resetDebugSetting(cc.debug.DebugMode.INFO);
@@ -44,9 +45,9 @@ cc.Class({
       //first time game
       Global.reset();
       Global.currentHeroType = "normal"
-      cc.director.loadScene("RoomScene");
+      Common.loadScene("RoomScene", this.node, this.loading)
     } else {
-      cc.director.loadScene("MenuScene");
+      Common.loadScene("MenuScene", this.node, this.loading)
     }
   }
 });

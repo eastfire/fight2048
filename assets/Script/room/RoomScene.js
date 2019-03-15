@@ -43,7 +43,8 @@ cc.Class({
         notify(oldValue){
           if ( oldValue == this.score ) return;
           this.scoreLabel.string = this.score;
-        }
+        },
+        visible: false
       },
       star: {
         default: 0,
@@ -51,13 +52,15 @@ cc.Class({
           if ( oldValue == this.star ) return;
           Storage.saveMoney(this.star)
           this.moneyLabel.string = this.star;
-        }
+        },
+        visible: false
       },
       descDialog: cc.Prefab,
       gameOverDialog: cc.Prefab,
       dieDialog: cc.Prefab,
       shiftArrowSprite: cc.Sprite,
       exitDialog: cc.Prefab,
+      loading: cc.Prefab,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -65,6 +68,7 @@ cc.Class({
     onLoad () {
       Global.currentRoomScene = this;
       Global.currentRoom = this.room;
+      Global.loading = this.loading;
       this.skill = [];
 
       this.initEvent();

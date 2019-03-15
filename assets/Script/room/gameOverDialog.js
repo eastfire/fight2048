@@ -1,4 +1,5 @@
 import Global from "global"
+import Common from "common"
 import Storage from "storage"
 import LeanCloudDataSource from "LeanCloudDataSource";
 
@@ -188,23 +189,23 @@ cc.Class({
     toScoreBoard() {
       Global.currentRoom.destroy();
       Global.currentRoom = null;
-      Global.currentRoomScene = null;
-      cc.director.loadScene("MenuScene",function(){
+      Common.loadScene("MenuScene",Global.currentRoomScene.node, Global.loading, function(){
         Global.MenuScene.toPage(null, 3)
       });
+      Global.currentRoomScene = null;
     },
     home() {
       Global.currentRoom.destroy();
       Global.currentRoom = null;
+      Common.loadScene("MenuScene",Global.currentRoomScene.node,Global.loading);
       Global.currentRoomScene = null;
-      cc.director.loadScene("MenuScene");
     },
     restart(){
       this.node.runAction(cc.sequence(
         cc.fadeOut(Global.DIALOG_EXIT_TIME),
         cc.callFunc(function(){
-          cc.director.loadScene("RoomScene")
-        })
+          Common.loadScene("RoomScene", Global.currentRoomScene.node, Global.loading)
+        },this)
       ))
     },
     onDestroy(){

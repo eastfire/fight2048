@@ -1,7 +1,0 @@
-{
-  "ver": "1.0.0",
-  "uuid": "e0c72bc5-2889-44dd-bbcb-877d3c993894",
-  "atlasJson": "{\"SubTexture\":[{\"x\":1,\"y\":1,\"width\":120,\"name\":\"slime-blue\",\"height\":120}],\"imagePath\":\"slime_tex.png\",\"width\":128,\"name\":\"slime\",\"height\":128}",
-  "texture": "4bae50a2-c9c1-4e3d-983a-9644e63528d9",
-  "subMetas": {}
-}

@@ -1,4 +1,5 @@
 import Global from "global"
+import Common from "common"
 import Storage from "storage"
 import Effect from "effect"
 
@@ -24,6 +25,7 @@ cc.Class({
     checkInLabel: cc.Label,
     checkedIcon: cc.Sprite,
     starPrefab: cc.Prefab,
+    loading: cc.Prefab
   },
 
   // LIFE-CYCLE CALLBACKS:
@@ -106,7 +108,8 @@ cc.Class({
     Global.ModeSelectScene = null;
     Global.UnlockScene = null;
     Global.AchievementScene = null;
-    cc.director.loadScene("RoomScene");
+
+    Common.loadScene("RoomScene",this.node, this.loading);
   }
   // update (dt) {},
 });
