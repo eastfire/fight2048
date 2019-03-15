@@ -70,8 +70,8 @@ cc.Class({
       this.starAnimation();
     },
     starAnimation(){
-      // this.mainSprite.node.anchorY = 0;
-      // this.mainSprite.node.y = -Global.TILE_HEIGHT/2;
+      this.mainSprite.node.anchorY = 0;
+      this.mainSprite.node.y = -Global.TILE_HEIGHT/2+20;
       // this.mainSprite.node.skewX=10;
       this.mainSprite.node.setScale(0.9,1.1)
       var TIME = 0.4;
