@@ -66,6 +66,13 @@ cc.Class({
           this.starList.node.addChild(star)
         }
       }
+
+      // this.node.runAction(cc.repeatForever(
+      //   cc.sequence(
+      //     cc.fadeTo(1,55).easing(cc.easeIn(1)),
+      //     cc.fadeTo(1,0).easing(cc.easeOut(1))
+      //   )
+      // ))
     },
     starOfLevel(level){
       return Math.min(Global.MAX_STAR, Math.floor(this.level/Global.STAR_THRESHOLD))
