@@ -65,9 +65,6 @@ cc.Class({
     if (model.getComponent("item")) return;
     if (this.getEffectRate(model) > Math.random() ){
       turn += Math.min(2, Math.floor(this.level/18));
-      if ( model.getComponent("hero") ) {
-        turn += Global.NEGATIVE_EFFECT_TIME_ADJUST;
-      }
       model.gainStatus("stun",turn)
     }
   },

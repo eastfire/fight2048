@@ -37,7 +37,7 @@ export default {
   ORIGIN_NEGATIVE_EFFECT_TIME_ADJUST : 0,
   ORIGIN_ITEM_LEVEL_ADJUST: 0,
 
-  NEGATIVE_EFFECTS : ["frozen","cursed","dizzy","forbid","poison","blind","stun"],
+  NEGATIVE_EFFECTS : ["frozen","cursed","dizzy","forbid","poison","blind","stun","slowed"],
 
   ENEMY_POOL_CHANGE_PER_TURN: 29,
   ENEMY_LEVEL_POOL_CHANGE_PER_TURN: 53,

@@ -361,6 +361,9 @@ cc.Class({
       return maxStep;
     },
     checkAllMovableMoved(){
+      if ( this.hero.getComponent("hero").checkDead() ) {
+        return;
+      }
       this.node.emit("all-move-complete");
     },
     passCheckCondition() {
