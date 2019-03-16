@@ -10,8 +10,7 @@ cc.Class({
       get(){
         return (this.level+1)*this.level*Global.SCORE_INFLATION_RATE
       }
-    },
-    exchangeable: true
+    }
   },
 
   // LIFE-CYCLE CALLBACKS:
@@ -19,6 +18,8 @@ cc.Class({
     this.isAllFaceSame = true;
     this.isMergeToSelfType = true;
     this.accept = []
+    this.exchangeable = true;
+    this.breakable = false;
   },
 
   onLoad () {
@@ -38,6 +39,7 @@ cc.Class({
   },
 
   crash(detail){
+    if ( !this.breakable ) return;
     var fromPosition = detail.fromPosition
     var point = this.positions[0]
     var deltaX = Global.TILE_WIDTH*(Math.max(-1,Math.min(1,fromPosition.x - point.x)) )/4;

@@ -56,7 +56,7 @@ export default {
   currentSkillPool: [],
 
   heroInitSkill: [],
-  // heroInitSkill: ["meteorShowerSkill"],
+  // heroInitSkill: ["angelSkill"],
   basicSkill: ["coolingSkill","constitutionSkill","dexteritySkill","luckSkill"],
   // basicSkill: ["meteorShowerSkill"],
   heroBasicSkill: {
@@ -68,7 +68,7 @@ export default {
   heroUnlockableSkill: {
     normal: ["backwardSlashSkill","whirlSkill","bigWhirlSkill","crossSlashSkill"], //charge
     wizard: ["teleportSkill","meteorShowerSkill","lighteningSkill","fireballSkill"], //tornado
-    cleric: ["turnUndeadSkill","resurrectionSkill","wisdomSkill"], //
+    cleric: ["turnUndeadSkill","resurrectionSkill","wisdomSkill","angelSkill"], //
     thief: ["eightArrowSkill","smokingBombSkill","treasureSkill","exchangeSkill","blinkSkill"] //
   },
   initEnemyPool: [{type:"slime",subtype:"R"},{type:"slime",subtype:"B"},{type:"slime",subtype:"Y"}],

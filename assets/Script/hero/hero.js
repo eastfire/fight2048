@@ -103,7 +103,6 @@ cc.Class({
     this.type = "hero";
     this.subtype = "normal";
     this.isMergeToSelfType = false;
-    this.forwardAfterKill = Global.FORWARD_AFTER_KILL;
     this.accept = ["potion","poisonPotion","tomb"]
     this.dead = false;
   },
@@ -171,7 +170,7 @@ cc.Class({
         var noItemAhead = !hitResult.dropItemPosition || hitResult.dropItemPosition.x !== newPosition.x ||
         hitResult.dropItemPosition.y !== newPosition.y;
 
-        if ( this.forwardAfterKill && this.isMovable() && noItemAhead ) {
+        if ( Global.FORWARD_AFTER_KILL && this.isMovable() && noItemAhead ) {
           this.forward(function(){
             this.afterHit(enemy);
           },this);

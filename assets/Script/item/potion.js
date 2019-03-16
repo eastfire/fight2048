@@ -33,17 +33,10 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
     ctor: function () {
       this.type="potion"
+      this.breakable = true;
     },
 
-    onLoad () {
-      this._super();
-    },
-
-    start () {
-      this._super();
-    },
-
-    onTaken() {
+   onTaken() {
       Global.currentRoom.hero.getComponent("hero").gainHp(this.effect)
     },
     // update (dt) {},

@@ -33,6 +33,7 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
     ctor: function () {
       this.type="poisonPotion"
+      this.breakable = true;
     },
 
     onLoad () {

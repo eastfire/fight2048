@@ -462,6 +462,11 @@ cc.Class({
     },
     heroAttack(){
       this._phase = "heroAttack"
+      this.foreachMovable(function(movable){
+        if ( !movable.getComponent("hero") && movable.beforeHeroNormalAttack ) {
+          movable.beforeHeroNormalAttack();
+        }
+      },this)
       this.hero.getComponent("hero").normalAttack();
     },
     getDrawPosition(x,y){

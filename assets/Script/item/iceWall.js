@@ -30,6 +30,7 @@ cc.Class({
       this.type="iceWall"
       this._isMovable = false;
       this.exchangeable = false;
+      this.breakable = true;
     },
 
     onLoad () {
