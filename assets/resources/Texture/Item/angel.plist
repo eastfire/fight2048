@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>item-angel0stand0.png</key>
+            <key>angel0stand0.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -19,7 +19,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>item-angel1stand0.png</key>
+            <key>angel1stand0.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -34,7 +34,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>item-angel2stand0.png</key>
+            <key>angel2stand0.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -49,7 +49,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>item-angel3stand0.png</key>
+            <key>angel3stand0.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -74,7 +74,7 @@
             <key>size</key>
             <string>{480,120}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:b092b0744430dde69148fe38fa5704ab:de792e973d65cd8b1af77f4142f16c7e:59ca20e490d66e7cd696955ba5607c80$</string>
+            <string>$TexturePacker:SmartUpdate:df2d9cb07352660ed0fe76e7f02406a5:de792e973d65cd8b1af77f4142f16c7e:59ca20e490d66e7cd696955ba5607c80$</string>
             <key>textureFileName</key>
             <string>angel.png</string>
         </dict>

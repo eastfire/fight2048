@@ -8,9 +8,9 @@
   },
   "type": "Texture Packer",
   "subMetas": {
-    "item-angel0stand0.png": {
+    "angel0stand0.png": {
       "ver": "1.0.3",
-      "uuid": "10605810-c169-4ef4-8b8f-6f4286760192",
+      "uuid": "2d073505-32f6-43e7-ac82-380cda30ca8e",
       "rawTextureUuid": "4817c05d-b802-4941-93a6-82dcb4f90774",
       "trimType": "auto",
       "trimThreshold": 1,
@@ -30,9 +30,9 @@
       "spriteType": "normal",
       "subMetas": {}
     },
-    "item-angel1stand0.png": {
+    "angel1stand0.png": {
       "ver": "1.0.3",
-      "uuid": "40dcb74b-6be3-499d-8cda-734cdbdf2991",
+      "uuid": "4b5f3a56-faaf-489b-8afa-3a46489cacff",
       "rawTextureUuid": "4817c05d-b802-4941-93a6-82dcb4f90774",
       "trimType": "auto",
       "trimThreshold": 1,
@@ -52,9 +52,9 @@
       "spriteType": "normal",
       "subMetas": {}
     },
-    "item-angel2stand0.png": {
+    "angel2stand0.png": {
       "ver": "1.0.3",
-      "uuid": "c74be99f-d604-40e4-b1ca-3da7595f2c9f",
+      "uuid": "5c3b3a8c-c0aa-4ff8-a56a-54df222a306d",
       "rawTextureUuid": "4817c05d-b802-4941-93a6-82dcb4f90774",
       "trimType": "auto",
       "trimThreshold": 1,
@@ -74,9 +74,9 @@
       "spriteType": "normal",
       "subMetas": {}
     },
-    "item-angel3stand0.png": {
+    "angel3stand0.png": {
       "ver": "1.0.3",
-      "uuid": "0905372a-08cb-4bb6-882f-78a14e52c9e7",
+      "uuid": "b6db5553-3e8c-4a30-a8bd-572ccf7388de",
       "rawTextureUuid": "4817c05d-b802-4941-93a6-82dcb4f90774",
       "trimType": "auto",
       "trimThreshold": 1,

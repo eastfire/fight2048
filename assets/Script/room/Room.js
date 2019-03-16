@@ -415,6 +415,9 @@ cc.Class({
       this.enemyFactory.maintain(this.turn);
       this.turnStart();
     },
+    setDelayPhaseTime(time){
+      this.delayPhaseTime = Math.max(this.delayPhaseTime, time)
+    },
     initHero() {
       var hero;
       hero = cc.instantiate(this.movablePrefabMap["hero"]);
@@ -465,6 +468,7 @@ cc.Class({
     },
     heroAttack(){
       this._phase = "heroAttack"
+      this.delayPhaseTime = 0;
       this.foreachMovable(function(movable){
         if ( !movable.getComponent("hero") && movable.beforeHeroNormalAttack ) {
           movable.beforeHeroNormalAttack();

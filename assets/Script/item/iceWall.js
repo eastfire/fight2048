@@ -33,10 +33,6 @@ cc.Class({
       this.breakable = true;
     },
 
-    onLoad () {
-      this._super();
-    },
-
     start () {
       this._super();
       this.node.y = this.node.y-80;

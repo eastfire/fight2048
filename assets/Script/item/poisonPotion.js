@@ -36,14 +36,6 @@ cc.Class({
       this.breakable = true;
     },
 
-    onLoad () {
-      this._super();
-    },
-
-    start () {
-      this._super();
-    },
-
     onTaken() {
       var hero = Global.currentRoom.hero.getComponent("hero");
       hero.loseHp(this.effect,{type:"poison", amount: this.effect})

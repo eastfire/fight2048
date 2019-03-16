@@ -174,6 +174,13 @@ export default {
     price: 300,
     type:"skill",
     icon: "Texture/Skill/wisdomSkill"
+  },{
+    name:"angelSkill",
+    displayName:"牧师的召唤天使技能",
+    prerequests: ["wisdomSkill","resurrectionSkill"],
+    price: 1000,
+    type:"skill",
+    icon: "Texture/Skill/angelSkill"
   },
   {
     name:"clericPerkSlot2",

@@ -31,7 +31,7 @@ cc.Class({
 
     onLoad () {
       this._super();
-      cc.loader.loadRes("Texture/Item/item-angel",
+      cc.loader.loadRes("Texture/Item/angel",
         cc.SpriteAtlas,
         (err, atlas) => {
           this.atlas = atlas;
@@ -53,7 +53,7 @@ cc.Class({
     },
     beforeHeroNormalAttack(){
       var enemy = Global.currentRoom.getMovableByPosition(Common.getIncrementPosition(this.positions[0], this.face));
-      if ( enemy instanceof Enemy && this.canAttack(enemy)){
+      if ( enemy && enemy.getComponent("enemy") ){
         var increment = Common.INCREMENTS[this.face]
         var deltaX = Global.TILE_WIDTH*increment.x/2;
         var deltaY = Global.TILE_HEIGHT*increment.y/2
@@ -64,11 +64,12 @@ cc.Class({
         this.node.runAction(cc.sequence(
             cc.moveBy(Global.HERO_ATTACK_TIME/2, deltaX, deltaY ),
             cc.callFunc(function(){
-              enemy.beHit(Global.currentRoom.hero, attackDetail);
+              enemy.beHit(Global.currentRoom.hero.getComponent("hero"), attackDetail);
               //never miss
             },this),
             cc.moveBy(Global.HERO_ATTACK_TIME/2, -deltaX, -deltaY ),
         ))
+        Global.currentRoom.setDelayPhaseTime(Global.HERO_ATTACK_TIME+0.05)
       }
     },
     onTurnEnd() {

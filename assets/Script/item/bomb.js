@@ -33,10 +33,6 @@ cc.Class({
       this.isMergeToSelfType = false;
     },
 
-    onLoad () {
-      this._super();
-    },
-
     start () {
       this._super();
       this.node.setScale(0);
@@ -67,7 +63,7 @@ cc.Class({
     },
 
     explode(){
-      Global.currentRoom.delayPhaseTime = Global.HERO_ATTACK_TIME/2+0.05;
+      Global.currentRoom.setDelayPhaseTime( Global.HERO_ATTACK_TIME/2+0.05 );
       var hero = Global.currentRoom.hero.getComponent("hero");
       var bombPosition = this.positions[0]
       var attackDetail = {

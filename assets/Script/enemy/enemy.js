@@ -39,8 +39,6 @@ cc.Class({
         default:0,
         visible:false,
       },
-
-      immune: [cc.String]
     },
 
     // LIFE-CYCLE CALLBACKS:

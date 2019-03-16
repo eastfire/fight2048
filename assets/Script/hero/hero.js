@@ -150,7 +150,10 @@ cc.Class({
         ))
     } else {
       cc.log("PHASE:heroAttack skipped")
-      Global.currentRoom.node.emit("hero-attack-complete",this)
+      Global.currentRoom.scheduleOnce(()=> {
+        Global.currentRoom.node.emit("hero-attack-complete",this)
+      },Global.currentRoom.delayPhaseTime)
+
     }
   },
   canAttack( enemy ){
