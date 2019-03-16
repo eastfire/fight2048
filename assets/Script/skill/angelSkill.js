@@ -25,7 +25,7 @@ cc.Class({
   },
   start () {
     this._super()
-    this.coolDown = 15+Global.SKILL_WAIT_ADJUST;
+    this.coolDown = 14+Global.SKILL_WAIT_ADJUST;
   },
   onUsed() {
     var hero = Global.currentRoom.hero.getComponent("hero");
