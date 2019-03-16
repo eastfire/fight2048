@@ -37,7 +37,7 @@ export default {
   ORIGIN_NEGATIVE_EFFECT_TIME_ADJUST : 0,
   ORIGIN_ITEM_LEVEL_ADJUST: 0,
 
-  NEGATIVE_EFFECTS : ["frozen","cursed","dizzy","forbid","poison","blind","stun"],
+  NEGATIVE_EFFECTS : ["frozen","cursed","dizzy","forbid","poison","blind","stun","slowed"],
 
   ENEMY_POOL_CHANGE_PER_TURN: 29,
   ENEMY_LEVEL_POOL_CHANGE_PER_TURN: 53,
@@ -58,7 +58,7 @@ export default {
   heroInitSkill: [],
   // heroInitSkill: ["angelSkill"],
   basicSkill: ["coolingSkill","constitutionSkill","dexteritySkill","luckSkill"],
-  // basicSkill: ["meteorShowerSkill"],
+  // basicSkill: ["fireballSkill"],
   heroBasicSkill: {
     normal: ["forwardSlashSkill","horizontalSlashSkill","verticalSlashSkill"],
     wizard: ["missileSkill","spiderWebSkill","iceWallSkill"],
@@ -67,8 +67,8 @@ export default {
   },
   heroUnlockableSkill: {
     normal: ["backwardSlashSkill","whirlSkill","bigWhirlSkill","crossSlashSkill"], //charge
-    wizard: ["teleportSkill","meteorShowerSkill","lighteningSkill","fireballSkill"], //tornado
-    cleric: ["turnUndeadSkill","resurrectionSkill","wisdomSkill","angelSkill"], //
+    wizard: ["teleportSkill","meteorShowerSkill","lighteningSkill","fireballSkill","tornadoSkill"],
+    cleric: ["turnUndeadSkill","resurrectionSkill","wisdomSkill","angelSkill"],
     thief: ["eightArrowSkill","smokingBombSkill","treasureSkill","exchangeSkill","blinkSkill"] //
   },
   initEnemyPool: [{type:"slime",subtype:"R"},{type:"slime",subtype:"B"},{type:"slime",subtype:"Y"}],

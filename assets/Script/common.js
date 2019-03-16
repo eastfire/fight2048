@@ -277,6 +277,15 @@ var distance = function(p1,p2){
     + (p1.y - p2.y)*(p1.y - p2.y))
 }
 
+var loadScene = function(sceneName, loadingParent, loadingPrefab, callback){
+  var n = cc.instantiate(loadingPrefab);
+  n.x = n.y = 0;
+  loadingParent.addChild(n)
+  cc.director.preloadScene(sceneName, null, function(){
+    cc.director.loadScene(sceneName, callback);
+  })
+}
+
 var ATTACK_TYPE_MELEE = 1;
 var ATTACK_TYPE_RANGE = 2;
 var ATTACK_TYPE_SKILL = 3;
@@ -307,6 +316,7 @@ export default {
   getPointDistance,
   distance,
 
+  loadScene,
 
   ATTACK_TYPE_MELEE,
   ATTACK_TYPE_RANGE,

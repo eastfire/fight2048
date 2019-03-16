@@ -50,7 +50,6 @@ cc.Class({
   checkEffect(model, turn){
     if (this.getEffectRate(model) > Math.random() ){
       turn += Math.min(2, Math.floor(this.level/12));
-      turn += Global.NEGATIVE_EFFECT_TIME_ADJUST;
       model.gainStatus("blind",turn)
     }
   },

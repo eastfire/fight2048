@@ -2,7 +2,6 @@ import Skill from "skill";
 import Global from "../global"
 const Common = require("common");
 import Effect from "effect"
-import Enemy from "../enemy/enemy"
 
 cc.Class({
   extends: Skill,
@@ -24,7 +23,7 @@ cc.Class({
     this.maxLevel = 3;
   },
   levelUpDesc(level){
-    return "爆炸范围加大，但冷却时间增加4回合"
+    return "爆炸范围加大，但冷却时间增加3回合"
   },
   onLoad () {
     this._super()
@@ -34,7 +33,7 @@ cc.Class({
     this.coolDown = 6+Global.SKILL_WAIT_ADJUST;
   },
   onLevelUp(level){
-    this.coolDown+=4;
+    this.coolDown+=3;
   },
   onUsed() {
     var hero = Global.currentRoom.hero.getComponent("hero");
@@ -82,8 +81,8 @@ cc.Class({
       var movable = Global.currentRoom.getMovableByPosition(p)
       if (movable){
         if ( movable.getComponent("enemy") ) {
-          if ( attacked[enemy._id]) return;
-          attacked[enemy._id]=1;
+          if ( attacked[movable._id]) return;
+          attacked[movable._id]=1;
           if ( movable.checkHit(hero, attackDetail) ) {
             movable.beHit(hero, attackDetail);
           } else {

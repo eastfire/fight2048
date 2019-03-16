@@ -34,6 +34,9 @@ cc.Class({
       this.resetWeakPoint();
       this.setLife(this.life)
     },
+    starAnimation(){
+      //override animation
+    },
     resetWeakPoint(){
       this.weakPointRelativePosition = Common.sample(this.relativePositions);
       this.weakPoint.node.x = Global.TILE_WIDTH*this.weakPointRelativePosition.x

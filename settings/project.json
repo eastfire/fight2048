@@ -11,6 +11,7 @@
     "LabelOutline",
     "TiledMap",
     "Spine Skeleton",
+    "DragonBones",
     "RichText",
     "MotionStreak",
     "AudioSource",
@@ -40,6 +41,6 @@
     "width": 960
   },
   "start-scene": "2d2f792f-a40c-49bb-a189-ed176a246e49",
-  "use-customize-simulator": false,
+  "use-customize-simulator": true,
   "use-project-simulator-setting": false
 }

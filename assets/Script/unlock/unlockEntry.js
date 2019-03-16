@@ -264,6 +264,13 @@ export default {
     type:"skill",
     icon: "Texture/Skill/teleportSkill"
   },{
+    name:"tornadoSkill",
+    displayName:"法师的狂风技能",
+    prerequests: ["wizard"],
+    price: 250,
+    type:"skill",
+    icon: "Texture/Skill/tornadoSkill"
+  },{
     name:"meteorShowerSkill",
     displayName:"法师的陨石雨技能",
     prerequests: ["wizard"],

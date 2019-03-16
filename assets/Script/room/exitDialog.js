@@ -1,4 +1,5 @@
 import Global from "global"
+import Common from "common"
 import Storage from "storage"
 
 cc.Class({
@@ -23,8 +24,8 @@ cc.Class({
     this.node.runAction(cc.sequence(
       cc.fadeOut(Global.DIALOG_EXIT_TIME),
       cc.callFunc(function(){
-        cc.director.loadScene("MenuScene")
-      })
+        Common.loadScene("MenuScene", Global.currentRoomScene.node, Global.loading)
+      },this)
     ))
     Global.currentRoom.setAcceptInput(true);
   }

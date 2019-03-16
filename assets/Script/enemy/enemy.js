@@ -66,6 +66,35 @@ cc.Class({
           this.starList.node.addChild(star)
         }
       }
+
+      this.starAnimation();
+    },
+    starAnimation(){
+      this.mainSprite.node.anchorY = 0;
+      this.mainSprite.node.y = -Global.TILE_HEIGHT/2+20;
+      // this.mainSprite.node.skewX=10;
+      this.mainSprite.node.setScale(0.9,1.1)
+      var time = 0.4;
+      this.mainSprite.node.runAction(cc.repeatForever(
+        cc.sequence(
+          // cc.spawn(
+            // cc.skewTo(TIME,0,0).easing(cc.easeIn(1)),
+            cc.scaleTo(time,1.1,0.9).easing(cc.easeIn(1)),
+          // ),
+          // cc.spawn(
+            // cc.skewTo(TIME,0,-10).easing(cc.easeOut(1)),
+            cc.scaleTo(time,0.9,1.1).easing(cc.easeOut(1)),
+          // ),
+          // cc.spawn(
+            // cc.skewTo(TIME,0,0).easing(cc.easeIn(1)),
+            // cc.scaleTo(TIME,1.1,0.9).easing(cc.easeIn(1)),
+          // ),
+          // cc.spawn(
+            // cc.skewTo(TIME,0,10).easing(cc.easeOut(1)),
+            // cc.scaleTo(TIME,0.9,1.1).easing(cc.easeOut(1)),
+          // )
+        )
+      ))
     },
     starOfLevel(level){
       return Math.min(Global.MAX_STAR, Math.floor(this.level/Global.STAR_THRESHOLD))

@@ -6,6 +6,7 @@ cc.Class({
 
     properties: {
       atlas: cc.SpriteAtlas,
+      mainSprite: cc.Sprite,
 
       title: {
         default: "",
@@ -118,7 +119,8 @@ cc.Class({
     setFrame(){
       if ( this.atlas ) {
         var frame = this.atlas.getSpriteFrame(this.getFrameName());
-        this.node.getComponent(cc.Sprite).spriteFrame = frame;
+        this.mainSprite.spriteFrame = frame;
+        // this.node.getComponent(cc.Sprite).spriteFrame = frame;
       }
     },
     getFrameName(){

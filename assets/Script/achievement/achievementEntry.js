@@ -112,203 +112,6 @@ var achievements = [
   },
 },
 {
-  name:"warriorTurn1",
-  title:"战士试炼I",
-  desc: "坚持30回合",
-  reward: 5,
-  check:function(){
-    return Storage.statistics.gameOver.normalTurn >= 30;
-  },
-},
-{
-  name:"warriorTurn2",
-  title:"战士试炼II",
-  desc: "坚持60回合",
-  prerequests: ["warriorTurn1"],
-  reward: 20,
-  check:function(){
-    return Storage.statistics.gameOver.normalTurn >= 60;
-  },
-},
-{
-  name:"warriorTurn3",
-  title:"战士试炼III",
-  desc: "坚持100回合",
-  prerequests: ["warriorTurn2"],
-  reward: 50,
-  check:function(){
-    return Storage.statistics.gameOver.normalTurn >= 100;
-  },
-},
-{
-  name:"warriorTurn4",
-  title:"战士试炼IV",
-  desc: "坚持150回合",
-  prerequests: ["warriorTurn3"],
-  reward: 200,
-  check:function(){
-    return Storage.statistics.gameOver.normalTurn >= 150;
-  },
-},
-{
-  name:"warriorTurn5",
-  title:"战士试炼V",
-  desc: "坚持250回合",
-  prerequests: ["warriorTurn4"],
-  reward: 1000,
-  check:function(){
-    return Storage.statistics.gameOver.normalTurn >= 250;
-  },
-},
-{
-  name:"clericTurn1",
-  title:"牧师试炼I",
-  desc: "坚持30回合",
-  needUnlocks: ["cleric"],
-  reward: 5,
-  check:function(){
-    return Storage.statistics.gameOver.clericTurn >= 30;
-  },
-},
-{
-  name:"clericTurn2",
-  title:"牧师试炼II",
-  desc: "坚持60回合",
-  prerequests: ["clericTurn1"],
-  reward: 20,
-  check:function(){
-    return Storage.statistics.gameOver.clericTurn >= 60;
-  },
-},
-{
-  name:"clericTurn3",
-  title:"牧师试炼III",
-  desc: "坚持100回合",
-  prerequests: ["clericTurn2"],
-  reward: 50,
-  check:function(){
-    return Storage.statistics.gameOver.clericTurn >= 100;
-  },
-},
-{
-  name:"clericTurn4",
-  title:"牧师试炼IV",
-  desc: "坚持150回合",
-  prerequests: ["clericTurn3"],
-  reward: 200,
-  check:function(){
-    return Storage.statistics.gameOver.clericTurn >= 150;
-  },
-},
-{
-  name:"clericTurn5",
-  title:"牧师试炼V",
-  desc: "坚持250回合",
-  prerequests: ["clericTurn4"],
-  reward: 1000,
-  check:function(){
-    return Storage.statistics.gameOver.clericTurn >= 250;
-  },
-},{
-  name:"wizardTurn1",
-  title:"法师试炼I",
-  desc: "坚持30回合",
-  needUnlocks: ["wizard"],
-  reward: 5,
-  check:function(){
-    return Storage.statistics.gameOver.wizardTurn >= 30;
-  },
-},
-{
-  name:"wizardTurn2",
-  title:"法师试炼II",
-  desc: "坚持60回合",
-  prerequests: ["wizardTurn1"],
-  reward: 20,
-  check:function(){
-    return Storage.statistics.gameOver.wizardTurn >= 60;
-  },
-},
-{
-  name:"wizardTurn3",
-  title:"法师试炼III",
-  desc: "坚持100回合",
-  prerequests: ["wizardTurn2"],
-  reward: 50,
-  check:function(){
-    return Storage.statistics.gameOver.wizardTurn >= 100;
-  },
-},
-{
-  name:"wizardTurn4",
-  title:"法师试炼IV",
-  desc: "坚持150回合",
-  prerequests: ["wizardTurn3"],
-  reward: 200,
-  check:function(){
-    return Storage.statistics.gameOver.wizardTurn >= 150;
-  },
-},
-{
-  name:"wizardTurn5",
-  title:"法师试炼V",
-  desc: "坚持250回合",
-  prerequests: ["wizardTurn4"],
-  reward: 1000,
-  check:function(){
-    return Storage.statistics.gameOver.wizardTurn >= 250;
-  },
-},{
-  name:"thiefTurn1",
-  title:"盗贼试炼I",
-  desc: "坚持30回合",
-  needUnlocks: ["thief"],
-  reward: 5,
-  check:function(){
-    return Storage.statistics.gameOver.thiefTurn >= 30;
-  },
-},
-{
-  name:"thiefTurn2",
-  title:"盗贼试炼II",
-  desc: "坚持60回合",
-  prerequests: ["thiefTurn1"],
-  reward: 20,
-  check:function(){
-    return Storage.statistics.gameOver.thiefTurn >= 60;
-  },
-},
-{
-  name:"thiefTurn3",
-  title:"盗贼试炼III",
-  desc: "坚持100回合",
-  prerequests: ["thiefTurn2"],
-  reward: 50,
-  check:function(){
-    return Storage.statistics.gameOver.thiefTurn >= 100;
-  },
-},
-{
-  name:"thiefTurn4",
-  title:"盗贼试炼IV",
-  desc: "坚持150回合",
-  prerequests: ["thiefTurn3"],
-  reward: 200,
-  check:function(){
-    return Storage.statistics.gameOver.thiefTurn >= 150;
-  },
-},
-{
-  name:"thiefTurn5",
-  title:"盗贼试炼V",
-  desc: "坚持250回合",
-  prerequests: ["thiefTurn4"],
-  reward: 1000,
-  check:function(){
-    return Storage.statistics.gameOver.thiefTurn >= 250;
-  },
-},
-{
   name:"kill1starSlime",
   title:"史莱姆杀手",
   desc: "杀死1星以上史莱姆",
@@ -401,7 +204,7 @@ var achievements = [
   name:"oneTurnKill",
   title:"大开无双",
   desc: "一回合内杀死8个以上敌人",
-  reward: 100,
+  reward: 10,
   check:function(){
     return Storage.statistics.kill.oneTurn >= 8;
   },
@@ -411,7 +214,7 @@ var achievements = [
   title:"大开无双II",
   desc: "一回合内杀死12个以上敌人",
   prerequests: ["oneTurnKill"],
-  reward: 200,
+  reward: 20,
   check:function(){
     return Storage.statistics.kill.oneTurn >= 12;
   },
@@ -421,7 +224,7 @@ var achievements = [
   title:"大开无双III",
   desc: "一回合内杀死16个以上敌人",
   prerequests: ["oneTurnKill2"],
-  reward: 400,
+  reward: 40,
   check:function(){
     return Storage.statistics.kill.oneTurn >= 16;
   },
@@ -431,7 +234,7 @@ var achievements = [
   title:"大开无双III",
   desc: "一回合内杀死20个以上敌人",
   prerequests: ["oneTurnKill3"],
-  reward: 800,
+  reward: 80,
   check:function(){
     return Storage.statistics.kill.oneTurn >= 20;
   },
@@ -441,12 +244,66 @@ var achievements = [
   title:"大开无双V",
   desc: "一回合内杀死24个以上敌人",
   prerequests: ["oneTurnKill4"],
-  reward: 1600,
+  reward: 160,
   check:function(){
     return Storage.statistics.kill.oneTurn >= 24;
   },
 }
 ];
+const TITLE_SURFIX = ["","II","III","IV","V"]
+
+var heroType = [
+  {
+    type:"normal",
+    achievementType: "warrior",
+    displayName:"战士",
+    reward(level){
+      return [5,10,30,100,400][level]
+    }
+  },
+  {
+    type:"cleric",
+    achievementType: "cleric",
+    displayName:"牧师",
+    reward(level){
+      return [5,10,30,100,400][level]
+    }
+  },
+  {
+    type:"wizard",
+    achievementType: "wizard",
+    displayName:"法师",
+    reward(level){
+      return [5,10,30,100,400][level]
+    }
+  },
+  {
+    type:"thief",
+    achievementType: "thief",
+    displayName:"盗贼",
+    reward(level){
+      return [5,10,30,100,400][level]
+    }
+  }
+]
+
+heroType.forEach(function(entry){
+  for ( var i = 0 ; i < 5; i++ ){
+    (function(i){
+      achievements.push({
+        name:entry.achievementType+"Turn"+(i+1),
+        title:entry.displayName+"试炼"+TITLE_SURFIX[i],
+        desc: "坚持"+(30*(i+1))+"回合",
+        prerequests: i==0?null:[entry.achievementType+"Turn"+i],
+        needUnlocks: entry.achievementType == "warrior"? null:[entry.achievementType],
+        reward: entry.reward(i),
+        check:function(){
+          return Storage.statistics.gameOver[entry.type+"Turn"] >= 30*(i+1);
+        },
+      })
+    })(i)
+  }
+})
 
 var allEnemyType = [
   {
@@ -639,7 +496,7 @@ var allEnemyType = [
     }
   }
 ]
-const TITLE_SURFIX = ["","II","III","IV","V"]
+
 allEnemyType.forEach(function(entry){
   for ( var i = 0 ; i < 5; i++ ){
     (function(i){
@@ -651,7 +508,7 @@ allEnemyType.forEach(function(entry){
         needSeen: i==0?[entry.type]:null,
         reward: entry.reward(i),
         check:function(){
-          return Storage.statistics.kill[entry.type+"Level"] >= Global.STAR_THRESHOLD*i;
+          return Storage.statistics.kill[entry.type+"Level"] >= Global.STAR_THRESHOLD*(i+1);
         },
       })
     })(i)

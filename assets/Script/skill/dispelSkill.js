@@ -35,10 +35,8 @@ cc.Class({
   },
   onUsed() {
     var hero = Global.currentRoom.hero.getComponent("hero");
-    hero.forEachStatus(function(status){
-      if ( Common.contains(Global.NEGATIVE_EFFECTS, status.statusName) ) {
-        hero.lostStatus(status.statusName);
-      }
+    Global.NEGATIVE_EFFECTS.forEach(function(status){
+      hero.lostStatus(status)
     },this)
     hero.gainStatus("prevent",this.effect)
     hero.afterUseSkill()

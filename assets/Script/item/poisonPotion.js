@@ -46,7 +46,7 @@ cc.Class({
 
     onTaken() {
       var hero = Global.currentRoom.hero.getComponent("hero");
-      hero.loseHp(this.effect,{type:"poison", amount: 1})
+      hero.loseHp(this.effect,{type:"poison", amount: this.effect})
       hero.gainStatus("poison", -1)
     },
     // update (dt) {},
