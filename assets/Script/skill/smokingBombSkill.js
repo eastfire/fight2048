@@ -6,6 +6,11 @@ cc.Class({
   extends: Skill,
 
   properties: {
+    effect:{
+      get(){
+        return this.level+1;
+      }
+    }
   },
 
   // LIFE-CYCLE CALLBACKS:
@@ -13,31 +18,25 @@ cc.Class({
     this.skillName = "smokingBombSkill"
     this.icon="Skill/smokingBombSkill";
     this.displayName = "烟雾弹"
-    this.desc = "所有远程攻击的敌人本轮不能攻击";
+    this.desc = "所有远程攻击的敌人2回合不能攻击";
   },
   levelUpDesc(level){
-    return "冷却时间减少1回合"
+    return "持续时间多1回合，但冷却时间也多1回合"
   },
   start () {
     this._super()
-    this.coolDown = 6+Global.SKILL_WAIT_ADJUST;
-    this.maxLevel = 4;
+    this.coolDown = 7+Global.SKILL_WAIT_ADJUST;
   },
   effectOfLevel(level){
     return level;
   },
   onLevelUp(level){
-    this.coolDown--;
-    this.reduceWait(1)
+    this.coolDown++;
   },
   onUsed() {
     var hero = Global.currentRoom.hero.getComponent("hero");
 
-    Global.currentRoom.foreachMovable(function(movable){
-      if ( movable.getComponent("enemy") && movable.attackType == Global.ATTACK_TYPE_RANGE ) {
-        movable.gainStatus("stun")
-      }
-    },this)
+    hero.gainStatus("smoke", this.effect)
 
     hero.afterUseSkill()
   }

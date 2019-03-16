@@ -281,8 +281,15 @@ cc.Class({
         cc.sequence(
           cc.callFunc(function(){
             //TODO FIXME more oo method
-            if ( Global.currentRoom.hero.getComponent("hero").getStatus("blind") ) {
+            var hero = Global.currentRoom.hero.getComponent("hero")
+            if ( hero.getStatus("blind") ) {
               this.hideLevel(true)
+            }
+            if ( this.attackType === Global.ATTACK_TYPE_RANGE ){
+              var smoke = hero.getStatus("smoke")
+              if ( smoke ) {
+                this.gainStatus("stun", smoke.duration )
+              }
             }
           },this),
           cc.scaleTo( Global.GENERATE_TIME, 1,1)
