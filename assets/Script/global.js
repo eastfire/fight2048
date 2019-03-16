@@ -56,7 +56,7 @@ export default {
   currentSkillPool: [],
 
   heroInitSkill: [],
-  // heroInitSkill: ["angelSkill"],
+  // heroInitSkill: ["exchangeSkill","treasureSkill","eightArrowSkill"],
   basicSkill: ["coolingSkill","constitutionSkill","dexteritySkill","luckSkill"],
   // basicSkill: ["fireballSkill"],
   heroBasicSkill: {
