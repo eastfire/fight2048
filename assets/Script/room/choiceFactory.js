@@ -44,9 +44,11 @@ export default {
     return {
       name:"",
       icon:"Texture/icon-score",
-      desc:"加"+opt.number+"分",
+      desc(){
+        return "加"+opt.number*(Global.currentRoom.hero.getComponent("hero").level-1)+"分"
+      },
       onChosen:function(){
-        Global.currentRoomScene.gainScore(opt.number);
+        Global.currentRoomScene.gainScore(opt.number*(Global.currentRoom.hero.getComponent("hero").level-1));
       }
     }
   },

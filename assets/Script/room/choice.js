@@ -26,7 +26,12 @@ cc.Class({
         this.choiceIconSprite.spriteFrame = spriteFrame;
       });
       this.choiceNameLabel.string = this.choice.name;
-      this.choiceDescLabel.string = this.choice.desc;
+      if ( typeof this.choice.desc === "function") {
+        this.choiceDescLabel.string = this.choice.desc();
+      } else {
+        this.choiceDescLabel.string = this.choice.desc;
+      }
+
       this.node.on("touchend",this.choose,this)
     },
     choose(){
