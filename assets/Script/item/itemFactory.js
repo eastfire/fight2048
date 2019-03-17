@@ -22,6 +22,9 @@ cc.Class({
   generateOneRandomItem(position, enemyLevel){
     if ( this.itemPool.length ) {
       var itemLevel = this.generateOneItemLevel(enemyLevel) + Global.ITEM_LEVEL_ADJUST;
+      if ( Global.currentRoom.hero.getComponent("hero").getStatus("treasure") ) {
+        itemLevel = Math.min(1, itemLevel)
+      }
       if ( itemLevel <= 0 ) return;
 
       var itemType = this.generateOneItemType();
