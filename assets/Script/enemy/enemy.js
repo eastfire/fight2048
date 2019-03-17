@@ -128,6 +128,7 @@ cc.Class({
       return detail;
     },
     beHit(hero, detail){
+      if ( this.alreadyDie ) return detail;
       detail = this.beforeBeHit(hero, detail);
       var fromPosition = detail.fromPosition
       var point = this.getClosestPoint(fromPosition)
@@ -135,6 +136,7 @@ cc.Class({
       var deltaY = Global.TILE_HEIGHT*(Math.max(-1,Math.min(1,fromPosition.y - point.y)) )/4;
       detail.enemyDie = this.willDieAfterBeHit(hero, detail)
       if ( detail.enemyDie ) {
+        this.alreadyDie = true;
         detail.dropItemPosition = this.willDropItem();
         this.node.runAction(cc.sequence(
           cc.moveBy(Global.HERO_ATTACK_TIME/2, -deltaX, -deltaY ).easing(cc.easeCubicActionOut()),

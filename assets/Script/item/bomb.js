@@ -70,15 +70,12 @@ cc.Class({
         fromPosition:bombPosition,
         type:Common.ATTACK_TYPE_SKILL
       };
-      var attacked = {};
       [{ x:bombPosition.x-1, y:bombPosition.y},
       { x:bombPosition.x+1, y:bombPosition.y},
       { x:bombPosition.x, y:bombPosition.y-1},
       { x:bombPosition.x, y:bombPosition.y+1}].forEach( function(position){
         var enemy = Global.currentRoom.getMovableByPosition(position.x, position.y);
           if (enemy && enemy.getComponent("enemy") ) {
-            if ( attacked[enemy._id]) return;
-            attacked[enemy._id]=1;
             if ( enemy.checkHit(hero, attackDetail) ) {
               enemy.beHit(hero, attackDetail);
             } else {

@@ -129,6 +129,12 @@ cc.Class({
         (err, frame)=>{
           this.killByIcon.spriteFrame = frame;
       })
+    } else if ( this.entry.detail.killedBy.type == "nail" ) {
+      this.killByLabel.string = "";
+      cc.loader.loadRes("Texture/Tile/nail-attacking", cc.SpriteFrame,
+        (err, frame)=>{
+          this.killByIcon.spriteFrame = frame;
+      })
     }
   }
   // update (dt) {},

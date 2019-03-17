@@ -134,6 +134,8 @@ cc.Class({
 
       if ( reason.type === "poison" ) {
         this.scoreLabel.string += "中毒"
+      } else if ( reason.type === "nail" ) {
+        this.scoreLabel.string += "陷阱"
       } else if ( reason.type === "enemy" ) {
         if ( reason.enemy.isBoss ) {
           this.scoreLabel.string += reason.enemy.title

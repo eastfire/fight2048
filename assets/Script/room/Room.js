@@ -402,13 +402,21 @@ cc.Class({
       if ( this.hero.getComponent("hero").checkDead() ) {
         return;
       }
-      this.scheduleOnce(()=>{
+      if ( this.delayPhaseTime ) {
+        this.scheduleOnce(()=>{
+          if ( this.hero.getComponent("hero").checkLevelUp() ) {
+
+          } else {
+            this.afterTurnEnd();
+          }
+        },this.delayPhaseTime)
+      } else {
         if ( this.hero.getComponent("hero").checkLevelUp() ) {
 
         } else {
           this.afterTurnEnd();
         }
-      },this.delayPhaseTime)
+      }
     },
     afterTurnEnd(){
       this.turn++;
@@ -427,13 +435,15 @@ cc.Class({
       this.hero = hero;
       this.addMovable(this.hero, heroX, heroY)
 
+
       Global.heroInitSkill.forEach(function(skillName){
         Global.currentRoomScene.gainSkill(skillName)
       })
-      // setTimeout(()=>{
+      setTimeout(()=>{
+        // this.getTile(2,2).gainStatus("nail",-1)
         // this.hero.getComponent("hero").gainStatus("blind",3)
         //this.hero.getComponent("hero").gainStatus("poison",-1)
-      // },1);
+      },100);
     },
     initGenEnemyStrategy() {
       this.enemyFactory = new EnemyFactory();

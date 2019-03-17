@@ -28,8 +28,10 @@ cc.Class({
             x: this.x,
             y: this.y
           }
-        }
-      }
+        },
+        visible: false
+      },
+      effectLayer: cc.Node
     },
 
     ctor: function () {

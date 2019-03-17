@@ -289,6 +289,7 @@ var loadScene = function(sceneName, loadingParent, loadingPrefab, callback){
 var ATTACK_TYPE_MELEE = 1;
 var ATTACK_TYPE_RANGE = 2;
 var ATTACK_TYPE_SKILL = 3;
+var ATTACK_TYPE_ENV = 4;
 
 export default {
   DIRECTION_UP,
