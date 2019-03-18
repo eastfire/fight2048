@@ -55,7 +55,26 @@ export default {
   selectedPerk: [],
   currentSkillPool: [],
 
-  initMovable: [],
+  initMovable: [
+    // {
+    //   isEnemy: true,
+    //   type:"slime",
+    //   subtype:"R",
+    //   position:{x:2,y:2},
+    //   level: 3,
+    // },{
+    //   isEnemy: true,
+    //   type:"slime",
+    //   subtype:"B",
+    //   position:{x:2,y:1},
+    // },
+    // {
+    //   isItem: true,
+    //   type: "potion",
+    //   position: {x:4,y:4},
+    //   level:2
+    // }
+  ],
   initHero:{
     position:{x:3,y:3},
     status:[

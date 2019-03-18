@@ -43,7 +43,6 @@ cc.Class({
       this._movables = [];
 
       Global.currentRoomScene.turnLabel.string = this.turn;
-
       this.initMovablePrefabMap()
       this.initTilePrefabMap()
       this.initGenEnemyStrategy();
@@ -53,6 +52,7 @@ cc.Class({
       this.initItem();
       this.initStatusPrefabMap()
       this.initHero();
+      this.initMovalbe();
 
       this.scheduleOnce(this.turnStart, 0.5);
     },
@@ -461,6 +461,32 @@ cc.Class({
           this.hero.getComponent("hero").gainStatus(statusName,duration, extra)
         },this)
       },10);
+    },
+    initMovalbe(){
+      Global.initMovable.forEach(function(entry){
+        if ( entry.isEnemy ) {
+          var enemy = this.enemyFactory.generateOneEnemy(entry.position.x, entry.position.y, {
+            type: entry.type, subtype: entry.subtype
+          }, entry.level || 1);
+          if ( entry.status && entry.status.length ) {
+            setTimeout(()=>{
+              entry.status.forEach(function(opt){
+                var statusName = opt;
+                var duration = -1;
+                var extra = null;
+                if ( typeof opt === "object" ) {
+                  duration = opt.duration || duration;
+                  extra = opt.extra;
+                  statusName = opt.name;
+                }
+                enemy.getComponent("movable").gainStatus(statusName,duration, extra)
+              },this)
+            },10);
+          }
+        } else if ( entry.isItem ) {
+          this.itemFactory.generateOneItem(entry.position, entry.type, entry.level || 1)
+        }
+      },this)
     },
     initGenEnemyStrategy() {
       this.enemyFactory = new EnemyFactory();
