@@ -54,7 +54,7 @@ cc.Class({
       this.initHero();
       this.initMovalbe();
 
-      this.scheduleOnce(this.turnStart, 0.5);
+      this.scheduleOnce(this.turnStart, 0.1);
     },
     initMovablePrefabMap() {
       this.movablePrefabMap = {};
