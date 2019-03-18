@@ -312,15 +312,16 @@ cc.Class({
   afterBeHit(enemy, attackDetail){ //called by view
     this.afterBeAttacked(enemy)
   },
-  blocked(attackPoint){
-    Effect.labelEffect("Block",cc.Color.BLUE,this.node)
+  blocked(enemy, attackPoint){
+    var p = Effect.getLabelEffectPosition(this.positions[0],enemy.positions[0]);
+    Effect.labelEffect("Block", cc.Color.BLUE, this.node, p)
   },
   beforeDodgeAttack(enemy){
   },
   dodgeAttack(enemy){
     this.beforeDodgeAttack(enemy);
-
-    Effect.labelEffect("Miss",cc.Color.BLUE,enemy.node)
+    var p = Effect.getLabelEffectPosition(this.positions[0],enemy.positions[0]);
+    Effect.labelEffect("Miss", cc.Color.BLUE, this.node, p)
   },
   afterDodgeAttack(enemy){
     this.afterBeAttacked(enemy);
@@ -331,20 +332,12 @@ cc.Class({
       this.beforeTakeDamage(enemy, attackDetail)
       this.loseHp(attackDetail.damage, {type:"enemy", enemy });
   },
+
   loseHp(damage, reason){
     if (reason.type == "poison") {
       Effect.labelEffect("-"+damage, cc.Color.GREEN, this.node, {x:0,y:0})
     } else if (reason.type == "enemy") {
-      let r = 50;
-      let heroPosition = this.positions[0]
-      let enemyPosition = reason.enemy.positions[0];
-      let dx = enemyPosition.x - heroPosition.x;
-      let dy = enemyPosition.y - heroPosition.y;
-      let distance = Math.sqrt(dx*dx+dy*dy)
-      let p = {
-        x: r/distance*dx+heroPosition.x,
-        y: r/distance*dy+heroPosition.y
-      }
+      var p = Effect.getLabelEffectPosition(this.positions[0], reason.enemy.positions[0]);
       Effect.labelEffect("-"+damage, cc.Color.RED, this.node, p)
     }
 

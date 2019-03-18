@@ -1,14 +1,25 @@
 import Global from "global"
 
+var getLabelEffectPosition = function(defenderPosition, attackerPosition){
+  let r = 50;
+  let dx = attackerPosition.x - defenderPosition.x;
+  let dy = attackerPosition.y - defenderPosition.y;
+  let distance = Math.sqrt(dx*dx+dy*dy)
+  return {
+    x: r/distance*dx+defenderPosition.x,
+    y: r/distance*dy+defenderPosition.y
+  }
+}
+
 var labelEffect = function(str, color, parent, position) {
   var label = new cc.Node();
   label.addComponent(cc.Label)
   label.getComponent(cc.Label).string = str;
   position = position || {x:Math.random()*40-20,y:Math.random()*40-20}
-  label.x = position.x;
-  label.y = position.y;
+  label.x = position.x+parent.x;
+  label.y = position.y+parent.y;
   label.color = color;
-  parent.addChild(label);
+  Global.currentRoom.node.addChild(label);
   label.runAction(cc.sequence(cc.moveBy(0.4+Math.random()*0.2, 0, 60+Math.random()*20),
     cc.fadeOut(0.2),
     cc.removeSelf()
@@ -249,6 +260,7 @@ var useStarInMenu = function(toPosition, parentNode, amount, callback, context){
 }
 
 export default {
+  getLabelEffectPosition,
   labelEffect,
   projectArrow,
   projectStone,

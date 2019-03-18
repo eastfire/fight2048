@@ -263,7 +263,7 @@ cc.Class({
         } else {
           //blocked
           this.beBlocked(hero, attackDetail);
-          hero.blocked(attackDetail)
+          hero.blocked(this,attackDetail)
         }
         return true;
       } else {
