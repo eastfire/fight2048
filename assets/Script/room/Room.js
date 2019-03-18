@@ -447,13 +447,20 @@ cc.Class({
         }
         var skill = Global.currentRoomScene.gainSkill(skillName)
         skill.initProperties(level,countDown,forbid)
-      })
+      },this)
       setTimeout(()=>{
-
-        // this.getTile(2,2).gainStatus("nail",-1)
-        // this.hero.getComponent("hero").gainStatus("blind",3)
-        //this.hero.getComponent("hero").gainStatus("poison",-1)
-      },0);
+        Global.initHero.status.forEach(function(opt){
+          var statusName = opt;
+          var duration = -1;
+          var extra = null;
+          if ( typeof opt === "object" ) {
+            duration = opt.duration || duration;
+            extra = opt.extra;
+            statusName = opt.name;
+          }
+          this.hero.getComponent("hero").gainStatus(statusName,duration, extra)
+        },this)
+      },10);
     },
     initGenEnemyStrategy() {
       this.enemyFactory = new EnemyFactory();

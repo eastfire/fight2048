@@ -58,7 +58,12 @@ export default {
   initMovable: [],
   initHero:{
     position:{x:3,y:3},
-    status:[],
+    status:[
+      // "cursed",{
+      // name:"frozen",
+      // duration: 2
+      // }
+    ],
     skill:[
       // "exchangeSkill",
       // {
