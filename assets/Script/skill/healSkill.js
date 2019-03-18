@@ -18,13 +18,10 @@ cc.Class({
     this.icon="Skill/healSkill";
     this.displayName = "治疗"
     this.desc = "治疗"+this.effect+"生命";
+    this.coolDown = 6+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
     return "多治疗"+(this.effectOfLevel(level)-this.effectOfLevel(level-1))+"生命,但冷却时间多2回合"
-  },
-  start () {
-    this._super()
-    this.coolDown = 5+Global.SKILL_WAIT_ADJUST;
   },
   effectOfLevel(level){
     return 5*level+5;

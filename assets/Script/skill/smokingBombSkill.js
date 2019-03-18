@@ -19,13 +19,10 @@ cc.Class({
     this.icon="Skill/smokingBombSkill";
     this.displayName = "烟雾弹"
     this.desc = "所有远程攻击的敌人2回合不能攻击";
+    this.coolDown = 7+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
     return "持续时间多1回合，但冷却时间也多1回合"
-  },
-  start () {
-    this._super()
-    this.coolDown = 7+Global.SKILL_WAIT_ADJUST;
   },
   effectOfLevel(level){
     return level;

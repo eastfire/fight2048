@@ -19,13 +19,10 @@ cc.Class({
     this.icon="Skill/coolingSkill";
     this.displayName = "冷静"
     this.desc = "所有其他技能冷却"+this.effect+"回合";
+    this.coolDown = 20+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
     return "多冷却1"
-  },
-  start () {
-    this._super()
-    this.coolDown = 20+Global.SKILL_WAIT_ADJUST;
   },
   effectOfLevel(level){
     return level+4;

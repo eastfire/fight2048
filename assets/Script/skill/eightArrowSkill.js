@@ -16,16 +16,10 @@ cc.Class({
     this.icon="Skill/eightArrowSkill";
     this.displayName = "八方箭"
     this.desc = "朝周围八个方向射箭，杀死第一个敌人。撞到墙就没用了。";
+    this.coolDown = 27+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
     return "冷却时间减少2回合"
-  },
-  onLoad () {
-    this._super()
-  },
-  start () {
-    this._super()
-    this.coolDown = 27+Global.SKILL_WAIT_ADJUST;
   },
   onLevelUp(level){
     this.coolDown -=2;

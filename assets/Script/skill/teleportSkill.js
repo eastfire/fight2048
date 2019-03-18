@@ -15,16 +15,10 @@ cc.Class({
     this.icon="Skill/teleportSkill";
     this.displayName = "传送"
     this.desc = "将自己传送到随机的格子";
+    this.coolDown = 13+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
     return "冷却时间减少1回合"
-  },
-  onLoad () {
-    this._super()
-  },
-  start () {
-    this._super()
-    this.coolDown = 13+Global.SKILL_WAIT_ADJUST;
   },
   onLevelUp(level){
     this.coolDown--;

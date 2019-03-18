@@ -19,13 +19,10 @@ cc.Class({
     this.icon="Skill/angelSkill";
     this.displayName = "召唤天使"
     this.desc = "召唤天使为你作战"+this.effect+"回合";
+    this.coolDown = 14+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
     return "多持续1回合"
-  },
-  start () {
-    this._super()
-    this.coolDown = 14+Global.SKILL_WAIT_ADJUST;
   },
   onUsed() {
     var hero = Global.currentRoom.hero.getComponent("hero");

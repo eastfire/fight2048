@@ -16,16 +16,10 @@ cc.Class({
     this.icon="Skill/bigWhirlSkill";
     this.displayName = "大回旋斩"
     this.desc = "攻击周围8个格子的所有的敌人";
+    this.coolDown = 26+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
     return "冷却时间减少2回合"
-  },
-  onLoad () {
-    this._super()
-  },
-  start () {
-    this._super()
-    this.coolDown = 25+Global.SKILL_WAIT_ADJUST;
   },
   onLevelUp(level){
     this.coolDown-=2;

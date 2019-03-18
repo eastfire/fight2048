@@ -24,9 +24,6 @@ cc.Class({
   levelUpDesc(level){
     return "增加"+3*Math.round(100*Global.LUCK_EFFECT)+"%的道具掉落概率";
   },
-  start () {
-    this._super()
-  },
   onLevelUp(level){
     var hero = Global.currentRoom.hero.getComponent("hero");
     hero.luck+=3;

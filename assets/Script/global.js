@@ -55,8 +55,23 @@ export default {
   selectedPerk: [],
   currentSkillPool: [],
 
-  heroInitSkill: [],
-  // heroInitSkill: ["exchangeSkill","treasureSkill","eightArrowSkill"],
+  initMovable: [],
+  initHero:{
+    position:{x:3,y:3},
+    status:[],
+    skill:[
+      // "exchangeSkill",
+      // {
+      //   name:"treasureSkill",
+      //   level:4,
+      //   countDown: 3
+      // },{
+      //   name:"eightArrowSkill",
+      //   level:4,
+      //   forbid: true
+      // }
+    ]
+  },
   basicSkill: ["coolingSkill","constitutionSkill","dexteritySkill","luckSkill"],
   // basicSkill: ["fireballSkill"],
   heroBasicSkill: {

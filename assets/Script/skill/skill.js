@@ -16,7 +16,9 @@ cc.Class({
       default: 5,
       notify(oldValue){
         if ( oldValue == this.coolDown || this.countDownIcon == null ) return;
-        this.countDownIcon.fillRange = (this.coolDown - this.countDown)/this.coolDown;
+        if ( this.countDownIcon ) {
+          this.countDownIcon.fillRange = (this.coolDown - this.countDown)/this.coolDown;
+        }
       }
     },
     icon:"",
@@ -50,13 +52,21 @@ cc.Class({
       this.iconBg.spriteFrame = this.countDownIcon.spriteFrame = spriteFrame;
     });
     this.iconBg.node.on('touchend', this.useSkill, this)
+
+    this.countDownIcon.fillRange = (this.coolDown - this.countDown)/this.coolDown;
   },
   onDestroy(){
   },
-  levelUp(level) {
+  initProperties(level, countDown, forbid) {
+    for ( var i = this.level; i < level; i++ ) {
+      this.levelUp();
+    }
+    this.forbid = forbid;
+    this.countDown = countDown || 0;
+  },
+  levelUp() {
     //允许超过最大等级，检查是否超过由choiceFactory决定
-    level = level || 1;
-    this.level += level;
+    this.level ++;
     this.onLevelUp();
   },
   useSkill() {

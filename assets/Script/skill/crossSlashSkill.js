@@ -16,16 +16,10 @@ cc.Class({
     this.icon="Skill/crossSlashSkill";
     this.displayName = "十字斩"
     this.desc = "攻击所在行和所在列所有的敌人";
+    this.coolDown = 25+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
     return "冷却时间减少2回合"
-  },
-  onLoad () {
-    this._super()
-  },
-  start () {
-    this._super()
-    this.coolDown = 25+Global.SKILL_WAIT_ADJUST;
   },
   onLevelUp(level){
     this.coolDown-=2;

@@ -14,13 +14,10 @@ cc.Class({
     this.icon="Skill/calmSkill";
     this.displayName = "安抚"
     this.desc = "接下来2回合敌人不会出现";
+    this.coolDown = 10+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
     return "冷却时间减少1回合"
-  },
-  start () {
-    this._super()
-    this.coolDown = 10+Global.SKILL_WAIT_ADJUST;
   },
   onLevelUp(level){
     this.coolDown--;

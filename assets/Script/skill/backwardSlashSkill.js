@@ -17,16 +17,10 @@ cc.Class({
     this.icon="Skill/backwardSlashSkill";
     this.displayName = i18n.t("backwardSlashSkill/name")
     this.desc = i18n.t("backwardSlashSkill/desc");
+    this.coolDown = 9+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
     return i18n.t("backwardSlashSkill/levelUp")
-  },
-  onLoad () {
-    this._super()
-  },
-  start () {
-    this._super()
-    this.coolDown = 9+Global.SKILL_WAIT_ADJUST;
   },
   onLevelUp(level){
     this.coolDown-=1;

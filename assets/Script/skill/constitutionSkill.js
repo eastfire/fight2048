@@ -19,9 +19,6 @@ cc.Class({
   levelUpDesc(level){
     return "增加生命上限"+Math.round(Global.CONSTITUTION_EFFECT);
   },
-  start () {
-    this._super()
-  },
   onLevelUp(level){
     var hero = Global.currentRoom.hero.getComponent("hero");
     hero.constitution++;

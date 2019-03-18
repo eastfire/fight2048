@@ -24,9 +24,6 @@ cc.Class({
   levelUpDesc(level){
     return "增加闪躲概率"+Math.round(100*Global.DEXTERITY_EFFECT)+"%";
   },
-  start () {
-    this._super()
-  },
   onLevelUp(level){
     var hero = Global.currentRoom.hero.getComponent("hero");
     hero.dexterity++;

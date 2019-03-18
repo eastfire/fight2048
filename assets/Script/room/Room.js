@@ -430,20 +430,30 @@ cc.Class({
       var hero;
       hero = cc.instantiate(this.movablePrefabMap["hero"]);
       hero.getComponent("hero").subtype = Global.currentHeroType
-      var heroX = 3;
-      var heroY = 3;
       this.hero = hero;
-      this.addMovable(this.hero, heroX, heroY)
+      this.addMovable(this.hero, Global.initHero.position.x, Global.initHero.position.y)
 
 
-      Global.heroInitSkill.forEach(function(skillName){
-        Global.currentRoomScene.gainSkill(skillName)
+      Global.initHero.skill.forEach(function(opt){
+        var level = 1;
+        var countDown = 0;
+        var forbid = false;
+        var skillName = opt;
+        if ( typeof opt === "object" ) {
+          level = opt.level || level;
+          countDown = opt.countDown || countDown;
+          forbid = opt.forbid || forbid;
+          skillName = opt.name;
+        }
+        var skill = Global.currentRoomScene.gainSkill(skillName)
+        skill.initProperties(level,countDown,forbid)
       })
       setTimeout(()=>{
+
         // this.getTile(2,2).gainStatus("nail",-1)
         // this.hero.getComponent("hero").gainStatus("blind",3)
         //this.hero.getComponent("hero").gainStatus("poison",-1)
-      },100);
+      },0);
     },
     initGenEnemyStrategy() {
       this.enemyFactory = new EnemyFactory();

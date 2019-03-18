@@ -15,16 +15,10 @@ cc.Class({
     this.icon="Skill/turnUndeadSkill";
     this.displayName = "驱逐死灵"
     this.desc = "消灭所有的死灵";
+    this.coolDown = 24+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
     return "冷却时间减少2回合"
-  },
-  onLoad () {
-    this._super()
-  },
-  start () {
-    this._super()
-    this.coolDown = 24+Global.SKILL_WAIT_ADJUST;
   },
   onLevelUp(level){
     this.coolDown-=2;

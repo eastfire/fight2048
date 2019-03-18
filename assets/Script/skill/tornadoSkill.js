@@ -15,16 +15,10 @@ cc.Class({
     this.icon="Skill/tornadoSkill";
     this.displayName = "狂风"
     this.desc = "将所有敌人和道具的位置打乱";
+    this.coolDown = 15+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
     return "冷却时间减少1回合"
-  },
-  onLoad () {
-    this._super()
-  },
-  start () {
-    this._super()
-    this.coolDown = 15+Global.SKILL_WAIT_ADJUST;
   },
   onLevelUp(level){
     this.coolDown--;

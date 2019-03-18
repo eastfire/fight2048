@@ -9,7 +9,7 @@ function levelUpSkill(opt){
       icon:"Texture/"+skill.icon,
       desc:skill.levelUpDesc(skill.level+1),
       onChosen:function(){
-        skill.levelUp(opt.number || 1);
+        skill.levelUp();
       },
       validate(){
         return skill && skill.level < skill.maxLevel+Global.MAX_LEVEL_ADJUST

@@ -20,16 +20,10 @@ cc.Class({
     this.icon="Skill/exchangeSkill";
     this.displayName = "安装炸弹"
     this.desc = "将所有道具变为炸弹";
+    this.coolDown = 8+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
     return "冷却时间减少1回合"
-  },
-  onLoad () {
-    this._super()
-  },
-  start () {
-    this._super()
-    this.coolDown = 8+Global.SKILL_WAIT_ADJUST;
   },
   onLevelUp(level){
     this.coolDown --;

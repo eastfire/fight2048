@@ -16,16 +16,10 @@ cc.Class({
     this.icon="Skill/chargeSkill";
     this.displayName = "冲锋"
     this.desc = "向前冲杀直到无法前进";
+    this.coolDown = 13+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
     return "冷却时间减少1回合"
-  },
-  onLoad () {
-    this._super()
-  },
-  start () {
-    this._super()
-    this.coolDown = 13+Global.SKILL_WAIT_ADJUST;
   },
   onLevelUp(level){
     this.coolDown-=1;

@@ -16,20 +16,14 @@ cc.Class({
     this.icon="Skill/spiderWebSkill";
     this.displayName = "蛛网术"
     this.desc = "所有敌人不能移动1回合";
+    this.coolDown = 18+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
-    return "冷却时间减少3回合"
-  },
-  onLoad () {
-    this._super()
-  },
-  start () {
-    this._super()
-    this.coolDown = 24+Global.SKILL_WAIT_ADJUST;
+    return "冷却时间减少2回合"
   },
   onLevelUp(level){
-    this.coolDown-=3;
-    this.reduceWait(3)
+    this.coolDown-=2;
+    this.reduceWait(2)
   },
   onUsed() {
     var hero = Global.currentRoom.hero.getComponent("hero");

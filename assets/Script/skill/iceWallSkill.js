@@ -20,16 +20,10 @@ cc.Class({
     this.icon="Skill/iceWallSkill";
     this.displayName = "冰墙"
     this.desc = "在身后产生一面冰墙，如果有敌人，将其杀死";
+    this.coolDown = 10+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
     return "冰墙持续时间变长"
-  },
-  onLoad () {
-    this._super()
-  },
-  start () {
-    this._super()
-    this.coolDown = 10+Global.SKILL_WAIT_ADJUST;
   },
   onLevelUp(level){
   },

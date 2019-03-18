@@ -15,16 +15,10 @@ cc.Class({
     this.icon="Skill/blinkSkill";
     this.displayName = "闪现"
     this.desc = "将自己闪现到身后第一个空格，逃命的绝技";
+    this.coolDown = 8+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
     return "冷却时间减少1回合"
-  },
-  onLoad () {
-    this._super()
-  },
-  start () {
-    this._super()
-    this.coolDown = 11+Global.SKILL_WAIT_ADJUST;
   },
   onLevelUp(level){
     this.coolDown--;

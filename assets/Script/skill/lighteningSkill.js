@@ -20,16 +20,10 @@ cc.Class({
     this.icon="Skill/lighteningSkill";
     this.displayName = "闪电链"
     this.desc = "消灭与你四周的某一个敌人相同类型的所有敌人";
+    this.coolDown = 26+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
     return "冷却时间减少1回合"
-  },
-  onLoad () {
-    this._super()
-  },
-  start () {
-    this._super()
-    this.coolDown = 26+Global.SKILL_WAIT_ADJUST;
   },
   onLevelUp(level){
     this.coolDown--;

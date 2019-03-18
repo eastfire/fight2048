@@ -245,6 +245,7 @@ cc.Class({
           },1)
         }
       }
+      return skill.getComponent("skill")
     },
     getSkill(skillName){
       return this.skills[skillName];

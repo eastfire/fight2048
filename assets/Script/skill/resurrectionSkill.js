@@ -20,13 +20,10 @@ cc.Class({
     this.maxLevel = 4;
     this.displayName = "复活"
     this.desc = "如果本轮死亡，以"+Math.round(this.effect*100)+"%生命复活";
+    this.coolDown = 60+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
     return "复活时多恢复20%生命，同时冷却时间也减少2回合"
-  },
-  start () {
-    this._super()
-    this.coolDown = 60+Global.SKILL_WAIT_ADJUST;
   },
   effectOfLevel(level){
     return level*0.2;

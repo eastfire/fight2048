@@ -20,16 +20,10 @@ cc.Class({
     this.icon="Skill/meteorShowerSkill";
     this.displayName = "陨石雨"
     this.desc = "天降8个陨石随机攻击，可能会打空";
+    this.coolDown = 18+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
     return "多召唤2个陨石，但冷却时间增加2回合"
-  },
-  onLoad () {
-    this._super()
-  },
-  start () {
-    this._super()
-    this.coolDown = 18+Global.SKILL_WAIT_ADJUST;
   },
   onLevelUp(level){
     this.coolDown+=2;

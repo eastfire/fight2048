@@ -22,13 +22,10 @@ cc.Class({
     this.desc = i18n.t("wisdomSkill/desc", {
       effect: Math.round(this.effect*Global.WISDOM_EFFECT*100)
       });
+    this.coolDown = 12+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
     return i18n.t("wisdomSkill/levelUp")
-  },
-  start () {
-    this._super()
-    this.coolDown = 12+Global.SKILL_WAIT_ADJUST;
   },
   onLevelUp(level){
     this.coolDown+=1;

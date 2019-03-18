@@ -16,16 +16,10 @@ cc.Class({
     this.icon="Skill/forwardSlashSkill";
     this.displayName = "顺势劈"
     this.desc = "本轮会对身前两格的敌人进行普通攻击";
+    this.coolDown = 8+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
     return "冷却时间减少1回合"
-  },
-  onLoad () {
-    this._super()
-  },
-  start () {
-    this._super()
-    this.coolDown = 8+Global.SKILL_WAIT_ADJUST;
   },
   onLevelUp(level){
     this.coolDown-=1;

@@ -16,16 +16,10 @@ cc.Class({
     this.icon="Skill/fourArrowSkill";
     this.displayName = "四方箭"
     this.desc = "朝四个方向射箭，杀死第一个敌人。撞到墙就没用了。";
+    this.coolDown = 11+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
     return "冷却时间减少1回合"
-  },
-  onLoad () {
-    this._super()
-  },
-  start () {
-    this._super()
-    this.coolDown = 11+Global.SKILL_WAIT_ADJUST;
   },
   onLevelUp(level){
     this.coolDown --;

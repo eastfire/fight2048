@@ -21,16 +21,10 @@ cc.Class({
     this.displayName = "火球术"
     this.desc = "超面前释放1个火球，撞到第一个东西爆炸，连道具也能摧毁";
     this.maxLevel = 3;
+    this.coolDown = 6+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
     return "爆炸范围加大，但冷却时间增加3回合"
-  },
-  onLoad () {
-    this._super()
-  },
-  start () {
-    this._super()
-    this.coolDown = 6+Global.SKILL_WAIT_ADJUST;
   },
   onLevelUp(level){
     this.coolDown+=3;
