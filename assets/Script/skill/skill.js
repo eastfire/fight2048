@@ -11,7 +11,6 @@ cc.Class({
     maxLevel: 5,
     skillName: null,
     displayName: "",
-    desc: "",
     coolDown: {
       default: 5,
       notify(oldValue){
@@ -33,6 +32,7 @@ cc.Class({
     forbid: {
       default: false,
       notify(oldValue){
+        if ( oldValue == this.forbid ) return;
         this.forbidIcon.node.active = this.forbid;
       }
     }
@@ -51,17 +51,34 @@ cc.Class({
     cc.loader.loadRes("Texture/"+this.icon, cc.SpriteFrame, (err, spriteFrame) => {
       this.iconBg.spriteFrame = this.countDownIcon.spriteFrame = spriteFrame;
     });
+    this.iconBg.node.on('touchcancel', this.cancelSkillDesc, this)
+    this.iconBg.node.on('touchmove', this.cancelSkillDesc, this)
+    this.iconBg.node.on('touchstart', this.startSkillDesc, this)
     this.iconBg.node.on('touchend', this.useSkill, this)
 
     this.countDownIcon.fillRange = (this.coolDown - this.countDown)/this.coolDown;
   },
   onDestroy(){
   },
+  startSkillDesc(){
+    this.scheduleOnce(this.showSkillDesc, 1);
+    cc.log("start count")
+  },
+  cancelSkillDesc(){
+    cc.log("cancel count")
+    this.unschedule(this.showSkillDesc);
+  },
+  showSkillDesc(){
+    var dialog = cc.instantiate(Global.currentRoomScene.skillDescDialog)
+    dialog.getComponent("skillDescDialog").setSkill(this.skillName, this.level);
+    dialog.x = dialog.y = 0;
+    Global.currentRoomScene.node.addChild(dialog)
+  },
   initProperties(level, countDown, forbid) {
     for ( var i = this.level; i < level; i++ ) {
       this.levelUp();
     }
-    this.forbid = forbid;
+    this.forbid = forbid || false;
     this.countDown = countDown || 0;
   },
   levelUp() {
@@ -70,6 +87,7 @@ cc.Class({
     this.onLevelUp();
   },
   useSkill() {
+    this.cancelSkillDesc();
     if ( this.canUse() ) {
       Global.currentRoom.setAcceptInput(false);
       this.getComponent(this.skillName).onUsed();

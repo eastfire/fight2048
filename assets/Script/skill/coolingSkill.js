@@ -11,6 +11,11 @@ cc.Class({
         return this.effectOfLevel(this.level);
       }
     },
+    desc:{
+      get(){
+        return "所有其他技能冷却"+this.effect+"回合";
+      }
+    }
   },
 
   // LIFE-CYCLE CALLBACKS:
@@ -18,7 +23,6 @@ cc.Class({
     this.skillName = "coolingSkill"
     this.icon="Skill/coolingSkill";
     this.displayName = "冷静"
-    this.desc = "所有其他技能冷却"+this.effect+"回合";
     this.coolDown = 20+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){

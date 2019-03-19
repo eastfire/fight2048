@@ -12,6 +12,11 @@ cc.Class({
         return 6+this.level*2;
       }
     },
+    desc:{
+      get(){
+        return "天降"+this.effect+"个陨石随机攻击，可能会打空";
+      }
+    }
   },
 
   // LIFE-CYCLE CALLBACKS:
@@ -19,7 +24,6 @@ cc.Class({
     this.skillName = "meteorShowerSkill"
     this.icon="Skill/meteorShowerSkill";
     this.displayName = "陨石雨"
-    this.desc = "天降8个陨石随机攻击，可能会打空";
     this.coolDown = 18+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){

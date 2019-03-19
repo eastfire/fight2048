@@ -10,6 +10,11 @@ cc.Class({
         return this.effectOfLevel(this.level);
       }
     },
+    desc:{
+      get(){
+        return "治疗"+this.effect+"生命";
+      }
+    }
   },
 
   // LIFE-CYCLE CALLBACKS:
@@ -17,7 +22,6 @@ cc.Class({
     this.skillName = "healSkill"
     this.icon="Skill/healSkill";
     this.displayName = "治疗"
-    this.desc = "治疗"+this.effect+"生命";
     this.coolDown = 6+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){

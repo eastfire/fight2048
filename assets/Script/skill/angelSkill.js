@@ -11,6 +11,11 @@ cc.Class({
         return this.level+2;
       }
     },
+    desc:{
+      get(){
+        return "召唤天使为你作战"+this.effect+"回合";
+      }
+    }
   },
 
   // LIFE-CYCLE CALLBACKS:
@@ -18,7 +23,6 @@ cc.Class({
     this.skillName = "angelSkill"
     this.icon="Skill/angelSkill";
     this.displayName = "召唤天使"
-    this.desc = "召唤天使为你作战"+this.effect+"回合";
     this.coolDown = 14+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){

@@ -5,11 +5,11 @@ cc.Class({
   extends: Skill,
 
   properties: {
-    effect:{
+    desc:{
       get(){
-        return this.effectOfLevel(this.level);
+        return Math.round(this.level*100*Global.DEXTERITY_EFFECT)+"%的概率闪躲敌人的攻击";
       }
-    },
+    }
   },
 
   // LIFE-CYCLE CALLBACKS:
@@ -17,7 +17,6 @@ cc.Class({
     this.skillName = "dexteritySkill"
     this.icon="Skill/dexteritySkill";
     this.displayName = "敏捷（被动）"
-    this.desc = Math.round(100*Global.DEXTERITY_EFFECT)+"%的概率闪躲敌人的攻击";
     this.isPassive = true;
     this.maxLevel = 5;
   },

@@ -5,11 +5,11 @@ cc.Class({
   extends: Skill,
 
   properties: {
-    effect:{
+    desc:{
       get(){
-        return this.effectOfLevel(this.level);
+        return Math.round((5+(this.level-1)*3)*100*Global.LUCK_EFFECT)+"%的道具掉落概率";
       }
-    },
+    }
   },
 
   // LIFE-CYCLE CALLBACKS:
@@ -17,7 +17,6 @@ cc.Class({
     this.skillName = "luckSkill"
     this.icon="Skill/luckSkill";
     this.displayName = "幸运（被动）"
-    this.desc = "增加"+5*Math.round(100*Global.LUCK_EFFECT)+"%的道具掉落概率";
     this.isPassive = true;
     this.maxLevel = 10;
   },

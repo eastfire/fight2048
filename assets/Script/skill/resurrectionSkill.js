@@ -11,6 +11,11 @@ cc.Class({
         return this.effectOfLevel(this.level);
       }
     },
+    desc:{
+      get(){
+        return "如果本轮死亡，以"+Math.round(this.effect*100)+"%生命复活";
+      }
+    }
   },
 
   // LIFE-CYCLE CALLBACKS:
@@ -19,7 +24,6 @@ cc.Class({
     this.icon="Skill/resurrectionSkill";
     this.maxLevel = 4;
     this.displayName = "复活"
-    this.desc = "如果本轮死亡，以"+Math.round(this.effect*100)+"%生命复活";
     this.coolDown = 60+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){

@@ -11,6 +11,11 @@ cc.Class({
         return this.level;
       }
     },
+    desc:{
+      get(){
+        return "接下来3回合防御加"+this.effect;
+      }
+    }
   },
 
   // LIFE-CYCLE CALLBACKS:
@@ -18,7 +23,6 @@ cc.Class({
     this.skillName = "shieldSkill"
     this.icon="Skill/shieldSkill";
     this.displayName = "圣盾"
-    this.desc = "接下来3回合防御加1";
     this.coolDown = 8+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){

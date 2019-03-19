@@ -12,6 +12,13 @@ cc.Class({
         return 4*this.level;
       }
     },
+    desc:{
+      get(){
+        return i18n.t("wisdomSkill/desc", {
+          effect: Math.round(this.effect*Global.WISDOM_EFFECT*100)
+          });
+      }
+    }
   },
 
   // LIFE-CYCLE CALLBACKS:
@@ -19,9 +26,6 @@ cc.Class({
     this.skillName = "wisdomSkill"
     this.icon="Skill/wisdomSkill";
     this.displayName = i18n.t("wisdomSkill/name")
-    this.desc = i18n.t("wisdomSkill/desc", {
-      effect: Math.round(this.effect*Global.WISDOM_EFFECT*100)
-      });
     this.coolDown = 12+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){

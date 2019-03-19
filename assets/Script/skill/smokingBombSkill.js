@@ -10,6 +10,11 @@ cc.Class({
       get(){
         return this.level+1;
       }
+    },
+    desc:{
+      get(){
+        return "所有远程攻击的敌人"+this.effect+"回合不能攻击";
+      }
     }
   },
 
@@ -18,7 +23,6 @@ cc.Class({
     this.skillName = "smokingBombSkill"
     this.icon="Skill/smokingBombSkill";
     this.displayName = "烟雾弹"
-    this.desc = "所有远程攻击的敌人2回合不能攻击";
     this.coolDown = 7+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){

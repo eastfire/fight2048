@@ -12,6 +12,11 @@ cc.Class({
         return this.level;
       }
     },
+    desc:{
+      get(){
+        return "在身后产生一面冰墙，持续"+this.effect+"回合。如果位置上有敌人，将其杀死";
+      }
+    }
   },
 
   // LIFE-CYCLE CALLBACKS:
@@ -19,11 +24,10 @@ cc.Class({
     this.skillName = "iceWallSkill"
     this.icon="Skill/iceWallSkill";
     this.displayName = "冰墙"
-    this.desc = "在身后产生一面冰墙，如果有敌人，将其杀死";
     this.coolDown = 10+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
-    return "冰墙持续时间变长"
+    return "冰墙持续时间变长1回合"
   },
   onLevelUp(level){
   },
