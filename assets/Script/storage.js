@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   star:0,
   game:{},
   meta:{},

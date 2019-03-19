@@ -1,6 +1,6 @@
-import Global from "global"
+const Global = require("global");
 const Boss = require("boss");
-import Effect from "effect"
+const Effect = require("effect");
 
 cc.Class({
     extends: Boss,

@@ -1,6 +1,6 @@
-import Global from "global";
-import Common from "common"
-import Storage from "storage";
+const Global = require("global");
+const Common = require("common");
+const Storage = require("storage");
 
 cc.Class({
   extends: cc.Component,

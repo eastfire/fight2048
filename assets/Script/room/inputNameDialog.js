@@ -1,5 +1,5 @@
-import Global from "global"
-import Storage from "storage"
+const Global = require("global");
+const Storage = require("storage");
 
 cc.Class({
     extends: cc.Component,

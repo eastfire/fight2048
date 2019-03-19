@@ -1,6 +1,6 @@
-import Global from "global";
-import Common from "common";
-import Effect from "effect";
+const Global = require("global");
+const Common = require("common");
+const Effect = require("effect");
 
 cc.Class({
     extends: cc.Component,

@@ -1,8 +1,8 @@
-import Global from "global";
-import Common from "common"
-import Storage from "storage";
-import Effect from "effect"
-import unlocks from "unlockEntry";
+const Global = require("global");
+const Common = require("common");
+const Storage = require("storage");
+const Effect = require("effect");
+const unlocks = require("unlockEntry");
 
 cc.Class({
     extends: cc.Component,

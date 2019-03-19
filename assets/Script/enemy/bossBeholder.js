@@ -1,7 +1,7 @@
-import Global from "global"
+const Global = require("global");
 const Boss = require("boss");
-import Effect from "effect"
-const Common = require("common")
+const Effect = require("effect");
+const Common = require("common");
 
 cc.Class({
     extends: Boss,

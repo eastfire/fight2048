@@ -1,5 +1,5 @@
-import Status from "status"
-import Global from "global"
+const Status = require("status");
+const Global = require("global");
 
 cc.Class({
   extends: Status,

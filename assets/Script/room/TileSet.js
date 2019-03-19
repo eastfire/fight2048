@@ -1051,4 +1051,4 @@ const TILES = {
   tiles6x5Wang
 }
 
-export default TILES;
+module.exports = TILES;

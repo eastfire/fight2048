@@ -1,7 +1,7 @@
-import Skill from "skill";
-import Global from "../global"
+const Skill = require("skill");
+const Global = require("global");
 const Common = require("common");
-import Effect from "effect"
+const Effect = require("effect");
 
 cc.Class({
   extends: Skill,

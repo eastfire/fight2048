@@ -1,4 +1,4 @@
-import Global from "global"
+const Global = require("global");
 
 var getLabelEffectPosition = function(defenderPosition, attackerPosition){
   let r = 50;
@@ -33,7 +33,7 @@ var radianToAngle = function(radian){
 
 var projectArrow = function( from, to ) {
   var angle = 0;
-  if ( from.x == to.x ) {
+  if (from.x == to.x ) {
     if ( from.y > to.y ) {
       angle = 90
     } else if ( from.y < to.y ) {
@@ -259,7 +259,7 @@ var useStarInMenu = function(toPosition, parentNode, amount, callback, context){
   }
 }
 
-export default {
+module.exports = {
   getLabelEffectPosition,
   labelEffect,
   projectArrow,

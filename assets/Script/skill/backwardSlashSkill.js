@@ -1,7 +1,7 @@
-import Skill from "skill";
-import Global from "../global"
-import Common from "../common";
-import Enemy from "../enemy/enemy"
+const Skill = require("skill");
+const Global = require("global");
+const Common = require("common");
+const Enemy = require("enemy");
 const i18n = require('i18n');
 
 cc.Class({

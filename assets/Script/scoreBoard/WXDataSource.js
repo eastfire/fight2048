@@ -1,4 +1,4 @@
-import DataSource from "DataSource";
+const DataSource = require("DataSource");
 
 cc.Class({
     extends: DataSource,

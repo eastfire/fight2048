@@ -1,9 +1,9 @@
-import Global from "global";
-import Common from "common";
-import Storage from "storage";
+const Global = require("global");
+const Common = require("common");
+const Storage = require("storage");
 const i18n = require('i18n');
 
-export default {
+module.exports = {
   unlocks:[
   {
     name:"warriorSkillSlot3",

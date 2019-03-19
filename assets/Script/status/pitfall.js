@@ -1,6 +1,6 @@
-import Status from "status"
-import Global from "global"
-import Common from "common"
+const Status = require("status");
+const Global = require("global");
+const Common = require("common");
 
 cc.Class({
   extends: Status,

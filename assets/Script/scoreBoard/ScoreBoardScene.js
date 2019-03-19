@@ -1,7 +1,7 @@
-import Global from "global"
-import Common from "common"
-import Storage from "storage"
-import LeanCloudDataSource from "LeanCloudDataSource";
+const Global = require("global");
+const Common = require("common");
+const Storage = require("storage");
+const LeanCloudDataSource = require("LeanCloudDataSource");
 
 cc.Class({
     extends: cc.Component,

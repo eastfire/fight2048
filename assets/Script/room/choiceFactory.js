@@ -1,5 +1,5 @@
-import Global from "global";
-import Storage from "storage"
+const Global = require("global");
+const Storage = require("storage");
 
 function levelUpSkill(opt){
   return function(){
@@ -18,7 +18,7 @@ function levelUpSkill(opt){
   }
 }
 
-export default {
+module.exports = {
   getSkill(opt){
     var skill = new cc.Node();
     skill.addComponent(opt.name);

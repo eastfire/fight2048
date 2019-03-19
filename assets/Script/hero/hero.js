@@ -1,9 +1,9 @@
-import Movable from "movable";
-import Global from "global";
-import Common from "common";
-import Enemy from "enemy";
-import Storage from "storage"
-import Effect from "effect"
+const Movable = require("movable");
+const Global = require("global");
+const Common = require("common");
+const Enemy = require("enemy");
+const Storage = require("storage");
+const Effect = require("effect");
 
 cc.Class({
   extends: Movable,

@@ -1,12 +1,12 @@
-import TILES from "TileSet";
-import Tile from "tile";
-import Movable from "movable";
-import Enemy from "enemy";
-import Common from "common";
-import EnemyFactory from "enemyFactory"
-import ItemFactory from "itemFactory"
+const TILES = require("TileSet");
+const Tile = require("tile");
+const Movable = require("movable");
+const Enemy = require("enemy");
+const Common = require("common");
+const EnemyFactory = require("enemyFactory");
+const ItemFactory = require("itemFactory");
 const Global = require("global");
-import Storage from "storage"
+const Storage = require("storage");
 
 cc.Class({
     extends: cc.Component,

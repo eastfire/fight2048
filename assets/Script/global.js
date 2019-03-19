@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   currentRoom: null,
   currentRoomScene: null,
 

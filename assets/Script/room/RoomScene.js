@@ -3,7 +3,7 @@ const Skill = require("skill");
 const Common = require("common");
 const Global = require("global");
 const ChoiceFactory = require("choiceFactory")
-import Storage from "storage"
+const Storage = require("storage");
 
 const KEY_LEFT = 37;
 const KEY_UP = 38;
@@ -87,7 +87,7 @@ cc.Class({
       Global.currentRoomScene = null;
     },
     start () {
-      this.score = 0; //TODO fetch from save
+      this.score = 0; //TODO fetch = require(" save
       this.star = Storage.star;
     },
     gainScore(score) {

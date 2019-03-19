@@ -1,7 +1,7 @@
-import Global from "global"
-import Common from "common"
-import Storage from "storage"
-import Effect from "effect"
+const Global = require("global");
+const Common = require("common");
+const Storage = require("storage");
+const Effect = require("effect");
 
 const MS_OF_MINUTE = 60000;
 const MS_OF_DAY = 3600*24*1000;
@@ -112,7 +112,7 @@ cc.Class({
     Common.loadScene("RoomScene",this.node, this.loading);
   },
   loadMovablePrefabs(){
-    
+
   }
   // update (dt) {},
 });

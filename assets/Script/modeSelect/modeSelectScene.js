@@ -1,7 +1,7 @@
-import Global from "global"
-import Storage from "storage"
-import Common from "common"
-import perks from "../perk/perkEntry"
+const Global = require("global");
+const Storage = require("storage");
+const Common = require("common");
+const perks = require("perkEntry");
 
 cc.Class({
     extends: cc.Component,

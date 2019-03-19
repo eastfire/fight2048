@@ -1,7 +1,7 @@
-import Movable from "movable";
-import Global from "global";
-import Common from "common";
-import Enemy from "enemy";
+const Movable = require("movable");
+const Global = require("global");
+const Common = require("common");
+const Enemy = require("enemy");
 
 cc.Class({
   extends: cc.Component,

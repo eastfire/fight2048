@@ -1,7 +1,7 @@
-import Global from "global";
-import Common from "common"
-import Storage from "storage";
-import MenuScene from "MenuScene"
+const Global = require("global");
+const Common = require("common");
+const Storage = require("storage");
+const MenuScene = require("MenuScene");
 
 cc.Class({
   extends: cc.Component,

@@ -1,8 +1,8 @@
-import Global from "global"
-import Common from "common"
-import Storage from "storage"
-import Effect from "effect"
-import achievements from "achievementEntry"
+const Global = require("global");
+const Common = require("common");
+const Storage = require("storage");
+const Effect = require("effect");
+const achievements = require("achievementEntry");
 
 cc.Class({
     extends: cc.Component,

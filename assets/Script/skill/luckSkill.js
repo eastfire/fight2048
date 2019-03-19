@@ -1,5 +1,5 @@
-import Skill from "skill";
-import Global from "../global"
+const Skill = require("skill");
+const Global = require("global");
 
 cc.Class({
   extends: Skill,

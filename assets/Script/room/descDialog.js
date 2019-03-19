@@ -1,4 +1,4 @@
-import Global from "global"
+const Global = require("global");
 
 cc.Class({
     extends: cc.Component,

@@ -1,5 +1,5 @@
-import Global from "global"
-import Common from "common"
+const Global = require("global");
+const Common = require("common");
 
 const Enemy = require("enemy");
 

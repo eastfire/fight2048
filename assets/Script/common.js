@@ -291,7 +291,7 @@ var ATTACK_TYPE_RANGE = 2;
 var ATTACK_TYPE_SKILL = 3;
 var ATTACK_TYPE_ENV = 4;
 
-export default {
+module.exports = {
   DIRECTION_UP,
   DIRECTION_RIGHT,
   DIRECTION_DOWN,

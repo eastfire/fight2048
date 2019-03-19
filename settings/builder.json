@@ -7,6 +7,13 @@
     "scheme": "https",
     "skipRecord": false
   },
+  "appBundle": false,
+  "baidugame": {
+    "REMOTE_SERVER_ROOT": "",
+    "appid": "testappid",
+    "orientation": "portrait",
+    "subContext": ""
+  },
   "encryptJs": true,
   "excludeScenes": [],
   "fb-instant-games": {},
@@ -17,12 +24,12 @@
   "mergeStartScene": false,
   "optimizeHotUpdate": false,
   "orientation": {
-    "landscapeLeft": true,
-    "landscapeRight": true,
-    "portrait": false,
+    "landscapeLeft": false,
+    "landscapeRight": false,
+    "portrait": true,
     "upsideDown": false
   },
-  "packageName": "org.cocos2d.helloworld",
+  "packageName": "com.eastfire.dungeon2048",
   "qqplay": {
     "REMOTE_SERVER_ROOT": "",
     "orientation": "portrait",
@@ -38,12 +45,5 @@
     "subContext": ""
   },
   "xxteaKey": "b5ee8075-ff47-47",
-  "zipCompressJs": true,
-  "baidugame": {
-    "appid": "testappid",
-    "orientation": "portrait",
-    "REMOTE_SERVER_ROOT": "",
-    "subContext": ""
-  },
-  "appBundle": false
+  "zipCompressJs": true
 }

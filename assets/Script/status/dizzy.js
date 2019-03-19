@@ -1,4 +1,4 @@
-import Status from "status"
+const Status = require("status");
 
 cc.Class({
   extends: Status,
