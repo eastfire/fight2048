@@ -110,6 +110,9 @@ cc.Class({
     Global.AchievementScene = null;
 
     Common.loadScene("RoomScene",this.node, this.loading);
+  },
+  loadMovablePrefabs(){
+    
   }
   // update (dt) {},
 });

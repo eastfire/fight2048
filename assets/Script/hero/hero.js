@@ -334,11 +334,13 @@ cc.Class({
   },
 
   loseHp(damage, reason){
-    if (reason.type == "poison") {
-      Effect.labelEffect("-"+damage, cc.Color.GREEN, this.node, {x:0,y:0})
-    } else if (reason.type == "enemy") {
+    if (reason.type == "enemy") {
       var p = Effect.getLabelEffectPosition(this.positions[0], reason.enemy.positions[0]);
       Effect.labelEffect("-"+damage, cc.Color.RED, this.node, p)
+    } else if (reason.type == "poison" ) {
+      Effect.labelEffect("-"+damage, cc.Color.GREEN, this.node, {x:0,y:0})
+    } else {
+      Effect.labelEffect("-"+damage, cc.Color.RED, this.node, {x:0,y:0})
     }
 
     this.hp = Math.max(0, this.hp - damage)

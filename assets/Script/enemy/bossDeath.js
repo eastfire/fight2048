@@ -1,6 +1,7 @@
 import Global from "global"
 const Boss = require("boss");
 import Effect from "effect"
+const Common = require("common")
 
 cc.Class({
     extends: Boss,
@@ -8,13 +9,13 @@ cc.Class({
     properties: {
       title: {
         get(){
-          return "九头蛇";
+          return "死神";
         },
         override: true,
       },
       desc: {
         get(){
-          return "boss不会被你一击杀死\n如果普通攻击击中它的弱点，它就不会在本回合攻击你。\n攻击力"+this.attack+"。\n经验值非常高。";
+          return "在你脚下生成钉板\n攻击力"+this.attack+"。\n经验值非常高。";
         },
         override: true,
       },
@@ -32,14 +33,29 @@ cc.Class({
       },
       attack: {
         get(){
-          return this.level*50;
+          return this.level*25;
         },
         override: true
       },
     },
 
     ctor: function() {
-      this.type = "bossHydra"
+      this.type = "bossDeath"
+    },
+    generate(){
+      this._super();
+      this.generateNail();
+    },
+    onTurnStart(){
+      this._super()
+      this.generateNail();
+    },
+    generateNail(){
+      var hero = Global.currentRoom.hero.getComponent("hero")
+      var tile = Global.currentRoom.getTile(hero.positions[0])
+      if ( tile ) {
+        tile.gainStatus("nail",5)
+      }
     },
 
     // update (dt) {},

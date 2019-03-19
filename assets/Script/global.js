@@ -42,7 +42,7 @@ export default {
   ENEMY_POOL_CHANGE_PER_TURN: 29,
   ENEMY_LEVEL_POOL_CHANGE_PER_TURN: 53,
   ENEMY_NUNBER_CHANGE_PER_TURN: 301,
-  BOSS_APPEAR_PER_TURN: 91,
+  BOSS_APPEAR_PER_TURN: 3,//91,
   ORIGIN_MAX_ENEMY_TYPE_IN_FIELD: 3,
   MAX_GEN_ENEMY_NUMBER: 4,
   MAX_ENEMY_LEVEL_DIFF: 2,
@@ -54,6 +54,8 @@ export default {
   currentHeroType: "normal",
   selectedPerk: [],
   currentSkillPool: [],
+
+  movablePrefabs:{},
 
   initMovable: [
     // {
@@ -105,7 +107,7 @@ export default {
     thief: ["fourArrowSkill","fourDiagnalArrowSkill","bombSkill"]
   },
   heroUnlockableSkill: {
-    normal: ["backwardSlashSkill","whirlSkill","bigWhirlSkill","crossSlashSkill"], //charge
+    normal: ["backwardSlashSkill","whirlSkill","bigWhirlSkill","crossSlashSkill"], //throneShieldSkill
     wizard: ["teleportSkill","meteorShowerSkill","lighteningSkill","fireballSkill","tornadoSkill"],
     cleric: ["turnUndeadSkill","resurrectionSkill","wisdomSkill","angelSkill"],
     thief: ["eightArrowSkill","smokingBombSkill","treasureSkill","exchangeSkill","blinkSkill"] //
@@ -114,7 +116,8 @@ export default {
   enemyList:["archer","ballista","catapult","centaur","chomper","fireElement","gargoyle","ghost","golem","killerBee","kobold","medusa","mimic","minotaur",
   "mummy","ooze","orcChief","orge","ratman","scorpion","skeleton","shaman","snake","summoner","treant","troll","vampire"],
   // enemyList:["centaur"],
-  bossPool:["bossHydra"],
+  bossPool:["bossBeholder","bossHydra","bossDeath"],
+  // bossPool:["bossDeath"],
 
   reset(){
     this.ITEM_POOL = ["potion"]

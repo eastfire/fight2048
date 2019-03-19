@@ -10,7 +10,7 @@ cc.Class({
       weakPoint: cc.Sprite,
       hpList: cc.Layout,
       life: {
-        default: 3,
+        default: 0,
         notify(oldValue) {
           if ( oldValue == this.life ) return;
           this.setLife(this.life)
@@ -20,8 +20,6 @@ cc.Class({
 
     ctor: function() {
       this.isBoss = true;
-      this.life = 3;
-      this.maxLife = 3;
       this.relativePositions = [{x:0, y:0},
       {x:1,y:0},
       {x:1,y:1},
@@ -30,7 +28,7 @@ cc.Class({
 
     start(){
       this._super();
-
+      this.life = this.hpList.node.children.length;
       this.resetWeakPoint();
       this.setLife(this.life)
     },
