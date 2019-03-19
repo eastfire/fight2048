@@ -29,17 +29,16 @@ cc.Class({
         this.nailSprite.x = this.nailSprite.y = 0;
         if ( tile.effectLayer ) {
           tile.effectLayer.addChild(this.nailSprite)
+          this.attackSprite = cc.find("attackSprite", this.nailSprite)
           this.hideNail();
         }
     })
   },
   showNail(){
-    cc.find("attackSprite", this.nailSprite).active = true
-    cc.log(cc.find("attackSprite", this.nailSprite))
+    this.attackSprite.opacity = 255
   },
   hideNail(){
-    cc.find("attackSprite", this.nailSprite).active = false;
-    cc.log(cc.find("attackSprite", this.nailSprite))
+    this.attackSprite.opacity = 0;
   },
   onLost(tile){
     this.nailSprite.destroy()

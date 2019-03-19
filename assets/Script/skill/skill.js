@@ -52,7 +52,6 @@ cc.Class({
       this.iconBg.spriteFrame = this.countDownIcon.spriteFrame = spriteFrame;
     });
     this.iconBg.node.on('touchcancel', this.cancelSkillDesc, this)
-    this.iconBg.node.on('touchmove', this.cancelSkillDesc, this)
     this.iconBg.node.on('touchstart', this.startSkillDesc, this)
     this.iconBg.node.on('touchend', this.useSkill, this)
 
