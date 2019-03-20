@@ -17,9 +17,10 @@ cc.Class({
         wx.showShareMenu(
           {withShareTicket:true}
         )
-        cc.loader.loadRes("texture/Enemy/ghost",function(err,data){
+        cc.loader.loadRes("Texture/Enemy/snake",cc.SpriteFrame,function(err,data){
           cc.log(err)
           cc.log(data)
+          cc.log(data.url)
           wx.onShareAppMessage(
             function(res){
               return {
@@ -61,7 +62,7 @@ cc.Class({
     wxShare() {
       if ( cc.sys.platform !== cc.sys.WECHAT_GAME ) return;
 
-      cc.loader.loadRes("Texture/Enemy/golem",function(err,data){
+      cc.loader.loadRes("Texture/Enemy/golem",cc.SpriteFrame,function(err,data){
         cc.log(err)
         cc.log(data)
         wx.shareAppMessage({

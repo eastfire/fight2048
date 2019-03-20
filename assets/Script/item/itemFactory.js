@@ -17,7 +17,7 @@ cc.Class({
     return Common.sample( this.itemPool );
   },
   generateOneItemLevel(enemyLevel){
-    return Math.min(9,Math.ceil(enemyLevel/4));
+    return Math.min(6,Math.ceil(enemyLevel/Global.STAR_THRESHOLD));
   },
   generateOneRandomItem(position, enemyLevel){
     if ( this.itemPool.length ) {
