@@ -1,5 +1,10 @@
 const Global = require("global");
 
+var labelNodePool = new cc.NodePool();
+var arrowNodePool = new cc.NodePool();
+var stoneNodePool = new cc.NodePool();
+var starNodePool = new cc.NodePool();
+
 var getLabelEffectPosition = function(defenderPosition, attackerPosition){
   let r = 50;
   let dx = attackerPosition.x - defenderPosition.x;
@@ -12,9 +17,14 @@ var getLabelEffectPosition = function(defenderPosition, attackerPosition){
 }
 
 var labelEffect = function(str, color, parent, position) {
-  var label = new cc.Node();
-  label.addComponent(cc.Label)
+  var label = labelNodePool.get();
+
+  if ( !label ) {
+    label = new cc.Node();
+    label.addComponent(cc.Label)
+  }
   label.getComponent(cc.Label).string = str;
+  label.opacity = 255;
   position = position || {x:Math.random()*40-20,y:Math.random()*40-20}
   label.x = position.x+parent.x;
   label.y = position.y+parent.y;
@@ -22,7 +32,10 @@ var labelEffect = function(str, color, parent, position) {
   Global.currentRoom.node.addChild(label);
   label.runAction(cc.sequence(cc.moveBy(0.4+Math.random()*0.2, 0, 60+Math.random()*20),
     cc.fadeOut(0.2),
-    cc.removeSelf()
+    cc.callFunc(function(){
+      label.removeFromParent(true);
+      labelNodePool.put(label)
+    },this)
   ))
 }
 
@@ -51,14 +64,20 @@ var projectArrow = function( from, to ) {
   } else {
     angle = radianToAngle(Math.atan((to.y-from.y)/(to.x-from.x)));
   }
-  var arrow = cc.instantiate(Global.currentRoom.arrowPrefab)
+  var arrow = arrowNodePool.get();
+  if ( !arrow ) {
+    arrow = cc.instantiate(Global.currentRoom.arrowPrefab)
+  }
   arrow.x = from.x;
   arrow.y = from.y;
   arrow.rotation = -angle;
   Global.currentRoom.node.addChild(arrow)
   arrow.runAction(cc.sequence(
     cc.moveTo(Global.ENEMY_ATTACK_TIME/2, to.x, to.y ),
-    cc.removeSelf()
+    cc.callFunc(function(){
+      arrow.removeFromParent(true);
+      arrowNodePool.put(arrow)
+    },this)
   ))
 }
 
@@ -95,7 +114,10 @@ var projectFireball = function( from, to, opt ) {
 }
 
 var projectStone = function( from, to ) {
-  var stone = cc.instantiate(Global.currentRoom.stonePrefab)
+  var stone = stoneNodePool.get();
+  if ( !stone ) {
+    stone = cc.instantiate(Global.currentRoom.stonePrefab)
+  }
   stone.x = from.x;
   stone.y = from.y;
   Global.currentRoom.node.addChild(stone)
@@ -105,12 +127,19 @@ var projectStone = function( from, to ) {
       cc.moveTo(Global.ENEMY_ATTACK_TIME/2, to.x, to.y ),
       cc.rotateBy(Global.ENEMY_ATTACK_TIME/2, 360),
     ),
-    cc.removeSelf()
+    cc.callFunc(function(){
+      stone.removeFromParent(true);
+      stoneNodePool.put(stone)
+    },this)
   ))
 }
 
 var gainStarInRoom = function(fromPosition, callback, context) {
-  var star = cc.instantiate(Global.currentRoom.starPrefab);
+  var star = starNodePool.get();
+  if ( !star ) {
+    star = cc.instantiate(Global.currentRoom.starPrefab);
+    star.setScale(2)
+  }
   let worldPos = Global.currentRoom.node.convertToWorldSpaceAR(
     {
       x: fromPosition.x,
@@ -119,7 +148,6 @@ var gainStarInRoom = function(fromPosition, callback, context) {
   );
   let viewPos = Global.currentRoomScene.node.convertToNodeSpaceAR(worldPos);
   star.position = viewPos;
-  star.setScale(2)
   Global.currentRoomScene.node.addChild(star);
 
   let destPos = Global.currentRoomScene.moneyLabel.node.position;
@@ -133,18 +161,24 @@ var gainStarInRoom = function(fromPosition, callback, context) {
         cc.scaleTo(Global.GET_STAR_TIME/2,1)
       ))
     },this),
-    cc.removeSelf()
+    cc.callFunc(function(){
+      this.removeFromParent(true);
+      starNodePool.put(this)
+    },star)
   ))
 }
 
 var useStarInRoom = function(toPosition, toParentNode, amount){
   var starCount = Math.min(amount, 5);
   for ( var i = 0; i < starCount; i++ ) {
-    var star = cc.instantiate(Global.currentRoom.starPrefab);
+    var star = starNodePool.get();
+    if ( !star ) {
+      star = cc.instantiate(Global.currentRoom.starPrefab);
+      star.setScale(2)
+    }
     let fromPos = Global.currentRoomScene.moneyLabel.node.position;
 
     star.position = fromPos;
-    star.setScale(2)
 
     let worldPos = toParentNode.convertToWorldSpaceAR(
       {
@@ -165,7 +199,10 @@ var useStarInRoom = function(toPosition, toParentNode, amount){
     star.runAction(cc.sequence(
       cc.delayTime(0.1*i),
       cc.moveTo(Global.GET_STAR_TIME, toPos.x, toPos.y).easing(cc.easeQuadraticActionIn()),
-      cc.removeSelf()
+      cc.callFunc(function(){
+        this.removeFromParent(true);
+        starNodePool.put(this)
+      },star)
     ))
   }
 }
@@ -177,7 +214,11 @@ var gainStarInMenu = function(fromPosition, parentNode, amount, callback, contex
     var step = Math.round(amountLeft/(starCount-i));
     amountLeft -= step;
 
-    var star = cc.instantiate(Global.MenuScene.starPrefab);
+    var star = starNodePool.get();
+    if ( !star ) {
+      star = cc.instantiate(Global.MenuScene.starPrefab);
+      star.setScale(2)
+    }
     let worldPos = parentNode.convertToWorldSpaceAR(
       {
         x: fromPosition.x,
@@ -186,7 +227,6 @@ var gainStarInMenu = function(fromPosition, parentNode, amount, callback, contex
     );
     let viewPos = Global.MenuScene.node.convertToNodeSpaceAR(worldPos);
     star.position = viewPos;
-    star.setScale(2)
     Global.MenuScene.node.addChild(star);
 
     let destPos = Global.MenuScene.moneyLabel.node.position;
@@ -205,7 +245,10 @@ var gainStarInMenu = function(fromPosition, parentNode, amount, callback, contex
         callback,
         context
       ): cc.delayTime(0.01),
-      cc.removeSelf()
+      cc.callFunc(function(){
+        this.removeFromParent(true);
+        starNodePool.put(this)
+      },star)
     ))
   }
 }
@@ -217,11 +260,14 @@ var useStarInMenu = function(toPosition, parentNode, amount, callback, context){
     var step = Math.round(amountLeft/(starCount-i));
     amountLeft -= step;
 
-    var star = cc.instantiate(Global.MenuScene.starPrefab);
+    var star = starNodePool.get();
+    if ( !star ) {
+      star = cc.instantiate(Global.MenuScene.starPrefab);
+      star.setScale(2)
+    }
     let fromPos = Global.MenuScene.moneyLabel.node.position;
 
     star.position = fromPos;
-    star.setScale(2)
 
     let worldPos = parentNode.convertToWorldSpaceAR(
       {
@@ -254,7 +300,10 @@ var useStarInMenu = function(toPosition, parentNode, amount, callback, context){
         callback,
         context
       ): cc.delayTime(0.01),
-      cc.removeSelf()
+      cc.callFunc(function(){
+        this.removeFromParent(true);
+        starNodePool.put(this)
+      },star)
     ))
   }
 }

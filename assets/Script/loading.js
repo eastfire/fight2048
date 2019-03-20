@@ -10,5 +10,11 @@ cc.Class({
       cc.scaleTo(time,0.85,1.15),
     ))
     this.node.x = this.node.y = 0;
+    this.node.on("touchend",function(){
+      //do nothing
+    },this)
+  },
+  onDestroy(){
+    this.node.off("touchend")
   }
 })
