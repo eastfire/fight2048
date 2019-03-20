@@ -13,7 +13,7 @@ cc.Class({
     },
     desc:{
       get(){
-        return "所有远程攻击的敌人"+this.effect+"回合不能攻击";
+        return "所有远程攻击的敌人"+this.effect+"回合不能攻击, 所有近程攻击的敌人1回合不能攻击。对boss无效";
       }
     }
   },
@@ -23,10 +23,10 @@ cc.Class({
     this.skillName = "smokingBombSkill"
     this.icon="Skill/smokingBombSkill";
     this.displayName = "烟雾弹"
-    this.coolDown = 7+Global.SKILL_WAIT_ADJUST;
+    this.coolDown = 10+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
-    return "持续时间多1回合，但冷却时间也多1回合"
+    return "对远程敌人的效果持续时间多1回合，但冷却时间也多1回合"
   },
   effectOfLevel(level){
     return level;

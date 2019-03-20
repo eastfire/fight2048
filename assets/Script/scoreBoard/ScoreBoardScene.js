@@ -1,7 +1,7 @@
 const Global = require("global");
 const Common = require("common");
 const Storage = require("storage");
-const LeanCloudDataSource = require("LeanCloudDataSource");
+const DataSource = require("LeanCloudDataSource");
 
 cc.Class({
     extends: cc.Component,
@@ -17,7 +17,7 @@ cc.Class({
     start () {
       //set datasource
       if ( !Global.dataSource ) {
-        Global.dataSource = new LeanCloudDataSource();
+        Global.dataSource = new DataSource();
       }
       //get data
       this.scoreList = []

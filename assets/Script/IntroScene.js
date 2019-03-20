@@ -1,3 +1,5 @@
+"use strict";
+
 const Storage = require("storage");
 const Global = require("global");
 const Common = require("common");

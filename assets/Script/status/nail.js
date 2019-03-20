@@ -48,7 +48,7 @@ cc.Class({
     var hero = Global.currentRoom.hero.getComponent("hero");
     var movable = Global.currentRoom.getMovableByTile(tile)
     if ( movable ) {
-      if ( movable.getComponent("enemy") ) {
+      if ( movable.getComponent("enemy") && !movable.getComponent("boss") ) {
         var attackDetail = {
           fromPosition:{
             x:tile.x,
@@ -65,6 +65,8 @@ cc.Class({
       this.hideNail();
     }, Global.HERO_ATTACK_TIME)
     Global.currentRoom.setDelayPhaseTime( Global.HERO_ATTACK_TIME+0.05 );
+
+    this._super(tile);
   }
   // update (dt) {},
 });

@@ -8,16 +8,18 @@
   "design-resolution-height": 640,
   "design-resolution-width": 1136,
   "excluded-modules": [
+    "Dynamic Atlas",
     "LabelOutline",
     "TiledMap",
     "Spine Skeleton",
     "DragonBones",
     "RichText",
-    "MotionStreak",
+    "PageViewIndicator",
+    "WebView",
     "AudioSource",
     "Collider",
     "Physics",
-    "NodePool"
+    "Intersection"
   ],
   "facebook": {
     "appID": "",
