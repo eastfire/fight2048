@@ -14,7 +14,7 @@ cc.Class({
       },
       desc: {
         get(){
-          return "远程攻击，距离你越远攻击力越高。距离1至3格内不会攻击。\n攻击力很低至很高。\n经验值很高。";
+          return "远程攻击，距离你越远攻击力越高。距离1至3格内不会攻击。\n攻击力较低至很高。\n经验值很高。";
         },
         override: true,
       },
@@ -26,8 +26,8 @@ cc.Class({
         override: true
       },
       attack: {
-        get(){  //很低
-          return Math.round(this.level/2);
+        get(){  //较低
+          return this.level;
         },
         override: true
       },

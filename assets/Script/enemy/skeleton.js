@@ -20,13 +20,13 @@ cc.Class({
       exp: {
         get(){  //一般
           var l = this.level + this.star;
-          return Math.round(l*1.5*Global.EXP_INFLATION_RATE)
+          return (2*l-1)*Global.EXP_INFLATION_RATE
         },
         override: true
       },
       attack: {
         get(){  //一般
-          return (this.level+this.star)*2-1;
+          return (this.level)*2-1;
         },
         override: true
       },

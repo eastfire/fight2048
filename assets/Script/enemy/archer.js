@@ -35,7 +35,7 @@ cc.Class({
       attack: {
         get(){  //很低
           var l = this.level
-          return Math.ceil(l/3); //1，1，1，2，2，2，3，3，3,4
+          return Math.ceil(l/2); //1，1，2，2，3，3，4，4
         },
         override: true
       },

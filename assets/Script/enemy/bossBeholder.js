@@ -33,7 +33,7 @@ cc.Class({
       },
       attack: {
         get(){
-          return this.level*15;
+          return this.level*30;
         },
         override: true
       },
