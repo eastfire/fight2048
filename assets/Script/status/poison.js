@@ -5,6 +5,16 @@ cc.Class({
   extends: Status,
 
   properties: {
+    title:{
+      get(){
+        return "中毒"
+      }
+    },
+    desc:{
+      get(){
+        return "每回合开始-1生命"
+      }
+    }
   },
 
   // LIFE-CYCLE CALLBACKS:

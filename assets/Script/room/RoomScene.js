@@ -59,6 +59,7 @@ cc.Class({
       gameOverDialog: cc.Prefab,
       dieDialog: cc.Prefab,
       skillDescDialog: cc.Prefab,
+      heroDescDialog: cc.Prefab,
       shiftArrowSprite: cc.Sprite,
       exitDialog: cc.Prefab,
       loading: cc.Prefab,

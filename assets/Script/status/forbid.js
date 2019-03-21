@@ -5,6 +5,16 @@ cc.Class({
   extends: Status,
 
   properties: {
+    title:{
+      get(){
+        return "封魔"
+      }
+    },
+    desc:{
+      get(){
+        return "无法使用技能"
+      }
+    }
   },
 
   // LIFE-CYCLE CALLBACKS:

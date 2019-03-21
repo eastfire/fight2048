@@ -2416,6 +2416,9 @@
     "skillDescDialog": {
       "__uuid__": "45e79e05-f493-45e8-9757-d07b2935b973"
     },
+    "heroDescDialog": {
+      "__uuid__": "3c4ba5af-4299-482c-99a6-b2c860376844"
+    },
     "shiftArrowSprite": {
       "__id__": 36
     },

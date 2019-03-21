@@ -370,7 +370,9 @@ cc.Class({
     //hero不要在合并后升级，所以重载movable的afterBeMerged
   },
   showDescDialog(){
-
+    var dialog = cc.instantiate(Global.currentRoomScene.heroDescDialog)
+    Global.currentRoomScene.node.addChild(dialog)
+    return dialog;
   },
 //英雄mergeTo道具的逻辑与普通movable不同
   mergeTo(movable){

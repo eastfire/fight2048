@@ -5,6 +5,16 @@ cc.Class({
   extends: Status,
 
   properties: {
+    title:{
+      get(){
+        return "复活"
+      }
+    },
+    desc:{
+      get(){
+        return "本回合如果死亡将会复活"
+      }
+    }
   },
 
   // LIFE-CYCLE CALLBACKS:

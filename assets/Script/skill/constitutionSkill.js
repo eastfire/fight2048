@@ -5,6 +5,11 @@ cc.Class({
   extends: Skill,
 
   properties: {
+    desc:{
+      get(){
+        return "增加生命上限"+Math.round(this.level*Global.CONSTITUTION_EFFECT);
+      }
+    }
   },
 
   // LIFE-CYCLE CALLBACKS:
@@ -12,7 +17,7 @@ cc.Class({
     this.skillName = "constitutionSkill"
     this.icon="Skill/constitutionSkill";
     this.displayName = "体质（被动）"
-    this.desc = "增加生命上限"+Math.round(Global.CONSTITUTION_EFFECT);
+
     this.isPassive = true;
     this.maxLevel = 100;
   },

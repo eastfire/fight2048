@@ -4,6 +4,16 @@ cc.Class({
   extends: Status,
 
   properties: {
+    title:{
+      get(){
+        return "冻结"
+      }
+    },
+    desc:{
+      get(){
+        return "无法移动"
+      }
+    }
   },
 
   // LIFE-CYCLE CALLBACKS:

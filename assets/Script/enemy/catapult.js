@@ -14,7 +14,7 @@ cc.Class({
       },
       desc: {
         get(){
-          return "远程攻击，距离你越远攻击力越高。距离1至3格内不会攻击。\n攻击力较低至很高。\n经验值很高。";
+          return "远程攻击，距离你越远攻击力越高。距离1至2格内不会攻击。\n攻击力较低至很高。\n经验值很高。";
         },
         override: true,
       },
@@ -44,12 +44,12 @@ cc.Class({
     checkRange:function(hero){
       var myPosition = this.positions[0];
       var heroPosition = Global.currentRoom.hero.getComponent("hero").positions[0];
-      return Math.abs(heroPosition.x - myPosition.x)+Math.abs(heroPosition.y - myPosition.y) > 3
+      return Math.abs(heroPosition.x - myPosition.x)+Math.abs(heroPosition.y - myPosition.y) > 2
     },
     hit(hero){
       var myPosition = this.positions[0];
       var heroPosition = Global.currentRoom.hero.getComponent("hero").positions[0];
-      var rate = Math.max(0, Math.abs(heroPosition.x - myPosition.x)+Math.abs(heroPosition.y - myPosition.y)-3);
+      var rate = Math.max(0, Math.abs(heroPosition.x - myPosition.x)+Math.abs(heroPosition.y - myPosition.y)-2);
       return Math.round(this.attack*rate);
     },
     // LIFE-CYCLE CALLBACKS:

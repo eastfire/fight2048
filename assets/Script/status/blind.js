@@ -5,6 +5,16 @@ cc.Class({
   extends: Status,
 
   properties: {
+    title:{
+      get(){
+        return "失明"
+      }
+    },
+    desc:{
+      get(){
+        return "看不见怪物和道具的等级"
+      }
+    }
   },
 
   // LIFE-CYCLE CALLBACKS:
