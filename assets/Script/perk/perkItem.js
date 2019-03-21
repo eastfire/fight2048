@@ -49,6 +49,8 @@ cc.Class({
         price,
         function(){
           this.updateItem(this.perkEntry, this.itemID);
+          if ( Global.UnlockScene )
+            Global.UnlockScene.refresh();
         }, this);
     }
   },
