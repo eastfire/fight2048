@@ -13,7 +13,7 @@ cc.Class({
       },
       desc: {
         get(){
-          return "击中你时自己升1级。攻击力超高。\n经验值超高。";
+          return "击中你时自己升1级。攻击力超超高。\n经验值超高。";
         },
         override: true,
       },

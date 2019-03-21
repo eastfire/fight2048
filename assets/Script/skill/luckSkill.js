@@ -18,7 +18,7 @@ cc.Class({
     this.icon="Skill/luckSkill";
     this.displayName = "幸运（被动）"
     this.isPassive = true;
-    this.maxLevel = 10;
+    this.maxLevel = 5;
   },
   levelUpDesc(level){
     return "增加"+3*Math.round(100*Global.LUCK_EFFECT)+"%的道具掉落概率";

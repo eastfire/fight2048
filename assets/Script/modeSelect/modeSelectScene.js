@@ -61,23 +61,23 @@ cc.Class({
       }
     },
     refreshPerkList(){
-      var adjust = this.calculateScoreAdjust();
-      if ( adjust.scoreAdjust == 0 ) {
-        this.scoreAdjustLabel.node.active = false;
-        this.scoreAdjustTitle.node.active = false;
-      } else {
-        this.scoreAdjustLabel.node.active = true;
-        this.scoreAdjustTitle.node.active = true;
-        this.scoreAdjustLabel.string = Math.round(100+adjust.scoreAdjust*Global.PERK_SCORE_ADJUST*100)+"%";
-        // if ( adjust.extra ) {
-        //   if ( adjust.extra > 0 ) {
-        //     this.scoreAdjustLabel.string += "\n(额外奖励"
-        //   } else {
-        //     this.scoreAdjustLabel.string += "\n(额外惩罚"
-        //   }
-        //   this.scoreAdjustLabel.string +=Math.round(adjust.extra*Global.PERK_SCORE_ADJUST*100)+"%)"
-        // }
-      }
+      // var adjust = this.calculateScoreAdjust();
+      // if ( adjust.scoreAdjust == 0 ) {
+      //   this.scoreAdjustLabel.node.active = false;
+      //   this.scoreAdjustTitle.node.active = false;
+      // } else {
+      //   this.scoreAdjustLabel.node.active = true;
+      //   this.scoreAdjustTitle.node.active = true;
+      //   this.scoreAdjustLabel.string = Math.round(100+adjust.scoreAdjust*Global.PERK_SCORE_ADJUST*100)+"%";
+      //   // if ( adjust.extra ) {
+      //   //   if ( adjust.extra > 0 ) {
+      //   //     this.scoreAdjustLabel.string += "\n(额外奖励"
+      //   //   } else {
+      //   //     this.scoreAdjustLabel.string += "\n(额外惩罚"
+      //   //   }
+      //   //   this.scoreAdjustLabel.string +=Math.round(adjust.extra*Global.PERK_SCORE_ADJUST*100)+"%)"
+      //   // }
+      // }
 
       var maxPerk = Storage.progress.maxPerk[Global.currentHeroType] || 1;
       var isActive = Global.selectedPerk.length < maxPerk;

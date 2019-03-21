@@ -83,6 +83,8 @@ cc.Class({
       function(){
         if ( Global.UnlockScene )
           Global.UnlockScene.refresh();
+        if ( Global.ModeSelectScene )
+          Global.ModeSelectScene.refreshPerkList();
       }, this);
     Storage.progress.continueCheckInDay++;
     Storage.saveProgress();
@@ -96,14 +98,14 @@ cc.Class({
     Storage.saveGame();
 
 
-    var positiveCount = 0;
-    var negativeCount = 0;
+    // var positiveCount = 0;
+    // var negativeCount = 0;
     Global.selectedPerk.forEach(function(perkEntry){
       perkEntry.apply();
     },this)
-    var adjust = Global.ModeSelectScene.calculateScoreAdjust()
-
-    Global.SCORE_INFLATION_RATE = Global.ORIGIN_SCORE_INFLATION_RATE * (1+adjust.scoreAdjust*Global.PERK_SCORE_ADJUST)
+    // var adjust = Global.ModeSelectScene.calculateScoreAdjust()
+    //
+    // Global.SCORE_INFLATION_RATE = Global.ORIGIN_SCORE_INFLATION_RATE * (1+adjust.scoreAdjust*Global.PERK_SCORE_ADJUST)
 
     Global.ModeSelectScene = null;
     Global.UnlockScene = null;

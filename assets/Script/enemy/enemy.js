@@ -226,7 +226,7 @@ cc.Class({
       return Math.random() < this.getDropRate();
     },
     getDropRate(){
-      return Math.min(0.4, (this.level) * Global.ENEMY_LUCK_EFFECT
+      return Math.min(0.4, (this.level+1) * Global.ENEMY_LUCK_EFFECT
         + Global.currentRoom.hero.getComponent("hero").luck * Global.LUCK_EFFECT )
     },
     canAttack(hero){

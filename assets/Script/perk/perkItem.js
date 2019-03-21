@@ -1,6 +1,7 @@
 const Global = require("global");
 const Common = require("common");
 const Storage = require("storage");
+const Effect = require("effect");
 
 cc.Class({
   extends: cc.Component,
@@ -25,6 +26,7 @@ cc.Class({
   },
 
   click(){
+    if ( !Storage.progress.perk[this.perkEntry.name] ) return;
     if ( this.perkEntry.active === true ) {
       if ( this.perkEntry.isSelected ) {
         this.perkEntry.isSelected = false;
@@ -33,6 +35,21 @@ cc.Class({
         this.perkEntry.isSelected = true;
         Global.ModeSelectScene.selectPerk(this.perkEntry)
       }
+    }
+  },
+
+  upgradePerk(){
+    var level = Storage.progress.perk[this.perkEntry.name] || 0
+    var price = this.perkEntry.price[level]
+    if ( Global.MenuScene.star >= price ) {
+
+      Storage.progress.perk[this.perkEntry.name] = level+1;
+      Storage.saveProgress();
+      Effect.useStarInMenu( this.upgradeButton.node.position, this.upgradeButton.node.parent,
+        price,
+        function(){
+          this.updateItem(this.perkEntry, this.itemID);
+        }, this);
     }
   },
 
@@ -56,7 +73,7 @@ cc.Class({
       this.toggle.node.active = true;
       this.toggle.isChecked = true;
     } else {
-      if (this.perkEntry.active) {
+      if (this.perkEntry.active && Storage.progress.perk[this.perkEntry.name]) {
         this.toggle.node.active = true;
         this.toggle.isChecked = false;
       } else {
@@ -71,6 +88,7 @@ cc.Class({
 
 
     if ( level ) {
+      this.lockedIcon.node.active = false;
       if ( level === this.perkEntry.price.length ) {
         this.upgradeButton.node.active = false;
       } else {
@@ -82,6 +100,7 @@ cc.Class({
         this.upgradeButton.interactable = Global.MenuScene.star >= price
       }
     } else {
+      this.lockedIcon.node.active = true;
       var price = this.perkEntry.price[level]
       this.upgradeButton.node.active = true;
       this.priceLabel.string = "-"+price

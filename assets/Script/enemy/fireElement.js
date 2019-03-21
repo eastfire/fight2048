@@ -28,7 +28,7 @@ cc.Class({
     },
     attack: {
       get(){  //较高
-        return Math.round(Math.log(this.level+1)*this.level)+1;
+        return 2*Math.round(Math.log(this.level+1)*this.level)+1;
       },
       override: true
     },

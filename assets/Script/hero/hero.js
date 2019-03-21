@@ -235,10 +235,10 @@ cc.Class({
       if ( Global.LESS_EXP_BELOW_6 && enemy.level <= 6) {
         extraAdjust = -0.4;
       } else if ( Global.MORE_EXP_ABOVE_12 && enemy.level >= 12 ) {
-        extraAdjust = 0.4;
+        extraAdjust = Global.MORE_EXP_ABOVE_12*0.1;
       }
     }
-    return Math.round((1+this.wisdom*Global.WISDOM_EFFECT+extraAdjust)*exp);
+    return Math.round((1+this.wisdom*Global.WISDOM_EFFECT+extraAdjust)*exp) + Global.ENEMY_EXP_ADJUST;
   },
   gainExp(exp){
     if ( exp+this.exp <= this.maxExp ) {

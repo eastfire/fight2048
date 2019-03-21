@@ -26,7 +26,7 @@ cc.Class({
       },
       attack: {
         get(){  //较高
-          return 3*this.level-1;
+          return 4*this.level-1;
         },
         override: true
       },

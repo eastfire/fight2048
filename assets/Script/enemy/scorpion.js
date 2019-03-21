@@ -29,7 +29,7 @@ cc.Class({
     attack: {
       get(){ //很低
         var l = this.level+this.star
-        return Math.round(l/2);
+        return 2*Math.round(l/2);
       },
       override: true
     },

@@ -19,9 +19,10 @@ module.exports = {
     desc:function(level){
       return "每次升级或增加体质获得的生命多"+(level*10)+"%";
     },
-    price:[10,20,40,80,150,300,600,1300,2000,4100],
+    price:[10,40,200,1200,10000],
     apply(){
-      var rate = Global.HP_PER_LEVEL/Global.ORIGIN_HP_PER_LEVEL + Storage.progress.perk.moreHp;
+      var moreHp = Storage.progress.perk.moreHp || 0;
+      var rate = Global.HP_PER_LEVEL/Global.ORIGIN_HP_PER_LEVEL + 0.1*moreHp;
       Global.HP_PER_LEVEL = Global.ORIGIN_HP_PER_LEVEL * rate;
       Global.CONSTITUTION_EFFECT = Global.ORIGIN_CONSTITUTION_EFFECT * rate;
     }
@@ -30,9 +31,9 @@ module.exports = {
     name:"moreExp",
     title:"经验老道",
     desc:function(level){
-      return "每次杀死敌人多得到"+(level)+"经验值";
+      return "每次杀死1个敌人多得到"+(level)+"经验值";
     },
-    price:[50,100,200,400,750,1500,3000,6500,10000,21000],
+    price:[10,40,200,1200,10000],
     apply(){
       Global.ENEMY_EXP_ADJUST = Storage.progress.perk.moreExp;
     }
@@ -41,7 +42,7 @@ module.exports = {
     name:"moreChoice",
     title:"灵活多变",
     desc:"升级时多１选择项",
-    price: [100],
+    price: [300],
     apply(){
       Global.CHOICE_NUMBER++;
     }
@@ -69,6 +70,17 @@ module.exports = {
     }
   },
   {
+    name:"morePotionEffect",
+    title:"",
+    desc:function(level){
+      return "回复药治疗效果加"+(level*10)+"%";
+    },
+    price: [100,200,600,2400,10000],
+    apply(){
+      Global.POTION_EFFECT += Storage.progress.perk.morePotionEffect;
+    }
+  },
+  {
     name:"lessNegativeTime",
     title:"超强免疫",
     desc:"异常状态影响-1回合或-1效果",
@@ -92,7 +104,7 @@ module.exports = {
     desc:function(level){
       return "杀死12级或以上的怪物得到的经验值加"+(level*10)+"%";
     },
-    price: [500,1000,1500,2000],
+    price: [200,400,1200,4800,20000],
     apply(){
       Global.MORE_EXP_ABOVE_12 = Storage.progress.perk.moreExpAbove12;
     },

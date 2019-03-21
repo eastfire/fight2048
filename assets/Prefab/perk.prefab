@@ -27,17 +27,17 @@
     "_level": 1,
     "_components": [
       {
-        "__id__": 44
-      },
-      {
         "__id__": 45
       },
       {
         "__id__": 46
+      },
+      {
+        "__id__": 47
       }
     ],
     "_prefab": {
-      "__id__": 47
+      "__id__": 48
     },
     "_opacity": 255,
     "_color": {
@@ -50,7 +50,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 550,
-      "height": 185
+      "height": 175
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -941,7 +941,7 @@
       }
     ],
     "_prefab": {
-      "__id__": 43
+      "__id__": 44
     },
     "_opacity": 255,
     "_color": {
@@ -963,7 +963,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 161,
+      "x": 155,
       "y": -62.5,
       "z": 0
     },
@@ -1237,9 +1237,9 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_string": "button",
-    "_N$string": "button",
-    "_fontSize": 28,
+    "_string": "",
+    "_N$string": "",
+    "_fontSize": 36,
     "_lineHeight": 40,
     "_enableWrapText": false,
     "_N$file": null,
@@ -1542,7 +1542,11 @@
     "_enabled": true,
     "duration": 0.1,
     "zoomScale": 1.2,
-    "clickEvents": [],
+    "clickEvents": [
+      {
+        "__id__": 43
+      }
+    ],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
     "_N$transition": 2,
@@ -1613,6 +1617,16 @@
     "_id": ""
   },
   {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 1
+    },
+    "component": "",
+    "_componentId": "904d7r1cTdI9a2ACghiXKPl",
+    "handler": "upgradePerk",
+    "customEventData": ""
+  },
+  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
@@ -1662,7 +1676,7 @@
     "_layoutSize": {
       "__type__": "cc.Size",
       "width": 550,
-      "height": 185
+      "height": 175
     },
     "_resize": 1,
     "_N$layoutType": 2,
@@ -1675,8 +1689,8 @@
     "_N$startAxis": 0,
     "_N$paddingLeft": 0,
     "_N$paddingRight": 0,
-    "_N$paddingTop": 10,
-    "_N$paddingBottom": 10,
+    "_N$paddingTop": 5,
+    "_N$paddingBottom": 5,
     "_N$spacingX": 0,
     "_N$spacingY": 5,
     "_N$verticalDirection": 1,

@@ -80,6 +80,7 @@ cc.Class({
     addStar(){
       Global.MenuScene.star += 100;
       Global.UnlockScene.refresh();
+      Global.ModeSelectScene.refreshPerkList();
     },
     clearData(){
       Storage.clearData("unlocked")

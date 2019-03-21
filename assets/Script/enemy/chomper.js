@@ -28,7 +28,7 @@ cc.Class({
     },
     attack: {
       get(){
-        return (this.level+this.star)*2-1;//一般
+        return 2*((this.level)*2-1);//一般
       },
       override: true
     },

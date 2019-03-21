@@ -25,7 +25,7 @@ cc.Class({
       },
       attack: {
         get(){  //超高
-          return this.level*this.level+1;
+          return this.level*this.level+4;
         },
         override: true
       },

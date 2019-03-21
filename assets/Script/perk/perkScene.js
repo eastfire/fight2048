@@ -38,7 +38,7 @@ cc.Class({
       }
     },
     refreshPerkList(){
-      var adjust = this.calculateScoreAdjust(this.selectedPerk);
+      /*var adjust = this.calculateScoreAdjust(this.selectedPerk);
       if ( adjust.scoreAdjust == 0 ) {
         this.scoreAdjustLabel.node.active = false;
         this.scoreAdjustTitle.node.active = false;
@@ -54,13 +54,13 @@ cc.Class({
         //   }
         //   this.scoreAdjustLabel.string +=Math.round(adjust.extra*Global.PERK_SCORE_ADJUST*100)+"%)"
         // }
-      }
+      }*/
 
       var maxPerk = Storage.progress.maxPerk[Global.currentHeroType] || 1;
       var isActive = Global.selectedPerk.length < maxPerk;
       perks.perks.forEach(function(perk){
         if ( !perk.isSelected ) {
-          perk.active = isActive;
+          perk.active = isActive && Storage.progress.perk[perk.name];
         } else {
           perk.active = true;
         }

@@ -26,7 +26,7 @@ cc.Class({
       },
       attack: {
         get(){  //较低
-          var l = this.level + this.star;
+          var l = 2*this.level;
           return l;
         },
         override: true

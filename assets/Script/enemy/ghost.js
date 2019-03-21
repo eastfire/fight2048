@@ -26,7 +26,7 @@ cc.Class({
       },
       attack: {
         get(){  //很低
-          return Math.round(this.level/2);
+          return 2*Math.round(this.level/2);
         },
         override: true
       },

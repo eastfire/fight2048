@@ -64,6 +64,8 @@ cc.Class({
         function(){
           if ( Global.UnlockScene )
             Global.UnlockScene.refresh();
+          if ( Global.ModeSelectScene )
+            Global.ModeSelectScene.refreshPerkList();
         }, this);
       Storage.takeReward(entry.name)
       this.refresh();
