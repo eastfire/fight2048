@@ -118,5 +118,13 @@ module.exports = {
       Global.MANY_SKILL = true;
     }
   },
-
+  {
+    name:"manaPotion",
+    title:"魔法药剂",
+    desc:"怪物可能会掉落魔法药",
+    price: [300],
+    apply(){
+      Global.ITEM_POOL.push("manaPotion");
+    }
+  },
 ]}
