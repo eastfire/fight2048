@@ -13,12 +13,12 @@ cc.Class({
       },
       desc: {
         get(){
-          return "每次只移动一步\n攻击力较高。\n经验值稍高。";
+          return "每次只移动一步\n攻击力较高。\n经验值较高。";
         },
         override: true,
       },
       exp: {
-        get(){ //一般
+        get(){ //较高
           var l = this.level + this.star;
           return (l*3-1)*Global.EXP_INFLATION_RATE
         },
@@ -26,7 +26,7 @@ cc.Class({
       },
       attack: {
         get(){  //较高
-          return 3*this.level;
+          return 3*this.level-1;
         },
         override: true
       },

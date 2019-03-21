@@ -39,6 +39,7 @@ module.exports = {
     this.progress.maxPerk = this.progress.maxPerk || {}
     this.progress.seen = this.progress.seen || {slime:1};
     this.progress.seenItem = this.progress.seenItem || {iceWall:1}
+    this.progress.perk = this.progress.perk || {}
   },
   loadRewardTaken(){
     var v = cc.sys.localStorage.getItem('rewardTaken');

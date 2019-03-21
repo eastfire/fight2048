@@ -8,7 +8,11 @@ cc.Class({
   properties: {
     titleLabel: cc.Label,
     descLabel: cc.Label,
-    valueLabel: cc.Label,
+    priceLabel: cc.Label,
+    upgradeButton: cc.Button,
+    lockedIcon: cc.Sprite,
+    unlockIcon: cc.Sprite,
+    upgradeIcon: cc.Sprite,
     iconSprite: cc.Sprite,
     toggle: cc.Toggle,
     itemID: 0
@@ -35,20 +39,19 @@ cc.Class({
   updateItem: function(entry, itemID) {
     this.itemID = itemID;
     this.perkEntry = entry;
-    this.titleLabel.string = this.perkEntry.title;
-    this.descLabel.string = this.perkEntry.desc;
-    if ( this.perkEntry.value ) {
-      var adjust = Math.round(this.perkEntry.value * Global.PERK_SCORE_ADJUST*100)
-      if ( adjust > 0 ) {
-        this.valueLabel.string = "+"+adjust+"%"
-        this.valueLabel.color = cc.Color.BLUE
-      } else {
-        this.valueLabel.string = adjust+"%"
-        this.valueLabel.color = cc.Color.RED
-      }
-    } else {
-      this.valueLabel.string = ""
+    var level = Storage.progress.perk[this.perkEntry.name] || 0
+    var title = this.perkEntry.title;
+    if ( level && this.perkEntry.price.length !== 1) {
+      title += "Lv"+level
     }
+    this.titleLabel.string = title;
+    if ( typeof this.perkEntry.desc === "function") {
+      this.descLabel.string = this.perkEntry.desc(Math.max(1,level));
+    } else {
+      this.descLabel.string = this.perkEntry.desc;
+    }
+
+
     if ( this.perkEntry.isSelected ) {
       this.toggle.node.active = true;
       this.toggle.isChecked = true;
@@ -65,5 +68,26 @@ cc.Class({
       (err, frame)=>{
         this.iconSprite.spriteFrame = frame;
     })
+
+
+    if ( level ) {
+      if ( level === this.perkEntry.price.length ) {
+        this.upgradeButton.node.active = false;
+      } else {
+        var price = this.perkEntry.price[level]
+        this.upgradeButton.node.active = true;
+        this.priceLabel.string = "-"+price
+        this.unlockIcon.node.active = false;
+        this.upgradeIcon.node.active = true;
+        this.upgradeButton.interactable = Global.MenuScene.star >= price
+      }
+    } else {
+      var price = this.perkEntry.price[level]
+      this.upgradeButton.node.active = true;
+      this.priceLabel.string = "-"+price
+      this.unlockIcon.node.active = true;
+      this.upgradeIcon.node.active = false;
+      this.upgradeButton.interactable = Global.MenuScene.star >= price
+    }
   },
 });

@@ -13,13 +13,19 @@ cc.Class({
     },
     desc: {
       get(){
-        return "攻击力始终为1。\n经验值极低。";
+        return "攻击力超低。\n经验值超低。";
       },
       override:true
     },
     exp: {
       get(){
         return this.level*Global.EXP_INFLATION_RATE
+      },
+      override: true
+    },
+    attack:{
+      get(){
+        return Math.round(Math.log(this.level+1))
       },
       override: true
     }

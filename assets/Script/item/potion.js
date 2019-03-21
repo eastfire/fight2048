@@ -25,7 +25,7 @@ cc.Class({
       },
       effect: {
         get(){
-          return this.level*5
+          return this.level*Global.POTION_EFFECT
         },
       }
     },
