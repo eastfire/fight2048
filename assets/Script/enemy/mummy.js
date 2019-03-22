@@ -2,6 +2,7 @@ const Global = require("global");
 const Common = require("common");
 
 const Enemy = require("enemy");
+const i18n = require("i18n");
 
 cc.Class({
   extends: Enemy,
@@ -9,7 +10,7 @@ cc.Class({
   properties: {
     title: {
       get(){
-        return "木乃伊";
+        return i18n.t("enemy/mummy");
       },
       override: true,
     },

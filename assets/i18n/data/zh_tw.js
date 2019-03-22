@@ -15,4 +15,7 @@ module.exports = {
   "wisdomSkill/name":"睿智",
   "wisdomSkill/desc":"本回合经验值收入增加%{effect}%",
   "wisdomSkill/levelUp":"本回合经验值收入增加20%，但冷却时间也增加1回合",
+
+//enemy
+  "enemy/mummy":"僵尸",
 };

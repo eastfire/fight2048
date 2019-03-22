@@ -17,4 +17,7 @@ module.exports = {
   "wisdomSkill/name":"Wisdom",
   "wisdomSkill/desc":"In this turn, hero will get %{effect}% more EXP",
   "wisdomSkill/levelUp":"In this turn, hero will get additional 20% EXP, but cool down need 1 more turn",
+
+//enemy
+  "enemy/mummy":"zombie",
 };

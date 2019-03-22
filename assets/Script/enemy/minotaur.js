@@ -7,7 +7,7 @@ cc.Class({
     properties: {
       title: {
         get(){
-          return "牛头人";
+          return "飞龙";
         },
         override: true,
       },
