@@ -6,7 +6,7 @@ cc.Class({
   extends: cc.Component,
 
   properties: {
-    soundSlider: cc.Slider,
+    effectSlider: cc.Slider,
     musicSlider: cc.Slider,
     soundToggle: cc.Toggle,
     soundTitle: cc.Label,
@@ -17,7 +17,7 @@ cc.Class({
   start () {
     Global.currentRoom.setAcceptInput(false);
     if ( cc.sys.platform === cc.sys.WECHAT_GAME ) {
-      this.soundSlider.node.active = this.musicSlider.node.active = this.soundTitle.node.active = this.musicTitle.node.active = false;
+      this.effectSlider.node.active = this.musicSlider.node.active = this.soundTitle.node.active = this.musicTitle.node.active = false;
     } else {
       this.soundToggle.node.active = false;
     }
@@ -47,5 +47,18 @@ cc.Class({
         Common.loadScene("RoomScene", Global.currentRoomScene.node, Global.loading)
       },this)
     ))
+  },
+  toggleSound(){
+    if ( this.soundToggle.isChecked ) {
+      cc.audioengine.setVolume(1)
+    } else {
+      cc.audioengine.setVolume(0)
+    }
+  },
+  adjustEffect(){
+    cc.audioengine.setEffectsVolume(this.effectSlider.progress )
+  },
+  adjustMusic(){
+    cc.audioengine.setMusicVolume(this.musicSlider.progress );
   }
 })
