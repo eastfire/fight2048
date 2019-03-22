@@ -116,7 +116,7 @@ module.exports = {
     cleric: ["turnUndeadSkill","resurrectionSkill","wisdomSkill","angelSkill"],
     thief: ["eightArrowSkill","smokingBombSkill","treasureSkill","exchangeSkill","blinkSkill"] //
   },
-  initEnemyPool: [{type:"slime",subtype:"R"},{type:"slime",subtype:"B"},{type:"slime",subtype:"Y"}],
+  initEnemyPool: [{type:"slime",subtype:"R"},{type:"slime",subtype:"G"},{type:"slime",subtype:"Y"}],
   enemyList:["archer","ballista","catapult","centaur","chomper","fireElement","gargoyle","ghost","golem","killerBee","kobold","medusa","mimic","minotaur",
   "mummy","ooze","orcChief","orge","ratman","scorpion","skeleton","shaman","snake","summoner","treant","troll","vampire"],
   // enemyList:["centaur"],
