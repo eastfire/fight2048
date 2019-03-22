@@ -226,8 +226,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -30,
-      "y": -20,
+      "x": -35,
+      "y": -40,
       "z": 0
     },
     "_scale": {
@@ -674,7 +674,6 @@
     "_N$level": 1,
     "attackType": 1,
     "dexterity": 0,
-    "immune": [],
     "isUndead": true,
     "_id": ""
   },
