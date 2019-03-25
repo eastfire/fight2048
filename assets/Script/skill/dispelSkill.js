@@ -23,7 +23,6 @@ cc.Class({
     this.skillName = "dispelSkill"
     this.icon="Skill/dispelSkill";
     this.displayName = "驱散"
-    this.desc =
     this.coolDown = 5+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
