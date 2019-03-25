@@ -9,6 +9,18 @@ cc.Class({
 
     properties: {
       unlockScroll: cc.ScrollView,
+      starPrefab: cc.Prefab,
+      loading: cc.Prefab,
+      moneyLabel:cc.Label,
+      star:{
+        default: 0,
+        notify(oldValue){
+          if ( this.star == oldValue ) return;
+          Storage.saveMoney(this.star);
+          this.moneyLabel.string = this.star;
+        },
+        visible:false
+      },
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -19,6 +31,9 @@ cc.Class({
       cc.log("Storage.unlocked")
       cc.log(Storage.unlocked)
       Global.UnlockScene = this;
+
+      this.star = Storage.star;
+      this.moneyLabel.string = Storage.star;
 
       this.initData()
       this.unlockScroll.getComponent("listCtrl").setDataset(this.unlocks)
@@ -34,7 +49,7 @@ cc.Class({
         if ( !Storage.unlocked[entry.name] && this.passPrerequest(entry) ) {
           this.unlocks.push(entry)
           entry.itemID = i;
-          entry.avaiable = Global.MenuScene.star >= entry.price;
+          entry.avaiable = this.star >= entry.price;
         }
         i++;
       },this)
@@ -45,23 +60,42 @@ cc.Class({
       },this) )
     },
     unlock(entry, button){
-      if ( Global.MenuScene.star >= entry.price) {
-        Effect.useStarInMenu( button.node.position, button.node.parent,
-          entry.price,
-          function(){
+      if ( this.star >= entry.price) {
+        Effect.gainStarInMenu( {
+          fromPosition: this.moneyLabel.node.position,
+          fromParentNode: this.node,
+          toPosition: button.node.position,
+          toParentNode: button.node.parent,
+          effectParentNode: this.node,
+          amount: entry.price,
+          beforeStepCallback: function(step){
+            this.star -= step;
+            this.moneyLabel.node.stopAllActions();
+            this.moneyLabel.node.runAction(cc.sequence(
+              cc.scaleTo(Global.GET_STAR_TIME/2,0.8),
+              cc.scaleTo(Global.GET_STAR_TIME/2,1)
+            ))
+          },
+          callback: function(){
             Storage.unlock(entry.name);
             if ( entry.onUnlock ) {
               entry.onUnlock();
             }
             this.refresh();
-            Global.ModeSelectScene.refresh();
-          }, this);
+          },
+          context: this,
+          starPrefab: this.starPrefab
+        } );
       }
     },
     refresh(){
       this.initData();
       this.unlockScroll.getComponent("listCtrl").setDataset(this.unlocks)
       this.unlockScroll.getComponent("listCtrl").initialize();
+    },
+    back(){
+      Global.UnlockScene = null;
+      Common.loadScene("MenuScene",this.node, this.loading);
     }
     // update (dt) {},
 });

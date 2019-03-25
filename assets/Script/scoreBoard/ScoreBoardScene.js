@@ -7,7 +7,8 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-      scoreScroll:cc.ScrollView
+      scoreScroll:cc.ScrollView,
+      loading: cc.Prefab
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -54,6 +55,9 @@ cc.Class({
 
       this.unlockScroll.getComponent("listCtrl").setDataset(this.scoreList)
       this.unlockScroll.getComponent("listCtrl").initialize();
+    },
+    back(){
+      Common.loadScene("MenuScene",this.node, this.loading);
     }
     // update (dt) {},
 });

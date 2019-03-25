@@ -20,7 +20,6 @@ cc.Class({
       },
       visible:false
     },
-    pageView:cc.PageView,
     checkInButton: cc.Button,
     checkInLabel: cc.Label,
     checkedIcon: cc.Sprite,
@@ -77,21 +76,47 @@ cc.Class({
     var nowDay = Math.floor( (now.getTime()-now.getTimezoneOffset()*MS_OF_MINUTE)/MS_OF_DAY )
     Storage.progress.lastCheckInDay = nowDay;
     Storage.progress.continueCheckInDay = Storage.progress.continueCheckInDay || 0;
-    //TODO show effect
-    Effect.gainStarInMenu( this.checkInButton.node.position, this.node,
-      this.rewards[Math.min(this.rewards.length -1,Storage.progress.continueCheckInDay)],
-      function(){
+
+    Effect.gainStarInMenu( {
+      fromPosition: this.checkInButton.node.position,
+      fromParentNode: this.node,
+      toPosition: this.moneyLabel.node.position,
+      toParentNode: this.node,
+      effectParentNode: this.node,
+      amount: this.rewards[Math.min(this.rewards.length -1,Storage.progress.continueCheckInDay)],
+      stepCallback: function(step){
+        this.star += step
+        this.moneyLabel.node.stopAllActions();
+        this.moneyLabel.node.runAction(cc.sequence(
+          cc.scaleTo(Global.GET_STAR_TIME/2,1.3),
+          cc.scaleTo(Global.GET_STAR_TIME/2,1)
+        ))
+      },
+      callback: function(){
         if ( Global.UnlockScene )
           Global.UnlockScene.refresh();
         if ( Global.ModeSelectScene )
           Global.ModeSelectScene.refreshPerkList();
-      }, this);
+      },
+      context: this,
+      starPrefab: this.starPrefab
+    });
+
     Storage.progress.continueCheckInDay++;
     Storage.saveProgress();
     this.checkCheckIn();
   },
-  toPage(event, index){
-    this.pageView.scrollToPage(index,0.2)
+  toUnlock(){
+    Common.loadScene("UnlockScene",this.node, this.loading);
+  },
+  toAchievement(){
+    Common.loadScene("AchievementScene",this.node, this.loading);
+  },
+  toLeaderBoard(){
+    Common.loadScene("LeaderBoardScene",this.node, this.loading);
+  },
+  toSetting(){
+    Common.loadScene("SettingScene",this.node, this.loading);
   },
   starGame(){
     Storage.game.prevHeroType = Global.currentHeroType;

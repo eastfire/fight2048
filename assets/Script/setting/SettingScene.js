@@ -1,11 +1,12 @@
 const Global = require("global");
 const Storage = require("storage");
+const Common = require("common")
 
 cc.Class({
     extends: cc.Component,
 
     properties: {
-
+      loading: cc.Prefab
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -78,9 +79,7 @@ cc.Class({
       })
     },
     addStar(){
-      Global.MenuScene.star += 100;
-      Global.UnlockScene.refresh();
-      Global.ModeSelectScene.refreshPerkList();
+      Storage.saveMoney(Storage.star+100)
     },
     clearData(){
       Storage.clearData("unlocked")
@@ -93,6 +92,8 @@ cc.Class({
     clearStatistics(){
       Storage.clearData("statistics")
     },
-
+    back(){
+      Common.loadScene("MenuScene",this.node, this.loading);
+    }
     // update (dt) {},
 });

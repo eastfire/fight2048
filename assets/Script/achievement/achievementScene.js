@@ -9,6 +9,18 @@ cc.Class({
 
     properties: {
       achievementScroll: cc.ScrollView,
+      loading: cc.Prefab,
+      moneyLabel:cc.Label,
+      starPrefab: cc.Prefab,
+      star:{
+        default: 0,
+        notify(oldValue){
+          if ( this.star == oldValue ) return;
+          Storage.saveMoney(this.star);
+          this.moneyLabel.string = this.star;
+        },
+        visible:false
+      },
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -32,6 +44,9 @@ cc.Class({
       cc.log(Storage.statistics)
       cc.log("Storage.progress")
       cc.log(Storage.progress)
+      this.star = Storage.star;
+      this.moneyLabel.string = Storage.star;
+
       Global.AchievementScene = this;
 
       this.initData();
@@ -60,15 +75,32 @@ cc.Class({
       this.achievementScroll.getComponent("listCtrl").refresh();
     },
     takeReward(entry, button){
-      Effect.gainStarInMenu( button.node.position, button.node.parent, entry.reward,
-        function(){
-          if ( Global.UnlockScene )
-            Global.UnlockScene.refresh();
-          if ( Global.ModeSelectScene )
-            Global.ModeSelectScene.refreshPerkList();
-        }, this);
       Storage.takeReward(entry.name)
-      this.refresh();
+      Effect.gainStarInMenu( {
+        fromPosition: button.node.position,
+        fromParentNode: button.node.parent,
+        toPosition: this.moneyLabel.node.position,
+        toParentNode: this.node,
+        effectParentNode: this.node,
+        amount: entry.reward,
+        stepCallback: function(step){
+          this.star += step
+          this.moneyLabel.node.stopAllActions();
+          this.moneyLabel.node.runAction(cc.sequence(
+            cc.scaleTo(Global.GET_STAR_TIME/2,1.3),
+            cc.scaleTo(Global.GET_STAR_TIME/2,1)
+          ))
+        },
+        callback: function(){
+          this.refresh();
+        },
+        context: this,
+        starPrefab: this.starPrefab
+      });
+    },
+    back(){
+      Global.AchievementScene = null;
+      Common.loadScene("MenuScene",this.node, this.loading);
     }
     // update (dt) {},
 });

@@ -18,17 +18,7 @@ cc.Class({
     // onLoad () {},
 
     start () {
-      if ( Storage.userInfo ) {
-        cc.log("Storage.userInfo"+JSON.stringify(Storage.userInfo))
-        this.submitScore();
-      } else {
-        //登入排行榜
-        this.getUserInfo(function(userInfo){
-          this.submitScore(function(){
-            this.toScoreBoard();
-          },this);
-        }, this)
-      }
+      this.submitScore();
     },
 
     submitScore(callback, context){
@@ -50,59 +40,6 @@ cc.Class({
         },
         context: this
       })
-    },
-
-    getUserInfo(callback, context){
-      if ( cc.sys.platform == cc.sys.WECHAT_GAME ) {
-        var rect = this.submitButton.node.getBoundingBoxToWorld();
-        var sysInfo = wx.getSystemInfoSync();
-        cc.log(sysInfo)
-        cc.log(cc.winSize)
-        var scaleRate = cc.winSize.width / sysInfo.screenWidth;
-        this.submitButton.node.active = false;
-
-        this.wxUserInfoButton = wx.createUserInfoButton({
-          type: 'text',
-          text: '登入排行榜',
-          style: {
-            left: rect.x/scaleRate,
-            top: (cc.winSize.height - rect.y - rect.height)/scaleRate,
-            width: rect.width/scaleRate,
-            height: rect.height/scaleRate,
-            lineHeight: rect.height/scaleRate,
-            backgroundColor: '#ffffff',
-            color: '#000000',
-            textAlign: 'center',
-            fontSize: 14,
-            borderRadius: 4
-          }
-        })
-        this.wxUserInfoButton.onTap((res) => {
-          console.log(res)
-          if ( res ) {
-            var userInfo = {
-              nickname: res.userInfo.nickName,
-              avatarUrl: res.userInfo.avatarUrl
-            }
-            Storage.saveUserInfo(userInfo)
-            this.wxUserInfoButton.destroy()
-            callback.call(context, userInfo)
-          }
-        })
-      } else {
-        //弹出输入框
-        var dialog = cc.instantiate(this.inputNameDialog);
-        dialog.getComponent("inputNameDialog").setCallback(function(nickname){
-          this.node.active = true;
-          var userInfo = {
-            nickname: nickname,
-          }
-          Storage.saveUserInfo(userInfo)
-          callback.call(context, nickname)
-        }, this)
-        this.node.active = false;
-        Global.currentRoomScene.node.addChild(dialog)
-      }
     },
 
     loadIcon(sprite, icon){
@@ -191,8 +128,7 @@ cc.Class({
     toScoreBoard() {
       Global.currentRoom.destroy();
       Global.currentRoom = null;
-      Common.loadScene("MenuScene",Global.currentRoomScene.node, Global.loading, function(){
-        Global.MenuScene.toPage(null, 3)
+      Common.loadScene("LeaderBoardScene",Global.currentRoomScene.node, Global.loading, function(){
       });
       Global.currentRoomScene = null;
     },

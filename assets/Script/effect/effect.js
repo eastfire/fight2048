@@ -207,7 +207,19 @@ var useStarInRoom = function(toPosition, toParentNode, amount){
   }
 }
 
-var gainStarInMenu = function(fromPosition, parentNode, amount, callback, context){
+var gainStarInMenu = function(opt){
+  var fromPosition = opt.fromPosition;
+  var fromParentNode = opt.fromParentNode;
+  var toPosition = opt.toPosition;
+  var toParentNode = opt.toParentNode;
+  var effectParentNode = opt.effectParentNode;
+  var amount = opt.amount;
+  var beforeStepCallback = opt.beforeStepCallback;
+  var stepCallback = opt.stepCallback;
+  var callback = opt.callback;
+  var context = opt.context;
+  var starPrefab = opt.starPrefab
+
   var starCount = Math.min(amount, 5)
   var amountLeft = amount;
   for ( var i = 0; i < starCount; i++ ){
@@ -216,86 +228,28 @@ var gainStarInMenu = function(fromPosition, parentNode, amount, callback, contex
 
     var star = starNodePool.get();
     if ( !star ) {
-      star = cc.instantiate(Global.MenuScene.starPrefab);
+      star = cc.instantiate(starPrefab);
       star.setScale(2)
     }
-    let worldPos = parentNode.convertToWorldSpaceAR(
-      {
-        x: fromPosition.x,
-        y: fromPosition.y
-      }
-    );
-    let viewPos = Global.MenuScene.node.convertToNodeSpaceAR(worldPos);
+    let worldPos = fromParentNode.convertToWorldSpaceAR(fromPosition);
+    let viewPos = effectParentNode.convertToNodeSpaceAR(worldPos);
     star.position = viewPos;
-    Global.MenuScene.node.addChild(star);
+    effectParentNode.addChild(star);
 
-    let destPos = Global.MenuScene.moneyLabel.node.position;
+    let destPos = effectParentNode.convertToNodeSpaceAR(toParentNode.convertToWorldSpaceAR(toPosition));
     star.runAction(cc.sequence(
       cc.delayTime(0.1*i),
+      cc.callFunc(function(){
+        if ( beforeStepCallback ) {
+          beforeStepCallback.call(context, step);
+        }
+      }),
       cc.moveTo(Global.GET_STAR_TIME, destPos.x, destPos.y).easing(cc.easeQuadraticActionIn()),
       cc.callFunc(function(){
-        Global.MenuScene.star += step
-        Global.MenuScene.moneyLabel.node.stopAllActions();
-        Global.MenuScene.moneyLabel.node.runAction(cc.sequence(
-          cc.scaleTo(Global.GET_STAR_TIME/2,1.3),
-          cc.scaleTo(Global.GET_STAR_TIME/2,1)
-        ))
-      },this),
-      i==(starCount-1)?cc.callFunc(
-        callback,
-        context
-      ): cc.delayTime(0.01),
-      cc.callFunc(function(){
-        this.removeFromParent(true);
-        starNodePool.put(this)
-      },star)
-    ))
-  }
-}
-
-var useStarInMenu = function(toPosition, parentNode, amount, callback, context){
-  var starCount = Math.min(amount, 5);
-  var amountLeft = amount;
-  for ( var i = 0; i < starCount; i++ ) {
-    var step = Math.round(amountLeft/(starCount-i));
-    amountLeft -= step;
-
-    var star = starNodePool.get();
-    if ( !star ) {
-      star = cc.instantiate(Global.MenuScene.starPrefab);
-      star.setScale(2)
-    }
-    let fromPos = Global.MenuScene.moneyLabel.node.position;
-
-    star.position = fromPos;
-
-    let worldPos = parentNode.convertToWorldSpaceAR(
-      {
-        x: toPosition.x,
-        y: toPosition.y
-      }
-    );
-    let toPos = Global.MenuScene.node.convertToNodeSpaceAR(worldPos);
-
-    Global.MenuScene.node.addChild(star);
-
-    Global.MenuScene.moneyLabel.node.stopAllActions();
-    Global.MenuScene.moneyLabel.node.runAction(cc.sequence(
-      cc.scaleTo(Global.GET_STAR_TIME/2,0.8),
-      cc.scaleTo(Global.GET_STAR_TIME/2,1)
-    ))
-
-    star.runAction(cc.sequence(
-      cc.delayTime(0.1*i),
-      cc.callFunc(function(){
-        Global.MenuScene.star -= step
-        Global.MenuScene.moneyLabel.node.stopAllActions();
-        Global.MenuScene.moneyLabel.node.runAction(cc.sequence(
-          cc.scaleTo(Global.GET_STAR_TIME/2,0.8),
-          cc.scaleTo(Global.GET_STAR_TIME/2,1)
-        ))
-      },this),
-      cc.moveTo(Global.GET_STAR_TIME, toPos.x, toPos.y).easing(cc.easeQuadraticActionIn()),
+        if ( stepCallback ) {
+          stepCallback.call(context,step)
+        }
+      }),
       i==(starCount-1)?cc.callFunc(
         callback,
         context
@@ -317,5 +271,4 @@ module.exports = {
   gainStarInRoom,
   useStarInRoom,
   gainStarInMenu,
-  useStarInMenu,
 }

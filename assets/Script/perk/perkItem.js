@@ -42,16 +42,29 @@ cc.Class({
     var level = Storage.progress.perk[this.perkEntry.name] || 0
     var price = this.perkEntry.price[level]
     if ( Global.MenuScene.star >= price ) {
-
       Storage.progress.perk[this.perkEntry.name] = level+1;
       Storage.saveProgress();
-      Effect.useStarInMenu( this.upgradeButton.node.position, this.upgradeButton.node.parent,
-        price,
-        function(){
+      Effect.gainStarInMenu( {
+        fromPosition: Global.MenuScene.moneyLabel.node.position,
+        fromParentNode: Global.MenuScene.node,
+        toPosition: this.upgradeButton.node.position,
+        toParentNode: this.upgradeButton.node.parent,
+        effectParentNode: Global.MenuScene.node,
+        amount: price,
+        beforeStepCallback: function(step){
+          Global.MenuScene.star -= step;
+          Global.MenuScene.moneyLabel.node.stopAllActions();
+          Global.MenuScene.moneyLabel.node.runAction(cc.sequence(
+            cc.scaleTo(Global.GET_STAR_TIME/2,0.8),
+            cc.scaleTo(Global.GET_STAR_TIME/2,1)
+          ))
+        },
+        callback: function(){
           this.updateItem(this.perkEntry, this.itemID);
-          if ( Global.UnlockScene )
-            Global.UnlockScene.refresh();
-        }, this);
+        },
+        context: this,
+        starPrefab: Global.MenuScene.starPrefab
+      });
     }
   },
 

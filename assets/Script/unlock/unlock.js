@@ -54,7 +54,7 @@ cc.Class({
   },
 
   click(){
-    if ( Global.MenuScene.star >= this.entry.price
+    if ( Global.UnlockScene.star >= this.entry.price
     && !Storage.unlocked[this.entry.name]) {
       this.unlockButton.interactable = false;
       Global.UnlockScene.unlock(this.entry, this.unlockButton);
