@@ -59,6 +59,7 @@ cc.Class({
     }
     if ( this.mergeCount ) {
       Global.currentRoom.setDelayPhaseTime(Global.GENERATE_TIME);
+      this.mergeCount = 0;
     }
   }
   // update (dt) {},
