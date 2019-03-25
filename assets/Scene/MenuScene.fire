@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.675,
-      "y": 0.675,
+      "x": 0.4244195642605634,
+      "y": 0.4244195642605634,
       "z": 1
     },
     "_quat": {
@@ -2174,8 +2174,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": true,
-    "_string": "选择特质",
-    "_N$string": "选择特质",
+    "_string": "选择天赋",
+    "_N$string": "选择天赋",
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -5160,6 +5160,7 @@
     "moneyLabel": {
       "__id__": 93
     },
+    "pageView": null,
     "checkInButton": {
       "__id__": 14
     },

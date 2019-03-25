@@ -162,7 +162,7 @@ cc.Class({
         this.unselectPerk(slot.perkName)
       } else {
         if ( slot.lockSprite.node.active ) {
-          Global.MenuScene.toPage(null, 1)
+          // Global.MenuScene.toPage(null, 1)
         }
       }
     },

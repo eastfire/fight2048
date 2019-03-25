@@ -16,7 +16,7 @@ cc.Class({
       if ( Storage.unlocked[this.heroType] ) {
         this.scene.getComponent("modeSelectScene").selectHeroType(this.heroType)
       } else {
-        Global.MenuScene.toPage(null, 1)
+        // Global.MenuScene.toPage(null, 1)
       }
     })
   },

@@ -73,7 +73,7 @@ module.exports = {
   },
   {
     name:"warriorPerkSlot2",
-    displayName:"战士的第2个特质槽",
+    displayName:"战士的第2个天赋槽",
     prerequests: null,
     price: 20,
     type:"perkSlot",
@@ -85,7 +85,7 @@ module.exports = {
   },
   {
     name:"warriorPerkSlot3",
-    displayName:"战士的第3个特质槽",
+    displayName:"战士的第3个天赋槽",
     prerequests: ["warriorPerkSlot2"],
     price: 50,
     type:"perkSlot",
@@ -97,7 +97,7 @@ module.exports = {
   },
   {
     name:"warriorPerkSlot4",
-    displayName:"战士的第4个特质槽",
+    displayName:"战士的第4个天赋槽",
     prerequests: ["warriorPerkSlot3"],
     price: 200,
     type:"perkSlot",
@@ -181,7 +181,7 @@ module.exports = {
   },
   {
     name:"clericPerkSlot2",
-    displayName:"牧师的第2个特质槽",
+    displayName:"牧师的第2个天赋槽",
     prerequests: ["cleric"],
     price: 50,
     type:"perkSlot",
@@ -193,7 +193,7 @@ module.exports = {
   },
   {
     name:"clericPerkSlot3",
-    displayName:"牧师的第3个特质槽",
+    displayName:"牧师的第3个天赋槽",
     prerequests: ["clericPerkSlot2"],
     price: 200,
     type:"perkSlot",
@@ -205,7 +205,7 @@ module.exports = {
   },
   {
     name:"clericPerkSlot4",
-    displayName:"牧师的第4个特质槽",
+    displayName:"牧师的第4个天赋槽",
     prerequests: ["clericPerkSlot3"],
     price: 1000,
     type:"perkSlot",
@@ -295,7 +295,7 @@ module.exports = {
   },
   {
     name:"wizardPerkSlot2",
-    displayName:"法师的第2个特质槽",
+    displayName:"法师的第2个天赋槽",
     prerequests: ["wizard"],
     price: 50,
     type:"perkSlot",
@@ -307,7 +307,7 @@ module.exports = {
   },
   {
     name:"wizardPerkSlot3",
-    displayName:"法师的第3个特质槽",
+    displayName:"法师的第3个天赋槽",
     prerequests: ["wizardPerkSlot2"],
     price: 200,
     type:"perkSlot",
@@ -319,7 +319,7 @@ module.exports = {
   },
   {
     name:"wizardPerkSlot4",
-    displayName:"法师的第4个特质槽",
+    displayName:"法师的第4个天赋槽",
     prerequests: ["wizardPerkSlot3"],
     price: 1000,
     type:"perkSlot",
@@ -409,7 +409,7 @@ module.exports = {
   },
   {
     name:"thiefPerkSlot2",
-    displayName:"盗贼的第2个特质槽",
+    displayName:"盗贼的第2个天赋槽",
     prerequests: ["thief"],
     price: 50,
     type:"perkSlot",
@@ -421,7 +421,7 @@ module.exports = {
   },
   {
     name:"thiefPerkSlot3",
-    displayName:"盗贼的第3个特质槽",
+    displayName:"盗贼的第3个天赋槽",
     prerequests: ["thiefPerkSlot2"],
     price: 200,
     type:"perkSlot",
@@ -433,7 +433,7 @@ module.exports = {
   },
   {
     name:"thiefPerkSlot4",
-    displayName:"盗贼的第4个特质槽",
+    displayName:"盗贼的第4个天赋槽",
     prerequests: ["thiefPerkSlot3"],
     price: 1000,
     type:"perkSlot",
