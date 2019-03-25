@@ -8,9 +8,19 @@ cc.Class({
 
     properties: {
       selectedPerkList:cc.Layout,
-      scoreAdjustLabel: cc.Label,
-      scoreAdjustTitle: cc.Label,
       perkScroll: cc.ScrollView,
+      loading:cc.Prefab,
+      moneyLabel:cc.Label,
+      starPrefab: cc.Prefab,
+      star:{
+        default: 0,
+        notify(oldValue){
+          if ( this.star == oldValue ) return;
+          Storage.saveMoney(this.star);
+          this.moneyLabel.string = this.star;
+        },
+        visible:false
+      },
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -18,46 +28,39 @@ cc.Class({
     // onLoad () {},
 
     start () {
+      this.star = Storage.star;
+      this.moneyLabel.string = Storage.star;
+      Global.PerkScene = this;
+
       this.initPerkList();
+      this.initPerkSlot();
+    },
+
+    initPerkSlot(){
+      var maxPerk = Storage.progress.maxPerk[Global.currentHeroType] || 1;
+      for ( var i = 0; i < maxPerk; i++ ){
+        var slot = this.selectedPerkList.node.children[i].getComponent("perkSlot")
+        // (function(i){
+        //   this.selectedPerkList.node.children[i].on("touchend",function(event){
+        //     this.perkSlotClicked(i);
+        //   },this);
+        // })(i);
+
+        slot.unlock();
+        if ( this.selectedPerk[i] ){
+          slot.fill(this.selectedPerk[i])
+        }
+      }
+      for ( var i = maxPerk; i < Global.MAX_PERK; i++ ){
+        var slot = this.selectedPerkList.node.children[i].getComponent("perkSlot");
+        slot.lock();
+        slot.empty()
+      }
     },
 
     refresh(){
-      this.heroTypeOptions.forEach(function(sprite){
-        sprite.getComponent("heroOption").validate()
-      },this)
-      this.refreshPerkSlot();
-      this.refreshPerkList();
-    },
-    refreshPerkSlot(){
       var maxPerk = Storage.progress.maxPerk[Global.currentHeroType] || 1;
-      for ( var i = 0; i < maxPerk; i++ ){
-        this.selectedPerkList.node.children[i].getComponent("perkSlot").unlock();
-      }
-      for ( var i = maxPerk; i < Global.MAX_PERK; i++ ){
-        this.selectedPerkList.node.children[i].getComponent("perkSlot").lock();
-      }
-    },
-    refreshPerkList(){
-      /*var adjust = this.calculateScoreAdjust(this.selectedPerk);
-      if ( adjust.scoreAdjust == 0 ) {
-        this.scoreAdjustLabel.node.active = false;
-        this.scoreAdjustTitle.node.active = false;
-      } else {
-        this.scoreAdjustLabel.node.active = true;
-        this.scoreAdjustTitle.node.active = true;
-        this.scoreAdjustLabel.string = Math.round(100+adjust.scoreAdjust*Global.PERK_SCORE_ADJUST*100)+"%";
-        // if ( adjust.extra ) {
-        //   if ( adjust.extra > 0 ) {
-        //     this.scoreAdjustLabel.string += "\n(额外奖励"
-        //   } else {
-        //     this.scoreAdjustLabel.string += "\n(额外惩罚"
-        //   }
-        //   this.scoreAdjustLabel.string +=Math.round(adjust.extra*Global.PERK_SCORE_ADJUST*100)+"%)"
-        // }
-      }*/
-
-      var maxPerk = Storage.progress.maxPerk[Global.currentHeroType] || 1;
-      var isActive = Global.selectedPerk.length < maxPerk;
+      var isActive = this.selectedPerk.length < maxPerk;
       perks.perks.forEach(function(perk){
         if ( !perk.isSelected ) {
           perk.active = isActive && Storage.progress.perk[perk.name];
@@ -65,48 +68,45 @@ cc.Class({
           perk.active = true;
         }
       },this)
+
       this.perkScroll.getComponent("listCtrl").refresh();
     },
+
     initPerkList(){
+      this.perkMap = {};
       for ( var i = 0; i < perks.perks.length; i++){
+        this.perkMap[perks.perks[i].name] = perks.perks[i];
         perks.perks[i].itemID = i;
         perks.perks[i].active = true;
         perks.perks[i].isSelected = false;
       }
+
       this.perkScroll.getComponent("listCtrl").setDataset(perks.perks)
       this.perkScroll.getComponent("listCtrl").initialize()
 
-      var tempSelectedPerk = Global.selectedPerk;
       this.selectedPerk = [];
-      tempSelectedPerk.forEach(function(entry){
+      Global.selectedPerk.forEach(function(name){
+        var entry = this.perkMap[name];
         perks.perks[entry.itemID].isSelected = true;
-        this.selectPerk(entry)
+        this.selectPerk(name)
       }, this);
 
-      for ( var i = 0; i < Global.MAX_PERK; i++ ){
-        var self = this;
-        (function(i){
-          self.selectedPerkList.node.children[i].on("touchend",function(event){
-            self.perkSlotClicked(i);
-          },self);
-        })(i);
-      }
     },
 
-    selectPerk(perk) {
+    selectPerk(perkName) {
       //find first empty perkSlot
       var maxPerk = Storage.progress.maxPerk[Global.currentHeroType] || 1;
       for ( var i = 0; i < maxPerk; i++ ){
         var slot = this.selectedPerkList.node.children[i].getComponent("perkSlot");
         if ( slot.isEmpty ) {
-          slot.fill(perk.name)
+          slot.fill(perkName)
           break;
         }
       }
 
-      this.selectedPerk.push(perk)
+      this.selectedPerk.push(perkName)
 
-      this.refreshPerkList();
+      this.refresh();
     },
     unselectPerk(perkName){
       var maxPerk = Storage.progress.maxPerk[Global.currentHeroType] || 1;
@@ -118,19 +118,19 @@ cc.Class({
         }
       }
 
-      for ( var i = 0 ; i < Global.selectedPerk.length; i++ ){
-        if ( Global.selectedPerk[i].name === perkName ) {
-          Global.selectedPerk.splice(i,1)
+      for ( var i = 0 ; i < this.selectedPerk.length; i++ ){
+        if ( this.selectedPerk[i] === perkName ) {
+          this.selectedPerk.splice(i,1)
           break;
         }
       }
+
       for ( var i = 0; i < perks.perks.length; i++){
         if ( perks.perks[i].name == perkName ) {
-          perks.perks[i].active = true;
           perks.perks[i].isSelected = false;
         }
       }
-      this.refreshPerkList();
+      this.refresh();
     },
 
     perkSlotClicked(index){
@@ -144,48 +144,14 @@ cc.Class({
       }
     },
 
-    calculateScoreAdjust(perks){
-      var positiveCount = 0;
-      var negativeCount = 0;
-      var scoreAdjust = 0
-      Global.selectedPerk.forEach(function(perkEntry){
-        if ( perkEntry.value > 0 ) {
-          negativeCount ++
-        } else if ( perkEntry.value < 0 ) {
-          positiveCount ++;
-        }
-        scoreAdjust += perkEntry.value
-      },this)
-      var extra = 0;
-      // if ( negativeCount > positiveCount+1) {
-      //   extra = negativeCount-positiveCount-1
-      // } else if ( negativeCount + 1 < positiveCount) {
-      //   extra = -(positiveCount-negativeCount-1)
-      // }
-      scoreAdjust += extra;
-      return {
-        scoreAdjust,
-        extra
-      }
-    },
-    clearSelectedPerk(){
-
-      Global.selectedPerk = [];
-      for ( var i = 0; i < Global.MAX_PERK; i++ ){
-        var slot = this.selectedPerkList.node.children[i].getComponent("perkSlot");
-        slot.empty()
-      }
-      for ( var i = 0; i < perks.perks.length; i++){
-        perks.perks[i].active = true;
-        perks.perks[i].isSelected = false;
-      }
-    },
     confirm(){
+      Global.PerkScene = null;
       Global.selectedPerk = this.selectedPerk;
-      cc.director.pop()
+      Common.loadScene("MenuScene",this.node, this.loading);
     },
-    cancel(){
-      cc.director.pop()
+    back(){
+      Global.PerkScene = null;
+      Common.loadScene("MenuScene",this.node, this.loading);
     }
     // update (dt) {},
 });

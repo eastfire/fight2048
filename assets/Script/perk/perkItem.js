@@ -27,13 +27,13 @@ cc.Class({
 
   click(){
     if ( !Storage.progress.perk[this.perkEntry.name] ) return;
-    if ( this.perkEntry.active === true ) {
+    if ( this.perkEntry.active ) {
       if ( this.perkEntry.isSelected ) {
         this.perkEntry.isSelected = false;
-        Global.ModeSelectScene.unselectPerk(this.perkEntry.name)
+        Global.PerkScene.unselectPerk(this.perkEntry.name)
       } else {
         this.perkEntry.isSelected = true;
-        Global.ModeSelectScene.selectPerk(this.perkEntry)
+        Global.PerkScene.selectPerk(this.perkEntry.name)
       }
     }
   },
@@ -41,29 +41,29 @@ cc.Class({
   upgradePerk(){
     var level = Storage.progress.perk[this.perkEntry.name] || 0
     var price = this.perkEntry.price[level]
-    if ( Global.MenuScene.star >= price ) {
+    if ( Global.PerkScene.star >= price ) {
       Storage.progress.perk[this.perkEntry.name] = level+1;
       Storage.saveProgress();
       Effect.gainStarInMenu( {
-        fromPosition: Global.MenuScene.moneyLabel.node.position,
-        fromParentNode: Global.MenuScene.node,
+        fromPosition: Global.PerkScene.moneyLabel.node.position,
+        fromParentNode: Global.PerkScene.node,
         toPosition: this.upgradeButton.node.position,
         toParentNode: this.upgradeButton.node.parent,
-        effectParentNode: Global.MenuScene.node,
+        effectParentNode: Global.PerkScene.node,
         amount: price,
         beforeStepCallback: function(step){
-          Global.MenuScene.star -= step;
-          Global.MenuScene.moneyLabel.node.stopAllActions();
-          Global.MenuScene.moneyLabel.node.runAction(cc.sequence(
+          Global.PerkScene.star -= step;
+          Global.PerkScene.moneyLabel.node.stopAllActions();
+          Global.PerkScene.moneyLabel.node.runAction(cc.sequence(
             cc.scaleTo(Global.GET_STAR_TIME/2,0.8),
             cc.scaleTo(Global.GET_STAR_TIME/2,1)
           ))
         },
         callback: function(){
-          this.updateItem(this.perkEntry, this.itemID);
+          Global.PerkScene.refresh();
         },
         context: this,
-        starPrefab: Global.MenuScene.starPrefab
+        starPrefab: Global.PerkScene.starPrefab
       });
     }
   },
@@ -112,7 +112,7 @@ cc.Class({
         this.priceLabel.string = "-"+price
         this.unlockIcon.node.active = false;
         this.upgradeIcon.node.active = true;
-        this.upgradeButton.interactable = Global.MenuScene.star >= price
+        this.upgradeButton.interactable = Global.PerkScene.star >= price
       }
     } else {
       this.lockedIcon.node.active = true;
@@ -121,7 +121,7 @@ cc.Class({
       this.priceLabel.string = "-"+price
       this.unlockIcon.node.active = true;
       this.upgradeIcon.node.active = false;
-      this.upgradeButton.interactable = Global.MenuScene.star >= price
+      this.upgradeButton.interactable = Global.PerkScene.star >= price
     }
   },
 });

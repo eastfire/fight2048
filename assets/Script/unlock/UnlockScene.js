@@ -11,7 +11,7 @@ cc.Class({
       unlockScroll: cc.ScrollView,
       starPrefab: cc.Prefab,
       loading: cc.Prefab,
-      moneyLabel:cc.Label,
+      moneyLabel:cc.Label, 
       star:{
         default: 0,
         notify(oldValue){

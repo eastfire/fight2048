@@ -100,6 +100,9 @@ cc.Class({
     //Load data
     Storage.loadMoney();
     Storage.loadGame();
+    Global.currentHeroType = Storage.game.heroType || "normal"
+    Global.selectedPerk = Storage.game.perks || [];
+    
     Storage.loadUnlock();
     Storage.loadStatistics();
     Storage.loadRewardTaken();

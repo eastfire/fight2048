@@ -25,7 +25,7 @@ module.exports = {
     this.game = v ? JSON.parse(v) : {};
   },
   saveGame(){
-    cc.sys.localStorage.setItem("statistics",JSON.stringify(this.game))
+    cc.sys.localStorage.setItem("game",JSON.stringify(this.game))
   },
   loadProgress(){
     var v = cc.sys.localStorage.getItem('progress')

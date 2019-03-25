@@ -2,6 +2,7 @@ const Global = require("global");
 const Common = require("common");
 const Storage = require("storage");
 const Effect = require("effect");
+const Perks = require("perkEntry");
 
 const MS_OF_MINUTE = 60000;
 const MS_OF_DAY = 3600*24*1000;
@@ -39,6 +40,10 @@ cc.Class({
     this.moneyLabel.string = Storage.star;
     this.rewards = [5,10,15,20,25,30,50];
     this.checkCheckIn()
+    this.perkMap = {};
+    Perks.perks.forEach(function(entry){
+      this.perkMap[entry.name] = entry;
+    },this)
 
     Global.reset();
   },
@@ -93,10 +98,6 @@ cc.Class({
         ))
       },
       callback: function(){
-        if ( Global.UnlockScene )
-          Global.UnlockScene.refresh();
-        if ( Global.ModeSelectScene )
-          Global.ModeSelectScene.refreshPerkList();
       },
       context: this,
       starPrefab: this.starPrefab
@@ -119,22 +120,15 @@ cc.Class({
     Common.loadScene("SettingScene",this.node, this.loading);
   },
   starGame(){
-    Storage.game.prevHeroType = Global.currentHeroType;
+    Storage.game.heroType = Global.currentHeroType;
+    Storage.game.perks = Global.selectedPerk;
     Storage.saveGame();
 
-
-    // var positiveCount = 0;
-    // var negativeCount = 0;
-    Global.selectedPerk.forEach(function(perkEntry){
-      perkEntry.apply();
+    Global.selectedPerk.forEach(function(name){
+      this.perkMap[name].apply();
     },this)
-    // var adjust = Global.ModeSelectScene.calculateScoreAdjust()
-    //
-    // Global.SCORE_INFLATION_RATE = Global.ORIGIN_SCORE_INFLATION_RATE * (1+adjust.scoreAdjust*Global.PERK_SCORE_ADJUST)
 
     Global.ModeSelectScene = null;
-    Global.UnlockScene = null;
-    Global.AchievementScene = null;
 
     Common.loadScene("RoomScene",this.node, this.loading);
   },

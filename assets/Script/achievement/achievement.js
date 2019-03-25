@@ -19,7 +19,7 @@ cc.Class({
 
   // onLoad () {},
 
-  start () {
+  start () { 
 
   },
 

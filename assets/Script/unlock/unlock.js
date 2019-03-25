@@ -11,7 +11,7 @@ cc.Class({
     unlockIcon: cc.Sprite,
     unlockButton: cc.Button,
     starIcon:cc.Sprite,
-    priceLabel: cc.Label,
+    priceLabel: cc.Label, 
   },
 
   // LIFE-CYCLE CALLBACKS:
