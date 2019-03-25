@@ -97,11 +97,11 @@ cc.Class({
         this.skillPerkList.node.addChild(slot)
       },this)
       this.scoreEntry.detail.perks = [];
-      Global.selectedPerk.forEach(function(entry){
+      Global.selectedPerk.forEach(function(name){
         var slot = new cc.Node()
         slot.addComponent(cc.Sprite)
-        this.loadIcon(slot.getComponent(cc.Sprite),"Texture/Perk/"+entry.name)
-        this.scoreEntry.detail.perks.push(entry.name)
+        this.loadIcon(slot.getComponent(cc.Sprite),"Texture/Perk/"+name)
+        this.scoreEntry.detail.perks.push(name)
         slot.y = 0;
         this.skillPerkList.node.addChild(slot)
       },this);

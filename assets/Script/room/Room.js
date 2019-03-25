@@ -240,8 +240,26 @@ cc.Class({
         direction = Common.REVERSE_DIRECTIONS[direction]
       var maxStep = this._realShift(direction);
       this.scheduleOnce(()=>{
-        this.checkAllMovableMoved();
+        if ( this.hero.getComponent("hero").checkDead() ) {
+          return;
+        }
+        this.resolveMergeEffect();
       }, Global.STEP_TIME * (maxStep)+0.02 )
+    },
+    resolveMergeEffect(){
+      this._phase = "resolveMerge";
+      this.delayPhaseTime = 0;
+      this.foreachMovable(function(movable){
+        if ( movable.resolveMerge ) {
+          movable.resolveMerge()
+        }
+      },this);
+      this.scheduleOnce(()=>{
+        if ( this.hero.getComponent("hero").checkDead() ) {
+          return;
+        }
+        this.heroAttack();
+      },this.delayPhaseTime)
     },
     setAcceptInput(accept) {
       if ( accept ) {
@@ -360,17 +378,10 @@ cc.Class({
 
       return maxStep;
     },
-    checkAllMovableMoved(){
-      if ( this.hero.getComponent("hero").checkDead() ) {
-        return;
-      }
-      this.node.emit("all-move-complete");
-    },
     passCheckCondition() {
       return false;
     },
     initEvents(){
-      this.node.on("all-move-complete", this.heroAttack, this)
       this.node.on("hero-attack-complete", function(){
           if ( !this.passCheckCondition() ) {
             if ( this.hero.getComponent("hero").checkLevelUp() ) {
