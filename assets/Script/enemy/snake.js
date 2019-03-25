@@ -21,7 +21,7 @@ cc.Class({
     },
     exp: {
       get(){
-        var l = this.level * this.star;
+        var l = this.level + this.star;
         return (Math.round(l*2.5)-1)*Global.EXP_INFLATION_RATE
       },
       override: true

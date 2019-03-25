@@ -27,7 +27,7 @@ var achievements = [
   title:"百折不挠",
   desc: "死亡100次",
   prerequests: ["die100"],
-  reward: 1000,
+  reward: 500,
   check:function(){
     return Storage.statistics.gameTime >= 100;
   }
@@ -156,7 +156,7 @@ var achievements = [
   title:"珍稀怪物杀手",
   desc: "杀死5星以上史莱姆",
   prerequests: ["kill4starSlime"],
-  reward: 1000,
+  reward: 600,
   check:function(){
     return Storage.statistics.kill.slimeLevel >= Global.STAR_THRESHOLD*5;
   },
@@ -317,7 +317,7 @@ var allEnemyType = [
     type:"archer",
     displayName:"骷髅弓箭手",
     reward(level){
-      return [5,15,60,300,1800][level]
+      return [5,10,30,120,600][level]
     }
   },
   {
@@ -331,14 +331,14 @@ var allEnemyType = [
     type:"catapult",
     displayName:"投石车",
     reward(level){
-      return [5,15,60,300,1800][level]
+      return [5,10,30,120,600][level]
     }
   },
   {
     type:"centaur",
     displayName:"半人马射手",
     reward(level){
-      return [5,15,60,300,1800][level]
+      return [5,10,30,120,600][level]
     }
   },
   {
@@ -366,14 +366,14 @@ var allEnemyType = [
     type:"ghost",
     displayName:"幽灵",
     reward(level){
-      return [10,20,60,240,1200][level]
+      return [5,10,30,120,600][level]
     }
   },
   {
     type:"golem",
     displayName:"魔像",
     reward(level){
-      return [10,20,60,240,1200][level]
+      return [5,10,30,120,600][level]
     }
   },
   {
@@ -401,7 +401,7 @@ var allEnemyType = [
     type:"medusa",
     displayName:"美杜莎",
     reward(level){
-      return [10,20,60,240,1200][level]
+      return [5,10,30,120,600][level]
     }
   },
   {
@@ -415,7 +415,7 @@ var allEnemyType = [
     type:"minotaur",
     displayName:"牛头人",
     reward(level){
-      return [15,30,90,360,1800][level]
+      return [5,10,30,120,600][level]
     }
   },
   {
@@ -464,7 +464,7 @@ var allEnemyType = [
     type:"shaman",
     displayName:"萨满",
     reward(level){
-      return [10,20,60,240,1200][level]
+      return [5,10,30,120,600][level]
     }
   },
   {
@@ -478,7 +478,7 @@ var allEnemyType = [
     type:"treant",
     displayName:"树人",
     reward(level){
-      return [20,40,120,480,2400][level]
+      return [5,10,30,120,600][level]
     }
   },
   {
@@ -492,7 +492,7 @@ var allEnemyType = [
     type:"vampire",
     displayName:"吸血鬼",
     reward(level){
-      return [15,30,90,360,1800][level]
+      return [5,10,30,120,600][level]
     }
   }
 ]
