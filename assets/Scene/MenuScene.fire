@@ -2461,6 +2461,9 @@
     "perkSprite": {
       "__id__": 54
     },
+    "background": {
+      "__uuid__": "410fb916-8721-4663-bab8-34397391ace7"
+    },
     "_id": "505lgow7NKno+Cd2kRn4KD"
   },
   {
@@ -2659,6 +2662,9 @@
     },
     "perkSprite": {
       "__id__": 59
+    },
+    "background": {
+      "__uuid__": "410fb916-8721-4663-bab8-34397391ace7"
     },
     "_id": "01DVQV031Lg6apnfcB5EjL"
   },
@@ -2859,6 +2865,9 @@
     "perkSprite": {
       "__id__": 64
     },
+    "background": {
+      "__uuid__": "410fb916-8721-4663-bab8-34397391ace7"
+    },
     "_id": "72cYNl0ndI9Jb5jmXZ+RTU"
   },
   {
@@ -3057,6 +3066,9 @@
     },
     "perkSprite": {
       "__id__": 69
+    },
+    "background": {
+      "__uuid__": "410fb916-8721-4663-bab8-34397391ace7"
     },
     "_id": "ac1b5Ot69CXpGLJRqb7OUm"
   },

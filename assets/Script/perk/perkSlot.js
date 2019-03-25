@@ -9,6 +9,7 @@ cc.Class({
   properties: {
     lockSprite: cc.Sprite,
     perkSprite: cc.Sprite,
+    background: cc.SpriteFrame,
     isEmpty:{
       get(){
         return this.perkName == null
@@ -29,7 +30,6 @@ cc.Class({
     this.lockSprite.node.active = true;
   },
   fill(perkName) {
-    this.background = this.perkSprite.spriteFrame;
     this.perkName = perkName;
     cc.loader.loadRes("Texture/Perk/"+perkName, cc.SpriteFrame,
       (err, frame)=>{
@@ -38,9 +38,7 @@ cc.Class({
   },
 
   empty() {
-    if ( this.background ) {
-      this.perkSprite.spriteFrame = this.background;
-    }
+    this.perkSprite.spriteFrame = this.background;
     this.perkName = null;
   },
    // update (dt) {},
