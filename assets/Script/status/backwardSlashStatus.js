@@ -20,20 +20,24 @@ cc.Class({
   },
 
   beforeNormalAttack(hero){
-    this.scheduleOnce(()=>{
-      var enemy2 = Global.currentRoom.getMovableByPosition(Common.getDecrementPosition(hero.positions[0], hero.face));
-      if ( enemy2 && enemy2.getComponent("enemy") ){
-        var attackDetail = {
-          fromPosition: hero.positions[0],
-          type: Common.ATTACK_TYPE_MELEE
-        }
-        if ( enemy2.checkHit(hero, attackDetail) ) {
-          enemy2.beHit(hero, attackDetail);
-        } else {
-          enemy2.dodgeAttack(hero, attackDetail);
-        }
+    var enemy = Global.currentRoom.getMovableByPosition(Common.getDecrementPosition(hero.positions[0], hero.face));
+    if ( enemy && enemy.getComponent("enemy") ){
+      this.scheduleOnce(()=>{
+      var attackDetail = {
+        fromPosition: hero.positions[0],
+        type: Common.ATTACK_TYPE_MELEE
       }
-    },Global.HERO_ATTACK_TIME/2)
+      if ( enemy.checkHit(hero, attackDetail) ) {
+        enemy.beHit(hero, attackDetail);
+      } else {
+        enemy.dodgeAttack(hero, attackDetail);
+      }
+      },Global.HERO_ATTACK_TIME/2)
+
+      Global.currentRoom.setDelayPhaseTime(Global.HERO_ATTACK_TIME+0.1)
+    }
+
+
   },
   // update (dt) {},
 });
