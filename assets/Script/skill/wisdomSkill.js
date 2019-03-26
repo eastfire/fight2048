@@ -29,7 +29,9 @@ cc.Class({
     this.coolDown = 12+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
-    return i18n.t("wisdomSkill/levelUp")
+    return i18n.t("wisdomSkill/levelUp",{
+      effect: Math.round(4*(this.level+1)*Global.WISDOM_EFFECT*100)
+      })
   },
   onLevelUp(level){
     this.coolDown+=1;
