@@ -63,6 +63,10 @@ cc.Class({
       shiftArrowSprite: cc.Sprite,
       exitDialog: cc.Prefab,
       loading: cc.Prefab,
+      music:{
+        type: cc.AudioClip,
+        default: null
+      }
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -86,10 +90,12 @@ cc.Class({
 
       Global.currentRoom = null;
       Global.currentRoomScene = null;
+      cc.audioEngine.stopMusic();
     },
     start () {
-      this.score = 0; //TODO fetch = require(" save
+      this.score = 0;
       this.star = Storage.star;
+      cc.audioEngine.playMusic(this.music, true);
     },
     gainScore(score) {
       this.score = Math.round(this.score+score);
@@ -280,9 +286,10 @@ cc.Class({
     },
 
     exitGame(){
-      //show Level Up dialog
-      var dialog = cc.instantiate(this.exitDialog);
-      this.node.addChild(dialog)
+      if ( Global.currentRoom.isAcceptInput() ) {
+        var dialog = cc.instantiate(this.exitDialog);
+        this.node.addChild(dialog)
+      }
     },
 
     dying(isDying){

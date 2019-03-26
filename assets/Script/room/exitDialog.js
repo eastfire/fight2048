@@ -18,8 +18,11 @@ cc.Class({
     Global.currentRoom.setAcceptInput(false);
     if ( cc.sys.platform === cc.sys.WECHAT_GAME ) {
       this.effectSlider.node.active = this.musicSlider.node.active = this.soundTitle.node.active = this.musicTitle.node.active = false;
+      this.soundToggle.isChecked = cc.audioEngine.getMusicVolume() > 0;
     } else {
       this.soundToggle.node.active = false;
+      this.effectSlider.progress = cc.audioEngine.getEffectsVolume()
+      this.musicSlider.progress = cc.audioEngine.getMusicVolume()
     }
   },
 
@@ -50,15 +53,26 @@ cc.Class({
   },
   toggleSound(){
     if ( this.soundToggle.isChecked ) {
-      cc.audioengine.setVolume(1)
+      Storage.game.effectVolume = 1;
+      Storage.game.musicVolume = 1;
+      cc.audioEngine.setEffectsVolume(1)
+      cc.audioEngine.setMusicVolume(1)
     } else {
-      cc.audioengine.setVolume(0)
+      Storage.game.effectVolume = 0;
+      Storage.game.musicVolume = 0;
+      cc.audioEngine.setEffectsVolume(0)
+      cc.audioEngine.setMusicVolume(0)
     }
+    Storage.saveGame();
   },
   adjustEffect(){
-    cc.audioengine.setEffectsVolume(this.effectSlider.progress )
+    Storage.game.effectVolume = this.effectSlider.progress;
+    cc.audioEngine.setEffectsVolume(this.effectSlider.progress )
+    Storage.saveGame();
   },
   adjustMusic(){
-    cc.audioengine.setMusicVolume(this.musicSlider.progress );
+    Storage.game.musicVolume = this.musicSlider.progress;
+    cc.audioEngine.setMusicVolume(this.musicSlider.progress );
+    Storage.saveGame();
   }
 })

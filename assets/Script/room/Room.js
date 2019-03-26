@@ -133,10 +133,6 @@ cc.Class({
 
     },
 
-    start () {
-
-    },
-
     click(x,y){
       var scale = this.node.scaleX
       var tile = this.__tiles[0][0]

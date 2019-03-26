@@ -18,6 +18,10 @@ cc.Class({
   },
   start(){
     Storage.loadUserInfo();
+    Storage.loadGame();
+    cc.log(Storage.game)
+    cc.audioEngine.setEffectsVolume(Storage.game.effectVolume  === undefined ? 1 : Storage.game.effectVolume )
+    cc.audioEngine.setMusicVolume(Storage.game.musicVolume === undefined ? 1 : Storage.game.musicVolume );
 
     if ( cc.sys.platform === cc.sys.WECHAT_GAME ) {
       this.hintLabel.node.active = false;
@@ -99,10 +103,10 @@ cc.Class({
   startGame(){
     //Load data
     Storage.loadMoney();
-    Storage.loadGame();
+
     Global.currentHeroType = Storage.game.heroType || "normal"
     Global.selectedPerk = Storage.game.perks || [];
-    
+
     Storage.loadUnlock();
     Storage.loadStatistics();
     Storage.loadRewardTaken();
