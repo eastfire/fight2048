@@ -39,7 +39,7 @@ cc.Class({
     this.type = "fireElement"
   },
 
-  afterAttack(hero){
+  afterHitHero(hero){
     this.checkEffect(hero, 2);
     this._super(hero);
   },

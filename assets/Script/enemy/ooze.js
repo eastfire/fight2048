@@ -52,7 +52,7 @@ cc.Class({
     },this);
 
   },
-  afterAttack(hero){
+  afterHitHero(hero){
     this.checkEffect(hero, 2);
     this._super(hero);
   },

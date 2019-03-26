@@ -281,6 +281,7 @@ cc.Class({
           this.beBlocked(hero, attackDetail);
           hero.blocked(this,attackDetail)
         }
+        this.afterHitHero(hero, attackDetail);
         return true;
       } else {
         //miss
@@ -292,6 +293,9 @@ cc.Class({
     afterAttack(hero){
       this.attackOver = true;
       Global.currentRoom.checkAllEnemyAttacked();
+    },
+    afterHitHero(hero){
+      
     },
     attackHero(hero){
       this.attackOver = false;

@@ -39,7 +39,7 @@ cc.Class({
     this.type = "snake"
   },
 
-  afterAttack(hero){
+  afterHitHero(hero){
     this.checkSpecialEffect(hero);
     this._super(hero);
   },

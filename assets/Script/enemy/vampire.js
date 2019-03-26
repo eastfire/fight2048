@@ -36,7 +36,7 @@ cc.Class({
     ctor: function () {
       this.type = "vampire"
     },
-    afterAttack(hero){
+    afterHitHero(hero){
       this.beforeLevelUp(this.level);
       this.level+=1;
       this.onLevelUp(this.level)

@@ -54,7 +54,7 @@ cc.Class({
       Effect.projectStone(this.node.position, hero.node.position)
       this._super(hero)
     },
-    afterAttack(hero){
+    afterHitHero(hero){
       this.checkSpecialEffect(hero);
       this._super(hero);
     },

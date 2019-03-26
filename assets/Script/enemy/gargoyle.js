@@ -38,7 +38,7 @@ cc.Class({
       this.type = "gargoyle"
     },
     // update (dt) {},
-    afterAttack(hero){
+    afterHitHero(hero){
       hero.gainStatus("forbid",Math.min(8,Math.round(this.level/3))+2);
       this._super(hero);
     },

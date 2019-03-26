@@ -20,7 +20,7 @@ cc.Class({
     this.icon="Skill/bombSkill";
     this.displayName = "炸弹"
     this.desc = "朝敌人阵中乱丢一颗只对敌人有效的炸弹\n房间满了就丢不了了";
-    this.coolDown = 10+Global.SKILL_WAIT_ADJUST;
+    this.coolDown = 9+Global.SKILL_WAIT_ADJUST;
   },
   levelUpDesc(level){
     return "冷却时间减少1回合"

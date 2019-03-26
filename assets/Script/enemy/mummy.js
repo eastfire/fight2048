@@ -41,7 +41,7 @@ cc.Class({
     this.type = "mummy"
   },
 
-  afterAttack(hero){
+  afterHitHero(hero){
     this.checkSpecialEffect(hero);
     this._super(hero);
   },
