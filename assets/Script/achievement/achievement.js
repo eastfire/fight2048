@@ -19,11 +19,15 @@ cc.Class({
 
   // onLoad () {},
 
-  start () { 
+  start () {
 
   },
 
   updateItem: function(entry, itemID) {
+    if ( !entry ) {
+      this.node.runAction(cc.removeSelf());
+      return;
+    }
     this.itemID = itemID;
     this.entry = entry;
 

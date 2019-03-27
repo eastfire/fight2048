@@ -55,6 +55,8 @@ module.exports = {
   MAX_PERK: 4,
   PERK_SCORE_ADJUST: 0.05,
 
+  REWARD_THRESHOLD: 50,
+
   currentHeroType: "normal",
   selectedPerk: [],
   currentSkillPool: [],

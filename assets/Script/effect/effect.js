@@ -134,7 +134,8 @@ var projectStone = function( from, to ) {
   ))
 }
 
-var gainStarInRoom = function(fromPosition, callback, context) {
+var gainStarInRoom = function(fromPosition, amount) {
+  amount = amount || 1;
   var star = starNodePool.get();
   if ( !star ) {
     star = cc.instantiate(Global.currentRoom.starPrefab);
@@ -154,7 +155,7 @@ var gainStarInRoom = function(fromPosition, callback, context) {
   star.runAction(cc.sequence(
     cc.moveTo(Global.GET_STAR_TIME, destPos.x, destPos.y).easing(cc.easeQuadraticActionIn()),
     cc.callFunc(function(){
-      Global.currentRoomScene.gainStar(1)
+      Global.currentRoomScene.gainStar(amount)
       Global.currentRoomScene.moneyLabel.node.stopAllActions();
       Global.currentRoomScene.moneyLabel.node.runAction(cc.sequence(
         cc.scaleTo(Global.GET_STAR_TIME/2,1.3),

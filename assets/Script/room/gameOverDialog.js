@@ -2,6 +2,7 @@ const Global = require("global");
 const Common = require("common");
 const Storage = require("storage");
 const DataSource = require("LeanCloudDataSource");
+const Effect = require("effect")
 
 cc.Class({
     extends: cc.Component,
@@ -10,7 +11,9 @@ cc.Class({
       scoreLabel: cc.Label,
       skillPerkList: cc.Layout,
       submitButton: cc.Button,
-      inputNameDialog: cc.Prefab
+      inputNameDialog: cc.Prefab,
+      doubleReward: cc.Button,
+      rewardLabel: cc.Label,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -19,6 +22,10 @@ cc.Class({
 
     start () {
       this.submitScore();
+      this.rewardTaken = 0;
+      this.doubleRewardTaken = false;
+      this.checkAd()
+      this.getReward();
     },
 
     submitScore(callback, context){
@@ -49,6 +56,55 @@ cc.Class({
           sprite.node.width = 50
           sprite.node.height = 50
       })
+    },
+
+    getReward(){
+      var turn = Global.currentRoom.turn;
+      var reward = 1;
+      turn -= Global.REWARD_THRESHOLD;
+      reward += Math.ceil(Math.max(0,turn)/10)
+      var sliceNumber = 10;
+      var slice = Math.ceil(reward/sliceNumber);
+      var self = this;
+      for ( var i = 0; i < sliceNumber; i++ ) {
+        if ( reward <= 0 ) break;
+        reward -= slice;
+        if ( reward < 0 ) slice = slice+reward;
+        (function(slice, delay){
+          self.scheduleOnce(()=>{
+            self.rewardTaken += slice;
+            self.rewardLabel.string = self.rewardTaken;
+            Effect.gainStarInRoom(self.rewardLabel.node.position,slice)
+          }, delay);
+        })(slice, 0.1*i)
+      }
+    },
+
+    checkAd(){
+      this.adPrepared = true;
+
+      if ( this.adPrepared && !this.doubleRewardTaken ) {
+        this.doubleReward.node.active = true;
+      } else {
+        this.doubleReward.node.active = false;
+      }
+    },
+
+    takeDoubleReward(){
+      this.playAd({
+        success: function(){
+          this.doubleRewardTaken = true;
+          this.checkAd();
+          this.getReward();
+        },
+        context: this,
+      })
+
+    },
+
+    playAd(opt){
+      //todo play ad
+      opt.success.call(opt.context)
     },
 
     setReason(reason){
