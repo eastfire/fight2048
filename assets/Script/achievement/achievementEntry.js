@@ -1,6 +1,7 @@
 const Global = require("global");
 const Common = require("common");
 const Storage = require("storage");
+const i18n = require("i18n")
 
 var achievements = [
 {
@@ -399,14 +400,14 @@ var allEnemyType = [
   },
   {
     type:"minotaur",
-    displayName:"牛头人",
+    displayName:i18n.t("enemy/minotaur"),
     reward(level){
       return [5,10,30,120,600][level]
     }
   },
   {
     type:"mummy",
-    displayName:"木乃伊",
+    displayName:i18n.t("enemy/mummy"),
     reward(level){
       return [5,10,30,120,600][level]
     }
@@ -485,7 +486,7 @@ var allEnemyType = [
     type:"troll",
     displayName:"巨魔",
     reward(level){
-      return [5,15,60,300,1800][level]
+      return [5,10,30,120,600][level]
     }
   },
   {

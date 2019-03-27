@@ -16,7 +16,6 @@
     "RichText",
     "PageView",
     "PageViewIndicator",
-    "VideoPlayer",
     "WebView",
     "AudioSource",
     "Collider",
@@ -38,7 +37,7 @@
   "group-list": [
     "default"
   ],
-  "last-module-event-record-time": 1553588860537,
+  "last-module-event-record-time": 1553611062296,
   "simulator-orientation": false,
   "simulator-resolution": {
     "height": 640,

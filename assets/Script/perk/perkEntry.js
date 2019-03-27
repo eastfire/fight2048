@@ -41,7 +41,7 @@ module.exports = {
   },
   {
     name:"moreExp",
-    title:"经验老道",
+    title:"经验老到",
     desc:function(level){
       return "每次杀死1个敌人多得到"+(level)+"经验值";
     },

@@ -19,4 +19,5 @@ module.exports = {
 
 //enemy
   "enemy/mummy":"僵尸",
+  "enemy/minotaur":"飞龙",
 };

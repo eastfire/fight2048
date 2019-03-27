@@ -78,8 +78,9 @@ cc.Class({
         })
       })
     },
-    addStar(){
-      Storage.saveMoney(Storage.star+100)
+    addStar(e,data){
+      cc.log(data)
+      Storage.saveMoney(Storage.star+parseInt(data))
     },
     clearData(){
       Storage.clearData("unlocked")

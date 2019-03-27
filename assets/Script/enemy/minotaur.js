@@ -1,5 +1,6 @@
 const Global = require("global");
 const Enemy = require("enemy");
+const i18n = require("i18n")
 
 cc.Class({
     extends: Enemy,
