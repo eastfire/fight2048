@@ -18,7 +18,7 @@ module.exports = {
   TILE_HEIGHT: 120,
   ROOM_PADDING: 20,
 
-  ORIGIN_BASE_HP: 20,
+  ORIGIN_BASE_HP: 10,
   ORIGIN_HP_PER_LEVEL: 10,
   ORIGIN_SCORE_INFLATION_RATE: 20,
   ORIGIN_EXP_INFLATION_RATE: 10,
@@ -54,6 +54,8 @@ module.exports = {
   HERO_TOMB_THRESHOLD: 50,
   MAX_PERK: 4,
   PERK_SCORE_ADJUST: 0.05,
+
+  REWARD_THRESHOLD: 50,
 
   currentHeroType: "normal",
   selectedPerk: [],

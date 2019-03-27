@@ -14,12 +14,24 @@ module.exports = {
       }
     },
   {
+    name:"moreInitHp",
+    title:"天生强壮",
+    desc:function(level){
+      return "初始生命多"+(level*5);
+    },
+    price:[10,40,200,1200,9000,70000],
+    apply(){
+      var moreInitHp = Storage.progress.perk.moreInitHp || 0;
+      Global.BASE_HP += moreInitHp*5;
+    }
+  },
+  {
     name:"moreHp",
     title:"身强体壮",
     desc:function(level){
       return "每次升级或增加体质获得的生命多"+(level*10)+"%";
     },
-    price:[10,40,200,1200,10000],
+    price:[10,40,200,1200,9000,70000],
     apply(){
       var moreHp = Storage.progress.perk.moreHp || 0;
       var rate = Global.HP_PER_LEVEL/Global.ORIGIN_HP_PER_LEVEL + 0.1*moreHp;
@@ -33,7 +45,7 @@ module.exports = {
     desc:function(level){
       return "每次杀死1个敌人多得到"+(level)+"经验值";
     },
-    price:[10,40,200,1200,10000],
+    price:[10,40,200,1200,9000,70000],
     apply(){
       Global.ENEMY_EXP_ADJUST = Storage.progress.perk.moreExp;
     }
@@ -42,7 +54,7 @@ module.exports = {
     name:"moreChoice",
     title:"灵活多变",
     desc:"升级时多１选择项",
-    price: [300],
+    price: [200],
     apply(){
       Global.CHOICE_NUMBER++;
     }

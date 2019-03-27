@@ -165,7 +165,7 @@ var achievements = [
   name:"takeDamage",
   title:"破伤风",
   desc: "被10点以上伤害杀死",
-  reward: 10,
+  reward: 5,
   check:function(){
     return Storage.statistics.gameOver.damage >= 10;
   },
@@ -175,7 +175,7 @@ var achievements = [
   title:"啊,好痛!",
   desc: "被30点以上伤害杀死",
   prerequests: ["takeDamage"],
-  reward: 20,
+  reward: 10,
   check:function(){
     return Storage.statistics.gameOver.damage >= 30;
   },
@@ -185,7 +185,7 @@ var achievements = [
   title:"稀巴烂",
   desc: "被50点以上伤害杀死",
   prerequests: ["takeDamage2"],
-  reward: 50,
+  reward: 30,
   check:function(){
     return Storage.statistics.gameOver.damage >= 50;
   },
@@ -195,7 +195,7 @@ var achievements = [
   title:"车祸现场",
   desc: "被100点以上伤害杀死",
   prerequests: ["takeDamage3"],
-  reward: 200,
+  reward: 120,
   check:function(){
     return Storage.statistics.gameOver.damage >= 100;
   },
@@ -307,13 +307,6 @@ heroType.forEach(function(entry){
 
 var allEnemyType = [
   {
-    type:"skeleton",
-    displayName:"骷髅卫兵",
-    reward(level){
-      return [5,10,30,120,600][level]
-    }
-  },
-  {
     type:"archer",
     displayName:"骷髅弓箭手",
     reward(level){
@@ -391,13 +384,6 @@ var allEnemyType = [
     }
   },
   {
-    type:"skeleton",
-    displayName:"骷髅卫兵",
-    reward(level){
-      return [5,10,30,120,600][level]
-    }
-  },
-  {
     type:"medusa",
     displayName:"美杜莎",
     reward(level){
@@ -461,6 +447,13 @@ var allEnemyType = [
     }
   },
   {
+    type:"skeleton",
+    displayName:"骷髅卫兵",
+    reward(level){
+      return [5,10,30,120,600][level]
+    }
+  },
+  {
     type:"shaman",
     displayName:"萨满",
     reward(level){
@@ -470,6 +463,13 @@ var allEnemyType = [
   {
     type:"snake",
     displayName:"毒蛇",
+    reward(level){
+      return [5,10,30,120,600][level]
+    }
+  },
+  {
+    type:"summoner",
+    displayName:"唤云师",
     reward(level){
       return [5,10,30,120,600][level]
     }
@@ -503,7 +503,7 @@ allEnemyType.forEach(function(entry){
       achievements.push({
         name:"kill"+(i+1)+"star"+entry.type,
         title:entry.displayName+"杀手"+TITLE_SURFIX[i],
-        desc: "杀死"+(i+1)+"星等级以上"+entry.displayName,
+        desc: "杀死"+(i+1)+"星以上"+entry.displayName,
         prerequests: i==0?null:["kill"+i+"star"+entry.type],
         needSeen: i==0?[entry.type]:null,
         reward: entry.reward(i),
