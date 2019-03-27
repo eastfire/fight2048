@@ -66,6 +66,10 @@ cc.Class({
       music:{
         type: cc.AudioClip,
         default: null
+      },
+      bossMusic:{
+        type: cc.AudioClip,
+        default: null
       }
     },
 
@@ -184,6 +188,12 @@ cc.Class({
         for ( var i in this.skills ) {
           this.skills[i].getComponent("skill").onTurnStart()
         }
+      })
+      this.node.on("boss-generate",()=>{
+        cc.audioEngine.playMusic(this.bossMusic, true);
+      })
+      this.node.on("boss-die",()=>{
+        cc.audioEngine.playMusic(this.music, true);
       })
     },
 

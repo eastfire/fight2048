@@ -31,6 +31,7 @@ cc.Class({
       this.life = this.hpList.node.children.length;
       this.resetWeakPoint();
       this.setLife(this.life)
+      Global.currentRoomScene.node.emit("boss-generate")
     },
     starAnimation(){
       //override animation
@@ -71,6 +72,11 @@ cc.Class({
           return true;
         }
       return false;
+    },
+
+    afterDie(hero){
+      this._super(hero);
+      Global.currentRoomScene.node.emit("boss-die")
     }
     // update (dt) {},
 });
