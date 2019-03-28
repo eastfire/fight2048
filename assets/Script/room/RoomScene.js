@@ -4,6 +4,7 @@ const Common = require("common");
 const Global = require("global");
 const ChoiceFactory = require("choiceFactory")
 const Storage = require("storage");
+const AdProvider = require("wxAdProvider")
 
 const KEY_LEFT = 37;
 const KEY_UP = 38;
@@ -100,6 +101,10 @@ cc.Class({
       this.score = 0;
       this.star = Storage.star;
       cc.audioEngine.playMusic(this.music, true);
+
+      var adProvider = new AdProvider();
+      adProvider.initBanner();
+      adProvider.showBanner();
     },
     gainScore(score) {
       this.score = Math.round(this.score+score);
