@@ -18,7 +18,7 @@ cc.Class({
 
       var type = Global.currentHeroType;
 
-      cc.loader.loadRes("Texture/Hero/unlock-"+type,cc.SpriteFrame,(err,frame)=>{
+      cc.loader.loadRes("Texture/Unlock/unlock-"+type,cc.SpriteFrame,(err,frame)=>{
         this.icon.spriteFrame = frame;
       })
 

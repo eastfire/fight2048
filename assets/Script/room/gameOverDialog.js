@@ -139,7 +139,7 @@ cc.Class({
 
       var slot = new cc.Node()
       slot.addComponent(cc.Sprite)
-      this.loadIcon(slot.getComponent(cc.Sprite),"Texture/Hero/unlock-"+Global.currentRoom.hero.getComponent("hero").subtype)
+      this.loadIcon(slot.getComponent(cc.Sprite),"Texture/Unlock/unlock-"+Global.currentRoom.hero.getComponent("hero").subtype)
       slot.y = 0;
       this.skillPerkList.node.addChild(slot)
 

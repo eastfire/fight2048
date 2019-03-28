@@ -86,7 +86,7 @@ cc.Class({
     if ( !this.entry.detail ) return;
     var slot = new cc.Node();
     slot.addComponent(cc.Sprite);
-    this.loadIcon(slot.getComponent(cc.Sprite),"Texture/Hero/unlock-"+this.entry.detail.type)
+    this.loadIcon(slot.getComponent(cc.Sprite),"Texture/Unlock/unlock-"+this.entry.detail.type)
     slot.y = 0;
     this.detailLayout.node.addChild(slot)
     this.entry.detail.skills.forEach(function(skill){
