@@ -54,6 +54,8 @@ cc.Class({
       this.initHero();
       this.initMovalbe();
 
+      this.initTutorial();
+
       this.scheduleOnce(this.turnStart, 0.1);
     },
     initMovablePrefabMap() {
@@ -575,6 +577,16 @@ cc.Class({
         this.node.emit("enemy-attack-complete",this)
       }
     },
-
+    initTutorial(){
+      if ( !Storage.tutorial.userInput ) {
+        this.node.on("PHASE:waitUserInput",function(){
+          cc.log("xXXXXXXXxxx")
+          cc.director.pause();
+          this.node.scheduleOnce(function(){
+            cc.director.resume();
+          },5)
+        },this)
+      }
+    }
     // update (dt) {},
 });

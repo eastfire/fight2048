@@ -112,6 +112,7 @@ cc.Class({
     Storage.loadRewardTaken();
     Storage.loadAchievement();
     Storage.loadProgress();
+    Storage.loadTutorial();
 
     var n = cc.instantiate(this.loading);
     n.x = n.y = 0;

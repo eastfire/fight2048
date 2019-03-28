@@ -91,6 +91,10 @@ cc.Class({
       Storage.clearData("game")
       cc.director.loadScene("IntroScene")
     },
+    clearTutorial(){
+      Storage.clearData("tutorial")
+      cc.director.loadScene("IntroScene")
+    },
     clearStatistics(){
       Storage.clearData("statistics")
     },

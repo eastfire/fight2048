@@ -12,6 +12,8 @@ module.exports = {
     seen:{slime:1},
     seenItem: {iceWall:1}
   },
+  tutorial: {
+  },
   userInfo: null,
   loadMoney() {
     this.star = parseInt(cc.sys.localStorage.getItem('star') || 0 );
@@ -26,6 +28,12 @@ module.exports = {
   },
   saveGame(){
     cc.sys.localStorage.setItem("game",JSON.stringify(this.game))
+  },
+  loadTutorial(){
+    var v = cc.sys.localStorage.getItem('tutorial')
+    this.tutorial = v ? JSON.parse(v) : {
+
+    }
   },
   loadProgress(){
     var v = cc.sys.localStorage.getItem('progress')
@@ -123,6 +131,9 @@ module.exports = {
   },
   saveProgress(){
     cc.sys.localStorage.setItem("progress",JSON.stringify(this.progress))
+  },
+  saveTutorial(){
+    cc.sys.localStorage.setItem("tutorial",JSON.stringify(this.tutorial))
   },
   unlock(unlockName){
     this.unlocked[unlockName] = 1;
