@@ -281,9 +281,7 @@ var loadScene = function(sceneName, loadingParent, loadingPrefab, callback){
   var n = cc.instantiate(loadingPrefab);
   n.x = n.y = 0;
   loadingParent.addChild(n)
-  cc.director.preloadScene(sceneName, null, function(){
-    cc.director.loadScene(sceneName, callback);
-  })
+  cc.director.loadScene(sceneName, callback);
 }
 
 var ATTACK_TYPE_MELEE = 1;

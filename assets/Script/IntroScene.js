@@ -113,13 +113,23 @@ cc.Class({
     Storage.loadAchievement();
     Storage.loadProgress();
 
-    if ( Storage.statistics.gameTime === 0 ) {
-      //first time game
-      Global.reset();
-      Global.currentHeroType = "normal"
-      Common.loadScene("RoomScene", this.node, this.loading)
-    } else {
-      Common.loadScene("MenuScene", this.node, this.loading)
-    }
+    var n = cc.instantiate(this.loading);
+    n.x = n.y = 0;
+    this.node.addChild(n)
+
+    cc.loader.loadResDir("Texture/Perk", cc.SpriteFrame, (err, res)=>{
+      cc.loader.loadResDir("Texture/Unlock", cc.SpriteFrame, (err, res)=>{
+        cc.loader.loadResDir("Texture/Skill", cc.SpriteFrame, (err, res)=>{
+          if ( Storage.statistics.gameTime === 0 ) {
+            //first time game
+            Global.reset();
+            Global.currentHeroType = "normal"
+            cc.director.loadScene("RoomScene");
+          } else {
+            cc.director.loadScene("MenuScene");
+          }
+        })
+      })
+    })
   }
 });

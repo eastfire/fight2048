@@ -11,7 +11,7 @@ module.exports = {
     prerequests: null,
     price: 5,
     type:"skillSlot",
-    icon: "Texture/skillSlot",
+    icon: "Texture/Unlock/skillSlot",
     onUnlock:function(){
       Storage.progress.maxSkill.normal = 3;
       Storage.saveProgress();
@@ -23,7 +23,7 @@ module.exports = {
     prerequests: ["warriorSkillSlot3"],
     price: 20,
     type:"skillSlot",
-    icon: "Texture/skillSlot",
+    icon: "Texture/Unlock/skillSlot",
     onUnlock:function(){
       Storage.progress.maxSkill.normal = 4;
       Storage.saveProgress();
@@ -35,7 +35,7 @@ module.exports = {
     prerequests: ["warriorSkillSlot4"],
     price: 100,
     type:"skillSlot",
-    icon: "Texture/skillSlot",
+    icon: "Texture/Unlock/skillSlot",
     onUnlock:function(){
       Storage.progress.maxSkill.normal = 5;
       Storage.saveProgress();
@@ -77,7 +77,7 @@ module.exports = {
     prerequests: null,
     price: 20,
     type:"perkSlot",
-    icon: "Texture/perkSlot",
+    icon: "Texture/Unlock/perkSlot",
     onUnlock:function(){
       Storage.progress.maxPerk.normal = 2;
       Storage.saveProgress();
@@ -89,7 +89,7 @@ module.exports = {
     prerequests: ["warriorPerkSlot2"],
     price: 50,
     type:"perkSlot",
-    icon: "Texture/perkSlot",
+    icon: "Texture/Unlock/perkSlot",
     onUnlock:function(){
       Storage.progress.maxPerk.normal = 3;
       Storage.saveProgress();
@@ -101,7 +101,7 @@ module.exports = {
     prerequests: ["warriorPerkSlot3"],
     price: 200,
     type:"perkSlot",
-    icon: "Texture/perkSlot",
+    icon: "Texture/Unlock/perkSlot",
     onUnlock:function(){
       Storage.progress.maxPerk.normal = 4;
       Storage.saveProgress();
@@ -113,7 +113,7 @@ module.exports = {
     prerequests: null,
     price: 100,
     type:"hero",
-    icon: "Texture/Hero/unlock-cleric"
+    icon: "Texture/Unlock/unlock-cleric"
   },
   {
     name:"clericSkillSlot3",
@@ -121,7 +121,7 @@ module.exports = {
     prerequests: ["cleric"],
     price: 50,
     type:"skillSlot",
-    icon: "Texture/skillSlot",
+    icon: "Texture/Unlock/skillSlot",
     onUnlock:function(){
       Storage.progress.maxSkill.cleric = 3;
       Storage.saveProgress();
@@ -133,7 +133,7 @@ module.exports = {
     prerequests: ["clericSkillSlot3"],
     price: 100,
     type:"skillSlot",
-    icon: "Texture/skillSlot",
+    icon: "Texture/Unlock/skillSlot",
     onUnlock:function(){
       Storage.progress.maxSkill.cleric = 4;
       Storage.saveProgress();
@@ -145,7 +145,7 @@ module.exports = {
     prerequests: ["clericSkillSlot4"],
     price: 400,
     type:"skillSlot",
-    icon: "Texture/skillSlot",
+    icon: "Texture/Unlock/skillSlot",
     onUnlock:function(){
       Storage.progress.maxSkill.cleric = 5;
       Storage.saveProgress();
@@ -185,7 +185,7 @@ module.exports = {
     prerequests: ["cleric"],
     price: 50,
     type:"perkSlot",
-    icon: "Texture/perkSlot",
+    icon: "Texture/Unlock/perkSlot",
     onUnlock:function(){
       Storage.progress.maxPerk.cleric = 2;
       Storage.saveProgress();
@@ -197,7 +197,7 @@ module.exports = {
     prerequests: ["clericPerkSlot2"],
     price: 200,
     type:"perkSlot",
-    icon: "Texture/perkSlot",
+    icon: "Texture/Unlock/perkSlot",
     onUnlock:function(){
       Storage.progress.maxPerk.cleric = 3;
       Storage.saveProgress();
@@ -209,7 +209,7 @@ module.exports = {
     prerequests: ["clericPerkSlot3"],
     price: 1000,
     type:"perkSlot",
-    icon: "Texture/perkSlot",
+    icon: "Texture/Unlock/perkSlot",
     onUnlock:function(){
       Storage.progress.maxPerk.cleric = 4;
       Storage.saveProgress();
@@ -221,14 +221,14 @@ module.exports = {
     prerequests: null,
     price: 200,
     type:"hero",
-    icon: "Texture/Hero/unlock-wizard"
+    icon: "Texture/Unlock/unlock-wizard"
   },{
     name:"wizardSkillSlot3",
     displayName:"法师的第3个技能槽",
     prerequests: ["wizard"],
     price: 100,
     type:"skillSlot",
-    icon: "Texture/skillSlot",
+    icon: "Texture/Unlock/skillSlot",
     onUnlock:function(){
       Storage.progress.maxSkill.wizard = 3;
       Storage.saveProgress();
@@ -240,7 +240,7 @@ module.exports = {
     prerequests: ["wizardSkillSlot3"],
     price: 300,
     type:"skillSlot",
-    icon: "Texture/skillSlot",
+    icon: "Texture/Unlock/skillSlot",
     onUnlock:function(){
       Storage.progress.maxSkill.wizard = 4;
       Storage.saveProgress();
@@ -252,7 +252,7 @@ module.exports = {
     prerequests: ["wizardSkillSlot4"],
     price: 1000,
     type:"skillSlot",
-    icon: "Texture/skillSlot",
+    icon: "Texture/Unlock/skillSlot",
     onUnlock:function(){
       Storage.progress.maxSkill.wizard = 5;
       Storage.saveProgress();
@@ -299,7 +299,7 @@ module.exports = {
     prerequests: ["wizard"],
     price: 50,
     type:"perkSlot",
-    icon: "Texture/perkSlot",
+    icon: "Texture/Unlock/perkSlot",
     onUnlock:function(){
       Storage.progress.maxPerk.wizard = 2;
       Storage.saveProgress();
@@ -311,7 +311,7 @@ module.exports = {
     prerequests: ["wizardPerkSlot2"],
     price: 200,
     type:"perkSlot",
-    icon: "Texture/perkSlot",
+    icon: "Texture/Unlock/perkSlot",
     onUnlock:function(){
       Storage.progress.maxPerk.wizard = 3;
       Storage.saveProgress();
@@ -323,7 +323,7 @@ module.exports = {
     prerequests: ["wizardPerkSlot3"],
     price: 1000,
     type:"perkSlot",
-    icon: "Texture/perkSlot",
+    icon: "Texture/Unlock/perkSlot",
     onUnlock:function(){
       Storage.progress.maxPerk.wizard = 4;
       Storage.saveProgress();
@@ -335,14 +335,14 @@ module.exports = {
     prerequests: ["cleric","wizard"],
     price: 300,
     type:"hero",
-    icon: "Texture/Hero/unlock-thief"
+    icon: "Texture/Unlock/unlock-thief"
   },{
     name:"thiefSkillSlot3",
     displayName:"盗贼的第3个技能槽",
     prerequests: ["thief"],
     price: 100,
     type:"skillSlot",
-    icon: "Texture/skillSlot",
+    icon: "Texture/Unlock/skillSlot",
     onUnlock:function(){
       Storage.progress.maxSkill.thief = 3;
       Storage.saveProgress();
@@ -354,7 +354,7 @@ module.exports = {
     prerequests: ["thiefSkillSlot3"],
     price: 300,
     type:"skillSlot",
-    icon: "Texture/skillSlot",
+    icon: "Texture/Unlock/skillSlot",
     onUnlock:function(){
       Storage.progress.maxSkill.thief = 4;
       Storage.saveProgress();
@@ -366,7 +366,7 @@ module.exports = {
     prerequests: ["thiefSkillSlot4"],
     price: 1000,
     type:"skillSlot",
-    icon: "Texture/skillSlot",
+    icon: "Texture/Unlock/skillSlot",
     onUnlock:function(){
       Storage.progress.maxSkill.thief = 5;
       Storage.saveProgress();
@@ -413,7 +413,7 @@ module.exports = {
     prerequests: ["thief"],
     price: 50,
     type:"perkSlot",
-    icon: "Texture/perkSlot",
+    icon: "Texture/Unlock/perkSlot",
     onUnlock:function(){
       Storage.progress.maxPerk.thief = 2;
       Storage.saveProgress();
@@ -425,7 +425,7 @@ module.exports = {
     prerequests: ["thiefPerkSlot2"],
     price: 200,
     type:"perkSlot",
-    icon: "Texture/perkSlot",
+    icon: "Texture/Unlock/perkSlot",
     onUnlock:function(){
       Storage.progress.maxPerk.thief = 3;
       Storage.saveProgress();
@@ -437,7 +437,7 @@ module.exports = {
     prerequests: ["thiefPerkSlot3"],
     price: 1000,
     type:"perkSlot",
-    icon: "Texture/perkSlot",
+    icon: "Texture/Unlock/perkSlot",
     onUnlock:function(){
       Storage.progress.maxPerk.thief = 4;
       Storage.saveProgress();
