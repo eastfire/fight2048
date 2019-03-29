@@ -71,7 +71,8 @@ cc.Class({
       bossMusic:{
         type: cc.AudioClip,
         default: null
-      }
+      },
+      tutorial:cc.Prefab,
     },
 
     // LIFE-CYCLE CALLBACKS:

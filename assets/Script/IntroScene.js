@@ -114,6 +114,8 @@ cc.Class({
     Storage.loadProgress();
     Storage.loadTutorial();
 
+    cc.log(Storage.tutorial);
+
     var n = cc.instantiate(this.loading);
     n.x = n.y = 0;
     this.node.addChild(n)

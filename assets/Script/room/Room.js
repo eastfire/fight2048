@@ -580,13 +580,15 @@ cc.Class({
     initTutorial(){
       if ( !Storage.tutorial.userInput ) {
         this.node.on("PHASE:waitUserInput",function(){
-          cc.log("xXXXXXXXxxx")
+          var tutorial = cc.instantiate(Global.currentRoomScene.tutorial)
+          this.node.addChild(tutorial);
           cc.director.pause();
-          this.node.scheduleOnce(function(){
+          tutorial.on("touchend",function(){
+              cc.log("xXXXXXXXxxxx2")
             cc.director.resume();
-          },5)
+          },this)
         },this)
       }
-    }
+    },
     // update (dt) {},
 });
