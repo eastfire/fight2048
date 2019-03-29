@@ -578,15 +578,18 @@ cc.Class({
       }
     },
     initTutorial(){
-      if ( !Storage.tutorial.userInput ) {
+      if ( !Storage.tutorial.off ) {
         this.node.on("PHASE:waitUserInput",function(){
+          if (Storage.tutorial.userInput) return;
+          cc.log(Global.currentRoomScene.tutorial)
           var tutorial = cc.instantiate(Global.currentRoomScene.tutorial)
-          this.node.addChild(tutorial);
-          cc.director.pause();
-          tutorial.on("touchend",function(){
-              cc.log("xXXXXXXXxxxx2")
-            cc.director.resume();
-          },this)
+          Global.currentRoomScene.node.addChild(tutorial);
+          tutorial.getComponent("tutorial").setContent({
+            tutorialId:"userInput",
+            text:"滑动手指，让所有角色向这个方向移动",
+            finger: true
+          })
+
         },this)
       }
     },
