@@ -61,8 +61,8 @@ cc.Class({
     getReward(){
       var turn = Global.currentRoom.turn;
       var reward = 1;
-      turn -= Global.REWARD_THRESHOLD;
       reward += Math.ceil(Math.max(0,turn)/10)
+      reward += Math.ceil(Global.currentRoom.hero.getComponent("hero").level/2)
       var sliceNumber = 10;
       var slice = Math.ceil(reward/sliceNumber);
       var self = this;
