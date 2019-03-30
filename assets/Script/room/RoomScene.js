@@ -197,6 +197,17 @@ cc.Class({
       })
       this.node.on("boss-generate",()=>{
         cc.audioEngine.playMusic(this.bossMusic, true);
+        if ( !Storage.tutorial.off && !Storage.tutorial.bossGenerate) {
+          this.scheduleOnce(function(){
+            var tutorial = cc.instantiate(Global.currentRoomScene.tutorial)
+            Global.currentRoomScene.node.addChild(tutorial);
+            tutorial.getComponent("tutorial").setContent({
+              tutorialId:"bossGenerate",
+              text:"boss不会被你一击杀死\n如果普通攻击击中它的弱点，它就不会在本回合攻击你。",
+              pause: true,
+            })
+          },Global.GENERATE_TIME);
+        }
       })
       this.node.on("boss-die",()=>{
         cc.audioEngine.playMusic(this.music, true);

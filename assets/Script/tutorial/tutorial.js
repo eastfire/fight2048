@@ -12,9 +12,7 @@ cc.Class({
   },
 
   start(){
-    this.node.on("touchend",function(){
-      this.exit();
-    },this)
+
   },
   setContent(opt){
     this.tutorialId = opt.tutorialId;
@@ -37,16 +35,15 @@ cc.Class({
     if ( opt.pause ) {
       cc.director.pause();
     }
+    this.node.on("touchend",function(){
+      this.exit();
+    },this)
   },
   exit(){
+    cc.log("onExit"+this.tutorialId)
     cc.director.resume();
-    this.node.runAction(cc.sequence(
-      cc.fadeOut(0.2),
-      cc.callFunc(function(){
-        Storage.tutorial[this.tutorialId]=1;
-        Storage.saveTutorial();
-      },this),
-      cc.removeSelf(),
-    ))
+    Storage.tutorial[this.tutorialId]=1;
+    Storage.saveTutorial();
+    this.node.destroy();
   }
 })

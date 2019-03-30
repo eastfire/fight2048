@@ -4,6 +4,7 @@ const Movable = require("movable");
 const Enemy = require("enemy");
 const Common = require("common");
 const EnemyFactory = require("enemyFactory");
+const TutorialEnemyFactory = require("tutorialEnemyFactory");
 const ItemFactory = require("itemFactory");
 const Global = require("global");
 const Storage = require("storage");
@@ -498,7 +499,11 @@ cc.Class({
       },this)
     },
     initGenEnemyStrategy() {
-      this.enemyFactory = new EnemyFactory();
+      if (!Storage.tutorial.off){
+        this.enemyFactory = new TutorialEnemyFactory();
+      } else {
+        this.enemyFactory = new EnemyFactory();
+      }
     },
     initItem() {
       this.itemFactory = new ItemFactory();
@@ -579,18 +584,57 @@ cc.Class({
     },
     initTutorial(){
       if ( !Storage.tutorial.off ) {
-        this.node.on("PHASE:waitUserInput",function(){
-          if (Storage.tutorial.userInput) return;
-          cc.log(Global.currentRoomScene.tutorial)
+        var waitUserInputTutorial = function(){
           var tutorial = cc.instantiate(Global.currentRoomScene.tutorial)
           Global.currentRoomScene.node.addChild(tutorial);
           tutorial.getComponent("tutorial").setContent({
             tutorialId:"userInput",
-            text:"滑动手指，让所有角色向这个方向移动",
+            text:"滑动手指，让英雄和所有怪物都向这个方向移动",
             finger: true
           })
+          this.node.off("PHASE:waitUserInput",waitUserInputTutorial,this)
+        };
+        if (!Storage.tutorial.userInput)
+          this.node.on("PHASE:waitUserInput",waitUserInputTutorial,this)
 
-        },this)
+        var movePhaseTutorial = function(){
+          var tutorial = cc.instantiate(Global.currentRoomScene.tutorial)
+          Global.currentRoomScene.node.addChild(tutorial);
+          tutorial.getComponent("tutorial").setContent({
+            tutorialId:"movePhase",
+            text:"相同的怪物会合并\n它的等级会相加\n不同的怪物则会相互阻挡",
+            pause: true,
+          })
+          this.node.off("PHASE:movePhase",movePhaseTutorial,this)
+        };
+        if (!Storage.tutorial.movePhase)
+          this.node.on("PHASE:movePhase",movePhaseTutorial,this)
+
+        var heroAttackTutorial = function(){
+          var tutorial = cc.instantiate(Global.currentRoomScene.tutorial)
+          Global.currentRoomScene.node.addChild(tutorial);
+          tutorial.getComponent("tutorial").setContent({
+            tutorialId:"heroAttack",
+            text:"移动后，英雄会自动攻击面前的敌人\n不管多强的敌人都能一击杀死",
+            pause: true,
+          })
+          this.node.off("PHASE:heroAttack",heroAttackTutorial,this)
+        }
+        if (!Storage.tutorial.heroAttack)
+          this.node.on("PHASE:heroAttack",heroAttackTutorial,this)
+
+        var enemyAttackTutorial = function(){
+          var tutorial = cc.instantiate(Global.currentRoomScene.tutorial)
+          Global.currentRoomScene.node.addChild(tutorial);
+          tutorial.getComponent("tutorial").setContent({
+            tutorialId:"enemyAttack",
+            text:"英雄攻击后，所有英雄旁边的怪物会攻击英雄",
+            pause: true,
+          })
+          this.node.off("PHASE:enemyAttack",enemyAttackTutorial,this)
+        }
+        if (!Storage.tutorial.enemyAttack)
+          this.node.on("PHASE:enemyAttack",enemyAttackTutorial,this)
       }
     },
     // update (dt) {},

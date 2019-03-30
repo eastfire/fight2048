@@ -50,7 +50,7 @@ cc.Class({
     }
 
     Global.currentRoom.foreachMovable(function(enemy){
-      if ( enemy.type == attackThis.type ) {
+      if ( enemy.type == attackThis.type && enemy.subtype == attackThis.subtype ) {
         if ( enemy.checkHit(hero, attackDetail) ) {
           enemy.beHit(hero, attackDetail);
         } else {
