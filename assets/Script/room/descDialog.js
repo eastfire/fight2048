@@ -26,9 +26,9 @@ cc.Class({
       movable.x = 0;
       movable.y = 0;
       movable.removeComponent(m.type)
-      movable.anchorX = 0.5
-      movable.anchorY = 0.5
       if ( movable.getComponent("boss") ) {
+        movable.x = -Global.TILE_WIDTH/3;
+        movable.y = -Global.TILE_HEIGHT/3;
         movable.setScale(0.5) //TODO 适配更多形状的boss
       }
 

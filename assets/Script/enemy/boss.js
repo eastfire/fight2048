@@ -32,6 +32,12 @@ cc.Class({
       this.resetWeakPoint();
       this.setLife(this.life)
       Global.currentRoomScene.node.emit("boss-generate")
+      this.weakPoint.node.runAction(cc.repeatForever(
+        cc.sequence(
+          cc.scaleTo(0.5,0.8,0.8),
+          cc.scaleTo(0.5,1,1)
+        )
+      ))
     },
     starAnimation(){
       //override animation
