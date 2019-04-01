@@ -18,7 +18,7 @@ module.exports = {
   TILE_HEIGHT: 120,
   ROOM_PADDING: 20,
 
-  ORIGIN_BASE_HP: 10,
+  ORIGIN_BASE_HP: 15,
   ORIGIN_HP_PER_LEVEL: 10,
   ORIGIN_SCORE_INFLATION_RATE: 20,
   ORIGIN_EXP_INFLATION_RATE: 10,
@@ -84,6 +84,7 @@ module.exports = {
   bossPool:["bossBeholder","bossHydra","bossDeath"],
   // bossPool:["bossDeath"],
   loadRoomEntry(entry){
+    this.exit = false;
     this.roomEntry = entry;
   },
   reset(){

@@ -107,16 +107,9 @@ cc.Class({
       var adProvider = new AdProvider();
       adProvider.initBanner();
       adProvider.showBanner();
-
-      if ( Global.roomEntry.hideSkill ) {
-        this.skillSlotLayout.node.active = false;
-        this.skillLayout.node.active = false;
-      } else {
-        this.skillSlotLayout.node.active = true;
-        this.skillLayout.node.active = true;
-      }
     },
     gainScore(score) {
+      if ( Global.roomEntry.isTutorial ) return;
       this.score = Math.round(this.score+score);
     },
     gainStar(star){

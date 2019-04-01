@@ -53,8 +53,8 @@ cc.Class({
 
       this.exit.node.runAction(cc.repeatForever(
         cc.sequence(
-          cc.moveBy(0.5, -Common.DECREMENTS[this.direction].x*10, -Common.DECREMENTS[this.direction].y*50),
-          cc.moveBy(0.5, Common.DECREMENTS[this.direction].x*10, Common.DECREMENTS[this.direction].y*50),
+          cc.moveBy(0.5, -Common.DECREMENTS[this.direction].x*10, -Common.DECREMENTS[this.direction].y*30),
+          cc.moveBy(0.5, Common.DECREMENTS[this.direction].x*10, Common.DECREMENTS[this.direction].y*30),
         )
       ))
     },
@@ -63,7 +63,7 @@ cc.Class({
     onTurnEnd(){
       if ( this.isOpen() ) {
         var position = Global.currentRoom.hero.getComponent("hero").positions[0];
-        if ( this.floorPosition.x == position.x && this.floorPosition.y == position.y) {
+        if ( this.floorPosition.x === position.x && this.floorPosition.y === position.y) {
           Global.exit = true;
           Global.exitDirection = this.direction;
         }

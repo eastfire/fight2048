@@ -116,7 +116,8 @@ var BELT_ROTATE90_MAP = {
     w: belt_n
 }
 
-var tutorial1 = [
+module.exports = {
+  tutorial1: [
     [wall_sw,wall_w,wall_nw],
     [wall_s,floor_n,wall_n],
     [wall_s,floor_n,wall_n],
@@ -124,14 +125,19 @@ var tutorial1 = [
     [wall_s,floor_n,wall_n],
     [wall_s,floor_n,wall_n],
     [wall_se,door_oe,wall_ne]
-];
-var tutorial2 = [
+  ],
+  tutorial2: [
     [wall_sw,wall_w,wall_w,wall_w,wall_w,wall_w,wall_nw],
     [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,door_on],
     [wall_se,wall_e,wall_e,wall_e,wall_e,wall_e,wall_ne]
-];
-
-var tiles6x3 = [
+  ],
+  tutorial4: [
+    [wall_sw,wall_w,wall_w,wall_w,wall_w,wall_w,wall_nw],
+    [door_os,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],
+    [door_os,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],
+    [wall_se,wall_e,wall_e,wall_e,wall_e,wall_e,wall_ne]
+  ],
+  tiles6x3: [
     [wall_sw,wall_w,wall_w,wall_w,wall_nw],
     [wall_s,floor_n,floor_n,floor_n,wall_n],
     [wall_s,floor_n,floor_n,floor_n,wall_n],
@@ -140,8 +146,8 @@ var tiles6x3 = [
     [wall_s,floor_n,floor_n,floor_n,wall_n],
     [wall_s,floor_n,floor_n,floor_n,wall_n],
     [wall_se,wall_e,wall_e,wall_e,wall_ne]
-];
-var tiles7x3 = [
+  ],
+  tiles7x3: [
     [wall_sw,wall_w,wall_w,wall_w,wall_nw],
     [wall_s,floor_n,floor_n,floor_n,wall_n],
     [wall_s,floor_n,floor_n,floor_n,wall_n],
@@ -151,15 +157,26 @@ var tiles7x3 = [
     [wall_s,floor_n,floor_n,floor_n,wall_n],
     [wall_s,floor_n,floor_n,floor_n,wall_n],
     [wall_se,wall_e,wall_e,wall_e,wall_ne]
-];
-var tiles4x4 = [
+  ],
+  tiles4x4: [
     [wall_sw,wall_w,wall_w,wall_w,wall_w,wall_nw],
     [wall_s,floor_n,floor_n,floor_n,floor_n,wall_n],
     [wall_s,floor_n,floor_n,floor_n,floor_n,wall_n],
     [wall_s,floor_n,floor_n,floor_n,floor_n,wall_n],
     [wall_s,floor_n,floor_n,floor_n,floor_n,wall_n],
     [wall_se,wall_e,wall_e,wall_e,wall_e,wall_ne]
-];
+  ],
+  tiles5x5: [
+      [wall_sw,wall_w,wall_w,wall_w,wall_w,wall_w,wall_nw],
+      [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],
+      [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],
+      [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],
+      [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],
+      [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],
+      [wall_se,wall_e,wall_e,wall_e,wall_e,wall_e,wall_ne]
+  ],
+};
+
 var tiles5x4 = [
     [wall_sw,wall_w,wall_w,wall_w,wall_w,wall_nw],
     [wall_s,floor_n,floor_n,floor_n,floor_n,wall_n],
@@ -198,15 +215,7 @@ var tiles4x5 = [
     [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],
     [wall_se,wall_e,wall_e,wall_e,wall_e,wall_e,wall_ne]
 ];
-var tiles5x5 = [
-    [wall_sw,wall_w,wall_w,wall_w,wall_w,wall_w,wall_nw],
-    [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],
-    [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],
-    [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],
-    [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],
-    [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],
-    [wall_se,wall_e,wall_e,wall_e,wall_e,wall_e,wall_ne]
-];
+
 var tiles6x5 = [
     [wall_sw,wall_w,wall_w,wall_w,wall_w,wall_w,wall_nw],
     [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],
@@ -988,87 +997,3 @@ var tiles6x5Wang = [
     [wall_s,floor_n,wall_nsl,floor_n,wall_nsl,floor_n,wall_n],
     [wall_se,wall_e,wall_nese,wall_e,wall_nese,wall_e,wall_ne]
 ];
-
-module.exports = {
-  tutorial1,
-  tiles6x3,
-  tiles7x3,
-  tiles4x4,
-  tiles5x4,
-  tiles6x4,
-  tiles7x4,
-  tiles4x5,
-  tiles5x5,
-  tiles6x5,
-  tiles7x5,
-  tiles4x6,
-  tiles5x6,
-  tiles6x6,
-  tiles7x6,
-  tiles3x7,
-  tiles4x7,
-  tiles5x7,
-  tiles6x7,
-  tiles7x7,
-  tiles6x6Rhombus,
-  tiles7x7Rhombus,
-  tiles6x6Triangle,
-  tiles7x7Triangle,
-  tiles5x5Cross5x3,
-  tiles6x6Cross6x4,
-  tiles6x6Cross6x2,
-  tiles7x7Cross7x5,
-  tiles7x7Cross7x3,
-  tiles5x6ZigVertical,
-  tiles6x6UpArrow,
-  tiles6x6UpArrow2,
-  tiles6x6C,
-  tiles7x7D,
-  tiles6x5HRotate90,
-  tiles5x6H,
-  tiles5x6H2,
-  tiles6x5H2Rotate90,
-  tiles6x6H,
-  tiles6x6H2,
-  tiles6x5N,
-  tiles7x6N,
-  tiles5x5Loop,
-  tiles5x5Loop2,
-  tiles5x5Loop3,
-  tiles6x6Loop,
-  tiles6x6Loop2,
-  tiles6x6Loop3,
-  tiles7x7Loop,
-  tiles7x7Loop2,
-  tiles7x7Loop3,
-  tiles7x7Loop4,
-  tiles6x6Z,
-  tiles6x6Whirl,
-  tiles6x6Whirl2,
-  tiles6x6Mi,
-  tiles7x7Mi,
-  tiles6x5IO,
-  tiles7x5IOI,
-  tiles6x7A,
-  tiles6x5E,
-  tiles6x7F,
-  tiles6x7J,
-  tiles6x7J2,
-  tiles6x6L,
-  tiles6x6L2,
-  tiles6x6L3,
-  tiles7x7Snake,
-  tiles7x7Snake2,
-  tiles6x6T,
-  tiles7x5SplitAndPortal,
-  tiles7x6SplitAndPortal,
-  tiles7x7Split4AndPortal,
-  tiles7x6M,
-  tiles5x7Eight,
-  tiles5x7P,
-  tiles6x7U,
-  tiles7x7X,
-  tiles7x7Y,
-  tiles5x5Wang,
-  tiles6x5Wang
-}

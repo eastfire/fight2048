@@ -34,13 +34,77 @@ module.exports = {
   },
   tutorial3:{
     name:"tutorial3",
-    tileSet: TileSet.tutorial3,
+    tileSet: TileSet.tutorial1,
     hideHead: true,
     hideSkill: true,
     isTutorial: true,
     initHero:{
       position:{x:1,y:1},
     },
+    initMovable: [
+      {
+         isEnemy: true,
+         type:"slime",
+         subtype:"R",
+         position:{x:2,y:1},
+         level: 1,
+      },
+      {
+         isEnemy: true,
+         type:"slime",
+         subtype:"R",
+         position:{x:3,y:1},
+         level: 1,
+      },
+      {
+         isEnemy: true,
+         type:"slime",
+         subtype:"R",
+         position:{x:4,y:1},
+         level: 1,
+      },
+      {
+         isEnemy: true,
+         type:"slime",
+         subtype:"R",
+         position:{x:5,y:1},
+         level: 1,
+      }
+    ],
+    nextRoom: "tutorial4"
+  },
+  tutorial4:{
+    name:"tutorial4",
+    tileSet: TileSet.tutorial4,
+    hideHead: true,
+    hideSkill: true,
+    isTutorial: true,
+    initHero:{
+      position:{x:2,y:5},
+    },
+    initMovable: [
+      {
+         isEnemy: true,
+         type:"slime",
+         subtype:"R",
+         position:{x:1,y:1},
+         level: 1,
+      },
+      {
+         isEnemy: true,
+         type:"slime",
+         subtype:"R",
+         position:{x:1,y:2},
+         level: 1,
+      },
+      {
+         isEnemy: true,
+         type:"slime",
+         subtype:"Y",
+         position:{x:1,y:3},
+         level: 1,
+      }
+    ],
     nextRoom: "normal"
   },
   normal: {

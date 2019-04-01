@@ -42,16 +42,11 @@ cc.Class({
 
     onLoad () {
       this._acceptInput = 0;
-      this._movables = [];
-      if ( Global.roomEntry.hideHead ) {
-        Global.currentRoomScene.headLayout.active = false;
-      } else {
-        Global.currentRoomScene.headLayout.active = true;
-      }
       Global.currentRoomScene.turnLabel.string = this.turn;
       this.initMovablePrefabMap()
       this.initTilePrefabMap()
       this.initGenEnemyStrategy();
+      this.initUI();
       this.initTiles()
       this.initEvents();
       this.initMovableMap();
@@ -75,11 +70,6 @@ cc.Class({
       for ( var i = 0; i < this.width; i++){
         if ( !this.__movableMap[i] ) this.__movableMap.push([]);
       }
-      this._movables.forEach((movable)=>{
-        movable.positions.forEach((position)=>{
-            this.__movableMap[position.x][position.y] = movable;
-        });
-      })
     },
     initTilePrefabMap() {
       this.tileMap = {};
@@ -93,7 +83,23 @@ cc.Class({
         this.statusMap[this.statusPrefabs[i].name] = this.statusPrefabs[i]
       }
     },
+    initUI(){
+      if ( Global.roomEntry.hideHead ) {
+        Global.currentRoomScene.headLayout.active = false;
+      } else {
+        Global.currentRoomScene.headLayout.active = true;
+      }
+      if ( Global.roomEntry.hideSkill ) {
+        Global.currentRoomScene.skillSlotLayout.node.active = false;
+        Global.currentRoomScene.skillLayout.node.active = false;
+      } else {
+        Global.currentRoomScene.skillSlotLayout.node.active = true;
+        Global.currentRoomScene.skillLayout.node.active = true;
+      }
+    },
     initTiles() {
+      this._movables = [];
+
       var initTiles = Global.roomEntry.tileSet;
 
       if ( !initTiles ) return;
@@ -285,10 +291,10 @@ cc.Class({
       this._movables.forEach((movable)=>{
         movable = movable.getComponent(Movable)
         movable.positions.forEach((position)=>{
+          cc.log(position)
           movableMapResult[position.x][position.y] = movable;
         });
       })
-
       this._movables.forEach((movable)=>{
         movable = movable.getComponent(Movable)
         movable._step = 100; //VERY BIG NUMBER
@@ -436,6 +442,7 @@ cc.Class({
     afterTurnEnd(){
       if ( Global.exit ) {
         var increment = Common.INCREMENTS[Global.exitDirection];
+        this.hero.getComponent("hero").faceTo(Global.exitDirection);
         this.hero.runAction(cc.sequence(
           cc.moveBy(Global.STEP_TIME, Global.TILE_WIDTH*increment.x, Global.TILE_HEIGHT*increment.y),
           cc.callFunc(function(){
@@ -443,6 +450,7 @@ cc.Class({
             if ( Global.roomEntry.nextRoom ) {
               Global.loadRoomEntry(RoomEntry[Global.roomEntry.nextRoom])
             }
+            this.initUI();
             this.initTiles()
             this.initMovableMap();
             this.initHero();
@@ -452,8 +460,10 @@ cc.Class({
         ))
         return;
       }
-      this.turn++;
-      this.enemyFactory.maintain(this.turn);
+      if ( !Global.roomEntry.isTutorial ) {
+        this.turn++;
+        this.enemyFactory.maintain(this.turn);
+      }
       this.turnStart();
     },
     setDelayPhaseTime(time){
@@ -525,9 +535,14 @@ cc.Class({
           }
         },this)
       }
+      // this._movables.forEach((movable)=>{
+      //   movable.positions.forEach((position)=>{
+      //       this.__movableMap[position.x][position.y] = movable;
+      //   });
+      // })
     },
     initGenEnemyStrategy() {
-      if (!Storage.tutorial.off){
+      if (Global.roomEntry.isTutorial){
         this.enemyFactory = new TutorialEnemyFactory();
       } else {
         this.enemyFactory = new EnemyFactory();

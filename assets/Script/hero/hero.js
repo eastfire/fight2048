@@ -241,6 +241,7 @@ cc.Class({
     return Math.round((1+this.wisdom*Global.WISDOM_EFFECT+extraAdjust)*exp) + Global.ENEMY_EXP_ADJUST;
   },
   gainExp(exp){
+    if ( Global.roomEntry.isTutorial ) return;
     if ( exp+this.exp <= this.maxExp ) {
       this.exp += exp;
     } else {
@@ -342,6 +343,8 @@ cc.Class({
     } else {
       Effect.labelEffect("-"+damage, cc.Color.RED, this.node, {x:0,y:0})
     }
+
+    if ( Global.roomEntry.isTutorial ) return; //在教程中不会死
 
     this.hp = Math.max(0, this.hp - damage)
     if ( !this.dead && this.hp == 0 ) {
