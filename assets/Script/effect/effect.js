@@ -106,7 +106,6 @@ var projectFireball = function( from, to, opt ) {
   projectile.y = from.y;
   projectile.rotation = angle;
   Global.currentRoom.node.addChild(projectile)
-  cc.log("pro fireball")
   projectile.runAction(cc.sequence(
     cc.moveTo(Global.ENEMY_ATTACK_TIME/2, to.x, to.y ),
     cc.removeSelf()

@@ -69,8 +69,6 @@ cc.Class({
     },
     setFrame(){
       if ( this.face === Common.DIRECTION_RIGHT || this.face === Common.DIRECTION_DOWN) {
-        cc.log(this.face)
-        cc.log(this.mainSprite.node.scaleX)
         if ( this.mainSprite.node.scaleX < 0 ) {
           this.mainSprite.node.stopAllActions();
           this.starAnimation()
@@ -326,6 +324,11 @@ cc.Class({
       var d = deltaX*deltaX + deltaY*deltaY
       deltaX = deltaX / Math.sqrt(d) * Global.TILE_WIDTH/2;
       deltaY = deltaY / Math.sqrt(d) * Global.TILE_HEIGHT/2;
+      if ( deltaX > 0 ) {
+        this.face = Common.DIRECTION_RIGHT;
+      } else if ( deltaX < 0 ) {
+        this.face = Common.DIRECTION_LEFT;
+      }
       //TODO animation
       this.node.runAction(cc.sequence(
           cc.moveBy(Global.ENEMY_ATTACK_TIME/2, deltaX, deltaY ),

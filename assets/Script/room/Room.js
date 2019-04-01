@@ -86,8 +86,10 @@ cc.Class({
     initUI(){
       if ( Global.roomEntry.hideHead ) {
         Global.currentRoomScene.headLayout.active = false;
+        Global.currentRoomScene.moneyLabel.active = false;
       } else {
         Global.currentRoomScene.headLayout.active = true;
+        Global.currentRoomScene.moneyLabel.active = true;
       }
       if ( Global.roomEntry.hideSkill ) {
         Global.currentRoomScene.skillSlotLayout.node.active = false;
