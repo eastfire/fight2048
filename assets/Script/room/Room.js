@@ -443,6 +443,7 @@ cc.Class({
       if ( Global.exit ) {
         var increment = Common.INCREMENTS[Global.exitDirection];
         this.hero.getComponent("hero").faceTo(Global.exitDirection);
+        cc.audioEngine.playEffect(Global.currentRoomScene.stepSound, false)
         this.hero.runAction(cc.sequence(
           cc.moveBy(Global.STEP_TIME, Global.TILE_WIDTH*increment.x, Global.TILE_HEIGHT*increment.y),
           cc.callFunc(function(){

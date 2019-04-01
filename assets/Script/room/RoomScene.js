@@ -73,6 +73,10 @@ cc.Class({
         type: cc.AudioClip,
         default: null
       },
+      stepSound:{
+        type: cc.AudioClip,
+        default: null
+      },
       tutorial:cc.Prefab,
     },
 
