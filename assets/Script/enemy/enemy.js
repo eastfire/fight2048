@@ -67,7 +67,21 @@ cc.Class({
     onLoad () {
       this._super();
     },
-
+    setFrame(){
+      if ( this.face === Common.DIRECTION_RIGHT || this.face === Common.DIRECTION_DOWN) {
+        cc.log(this.face)
+        cc.log(this.mainSprite.node.scaleX)
+        if ( this.mainSprite.node.scaleX < 0 ) {
+          this.mainSprite.node.stopAllActions();
+          this.starAnimation()
+        }
+      } else {
+        if ( this.mainSprite.node.scaleX > 0 ) {
+          this.mainSprite.node.stopAllActions();
+          this.starAnimation()
+        }
+      }
+    },
     start () {
       this._super();
       this.attackOver = true;
@@ -87,17 +101,21 @@ cc.Class({
       this.mainSprite.node.anchorY = 0;
       this.mainSprite.node.y = -Global.TILE_HEIGHT/2+20;
       // this.mainSprite.node.skewX=10;
-      this.mainSprite.node.setScale(0.9,1.1)
       var time = 0.4;
+      var faceSign = 1;
+      if ( this.face === Common.DIRECTION_LEFT || this.face === Common.DIRECTION_UP) {
+        faceSign = -1;
+      }
+      this.mainSprite.node.setScale(faceSign*0.9,1.1)
       this.mainSprite.node.runAction(cc.repeatForever(
         cc.sequence(
           // cc.spawn(
             // cc.skewTo(TIME,0,0).easing(cc.easeIn(1)),
-            cc.scaleTo(time,1.1,0.9).easing(cc.easeIn(1)),
+            cc.scaleTo(time,faceSign*1.1,0.9).easing(cc.easeIn(1)),
           // ),
           // cc.spawn(
             // cc.skewTo(TIME,0,-10).easing(cc.easeOut(1)),
-            cc.scaleTo(time,0.9,1.1).easing(cc.easeOut(1)),
+            cc.scaleTo(time,faceSign*0.9,1.1).easing(cc.easeOut(1)),
           // ),
           // cc.spawn(
             // cc.skewTo(TIME,0,0).easing(cc.easeIn(1)),
@@ -295,7 +313,7 @@ cc.Class({
       Global.currentRoom.checkAllEnemyAttacked();
     },
     afterHitHero(hero){
-      
+
     },
     attackHero(hero){
       this.attackOver = false;

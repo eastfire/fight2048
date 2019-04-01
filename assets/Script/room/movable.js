@@ -30,6 +30,13 @@ cc.Class({
           if ( this.getStatus("slowed") ) return 1;
           return 100;
         }
+      },
+      face:{
+        default: Common.DIRECTION_DOWN,
+        notify(oldValue){
+          if (oldValue == this.face) return;
+          this.setFrame();
+        }
       }
     },
 
@@ -40,7 +47,7 @@ cc.Class({
       this.type = "";
       this.subtype = null;
       this.isMergeToSelfType = true;
-      this.face = Common.DIRECTION_DOWN;
+
       this.level = 1;
       this._isMovable = true;
 
@@ -157,10 +164,6 @@ cc.Class({
     },
     canMergeTo(movable, direction){
       return Common.contains(movable.accept, this.type);
-    },
-    faceTo(direction) {
-      this.face = direction;
-      this.setFrame();
     },
     beforeMove(opt){
     },

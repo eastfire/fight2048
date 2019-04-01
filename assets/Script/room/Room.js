@@ -291,7 +291,6 @@ cc.Class({
       this._movables.forEach((movable)=>{
         movable = movable.getComponent(Movable)
         movable.positions.forEach((position)=>{
-          cc.log(position)
           movableMapResult[position.x][position.y] = movable;
         });
       })
@@ -352,7 +351,7 @@ cc.Class({
                 movable._step = stepCount;
             }
             movable._edgeCalculated ++;
-            movable.faceTo(direction);
+            movable.face = direction;
             if ( movable._step === 0 ){
                 movable._movedThisRound = true;
             } else if ( movable._edgeCalculated >= movable.getEdgePositionLength(direction) ) {
@@ -442,7 +441,7 @@ cc.Class({
     afterTurnEnd(){
       if ( Global.exit ) {
         var increment = Common.INCREMENTS[Global.exitDirection];
-        this.hero.getComponent("hero").faceTo(Global.exitDirection);
+        this.hero.getComponent("hero").face = Global.exitDirection;
         cc.audioEngine.playEffect(Global.currentRoomScene.stepSound, false)
         this.hero.runAction(cc.sequence(
           cc.moveBy(Global.STEP_TIME, Global.TILE_WIDTH*increment.x, Global.TILE_HEIGHT*increment.y),
