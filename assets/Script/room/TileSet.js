@@ -45,8 +45,14 @@ var belt_e = {type:"belt", subtype:"e"};
 var belt_w = {type:"belt", subtype:"w"};
 var portal_a = {type:"portal", subtype:"a"};
 var portal_b = {type:"portal", subtype:"b"};
-var pit_n = {type:"pit", subtype:"normal"};
-var nail_n = {type:"nail", subtype:"normal"};
+var door_ce = {type:"door",subtype:"ce"};
+var door_cw = {type:"door",subtype:"cw"};
+var door_cs = {type:"door",subtype:"cs"};
+var door_cn = {type:"door",subtype:"cn"};
+var door_oe = {type:"door",subtype:"oe"};
+var door_ow = {type:"door",subtype:"ow"};
+var door_os = {type:"door",subtype:"os"};
+var door_on = {type:"door",subtype:"on"};
 
 var changeTiles = function(originTiles, changes){
   var tiles = [];
@@ -109,6 +115,21 @@ var BELT_ROTATE90_MAP = {
     s: belt_w,
     w: belt_n
 }
+
+var tutorial1 = [
+    [wall_sw,wall_w,wall_nw],
+    [wall_s,floor_n,wall_n],
+    [wall_s,floor_n,wall_n],
+    [wall_s,floor_n,wall_n],
+    [wall_s,floor_n,wall_n],
+    [wall_s,floor_n,wall_n],
+    [wall_se,door_oe,wall_ne]
+];
+var tutorial2 = [
+    [wall_sw,wall_w,wall_w,wall_w,wall_w,wall_w,wall_nw],
+    [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,door_on],
+    [wall_se,wall_e,wall_e,wall_e,wall_e,wall_e,wall_ne]
+];
 
 var tiles6x3 = [
     [wall_sw,wall_w,wall_w,wall_w,wall_nw],
@@ -968,7 +989,8 @@ var tiles6x5Wang = [
     [wall_se,wall_e,wall_nese,wall_e,wall_nese,wall_e,wall_ne]
 ];
 
-const TILES = {
+module.exports = {
+  tutorial1,
   tiles6x3,
   tiles7x3,
   tiles4x4,
@@ -1050,5 +1072,3 @@ const TILES = {
   tiles5x5Wang,
   tiles6x5Wang
 }
-
-module.exports = TILES;

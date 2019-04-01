@@ -8,6 +8,7 @@ const TutorialEnemyFactory = require("tutorialEnemyFactory");
 const ItemFactory = require("itemFactory");
 const Global = require("global");
 const Storage = require("storage");
+const RoomEntry = require("roomEntry");
 
 cc.Class({
     extends: cc.Component,
@@ -42,7 +43,11 @@ cc.Class({
     onLoad () {
       this._acceptInput = 0;
       this._movables = [];
-
+      if ( Global.roomEntry.hideHead ) {
+        Global.currentRoomScene.headLayout.active = false;
+      } else {
+        Global.currentRoomScene.headLayout.active = true;
+      }
       Global.currentRoomScene.turnLabel.string = this.turn;
       this.initMovablePrefabMap()
       this.initTilePrefabMap()
@@ -53,7 +58,7 @@ cc.Class({
       this.initItem();
       this.initStatusPrefabMap()
       this.initHero();
-      this.initMovalbe();
+      this.initMovable();
 
       this.initTutorial();
 
@@ -89,7 +94,7 @@ cc.Class({
       }
     },
     initTiles() {
-      var initTiles = TILES.tiles5x5;
+      var initTiles = Global.roomEntry.tileSet;
 
       if ( !initTiles ) return;
       this.__tiles = [];
@@ -429,6 +434,24 @@ cc.Class({
       }
     },
     afterTurnEnd(){
+      if ( Global.exit ) {
+        var increment = Common.INCREMENTS[Global.exitDirection];
+        this.hero.runAction(cc.sequence(
+          cc.moveBy(Global.STEP_TIME, Global.TILE_WIDTH*increment.x, Global.TILE_HEIGHT*increment.y),
+          cc.callFunc(function(){
+            this.node.removeAllChildren();
+            if ( Global.roomEntry.nextRoom ) {
+              Global.loadRoomEntry(RoomEntry[Global.roomEntry.nextRoom])
+            }
+            this.initTiles()
+            this.initMovableMap();
+            this.initHero();
+            this.initMovable();
+            this.scheduleOnce(this.turnStart, 0.1);
+          },this)
+        ))
+        return;
+      }
       this.turn++;
       this.enemyFactory.maintain(this.turn);
       this.turnStart();
@@ -441,62 +464,67 @@ cc.Class({
       hero = cc.instantiate(this.movablePrefabMap["hero"]);
       hero.getComponent("hero").subtype = Global.currentHeroType
       this.hero = hero;
-      this.addMovable(this.hero, Global.initHero.position.x, Global.initHero.position.y)
+      this.addMovable(this.hero, Global.roomEntry.initHero.position.x, Global.roomEntry.initHero.position.y)
 
-
-      Global.initHero.skill.forEach(function(opt){
-        var level = 1;
-        var countDown = 0;
-        var forbid = false;
-        var skillName = opt;
-        if ( typeof opt === "object" ) {
-          level = opt.level || level;
-          countDown = opt.countDown || countDown;
-          forbid = opt.forbid || forbid;
-          skillName = opt.name;
-        }
-        var skill = Global.currentRoomScene.gainSkill(skillName)
-        skill.initProperties(level,countDown,forbid)
-      },this)
-      setTimeout(()=>{
-        Global.initHero.status.forEach(function(opt){
-          var statusName = opt;
-          var duration = -1;
-          var extra = null;
+      if ( Global.roomEntry.initHero.skill ) {
+        Global.roomEntry.initHero.skill.forEach(function(opt){
+          var level = 1;
+          var countDown = 0;
+          var forbid = false;
+          var skillName = opt;
           if ( typeof opt === "object" ) {
-            duration = opt.duration || duration;
-            extra = opt.extra;
-            statusName = opt.name;
+            level = opt.level || level;
+            countDown = opt.countDown || countDown;
+            forbid = opt.forbid || forbid;
+            skillName = opt.name;
           }
-          this.hero.getComponent("hero").gainStatus(statusName,duration, extra)
+          var skill = Global.currentRoomScene.gainSkill(skillName)
+          skill.initProperties(level,countDown,forbid)
         },this)
-      },10);
+      }
+      if ( Global.roomEntry.initHero.status && Global.roomEntry.initHero.status.length > 0 ) {
+        setTimeout(()=>{
+          Global.roomEntry.initHero.status.forEach(function(opt){
+            var statusName = opt;
+            var duration = -1;
+            var extra = null;
+            if ( typeof opt === "object" ) {
+              duration = opt.duration || duration;
+              extra = opt.extra;
+              statusName = opt.name;
+            }
+            this.hero.getComponent("hero").gainStatus(statusName,duration, extra)
+          },this)
+        },10);
+      }
     },
-    initMovalbe(){
-      Global.initMovable.forEach(function(entry){
-        if ( entry.isEnemy ) {
-          var enemy = this.enemyFactory.generateOneEnemy(entry.position.x, entry.position.y, {
-            type: entry.type, subtype: entry.subtype
-          }, entry.level || 1);
-          if ( entry.status && entry.status.length ) {
-            setTimeout(()=>{
-              entry.status.forEach(function(opt){
-                var statusName = opt;
-                var duration = -1;
-                var extra = null;
-                if ( typeof opt === "object" ) {
-                  duration = opt.duration || duration;
-                  extra = opt.extra;
-                  statusName = opt.name;
-                }
-                enemy.getComponent("movable").gainStatus(statusName,duration, extra)
-              },this)
-            },10);
+    initMovable(){
+      if ( Global.roomEntry.initMovable ) {
+        Global.roomEntry.initMovable.forEach(function(entry){
+          if ( entry.isEnemy ) {
+            var enemy = this.enemyFactory.generateOneEnemy(entry.position.x, entry.position.y, {
+              type: entry.type, subtype: entry.subtype
+            }, entry.level || 1);
+            if ( entry.status && entry.status.length ) {
+              setTimeout(()=>{
+                entry.status.forEach(function(opt){
+                  var statusName = opt;
+                  var duration = -1;
+                  var extra = null;
+                  if ( typeof opt === "object" ) {
+                    duration = opt.duration || duration;
+                    extra = opt.extra;
+                    statusName = opt.name;
+                  }
+                  enemy.getComponent("movable").gainStatus(statusName,duration, extra)
+                },this)
+              },10);
+            }
+          } else if ( entry.isItem ) {
+            this.itemFactory.generateOneItem(entry.position, entry.type, entry.level || 1)
           }
-        } else if ( entry.isItem ) {
-          this.itemFactory.generateOneItem(entry.position, entry.type, entry.level || 1)
-        }
-      },this)
+        },this)
+      }
     },
     initGenEnemyStrategy() {
       if (!Storage.tutorial.off){
@@ -589,7 +617,7 @@ cc.Class({
           Global.currentRoomScene.node.addChild(tutorial);
           tutorial.getComponent("tutorial").setContent({
             tutorialId:"userInput",
-            text:"滑动手指，让英雄和所有怪物都向这个方向移动",
+            text:"",
             finger: true
           })
           this.node.off("PHASE:waitUserInput",waitUserInputTutorial,this)
@@ -597,44 +625,44 @@ cc.Class({
         if (!Storage.tutorial.userInput)
           this.node.on("PHASE:waitUserInput",waitUserInputTutorial,this)
 
-        var movePhaseTutorial = function(){
-          var tutorial = cc.instantiate(Global.currentRoomScene.tutorial)
-          Global.currentRoomScene.node.addChild(tutorial);
-          tutorial.getComponent("tutorial").setContent({
-            tutorialId:"movePhase",
-            text:"相同的怪物会合并\n它的等级会相加\n不同的怪物则会相互阻挡",
-            pause: true,
-          })
-          this.node.off("PHASE:movePhase",movePhaseTutorial,this)
-        };
-        if (!Storage.tutorial.movePhase)
-          this.node.on("PHASE:movePhase",movePhaseTutorial,this)
-
-        var heroAttackTutorial = function(){
-          var tutorial = cc.instantiate(Global.currentRoomScene.tutorial)
-          Global.currentRoomScene.node.addChild(tutorial);
-          tutorial.getComponent("tutorial").setContent({
-            tutorialId:"heroAttack",
-            text:"移动后，英雄会自动攻击面前的敌人\n不管多强的敌人都能一击杀死",
-            pause: true,
-          })
-          this.node.off("PHASE:heroAttack",heroAttackTutorial,this)
-        }
-        if (!Storage.tutorial.heroAttack)
-          this.node.on("PHASE:heroAttack",heroAttackTutorial,this)
-
-        var enemyAttackTutorial = function(){
-          var tutorial = cc.instantiate(Global.currentRoomScene.tutorial)
-          Global.currentRoomScene.node.addChild(tutorial);
-          tutorial.getComponent("tutorial").setContent({
-            tutorialId:"enemyAttack",
-            text:"英雄攻击后，所有英雄旁边的怪物会攻击英雄",
-            pause: true,
-          })
-          this.node.off("PHASE:enemyAttack",enemyAttackTutorial,this)
-        }
-        if (!Storage.tutorial.enemyAttack)
-          this.node.on("PHASE:enemyAttack",enemyAttackTutorial,this)
+        // var movePhaseTutorial = function(){
+        //   var tutorial = cc.instantiate(Global.currentRoomScene.tutorial)
+        //   Global.currentRoomScene.node.addChild(tutorial);
+        //   tutorial.getComponent("tutorial").setContent({
+        //     tutorialId:"movePhase",
+        //     text:"相同的怪物会合并\n它的等级会相加\n不同的怪物则会相互阻挡",
+        //     pause: true,
+        //   })
+        //   this.node.off("PHASE:movePhase",movePhaseTutorial,this)
+        // };
+        // if (!Storage.tutorial.movePhase)
+        //   this.node.on("PHASE:movePhase",movePhaseTutorial,this)
+        //
+        // var heroAttackTutorial = function(){
+        //   var tutorial = cc.instantiate(Global.currentRoomScene.tutorial)
+        //   Global.currentRoomScene.node.addChild(tutorial);
+        //   tutorial.getComponent("tutorial").setContent({
+        //     tutorialId:"heroAttack",
+        //     text:"移动后，英雄会自动攻击面前的敌人\n不管多强的敌人都能一击杀死",
+        //     pause: true,
+        //   })
+        //   this.node.off("PHASE:heroAttack",heroAttackTutorial,this)
+        // }
+        // if (!Storage.tutorial.heroAttack)
+        //   this.node.on("PHASE:heroAttack",heroAttackTutorial,this)
+        //
+        // var enemyAttackTutorial = function(){
+        //   var tutorial = cc.instantiate(Global.currentRoomScene.tutorial)
+        //   Global.currentRoomScene.node.addChild(tutorial);
+        //   tutorial.getComponent("tutorial").setContent({
+        //     tutorialId:"enemyAttack",
+        //     text:"英雄攻击后，所有英雄旁边的怪物会攻击英雄",
+        //     pause: true,
+        //   })
+        //   this.node.off("PHASE:enemyAttack",enemyAttackTutorial,this)
+        // }
+        // if (!Storage.tutorial.enemyAttack)
+        //   this.node.on("PHASE:enemyAttack",enemyAttackTutorial,this)
       }
     },
     // update (dt) {},

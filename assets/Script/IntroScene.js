@@ -3,6 +3,7 @@
 const Storage = require("storage");
 const Global = require("global");
 const Common = require("common");
+const RoomEntry = require("roomEntry")
 
 cc.Class({
   extends: cc.Component,
@@ -127,8 +128,10 @@ cc.Class({
             //first time game
             Global.reset();
             Global.currentHeroType = "normal"
+            Global.loadRoomEntry(RoomEntry.tutorial1)
             cc.director.loadScene("RoomScene");
           } else {
+            Global.loadRoomEntry(RoomEntry.normal)
             cc.director.loadScene("MenuScene");
           }
         })

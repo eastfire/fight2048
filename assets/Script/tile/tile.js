@@ -55,8 +55,10 @@ cc.Class({
       return this._canGenEnemy;
     },
     start () {
-      var frame = this.atlas.getSpriteFrame(this.type+"-"+this.subtype);
-      this.node.getComponent(cc.Sprite).spriteFrame = frame;
+      this.setFrame();
+    },
+    setFrame(){
+      this.node.getComponent(cc.Sprite).spriteFrame = this.atlas.getSpriteFrame(this.type+"-"+this.subtype);
     },
     getStatus(statusName){
       if ( !this.status ) return null;

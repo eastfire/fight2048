@@ -26,6 +26,7 @@ cc.Class({
     properties: {
       scoreLabel: cc.Label,
       turnLabel: cc.Label,
+      headLayout: cc.Node,
       moneyLabel: cc.Label,
       lifeLabel: cc.Label,
       levelLabel: cc.Label,
@@ -106,6 +107,14 @@ cc.Class({
       var adProvider = new AdProvider();
       adProvider.initBanner();
       adProvider.showBanner();
+
+      if ( Global.roomEntry.hideSkill ) {
+        this.skillSlotLayout.node.active = false;
+        this.skillLayout.node.active = false;
+      } else {
+        this.skillSlotLayout.node.active = true;
+        this.skillLayout.node.active = true;
+      }
     },
     gainScore(score) {
       this.score = Math.round(this.score+score);

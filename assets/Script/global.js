@@ -63,47 +63,6 @@ module.exports = {
 
   movablePrefabs:{},
 
-  initMovable: [
-    // {
-    //   isEnemy: true,
-    //   type:"slime",
-    //   subtype:"R",
-    //   position:{x:2,y:2},
-    //   level: 3,
-    // },{
-    //   isEnemy: true,
-    //   type:"slime",
-    //   subtype:"B",
-    //   position:{x:2,y:1},
-    // },
-    // {
-    //   isItem: true,
-    //   type: "potion",
-    //   position: {x:4,y:4},
-    //   level:2
-    // }
-  ],
-  initHero:{
-    position:{x:3,y:3},
-    status:[
-      // "cursed",{
-      // name:"frozen",
-      // duration: 2
-      // }
-    ],
-    skill:[
-      // "exchangeSkill",
-      // {
-      //   name:"treasureSkill",
-      //   level:4,
-      //   countDown: 3
-      // },{
-      //   name:"eightArrowSkill",
-      //   level:4,
-      //   forbid: true
-      // }
-    ]
-  },
   basicSkill: ["coolingSkill","constitutionSkill","dexteritySkill","luckSkill"],
   // basicSkill: ["fireballSkill"],
   heroBasicSkill: {
@@ -124,7 +83,9 @@ module.exports = {
   // enemyList:["centaur"],
   bossPool:["bossBeholder","bossHydra","bossDeath"],
   // bossPool:["bossDeath"],
-
+  loadRoomEntry(entry){
+    this.roomEntry = entry;
+  },
   reset(){
     this.ITEM_POOL = ["potion"]
     this.BASE_HP = this.ORIGIN_BASE_HP;
