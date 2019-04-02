@@ -173,7 +173,7 @@ cc.Class({
         var noItemAhead = !hitResult.dropItemPosition || hitResult.dropItemPosition.x !== newPosition.x ||
         hitResult.dropItemPosition.y !== newPosition.y;
 
-        if ( Global.FORWARD_AFTER_KILL && this.isMovable() && noItemAhead ) {
+        if ( Global.FORWARD_AFTER_KILL && this.isMovable(this.face) && noItemAhead ) {
           this.forward(function(){
             this.afterHit(enemy);
           },this);

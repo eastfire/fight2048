@@ -26,7 +26,6 @@ cc.Class({
     Global.currentRoom.hero.getComponent("hero").defend = this.extra.effect;
   },
   onLost(){
-    cc.log("onLost")
     if (this.shieldSprite) {
       this.shieldSprite.runAction(cc.sequence(
         cc.fadeOut(0.2),

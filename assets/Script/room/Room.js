@@ -86,10 +86,10 @@ cc.Class({
     initUI(){
       if ( Global.roomEntry.hideHead ) {
         Global.currentRoomScene.headLayout.active = false;
-        Global.currentRoomScene.moneyLabel.active = false;
+        Global.currentRoomScene.moneyLabel.node.active = false;
       } else {
         Global.currentRoomScene.headLayout.active = true;
-        Global.currentRoomScene.moneyLabel.active = true;
+        Global.currentRoomScene.moneyLabel.node.active = true;
       }
       if ( Global.roomEntry.hideSkill ) {
         Global.currentRoomScene.skillSlotLayout.node.active = false;
@@ -309,7 +309,7 @@ cc.Class({
         if ( !movable._movedThisRound ) {
           if ( movable.isEdgePosition(direction,x,y) ) {
             var stepCount = 0;
-            if ( movable.isMovable() ) {
+            if ( movable.isMovable(direction) ) {
               var stepX = x, stepY = y;
               var increment = Common.INCREMENTS[direction];
               do {

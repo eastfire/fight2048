@@ -27,8 +27,8 @@ cc.Class({
       movable.y = 0;
       movable.removeComponent(m.type)
       if ( movable.getComponent("boss") ) {
-        movable.x = -Global.TILE_WIDTH/3;
-        movable.y = -Global.TILE_HEIGHT/3;
+        movable.x = -Global.TILE_WIDTH/4;
+        movable.y = -Global.TILE_HEIGHT/4;
         movable.setScale(0.5) //TODO 适配更多形状的boss
       }
 

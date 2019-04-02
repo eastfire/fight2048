@@ -86,7 +86,7 @@ cc.Class({
       if (!this.levelIcon) return
       this.levelIcon.active = !hide;
     },
-    isMovable(){
+    isMovable(direction){
       return this._isMovable && !this.getStatus("frozen");
     },
     setPositionInRoom(x,y){

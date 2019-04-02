@@ -123,12 +123,12 @@ module.exports = {
       //   subtype:"B",
       //   position:{x:2,y:1},
       // },
-      // {
-      //   isItem: true,
-      //   type: "potion",
-      //   position: {x:4,y:4},
-      //   level:2
-      // }
+      {
+        isItem: true,
+        type: "vlog5",
+        position: {x:1,y:1},
+        level:1
+      }
     ],
     initHero:{
       position:{x:3,y:3},
