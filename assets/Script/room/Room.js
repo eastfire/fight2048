@@ -130,6 +130,11 @@ cc.Class({
                 tile.x = x;
                 tile.y = y;
                 this.__tiles[x][y]=tile;
+                if ( tileEntry.status ) {
+                  tileEntry.status.forEach(function(status){
+                    tile.gainStatus(status.name, status.amount, status.extra )
+                  },this)
+                }
               }
           }
       }

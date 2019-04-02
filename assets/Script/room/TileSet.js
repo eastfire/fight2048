@@ -43,8 +43,32 @@ var belt_n = {type:"belt", subtype:"n"};
 var belt_s = {type:"belt", subtype:"s"};
 var belt_e = {type:"belt", subtype:"e"};
 var belt_w = {type:"belt", subtype:"w"};
-var portal_a = {type:"portal", subtype:"a"};
-var portal_b = {type:"portal", subtype:"b"};
+var portal_a = (peer)=>({
+  type:"floor",
+  subtype:"normal1",
+  status:[
+    {
+      name:"portal",
+      amount:-1,
+      extra:{
+        type:"A",
+        peer:peer
+      }
+    }]
+});
+var portal_b = (peer)=>({
+  type:"floor",
+  subtype:"normal1",
+  status:[
+    {
+      name:"portal",
+      amount:-1,
+      extra:{
+        type:"B",
+        peer:peer
+      }
+    }]
+});
 var door_ce = {type:"door",subtype:"ce"};
 var door_cw = {type:"door",subtype:"cw"};
 var door_cs = {type:"door",subtype:"cs"};
