@@ -24,7 +24,8 @@ cc.Class({
           return;
         }
         if ( Global.currentRoomScene ) {
-          Global.currentRoomScene.lifeLabel.string = this.hp+"/"+this.maxHp;
+          Global.currentRoomScene.lifeLabel.string = this.hp;//+"/"+this.maxHp;
+          Global.currentRoomScene.hpBar.progress = this.hp/this.maxHp;
           if ( this.hp <= this.maxHp/5 && this.hp !== 0 ) {
             Global.currentRoomScene.dying(true)
           } else {
@@ -62,7 +63,8 @@ cc.Class({
           Global.currentRoomScene.levelLabel.string = this.level;
         }
         if (Global.currentRoomScene) {
-          Global.currentRoomScene.lifeLabel.string = this.hp+"/"+this.maxHp;
+          Global.currentRoomScene.lifeLabel.string = this.hp;//+"/"+this.maxHp;
+          Global.currentRoomScene.hpBar.progress = this.hp/this.maxHp;
         }
         if (Global.currentRoomScene) {
           Global.currentRoomScene.expLabel.string = this.exp+"/"+this.maxExp;
@@ -123,7 +125,8 @@ cc.Class({
       this.hp = Global.INIT_HP
     else this.hp = Global.BASE_HP
     if ( Global.currentRoomScene ) {
-      Global.currentRoomScene.lifeLabel.string = this.hp+"/"+this.maxHp;
+      Global.currentRoomScene.lifeLabel.string = this.hp;//+"/"+this.maxHp;
+      Global.currentRoomScene.hpBar.progress = this.hp/this.maxHp;
     }
     this._super();
   },

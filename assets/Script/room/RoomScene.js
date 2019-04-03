@@ -29,6 +29,7 @@ cc.Class({
       headLayout: cc.Node,
       moneyLabel: cc.Label,
       lifeLabel: cc.Label,
+      hpBar: cc.ProgressBar,
       levelLabel: cc.Label,
       expLabel: cc.Label,
       room: Room,
