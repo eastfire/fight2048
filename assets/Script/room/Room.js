@@ -155,6 +155,7 @@ cc.Class({
     },
 
     click(x,y){
+      if ( Global.roomEntry.isTutorial ) return;
       var scale = this.node.scaleX
       var tile = this.__tiles[0][0]
       x = (x-cc.winSize.width/2)/scale - tile.node.x + Global.TILE_WIDTH/2

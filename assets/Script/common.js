@@ -192,10 +192,6 @@ var traverseMap = function(map, width, height, direction, callback){
     }
 }
 
-var getPointDistance = function(p1,p2) {
-    return Math.abs(p1.x - p2.x) + Math.abs(p1.y - p2.y)
-}
-
 var contains = function(array1, item) {
   for ( var i = 0; i < array1.length; i++ ) {
     if ( item == array1[i] ) return true;
@@ -304,7 +300,6 @@ module.exports = {
   getIncrementPosition,
   getDecrementPosition,
   traverseMap,
-  getPointDistance,
   contains,
   random,
   sample,
