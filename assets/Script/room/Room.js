@@ -463,6 +463,7 @@ cc.Class({
             this.initMovableMap();
             this.initHero();
             this.initMovable();
+            this.initTutorial();
             this.scheduleOnce(this.turnStart, 0.1);
           },this)
         ))
@@ -637,55 +638,32 @@ cc.Class({
       if ( !Storage.tutorial.off ) {
         var waitUserInputTutorial = function(){
           var tutorial = cc.instantiate(Global.currentRoomScene.tutorial)
-          Global.currentRoomScene.node.addChild(tutorial);
+          Global.currentRoom.node.addChild(tutorial);
           tutorial.getComponent("tutorial").setContent({
             tutorialId:"userInput",
             text:"",
-            finger: true
+            finger: true,
+            fingerDirection: 1
           })
           this.node.off("PHASE:waitUserInput",waitUserInputTutorial,this)
         };
-        if (!Storage.tutorial.userInput)
+        var waitUserInputTutorial2 = function(){
+          var tutorial = cc.instantiate(Global.currentRoomScene.tutorial)
+          Global.currentRoom.node.addChild(tutorial);
+          tutorial.getComponent("tutorial").setContent({
+            tutorialId:"userInput2",
+            text:"",
+            finger: true,
+            fingerDirection: 0
+          })
+          this.node.off("PHASE:waitUserInput",waitUserInputTutorial2,this)
+        };
+        if (Global.roomEntry.name === "tutorial1") {
           this.node.on("PHASE:waitUserInput",waitUserInputTutorial,this)
-
-        // var movePhaseTutorial = function(){
-        //   var tutorial = cc.instantiate(Global.currentRoomScene.tutorial)
-        //   Global.currentRoomScene.node.addChild(tutorial);
-        //   tutorial.getComponent("tutorial").setContent({
-        //     tutorialId:"movePhase",
-        //     text:"相同的怪物会合并\n它的等级会相加\n不同的怪物则会相互阻挡",
-        //     pause: true,
-        //   })
-        //   this.node.off("PHASE:movePhase",movePhaseTutorial,this)
-        // };
-        // if (!Storage.tutorial.movePhase)
-        //   this.node.on("PHASE:movePhase",movePhaseTutorial,this)
-        //
-        // var heroAttackTutorial = function(){
-        //   var tutorial = cc.instantiate(Global.currentRoomScene.tutorial)
-        //   Global.currentRoomScene.node.addChild(tutorial);
-        //   tutorial.getComponent("tutorial").setContent({
-        //     tutorialId:"heroAttack",
-        //     text:"移动后，英雄会自动攻击面前的敌人\n不管多强的敌人都能一击杀死",
-        //     pause: true,
-        //   })
-        //   this.node.off("PHASE:heroAttack",heroAttackTutorial,this)
-        // }
-        // if (!Storage.tutorial.heroAttack)
-        //   this.node.on("PHASE:heroAttack",heroAttackTutorial,this)
-        //
-        // var enemyAttackTutorial = function(){
-        //   var tutorial = cc.instantiate(Global.currentRoomScene.tutorial)
-        //   Global.currentRoomScene.node.addChild(tutorial);
-        //   tutorial.getComponent("tutorial").setContent({
-        //     tutorialId:"enemyAttack",
-        //     text:"英雄攻击后，所有英雄旁边的怪物会攻击英雄",
-        //     pause: true,
-        //   })
-        //   this.node.off("PHASE:enemyAttack",enemyAttackTutorial,this)
-        // }
-        // if (!Storage.tutorial.enemyAttack)
-        //   this.node.on("PHASE:enemyAttack",enemyAttackTutorial,this)
+        } else if (Global.roomEntry.name === "tutorial2"){
+          cc.log("tutorial2")
+          this.node.on("PHASE:waitUserInput",waitUserInputTutorial2,this)
+        }
       }
     },
     // update (dt) {},

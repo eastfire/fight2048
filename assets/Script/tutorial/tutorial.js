@@ -21,12 +21,15 @@ cc.Class({
       this.sprite.node.active = false
     }
     if ( opt.finger ) {
-      this.finger.node.x = -200;
+      var direction = Common.INCREMENTS[opt.fingerDirection]
+      this.finger.node.x = -200*direction.x;
+      this.finger.node.y = -200*direction.y;
+
       this.finger.node.runAction(cc.repeatForever(
         cc.sequence(
-          cc.moveTo(1.5,200,this.finger.node.y),
+          cc.moveTo(1.5,200*direction.x,200*direction.y),
           cc.delayTime(0.5),
-          cc.moveTo(0,-200,this.finger.node.y)
+          cc.moveTo(0,-200*direction.x,-200*direction.y)
         )
       ))
     } else {
@@ -35,9 +38,9 @@ cc.Class({
     if ( opt.pause ) {
       cc.director.pause();
     }
-    this.node.on("touchend",function(){
-      this.exit();
-    },this)
+    // this.node.on("touchend",function(){
+    //   this.exit();
+    // },this)
   },
   exit(){
     cc.log("onExit"+this.tutorialId)
