@@ -1,13 +1,14 @@
 {
-  "ver": "2.2.0",
+  "ver": "2.3.1",
   "uuid": "01b135d4-e938-4ecc-a6a6-7d3ac62daa09",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
+  "platformSettings": {},
   "subMetas": {
     "orcChief": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "995c5f3d-5db4-4fd5-b51c-0684d9591704",
       "rawTextureUuid": "01b135d4-e938-4ecc-a6a6-7d3ac62daa09",
       "trimType": "auto",

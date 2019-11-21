@@ -1,13 +1,14 @@
 {
-  "ver": "2.2.0",
+  "ver": "2.3.1",
   "uuid": "4a9b7ffb-2151-4a8e-82cd-9144a01f929a",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
+  "platformSettings": {},
   "subMetas": {
     "healthbarFG": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "0aa6af47-d3ff-4793-a37c-7205b8adc7f3",
       "rawTextureUuid": "4a9b7ffb-2151-4a8e-82cd-9144a01f929a",
       "trimType": "auto",

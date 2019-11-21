@@ -78,6 +78,7 @@ module.exports = {
     thief: ["eightArrowSkill","smokingBombSkill","treasureSkill","exchangeSkill","blinkSkill"] //
   },
   initEnemyPool: [{type:"slime",subtype:"R"},{type:"slime",subtype:"G"},{type:"slime",subtype:"Y"}],
+  initItemPool: ["gemR","gemG","gemY","gemB"],
   enemyList:["archer","ballista","catapult","centaur","chomper","fireElement","gargoyle","ghost","golem","killerBee","kobold","medusa","mimic","minotaur",
   "mummy","ooze","orcChief","orge","ratman","scorpion","skeleton","shaman","snake","summoner","treant","troll","vampire"],
   // enemyList:["centaur"],
@@ -88,7 +89,7 @@ module.exports = {
     this.roomEntry = entry;
   },
   reset(){
-    this.ITEM_POOL = ["potion"]
+    this.ITEM_POOL = this.initItemPool;
     this.BASE_HP = this.ORIGIN_BASE_HP;
     this.INIT_HP = null;
     this.HP_PER_LEVEL = this.ORIGIN_HP_PER_LEVEL;

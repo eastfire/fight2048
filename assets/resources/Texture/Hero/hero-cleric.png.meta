@@ -1,13 +1,14 @@
 {
-  "ver": "2.2.0",
+  "ver": "2.3.1",
   "uuid": "b1739eb5-3968-4d1d-a32c-c98b7ebd89f6",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
+  "platformSettings": {},
   "subMetas": {
     "hero-cleric": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "ce778539-15bd-432c-8d58-d6b5ba64f834",
       "rawTextureUuid": "b1739eb5-3968-4d1d-a32c-c98b7ebd89f6",
       "trimType": "auto",

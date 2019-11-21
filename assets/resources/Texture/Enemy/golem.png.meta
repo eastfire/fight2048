@@ -1,13 +1,14 @@
 {
-  "ver": "2.2.0",
+  "ver": "2.3.1",
   "uuid": "f99c8e79-35ca-4949-bb42-4d17836d8190",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
+  "platformSettings": {},
   "subMetas": {
     "golem": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "d777eefc-0ace-42cf-baf9-4561c08e2578",
       "rawTextureUuid": "f99c8e79-35ca-4949-bb42-4d17836d8190",
       "trimType": "auto",

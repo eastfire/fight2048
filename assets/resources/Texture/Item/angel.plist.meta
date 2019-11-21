@@ -9,7 +9,7 @@
   "type": "Texture Packer",
   "subMetas": {
     "angel0stand0.png": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "2d073505-32f6-43e7-ac82-380cda30ca8e",
       "rawTextureUuid": "4817c05d-b802-4941-93a6-82dcb4f90774",
       "trimType": "auto",
@@ -31,7 +31,7 @@
       "subMetas": {}
     },
     "angel1stand0.png": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "4b5f3a56-faaf-489b-8afa-3a46489cacff",
       "rawTextureUuid": "4817c05d-b802-4941-93a6-82dcb4f90774",
       "trimType": "auto",
@@ -53,7 +53,7 @@
       "subMetas": {}
     },
     "angel2stand0.png": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "5c3b3a8c-c0aa-4ff8-a56a-54df222a306d",
       "rawTextureUuid": "4817c05d-b802-4941-93a6-82dcb4f90774",
       "trimType": "auto",
@@ -75,7 +75,7 @@
       "subMetas": {}
     },
     "angel3stand0.png": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "b6db5553-3e8c-4a30-a8bd-572ccf7388de",
       "rawTextureUuid": "4817c05d-b802-4941-93a6-82dcb4f90774",
       "trimType": "auto",

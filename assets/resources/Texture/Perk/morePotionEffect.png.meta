@@ -1,13 +1,14 @@
 {
-  "ver": "2.2.0",
+  "ver": "2.3.1",
   "uuid": "e263ff05-b5b6-4e2d-b3ad-bac1d6c28360",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
+  "platformSettings": {},
   "subMetas": {
     "morePotionEffect": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "fdba19be-188d-4631-8091-f7e35528321a",
       "rawTextureUuid": "e263ff05-b5b6-4e2d-b3ad-bac1d6c28360",
       "trimType": "auto",

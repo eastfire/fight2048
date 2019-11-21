@@ -1,13 +1,14 @@
 {
-  "ver": "2.2.0",
+  "ver": "2.3.1",
   "uuid": "740921f5-405f-46b3-9f5c-1cdd2e5d3875",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
+  "platformSettings": {},
   "subMetas": {
     "medusa": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "b920e2ad-37c1-4a0a-bbc8-4c07471ea75a",
       "rawTextureUuid": "740921f5-405f-46b3-9f5c-1cdd2e5d3875",
       "trimType": "auto",

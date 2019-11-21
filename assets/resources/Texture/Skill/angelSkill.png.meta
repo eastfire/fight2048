@@ -1,13 +1,14 @@
 {
-  "ver": "2.2.0",
+  "ver": "2.3.1",
   "uuid": "b7f467e1-e170-42fb-88b5-f98c78588fbb",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
+  "platformSettings": {},
   "subMetas": {
     "angelSkill": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "342156ac-deac-464e-8970-d3e42c324f87",
       "rawTextureUuid": "b7f467e1-e170-42fb-88b5-f98c78588fbb",
       "trimType": "auto",

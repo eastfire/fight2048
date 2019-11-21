@@ -1,13 +1,14 @@
 {
-  "ver": "2.2.0",
+  "ver": "2.3.1",
   "uuid": "0a1d6a62-9b48-438e-a105-cd04f135f40a",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
+  "platformSettings": {},
   "subMetas": {
     "unlock-cleric": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "94428173-c165-4f3e-b964-b6b55b5e7ead",
       "rawTextureUuid": "0a1d6a62-9b48-438e-a105-cd04f135f40a",
       "trimType": "custom",

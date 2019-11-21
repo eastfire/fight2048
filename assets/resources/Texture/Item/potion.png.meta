@@ -1,13 +1,14 @@
 {
-  "ver": "2.2.0",
+  "ver": "2.3.1",
   "uuid": "1cdeb3bd-8f8f-4ab0-bb7b-479070fbeb1f",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
+  "platformSettings": {},
   "subMetas": {
     "potion": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "0e504554-e838-4f30-97d4-64633cbf180c",
       "rawTextureUuid": "1cdeb3bd-8f8f-4ab0-bb7b-479070fbeb1f",
       "trimType": "auto",

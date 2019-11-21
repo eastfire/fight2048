@@ -1,13 +1,14 @@
 {
-  "ver": "2.2.0",
+  "ver": "2.3.1",
   "uuid": "ca93d05b-39d1-4954-828c-78b9c299ef83",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
+  "platformSettings": {},
   "subMetas": {
     "manaPotion": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "6b3dcfca-e9bf-4e78-92a9-be23a8a8a719",
       "rawTextureUuid": "ca93d05b-39d1-4954-828c-78b9c299ef83",
       "trimType": "auto",

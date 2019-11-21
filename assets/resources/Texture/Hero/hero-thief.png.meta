@@ -1,13 +1,14 @@
 {
-  "ver": "2.2.0",
+  "ver": "2.3.1",
   "uuid": "6443b697-354d-420d-b6a5-05b35aae5342",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
+  "platformSettings": {},
   "subMetas": {
     "hero-thief": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "b0965143-1084-4aeb-bce5-d98157627e41",
       "rawTextureUuid": "6443b697-354d-420d-b6a5-05b35aae5342",
       "trimType": "auto",

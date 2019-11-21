@@ -1,13 +1,14 @@
 {
-  "ver": "2.2.0",
+  "ver": "2.3.1",
   "uuid": "a92e152b-b4c1-4088-a9b7-8b93afae8f59",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
+  "platformSettings": {},
   "subMetas": {
     "scorpion": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "2ab52ae4-137c-42c5-9621-2ed977cb1033",
       "rawTextureUuid": "a92e152b-b4c1-4088-a9b7-8b93afae8f59",
       "trimType": "auto",

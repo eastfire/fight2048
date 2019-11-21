@@ -9,7 +9,7 @@
   "type": "Texture Packer",
   "subMetas": {
     "hero-thief0stand0.png": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "c8b1b6f6-35a3-41b7-b6b9-95df762f1383",
       "rawTextureUuid": "6443b697-354d-420d-b6a5-05b35aae5342",
       "trimType": "auto",
@@ -31,7 +31,7 @@
       "subMetas": {}
     },
     "hero-thief1stand0.png": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "0edeca4c-8ec0-440a-8b9e-e7f450d6e88a",
       "rawTextureUuid": "6443b697-354d-420d-b6a5-05b35aae5342",
       "trimType": "auto",
@@ -53,7 +53,7 @@
       "subMetas": {}
     },
     "hero-thief2stand0.png": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "f5a1b58c-8cb6-4065-824b-1dfc5cede596",
       "rawTextureUuid": "6443b697-354d-420d-b6a5-05b35aae5342",
       "trimType": "auto",
@@ -75,7 +75,7 @@
       "subMetas": {}
     },
     "hero-thief3stand0.png": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "b81566fc-33f5-4063-82f4-44a5ce8d391d",
       "rawTextureUuid": "6443b697-354d-420d-b6a5-05b35aae5342",
       "trimType": "auto",

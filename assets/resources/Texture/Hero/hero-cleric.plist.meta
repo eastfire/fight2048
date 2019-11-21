@@ -9,7 +9,7 @@
   "type": "Texture Packer",
   "subMetas": {
     "hero-cleric0stand0.png": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "9600e9a9-9853-41f5-9511-b652fec0462c",
       "rawTextureUuid": "b1739eb5-3968-4d1d-a32c-c98b7ebd89f6",
       "trimType": "auto",
@@ -31,7 +31,7 @@
       "subMetas": {}
     },
     "hero-cleric1stand0.png": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "3427aaf3-9315-44cc-8481-888d5c115c9e",
       "rawTextureUuid": "b1739eb5-3968-4d1d-a32c-c98b7ebd89f6",
       "trimType": "auto",
@@ -53,7 +53,7 @@
       "subMetas": {}
     },
     "hero-cleric2stand0.png": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "2193f2ef-47c4-46cb-b218-d14391064315",
       "rawTextureUuid": "b1739eb5-3968-4d1d-a32c-c98b7ebd89f6",
       "trimType": "auto",
@@ -75,7 +75,7 @@
       "subMetas": {}
     },
     "hero-cleric3stand0.png": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "63ec3cfd-54bc-4f80-b6ca-ffc779612e7d",
       "rawTextureUuid": "b1739eb5-3968-4d1d-a32c-c98b7ebd89f6",
       "trimType": "auto",

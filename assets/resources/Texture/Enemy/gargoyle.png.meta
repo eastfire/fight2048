@@ -1,13 +1,14 @@
 {
-  "ver": "2.2.0",
+  "ver": "2.3.1",
   "uuid": "70d41781-89fd-4a57-9f3c-87522637492b",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
+  "platformSettings": {},
   "subMetas": {
     "gargoyle": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "76ec7f74-2127-40d2-b6c1-9565925b517d",
       "rawTextureUuid": "70d41781-89fd-4a57-9f3c-87522637492b",
       "trimType": "auto",

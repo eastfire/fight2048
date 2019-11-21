@@ -1,13 +1,14 @@
 {
-  "ver": "2.2.0",
+  "ver": "2.3.1",
   "uuid": "0bc6b0fa-ecda-4650-9768-c13d79ea51a3",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
+  "platformSettings": {},
   "subMetas": {
     "meteorShowerSkill": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "91a4fd62-b69e-4263-ab38-4798a54318d5",
       "rawTextureUuid": "0bc6b0fa-ecda-4650-9768-c13d79ea51a3",
       "trimType": "auto",

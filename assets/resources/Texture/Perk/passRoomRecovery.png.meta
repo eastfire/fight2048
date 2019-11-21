@@ -1,13 +1,14 @@
 {
-  "ver": "2.2.0",
+  "ver": "2.3.1",
   "uuid": "a5b8c709-f30d-4422-a367-961e28c36263",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
+  "platformSettings": {},
   "subMetas": {
     "passRoomRecovery": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "042d73db-4a98-4701-b72d-40872b737048",
       "rawTextureUuid": "a5b8c709-f30d-4422-a367-961e28c36263",
       "trimType": "auto",

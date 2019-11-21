@@ -9,7 +9,7 @@
   "type": "Texture Packer",
   "subMetas": {
     "hero-normal0stand0.png": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "128474a8-5c99-404f-bfff-ad82f27d9f0e",
       "rawTextureUuid": "f5c99ac2-a611-4fa1-b84b-fd08c06be45b",
       "trimType": "auto",
@@ -31,7 +31,7 @@
       "subMetas": {}
     },
     "hero-normal1stand0.png": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "b69a19ff-ebd3-43ce-b70a-91a11664e3b3",
       "rawTextureUuid": "f5c99ac2-a611-4fa1-b84b-fd08c06be45b",
       "trimType": "auto",
@@ -53,7 +53,7 @@
       "subMetas": {}
     },
     "hero-normal2stand0.png": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "2c3b4bec-d18e-42f4-b0c2-fe6c07dab180",
       "rawTextureUuid": "f5c99ac2-a611-4fa1-b84b-fd08c06be45b",
       "trimType": "auto",
@@ -75,7 +75,7 @@
       "subMetas": {}
     },
     "hero-normal3stand0.png": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "81a018ff-d4ff-4720-b7fe-2b029a9061b0",
       "rawTextureUuid": "f5c99ac2-a611-4fa1-b84b-fd08c06be45b",
       "trimType": "auto",

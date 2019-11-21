@@ -1,13 +1,14 @@
 {
-  "ver": "2.2.0",
+  "ver": "2.3.1",
   "uuid": "6e3ae588-8332-416b-8fc8-7048126b66e9",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
+  "platformSettings": {},
   "subMetas": {
     "iceWall": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "be06887c-56ca-4181-b52e-21f6613d8944",
       "rawTextureUuid": "6e3ae588-8332-416b-8fc8-7048126b66e9",
       "trimType": "auto",

@@ -521,24 +521,24 @@ cc.Class({
       if ( Global.roomEntry.initMovable ) {
         Global.roomEntry.initMovable.forEach(function(entry){
           if ( entry.isEnemy ) {
-            var enemy = this.enemyFactory.generateOneEnemy(entry.position.x, entry.position.y, {
-              type: entry.type, subtype: entry.subtype
-            }, entry.level || 1);
-            if ( entry.status && entry.status.length ) {
-              setTimeout(()=>{
-                entry.status.forEach(function(opt){
-                  var statusName = opt;
-                  var duration = -1;
-                  var extra = null;
-                  if ( typeof opt === "object" ) {
-                    duration = opt.duration || duration;
-                    extra = opt.extra;
-                    statusName = opt.name;
-                  }
-                  enemy.getComponent("movable").gainStatus(statusName,duration, extra)
-                },this)
-              },10);
-            }
+            // var enemy = this.enemyFactory.generateOneEnemy(entry.position.x, entry.position.y, {
+            //   type: entry.type, subtype: entry.subtype
+            // }, entry.level || 1);
+            // if ( entry.status && entry.status.length ) {
+            //   setTimeout(()=>{
+            //     entry.status.forEach(function(opt){
+            //       var statusName = opt;
+            //       var duration = -1;
+            //       var extra = null;
+            //       if ( typeof opt === "object" ) {
+            //         duration = opt.duration || duration;
+            //         extra = opt.extra;
+            //         statusName = opt.name;
+            //       }
+            //       enemy.getComponent("movable").gainStatus(statusName,duration, extra)
+            //     },this)
+            //   },10);
+            // }
           } else if ( entry.isItem ) {
             this.itemFactory.generateOneItem(entry.position, entry.type, entry.level || 1)
           }
@@ -578,7 +578,7 @@ cc.Class({
     generateEnemy(){
       this._phase = "generateEnemy"
 
-      this.enemyFactory.generateEnemy();
+      // this.enemyFactory.generateEnemy();
       this.itemFactory.generateItemOnTurnStar();
     },
     afterGenEnemy(){

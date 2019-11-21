@@ -1,13 +1,14 @@
 {
-  "ver": "2.2.0",
+  "ver": "2.3.1",
   "uuid": "12dd96a6-5f9f-471e-8d07-c4d0cee19c96",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
+  "platformSettings": {},
   "subMetas": {
     "bossHydra": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "e8abced2-e722-4cea-b98e-1be619def0c9",
       "rawTextureUuid": "12dd96a6-5f9f-471e-8d07-c4d0cee19c96",
       "trimType": "auto",
