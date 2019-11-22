@@ -52,7 +52,7 @@ cc.Class({
       this.initMovableMap();
       this.initItem();
       this.initStatusPrefabMap()
-      this.initHero();
+      // this.initHero();
       this.initMovable();
 
       this.initTutorial();
@@ -254,13 +254,13 @@ cc.Class({
 
     shift(direction){
       this._phase = "movePhase";
-      if ( this.hero.getComponent("hero").getStatus("dizzy") )
-        direction = Common.REVERSE_DIRECTIONS[direction]
+      // if ( this.hero.getComponent("hero").getStatus("dizzy") )
+      //   direction = Common.REVERSE_DIRECTIONS[direction]
       var maxStep = this._realShift(direction);
       this.scheduleOnce(()=>{
-        if ( this.hero.getComponent("hero").checkDead() ) {
-          return;
-        }
+        // if ( this.hero.getComponent("hero").checkDead() ) {
+        //   return;
+        // }
         this.resolveMergeEffect();
       }, Global.STEP_TIME * (maxStep)+0.02 )
     },
@@ -273,10 +273,11 @@ cc.Class({
         }
       },this);
       this.scheduleOnce(()=>{
-        if ( this.hero.getComponent("hero").checkDead() ) {
-          return;
-        }
-        this.heroAttack();
+        // if ( this.hero.getComponent("hero").checkDead() ) {
+        //   return;
+        // }
+        // this.heroAttack();
+        this.turnEnd();
       },this.delayPhaseTime)
     },
     setAcceptInput(accept) {
@@ -427,23 +428,23 @@ cc.Class({
         tile.onTurnEnd();
       },this)
       Storage.saveStatistics()
-      if ( this.hero.getComponent("hero").checkDead() ) {
-        return;
-      }
+      // if ( this.hero.getComponent("hero").checkDead() ) {
+      //   return;
+      // }
       if ( this.delayPhaseTime ) {
         this.scheduleOnce(()=>{
-          if ( this.hero.getComponent("hero").checkLevelUp() ) {
+          // if ( this.hero.getComponent("hero").checkLevelUp() ) {
 
-          } else {
+          // } else {
             this.afterTurnEnd();
-          }
+          // }
         },this.delayPhaseTime)
       } else {
-        if ( this.hero.getComponent("hero").checkLevelUp() ) {
+        // if ( this.hero.getComponent("hero").checkLevelUp() ) {
 
-        } else {
+        // } else {
           this.afterTurnEnd();
-        }
+        // }
       }
     },
     afterTurnEnd(){
@@ -461,7 +462,7 @@ cc.Class({
             this.initUI();
             this.initTiles()
             this.initMovableMap();
-            this.initHero();
+            // this.initHero();
             this.initMovable();
             this.initTutorial();
             this.scheduleOnce(this.turnStart, 0.1);
@@ -570,9 +571,9 @@ cc.Class({
         tile.onTurnStart();
       },this)
       this.generateEnemy();
-      if ( this.hero.getComponent("hero").checkDead() ) {
-        return;
-      }
+      // if ( this.hero.getComponent("hero").checkDead() ) {
+      //   return;
+      // }
     },
 
     generateEnemy(){
@@ -580,6 +581,7 @@ cc.Class({
 
       // this.enemyFactory.generateEnemy();
       this.itemFactory.generateItemOnTurnStar();
+      Global.currentRoom.afterGenEnemy();
     },
     afterGenEnemy(){
       this._phase="waitUserInput";

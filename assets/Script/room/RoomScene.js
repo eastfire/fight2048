@@ -146,7 +146,7 @@ cc.Class({
 
         var deltaX = currentX - this.prevX;
         var deltaY = currentY - this.prevY;
-        var isDizzy = Global.currentRoom.hero.getComponent("hero").getStatus("dizzy");
+        var isDizzy = false;//Global.currentRoom.hero.getComponent("hero").getStatus("dizzy");
         if ( deltaY > SWIPE_THRESHOLD && Math.abs(deltaX) < Math.abs(deltaY) ) {
           this.shiftArrowSprite.node.opacity = 100;
           this.shiftArrowSprite.node.rotation=isDizzy? 180:0;
