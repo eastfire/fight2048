@@ -2,13 +2,17 @@ const Global = require("global");
 const Storage = require("storage");
 const Common = require("common");
 const Perks = require("perkEntry");
+const RoomEntry = require("roomEntry")
+import {cloneDeep} from "lodash";
 
 cc.Class({
     extends: cc.Component,
 
     properties: {
-      heroTypeOptions: [cc.Sprite],
-      selectedPerkList:cc.Layout,
+      gemTypeSelect: cc.ToggleContainer,
+      generateSelect: cc.ToggleContainer,
+      thresholdSelect: cc.ToggleContainer,
+      mapSelect: cc.ToggleContainer,
       loading: cc.Prefab,
     },
 
@@ -18,48 +22,38 @@ cc.Class({
 
     start () {
       Global.ModeSelectScene = this;
-
-      this.perkMap = {};
-      Perks.perks.forEach(function(entry){
-        this.perkMap[entry.name] = entry;
-      },this)
-
-      this.heroTypeOptions.forEach(function(sprite){
-        sprite.getComponent("heroOption").validate()
-      },this)
-      this.selectHeroType(Global.currentHeroType);
-
-      this.selectedPerkList.node.on("touchend",this.pickPerk,this)
+      this.gemType = 4;
+      this.generateGem = 2;
+      this.threshold = 2;
+      this.map = "5x5";
     },
 
-    selectHeroType(heroType){
-      this.heroTypeOptions.forEach(function(sprite){
-        if ( sprite.getComponent("heroOption").heroType == heroType ) {
-          sprite.node.runAction(cc.scaleTo(Global.CHOICE_SELECT_TIME, 1.5));
-        } else {
-          sprite.node.runAction(cc.scaleTo(Global.CHOICE_SELECT_TIME, 1));
-        }
-      }, this)
-      Global.currentHeroType = heroType;
-      this.refreshPerkSlot();
+    selectGemType(event, options){
+      this.gemType = options;
     },
-    refreshPerkSlot(){
-      var maxPerk = Storage.progress.maxPerk[Global.currentHeroType] || 1;
-      Global.selectedPerk.splice(maxPerk);
-      for ( var i = 0; i < maxPerk; i++ ){
-        var slot = this.selectedPerkList.node.children[i].getComponent("perkSlot")
-        slot.unlock();
-        if ( Global.selectedPerk[i] ){
-          slot.fill(Global.selectedPerk[i])
-        }
-      }
-      for ( var i = maxPerk; i < Global.MAX_PERK; i++ ){
-        var slot = this.selectedPerkList.node.children[i].getComponent("perkSlot");
-        slot.lock();
-        slot.empty()
-      }
+    selectGenerate(event, options){
+      this.generateGem = options;
     },
-    pickPerk(){
-      Common.loadScene("PerkScene",Global.MenuScene.node, Global.MenuScene.loading);
-    }
+    selectThreshold(event, options){
+      this.threshold = options;
+    },
+    selectMap(event, options){
+      this.map = options;
+    },
+
+    starGame(){
+    
+      Global.ModeSelectScene = null;
+      Global.reset();
+      Global.ITEM_POOL = cloneDeep(Global.initItemPool)
+
+      cc.log(Global.ITEM_POOL)
+      Global.ITEM_POOL.splice(this.gemType,10);
+      Global.GEM_PER_TURN = this.generateGem;
+      Global.DISAPPEAR_THRESHOLD = this.threshold;
+      cc.log(Global.ITEM_POOL)
+      cc.log(RoomEntry[this.map])
+      Global.loadRoomEntry(RoomEntry[this.map])
+      Common.loadScene("RoomScene",this.node, this.loading);
+    },
 });

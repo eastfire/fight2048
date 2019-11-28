@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/eastfire/CocosDungeon2048#readme",
   "dependencies": {
-    "leancloud-storage": "^3.12.0"
+    "leancloud-storage": "^3.12.0",
+    "lodash": "^4.17.15"
   }
 }

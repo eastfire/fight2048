@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "gemY",
+    "_name": "gemP",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -103,7 +103,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 64,
+      "width": 61,
       "height": 64
     },
     "_anchorPoint": {
@@ -153,7 +153,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "12e76b08-04e3-4712-80d3-549467eb8f3b"
+      "__uuid__": "adfa6df2-d2b5-43f7-86f2-4b3b32890169"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -175,7 +175,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "89529526-553f-439c-bf5a-da856a1f9610"
+      "__uuid__": "ccf94c06-6117-43af-9ae8-832dd33dd682"
     },
     "fileId": "f5Z6votr1M2LU4orbgRIEC",
     "sync": false
@@ -202,7 +202,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "89529526-553f-439c-bf5a-da856a1f9610"
+      "__uuid__": "ccf94c06-6117-43af-9ae8-832dd33dd682"
     },
     "fileId": "8boshtil9PNLzd/g2UM8Bp",
     "sync": false

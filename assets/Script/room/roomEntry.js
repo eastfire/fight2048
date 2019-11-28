@@ -150,6 +150,45 @@ module.exports = {
         //   forbid: true
         // }
       ]
+    },    
+  },
+  "4x4": {
+    name:"4x4",
+    tileSet: TileSet.tiles4x4,
+    initMovable: [
+    ],
+    initHero:{
+      position:{x:3,y:3},
+      status:[
+      ],
+      skill:[
+      ]
     },
   },
+  "5x5": {
+    name:"5x5",
+    tileSet: TileSet.tiles5x5,
+    initMovable: [
+    ],
+    initHero:{
+      position:{x:3,y:3},
+      status:[
+      ],
+      skill:[
+      ]
+    },
+  },
+  "6x6": {
+    name:"6x6",
+    tileSet: TileSet.tiles6x6,
+    initMovable: [
+    ],
+    initHero:{
+      position:{x:3,y:3},
+      status:[
+      ],
+      skill:[
+      ]
+    },
+  }
 }

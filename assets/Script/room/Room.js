@@ -156,16 +156,16 @@ cc.Class({
 
     click(x,y){
       if ( Global.roomEntry.isTutorial ) return;
-      var scale = this.node.scaleX
-      var tile = this.__tiles[0][0]
-      x = (x-cc.winSize.width/2)/scale - tile.node.x + Global.TILE_WIDTH/2
-      y = (y-cc.winSize.height/2-this.node.y)/scale - tile.node.y + Global.TILE_HEIGHT/2
-      var roomX = Math.floor( x / Global.TILE_WIDTH )
-      var roomY = Math.floor( y / Global.TILE_HEIGHT )
-      var movable = this.getMovableByPosition(roomX,roomY)
-      if ( movable ) {
-        movable.showDescDialog();
-      }
+      // var scale = this.node.scaleX
+      // var tile = this.__tiles[0][0]
+      // x = (x-cc.winSize.width/2)/scale - tile.node.x + Global.TILE_WIDTH/2
+      // y = (y-cc.winSize.height/2-this.node.y)/scale - tile.node.y + Global.TILE_HEIGHT/2
+      // var roomX = Math.floor( x / Global.TILE_WIDTH )
+      // var roomY = Math.floor( y / Global.TILE_HEIGHT )
+      // var movable = this.getMovableByPosition(roomX,roomY)
+      // if ( movable ) {
+      //   movable.showDescDialog();
+      // }
     },
 
     getTile(x,y){
@@ -261,17 +261,59 @@ cc.Class({
         // if ( this.hero.getComponent("hero").checkDead() ) {
         //   return;
         // }
-        this.resolveMergeEffect();
+
+        this.disappearBigList = [];
+        this.calculateDisappear();
+        this.resolveDisappear();
       }, Global.STEP_TIME * (maxStep)+0.02 )
     },
-    resolveMergeEffect(){
-      this._phase = "resolveMerge";
-      this.delayPhaseTime = 0;
+    checkType(movable,type, list){
+      if ( movable.type === type && !movable.isChecked ) {
+        if ( list ) {
+
+        } else {
+          list = [];
+          this.disappearBigList.push(list);
+        }        
+        list.push(movable);
+        movable.isChecked = true;
+        movable.positions.forEach((position)=>{
+          Common.INCREMENTS.forEach((increment)=>{
+            let x = position.x + increment.x;
+            let y = position.y + increment.y;
+            let m = this.getMovableByPosition(x,y);
+            if ( m ) {
+              this.checkType(m,type,list);
+            }
+          })
+        });
+      }
+    },
+    calculateDisappear(){
+      this.disappearBigList = [];
       this.foreachMovable(function(movable){
-        if ( movable.resolveMerge ) {
-          movable.resolveMerge()
+        movable.isChecked = false;
+        
+      })
+      
+      this.foreachMovable((movable)=>{
+        
+        this.checkType(movable,movable.type,null);
+      });
+    },
+    resolveDisappear(){
+      this._phase = "resolveDisappear";
+      this.delayPhaseTime = 0;
+      this.disappearBigList.forEach(list=>{
+        if ( list.length >= Global.DISAPPEAR_THRESHOLD ) {
+          list.forEach(movable=>{
+            //add attack
+            //add score
+            this.removeMovable(movable);
+          })
         }
-      },this);
+      })
+      
       this.scheduleOnce(()=>{
         // if ( this.hero.getComponent("hero").checkDead() ) {
         //   return;

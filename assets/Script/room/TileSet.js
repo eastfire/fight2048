@@ -199,6 +199,16 @@ module.exports = {
       [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],
       [wall_se,wall_e,wall_e,wall_e,wall_e,wall_e,wall_ne]
   ],
+  tiles6x6: [
+    [wall_sw,wall_w,wall_w,wall_w,wall_w,wall_w,wall_w,wall_nw],
+    [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],
+    [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],
+    [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],
+    [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],
+    [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],
+    [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],
+    [wall_se,wall_e,wall_e,wall_e,wall_e,wall_e,wall_e,wall_ne]
+  ]
 };
 
 var tiles5x4 = [
@@ -278,16 +288,7 @@ var tiles5x6 = [
     [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],
     [wall_se,wall_e,wall_e,wall_e,wall_e,wall_e,wall_e,wall_ne]
 ];
-var tiles6x6 = [
-    [wall_sw,wall_w,wall_w,wall_w,wall_w,wall_w,wall_w,wall_nw],
-    [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],
-    [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],
-    [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],
-    [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],
-    [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],
-    [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],
-    [wall_se,wall_e,wall_e,wall_e,wall_e,wall_e,wall_e,wall_ne]
-];
+
 var tiles7x6 = [
     [wall_sw,wall_w,wall_w,wall_w,wall_w,wall_w,wall_w,wall_nw],
     [wall_s,floor_n,floor_n,floor_n,floor_n,floor_n,floor_n,wall_n],

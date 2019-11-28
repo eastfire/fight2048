@@ -18,6 +18,9 @@ module.exports = {
   TILE_HEIGHT: 120,
   ROOM_PADDING: 20,
 
+  ORIGIN_DISAPPEAR_THRESHOLD: 3,
+  ORIGIN_GEM_PER_TURN: 3,
+
   ORIGIN_BASE_HP: 15,
   ORIGIN_HP_PER_LEVEL: 10,
   ORIGIN_SCORE_INFLATION_RATE: 20,
@@ -78,7 +81,8 @@ module.exports = {
     thief: ["eightArrowSkill","smokingBombSkill","treasureSkill","exchangeSkill","blinkSkill"] //
   },
   initEnemyPool: [{type:"slime",subtype:"R"},{type:"slime",subtype:"G"},{type:"slime",subtype:"Y"}],
-  initItemPool: ["gemR","gemG","gemY","gemB"],
+  initItemPool: ["gemR","gemG","gemY","gemB","gemW","gemP","gemO","gemBr","gemBl","gemI"],
+  // initItemPool: ["gemR","gemG","gemY","gemB"],
   enemyList:["archer","ballista","catapult","centaur","chomper","fireElement","gargoyle","ghost","golem","killerBee","kobold","medusa","mimic","minotaur",
   "mummy","ooze","orcChief","orge","ratman","scorpion","skeleton","shaman","snake","summoner","treant","troll","vampire"],
   // enemyList:["centaur"],
@@ -115,5 +119,7 @@ module.exports = {
     this.FORWARD_AFTER_KILL = false;
     this.MANY_SKILL = this.LESS_EXP_BELOW_6 = false;
     this.MORE_EXP_ABOVE_12 = 0;
+    this.DISAPPEAR_THRESHOLD = this.ORIGIN_DISAPPEAR_THRESHOLD;
+    this.GEM_PER_TURN = this.ORIGIN_GEM_PER_TURN;
   }
 }
