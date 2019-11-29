@@ -253,6 +253,7 @@ cc.Class({
     },
 
     shift(direction){
+      this.unschedule(this.turnTimeout);
       this._phase = "movePhase";
       // if ( this.hero.getComponent("hero").getStatus("dizzy") )
       //   direction = Common.REVERSE_DIRECTIONS[direction]
@@ -625,9 +626,15 @@ cc.Class({
       this.itemFactory.generateItemOnTurnStar();
       Global.currentRoom.afterGenEnemy();
     },
+    turnTimeout(){
+      this.setAcceptInput(false);
+      this.unschedule(this.turnTimeout);
+      this.turnEnd();
+    },
     afterGenEnemy(){
       this._phase="waitUserInput";
       this.setAcceptInput(true);
+      this.schedule(this.turnTimeout,Global.TURN_TIMEOUT);
     },
     heroAttack(){
       this._phase = "heroAttack"

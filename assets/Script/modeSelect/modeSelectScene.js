@@ -13,6 +13,7 @@ cc.Class({
       generateSelect: cc.ToggleContainer,
       thresholdSelect: cc.ToggleContainer,
       mapSelect: cc.ToggleContainer,
+      timeoutSelect: cc.ToggleContainer,
       loading: cc.Prefab,
     },
 
@@ -26,6 +27,7 @@ cc.Class({
       this.generateGem = 2;
       this.threshold = 2;
       this.map = "5x5";
+      this.timeout = 4;
     },
 
     selectGemType(event, options){
@@ -40,7 +42,9 @@ cc.Class({
     selectMap(event, options){
       this.map = options;
     },
-
+    selectTimeout(event, options){
+      this.timeout = options;
+    },
     starGame(){
     
       Global.ModeSelectScene = null;
@@ -51,8 +55,8 @@ cc.Class({
       Global.ITEM_POOL.splice(this.gemType,10);
       Global.GEM_PER_TURN = this.generateGem;
       Global.DISAPPEAR_THRESHOLD = this.threshold;
-      cc.log(Global.ITEM_POOL)
-      cc.log(RoomEntry[this.map])
+      Global.TURN_TIMEOUT = this.timeout;
+
       Global.loadRoomEntry(RoomEntry[this.map])
       Common.loadScene("RoomScene",this.node, this.loading);
     },

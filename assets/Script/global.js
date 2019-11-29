@@ -66,6 +66,8 @@ module.exports = {
 
   movablePrefabs:{},
 
+  ORIGIN_TURN_TIMEOUT: 4,
+
   basicSkill: ["coolingSkill","constitutionSkill","dexteritySkill","luckSkill"],
   // basicSkill: ["fireballSkill"],
   heroBasicSkill: {
@@ -121,5 +123,6 @@ module.exports = {
     this.MORE_EXP_ABOVE_12 = 0;
     this.DISAPPEAR_THRESHOLD = this.ORIGIN_DISAPPEAR_THRESHOLD;
     this.GEM_PER_TURN = this.ORIGIN_GEM_PER_TURN;
+    this.TURN_TIMEOUT = this.ORIGIN_TURN_TIMEOUT;
   }
 }
