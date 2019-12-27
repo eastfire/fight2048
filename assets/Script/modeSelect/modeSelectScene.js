@@ -3,7 +3,7 @@ const Storage = require("storage");
 const Common = require("common");
 const Perks = require("perkEntry");
 const RoomEntry = require("roomEntry")
-import {cloneDeep} from "lodash";
+import {sampleSize} from "lodash";
 
 cc.Class({
     extends: cc.Component,
@@ -23,11 +23,11 @@ cc.Class({
 
     start () {
       Global.ModeSelectScene = this;
-      this.gemType = 4;
-      this.generateGem = 2;
-      this.threshold = 2;
+      this.gemType = 5;
+      this.generateGem = 3;
+      this.threshold = 3;
       this.map = "5x5";
-      this.timeout = 4;
+      this.timeout = 3;
     },
 
     selectGemType(event, options){
@@ -49,15 +49,13 @@ cc.Class({
     
       Global.ModeSelectScene = null;
       Global.reset();
-      Global.ITEM_POOL = cloneDeep(Global.initItemPool)
 
-      cc.log(Global.ITEM_POOL)
-      Global.ITEM_POOL.splice(this.gemType,10);
+      Global.ITEM_POOL = sampleSize(Global.initItemPool, this.gemType);
       Global.GEM_PER_TURN = this.generateGem;
       Global.DISAPPEAR_THRESHOLD = this.threshold;
       Global.TURN_TIMEOUT = this.timeout;
 
       Global.loadRoomEntry(RoomEntry[this.map])
-      Common.loadScene("RoomScene",this.node, this.loading);
+      Common.loadScene("MainGameScene",this.node, this.loading);
     },
 });

@@ -50,7 +50,6 @@ cc.Class({
     },
       this)
     var number = Global.GEM_PER_TURN;
-cc.log(Global)
     var candidates = [];
     candidates = Common.sample(tiles, number);
 

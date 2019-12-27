@@ -121,21 +121,7 @@ cc.Class({
     n.x = n.y = 0;
     this.node.addChild(n)
 
-    cc.loader.loadResDir("Texture/Perk", cc.SpriteFrame, (err, res)=>{
-      cc.loader.loadResDir("Texture/Unlock", cc.SpriteFrame, (err, res)=>{
-        cc.loader.loadResDir("Texture/Skill", cc.SpriteFrame, (err, res)=>{
-          // if ( Storage.statistics.gameTime === 0 ) {
-          //   //first time game
-          //   Global.reset();
-          //   Global.currentHeroType = "normal"
-          //   Global.loadRoomEntry(RoomEntry.tutorial1)
-          //   cc.director.loadScene("RoomScene");
-          // } else {
-            Global.loadRoomEntry(RoomEntry.normal)
-            cc.director.loadScene("MenuScene");
-          // }
-        })
-      })
-    })
+    Global.loadRoomEntry(RoomEntry.normal)
+    cc.director.loadScene("MenuScene");    
   }
 });

@@ -9,6 +9,7 @@ const ItemFactory = require("itemFactory");
 const Global = require("global");
 const Storage = require("storage");
 const RoomEntry = require("roomEntry");
+const Effect = require("effect");
 
 cc.Class({
     extends: cc.Component,
@@ -17,11 +18,6 @@ cc.Class({
 
       tilePrefabs:[cc.Prefab],
       movablePrefabs:[cc.Prefab],
-      starPrefab:cc.Prefab,
-      cloudPrefab:cc.Prefab,
-      arrowPrefab:cc.Prefab,
-      stonePrefab:cc.Prefab,
-      fireballPrefab:cc.Prefab,
       statusPrefabs:[cc.Prefab],
       turn: {
         default: 1,
@@ -46,7 +42,6 @@ cc.Class({
       this.initMovablePrefabMap()
       this.initTilePrefabMap()
       this.initGenEnemyStrategy();
-      this.initUI();
       this.initTiles()
       this.initEvents();
       this.initMovableMap();
@@ -81,22 +76,6 @@ cc.Class({
       this.statusMap = {};
       for ( var i = 0; i < this.statusPrefabs.length; i++ ) {
         this.statusMap[this.statusPrefabs[i].name] = this.statusPrefabs[i]
-      }
-    },
-    initUI(){
-      if ( Global.roomEntry.hideHead ) {
-        Global.currentRoomScene.headLayout.active = false;
-        Global.currentRoomScene.moneyLabel.node.active = false;
-      } else {
-        Global.currentRoomScene.headLayout.active = true;
-        Global.currentRoomScene.moneyLabel.node.active = true;
-      }
-      if ( Global.roomEntry.hideSkill ) {
-        Global.currentRoomScene.skillSlotLayout.node.active = false;
-        Global.currentRoomScene.skillLayout.node.active = false;
-      } else {
-        Global.currentRoomScene.skillSlotLayout.node.active = true;
-        Global.currentRoomScene.skillLayout.node.active = true;
       }
     },
     initTiles() {
@@ -211,7 +190,7 @@ cc.Class({
       });
       this._movables.push(movable)
     },
-    removeMovable(movable){
+    removeMovable(movable, keep=false){
       movable.positions.forEach((position) => {
         if ( this.__movableMap[position.x][position.y] === movable )
           delete this.__movableMap[position.x][position.y];
@@ -222,7 +201,12 @@ cc.Class({
       } else {
         cc.warn("Cant find movable in this._movables");
       }
-      movable.destroy();
+      if ( keep ) {
+        movable.node.removeFromParent(false);
+        return movable; 
+      } else {
+        movable.destroy();
+      }
     },
 
     foreachMovable(callback, context){
@@ -310,7 +294,14 @@ cc.Class({
           list.forEach(movable=>{
             //add attack
             //add score
-            this.removeMovable(movable);
+            let gem = this.removeMovable(movable, true);
+            Global.currentRoomScene.effectLayer.addChild(gem.node);
+            gem.addComponent(Effect.HomingEffect);
+            gem.getComponent(Effect.HomingEffect).homingTo({
+              x:0,y:450
+            },{
+              x:Math.random()*600-300,y:Math.random()*600-300
+            })
           })
         }
       })
@@ -502,7 +493,6 @@ cc.Class({
             if ( Global.roomEntry.nextRoom ) {
               Global.loadRoomEntry(RoomEntry[Global.roomEntry.nextRoom])
             }
-            this.initUI();
             this.initTiles()
             this.initMovableMap();
             // this.initHero();

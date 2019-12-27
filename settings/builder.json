@@ -16,11 +16,7 @@
   },
   "encryptJs": true,
   "excludeScenes": [
-    "05faa0ff-f708-4da9-9ff3-321633275721",
-    "e4cb6afa-6a56-4f47-9d10-de830a22454b",
-    "fd54fc41-ad21-4f74-9ad3-4f9beb953fa7",
-    "a014e1b5-dcef-430e-b810-a6990776e0f7",
-    "69557d98-ad3b-4b5b-b636-cfafef4ad26e"
+    "c8ebc4bc-a7fd-4972-950e-20c58163f751"
   ],
   "fb-instant-games": {},
   "includeSDKBox": true,
@@ -46,7 +42,7 @@
   "webOrientation": "auto",
   "wechatgame": {
     "REMOTE_SERVER_ROOT": "",
-    "appid": "wxbac721020081004e",
+    "appid": "wxf3982b5cac23185c",
     "orientation": "portrait",
     "subContext": ""
   },

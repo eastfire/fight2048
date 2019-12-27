@@ -26,12 +26,7 @@ cc.Class({
 
     Global.reset();
   },  
-  starGame(){
-    
-    Global.ModeSelectScene = null;
-
-    Common.loadScene("RoomScene",this.node, this.loading);
-  },
+  
   loadMovablePrefabs(){
 
   }

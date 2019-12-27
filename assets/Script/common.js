@@ -274,9 +274,9 @@ var distance = function(p1,p2){
 }
 
 var loadScene = function(sceneName, loadingParent, loadingPrefab, callback){
-  var n = cc.instantiate(loadingPrefab);
-  n.x = n.y = 0;
-  loadingParent.addChild(n)
+//   var n = cc.instantiate(loadingPrefab);
+//   n.x = n.y = 0;
+//   loadingParent.addChild(n)
   cc.director.loadScene(sceneName, callback);
 }
 

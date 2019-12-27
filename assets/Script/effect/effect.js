@@ -1,4 +1,5 @@
 const Global = require("global");
+const Movable = require("movable");
 
 var labelNodePool = new cc.NodePool();
 var arrowNodePool = new cc.NodePool();
@@ -262,6 +263,65 @@ var gainStarInMenu = function(opt){
   }
 }
 
+
+const HomingEffect = cc.Class({
+  extends: cc.Component,
+
+  homingTo(position, initVelocity){
+    this.toPosition = position;
+    this.velocity = initVelocity;
+    this.maxVelocity = 2400;
+    this.maxAcc= 2400;
+  },
+
+  update(dt){
+    if (!this.toPosition) return;
+    let node = this.getComponent(Movable).node;
+    let dx = node.x - this.toPosition.x;
+    let dy = node.y - this.toPosition.y;
+    let distance = Math.sqrt(dx*dx+dy*dy);
+    distance = Math.max(10,distance);
+    let acc = Math.min(this.maxAcc, 1000000/distance);
+    
+    let ax = -acc*dx/distance;
+    let ay = -acc*dy/distance;
+//TODO max speed
+    this.velocity.x += ax*dt;
+    this.velocity.y += ay*dt;
+
+    this.velocity.x *= 1-5/distance;
+    this.velocity.y *= 1-5/distance
+
+    let absV = Math.sqrt(this.velocity.x*this.velocity.x+this.velocity.y*this.velocity.y)
+    let realV = Math.min(this.maxVelocity, absV);
+    let rate = realV / absV;
+    if (realV===this.maxAcc){
+      cc.log("maxV")
+    }
+    node.x += this.velocity.x*dt*rate;
+    node.y += this.velocity.y*dt*rate;
+    
+    if ( Math.abs(node.x - this.toPosition.x) < 15 && Math.abs(node.y-this.toPosition.y)<15){
+      this.node.destroy();
+    }
+  }
+})
+
+const gravityTo=function(opt) {
+  var cloneFrom = cc.clone(opt.movingNode);
+  var fromParentNode = opt.fromParentNode;
+  var toPosition = opt.toPosition;
+  var toParentNode = opt.toParentNode;
+  var effectParentNode = opt.effectParentNode;
+  var context = opt.context;
+
+  let worldPos = fromParentNode.convertToWorldSpaceAR(opt.movingNode.position);
+  let viewPos = effectParentNode.convertToNodeSpaceAR(worldPos);
+  let destPos = effectParentNode.convertToNodeSpaceAR(toParentNode.convertToWorldSpaceAR(toPosition));
+  effectParentNode.addChild(cloneFrom)
+  cloneFrom.position = viewPos;
+}
+
 module.exports = {
   getLabelEffectPosition,
   labelEffect,
@@ -271,4 +331,5 @@ module.exports = {
   gainStarInRoom,
   useStarInRoom,
   gainStarInMenu,
+  HomingEffect
 }

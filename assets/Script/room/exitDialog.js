@@ -41,13 +41,13 @@ cc.Class({
         Common.loadScene("MenuScene", Global.currentRoomScene.node, Global.loading)
       },this)
     ))
-    Global.currentRoom.setAcceptInput(true);
+    // Global.currentRoom.setAcceptInput(true);
   },
   restartGame(){
     this.node.runAction(cc.sequence(
       cc.fadeOut(Global.DIALOG_EXIT_TIME),
       cc.callFunc(function(){
-        Common.loadScene("RoomScene", Global.currentRoomScene.node, Global.loading)
+        Common.loadScene("MainGameScene", Global.currentRoomScene.node, Global.loading)
       },this)
     ))
   },

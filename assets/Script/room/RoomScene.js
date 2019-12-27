@@ -1,10 +1,7 @@
 const Room = require("Room");
-const Skill = require("skill");
 const Common = require("common");
 const Global = require("global");
-const ChoiceFactory = require("choiceFactory")
 const Storage = require("storage");
-const AdProvider = require("wxAdProvider")
 
 const KEY_LEFT = 37;
 const KEY_UP = 38;
@@ -24,61 +21,15 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-      scoreLabel: cc.Label,
       turnLabel: cc.Label,
-      headLayout: cc.Node,
-      moneyLabel: cc.Label,
-      lifeLabel: cc.Label,
-      hpBar: cc.ProgressBar,
-      levelLabel: cc.Label,
-      expLabel: cc.Label,
       room: Room,
-      skillLayout: cc.Layout,
-      skillSlotFrame:  cc.SpriteFrame,
-      skillSlotLayout: cc.Layout,
-      skillPrefab: cc.Prefab,
       effectLayer: cc.Node,
-      dyingIndicator: cc.Sprite,
       exitButton: cc.Button,
 
-      score:{
-        default: "",
-        notify(oldValue){
-          if ( oldValue == this.score ) return;
-          this.scoreLabel.string = this.score;
-        },
-        visible: false
-      },
-      star: {
-        default: 0,
-        notify(oldValue){
-          if ( oldValue == this.star ) return;
-          Storage.saveMoney(this.star)
-          this.moneyLabel.string = this.star;
-        },
-        visible: false
-      },
-      descDialog: cc.Prefab,
       gameOverDialog: cc.Prefab,
       dieDialog: cc.Prefab,
-      skillDescDialog: cc.Prefab,
-      heroDescDialog: cc.Prefab,
       shiftArrowSprite: cc.Sprite,
       exitDialog: cc.Prefab,
-      loading: cc.Prefab,
-      music:{
-        type: cc.AudioClip,
-        default: null
-      },
-      bossMusic:{
-        type: cc.AudioClip,
-        default: null
-      },
-      stepSound:{
-        type: cc.AudioClip,
-        default: null
-      },
-      tutorial:cc.Prefab,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -86,12 +37,7 @@ cc.Class({
     onLoad () {
       Global.currentRoomScene = this;
       Global.currentRoom = this.room;
-      Global.loading = this.loading;
-      this.skill = [];
-
       this.initEvent();
-      this.initChoicePool()
-      this.initSkill();
     },
 
     onDestroy(){
@@ -105,20 +51,10 @@ cc.Class({
       cc.audioEngine.stopMusic();
     },
     start () {
-      this.score = 0;
-      this.star = Storage.star;
-      cc.audioEngine.playMusic(this.music, true);
-
-      var adProvider = new AdProvider();
-      adProvider.initBanner();
-      adProvider.showBanner();
     },
     gainScore(score) {
-      if ( Global.roomEntry.isTutorial ) return;
-      this.score = Math.round(this.score+score);
     },
     gainStar(star){
-      this.star += star;
     },
     initEvent() {
       this.node.on('touchstart', ( event ) => {
@@ -197,121 +133,11 @@ cc.Class({
           }
         }
       });
-      this.room.node.on("PHASE:turnStart",()=>{
-        for ( var i in this.skills ) {
-          this.skills[i].getComponent("skill").onTurnStart()
-        }
-      })
-      this.node.on("boss-generate",()=>{
-        cc.audioEngine.playMusic(this.bossMusic, true);
-        if ( !Storage.tutorial.off && !Storage.tutorial.bossGenerate) {
-          this.scheduleOnce(function(){
-            var tutorial = cc.instantiate(Global.currentRoomScene.tutorial)
-            Global.currentRoomScene.node.addChild(tutorial);
-            tutorial.getComponent("tutorial").setContent({
-              tutorialId:"bossGenerate",
-              text:"boss不会被你一击杀死\n如果普通攻击击中它的弱点，它就不会在本回合攻击你。",
-              pause: true,
-            })
-          },Global.GENERATE_TIME);
-        }
-      })
-      this.node.on("boss-die",()=>{
-        cc.audioEngine.playMusic(this.music, true);
-      })
+    
     },
 
     initRules() {
 
-    },
-    initChoicePool(){
-      Global.currentChoicePool = [];
-      Global.currentChoicePool.push(ChoiceFactory.getScore({number:500}))
-
-      Global.basicSkill.forEach(function(choice){
-        Global.currentChoicePool.push(ChoiceFactory.getSkill({name:choice, minSkillCount: choice == "coolingSkill"?1:0}))
-      },this)
-      if ( Global.MANY_SKILL ) {
-        ["normal","cleric","wizard","thief"].forEach(function(heroType){
-          if ( Storage.unlocked[heroType] ) {
-            Global.heroBasicSkill[heroType].forEach(function(choice){
-              Global.currentChoicePool.push(ChoiceFactory.getSkill({name:choice, minSkillCount: 0}))
-            },this)
-            Global.heroUnlockableSkill[heroType].forEach(function(choice){
-              if ( Storage.unlocked[choice] ) {
-                Global.currentChoicePool.push(ChoiceFactory.getSkill({name:choice, minSkillCount: 0}))
-              }
-            },this)
-          }
-        },this)
-      } else {
-        Global.heroBasicSkill[Global.currentHeroType].forEach(function(choice){
-          Global.currentChoicePool.push(ChoiceFactory.getSkill({name:choice, minSkillCount: 0}))
-        },this)
-        Global.heroUnlockableSkill[Global.currentHeroType].forEach(function(choice){
-          if ( Storage.unlocked[choice] ) {
-            Global.currentChoicePool.push(ChoiceFactory.getSkill({name:choice, minSkillCount: 0}))
-          }
-        },this)
-      }
-    },
-    initSkill(){
-      this.skills={};
-      var maxSkill = Storage.progress.maxSkill[Global.currentHeroType]||2;
-      for ( var i =0 ;i < maxSkill; i++ ) {
-        var slot = new cc.Node()
-        slot.addComponent(cc.Sprite)
-        slot.getComponent(cc.Sprite).spriteFrame = this.skillSlotFrame;
-        slot.y = 0;
-        slot.width = 120;
-        slot.height = 140;
-        this.skillSlotLayout.node.addChild(slot)
-      }
-    },
-    gainSkill(skillName){
-      var skill = cc.instantiate(this.skillPrefab)
-      skill.addComponent(skillName)
-      skill.y = 0;
-      skill.x = 0;
-      this.skills[skillName] = skill;
-      if ( skill.getComponent("skill").isPassive ) {
-        skill.removeComponent(cc.Node)
-        skill.removeComponent(cc.Layout)
-        skill.getComponent("skill").onGain();
-      } else {
-        this.skillLayout.node.addChild(skill)
-        skill.getComponent("skill").onGain();
-        if ( this.room.hero.getComponent("hero").getStatus("forbid") ) {
-          setTimeout(function(){
-            skill.getComponent("skill").forbid = true
-          },1)
-        }
-      }
-      return skill.getComponent("skill")
-    },
-    getSkill(skillName){
-      return this.skills[skillName];
-    },
-    activeSkillCount(){
-      return this.skillLayout.node.children.length
-      /*var count = 0;
-      for ( var i in this.skills ) {
-        if ( !this.skills[i].getComponent("skill").isPassive )
-          count++;
-      }
-      return count;*/
-    },
-    forEachSkill(callback, context){
-      for ( var i in this.skills ) {
-        callback.call(context, this.skills[i].getComponent("skill"))
-      }
-    },
-    forEachActiveSkill(callback, context){
-      for ( var i in this.skills ) {
-        var skill = this.skills[i].getComponent("skill")
-        if ( !skill.isPassive )
-          callback.call(context, skill)
-      }
     },
     gameOver(reason){
       var dialog = cc.instantiate(this.gameOverDialog)
@@ -327,21 +153,7 @@ cc.Class({
     },
 
     dying(isDying){
-      if ( isDying ) {
-        if ( this.dyingIndicator.node.active ) return;
-        this.dyingIndicator.node.active = true;
-        this.dyingIndicator.node.stopAllActions();
-        this.dyingIndicator.node.opacity = 0;
-        this.dyingIndicator.node.runAction(cc.repeatForever(
-          cc.sequence(
-            cc.fadeTo(1,55).easing(cc.easeIn(1)),
-            cc.fadeTo(1,0).easing(cc.easeOut(1))
-        )))
-      } else {
-        if ( !this.dyingIndicator.node.active ) return;
-        this.dyingIndicator.node.stopAllActions();
-        this.dyingIndicator.node.active = false;
-      }
+      
     }
     // update (dt) {},
 });

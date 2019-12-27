@@ -3,6 +3,7 @@
 module.exports = {
   currentRoom: null,
   currentRoomScene: null,
+  effectLayer: null,
 
   STEP_TIME: 0.13,
   GENERATE_TIME: 0.250,
@@ -66,7 +67,7 @@ module.exports = {
 
   movablePrefabs:{},
 
-  ORIGIN_TURN_TIMEOUT: 4,
+  ORIGIN_TURN_TIMEOUT: 3,
 
   basicSkill: ["coolingSkill","constitutionSkill","dexteritySkill","luckSkill"],
   // basicSkill: ["fireballSkill"],

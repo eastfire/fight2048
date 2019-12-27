@@ -141,54 +141,6 @@ var EnemyFactory = cc.Class({
     return Common.sample( this.enemyLevelPool);
   },
   maintain(turnNumber){
-    if ( (Global.currentRoom.turn+16) % Global.ENEMY_POOL_CHANGE_PER_TURN == 0) {
-      var monsterType;
-      var candidateEnemyPool = [];
-      var skillCount = Global.currentRoomScene.activeSkillCount()
-      this.waitingEnemyPool.forEach(function(monsterType){
-        var type = monsterType.type;
-        if ( skillCount <= 0 &&
-          //FIXME 改为更好的oo设计
-          (type === "gargoyle" || type === "kobold")) {
-          return;
-        }
-        for ( var i =0 ; i < this.enemyPool.length; i++ ) {
-          if ( this.enemyPool[i].type === type ) {
-            return;
-          }
-        }
-        candidateEnemyPool.push(monsterType)
-      },this);
-      if ( candidateEnemyPool.length <= 0 ) {
-        cc.warn("this.waitingEnemyPool is too small")
-        return;
-      }
-      monsterType = Common.sample(candidateEnemyPool)
-
-      if ( Global.MAX_ENEMY_TYPE_IN_FIELD > this.enemyPool.length ){
-        this.enemyPool.unshift( monsterType )
-      } else {
-        //replace a monster
-        this.enemyPool.pop();
-        this.enemyPool.unshift( monsterType )
-      }
-      cc.log(this.enemyPool)
-    }
-
-    if ( Global.currentRoom.turn % Global.ENEMY_LEVEL_POOL_CHANGE_PER_TURN == 0) {
-      this.enemyMaxLevel ++;
-      var minLevel = Math.max(1, this.enemyMaxLevel - Global.MAX_ENEMY_LEVEL_DIFF)
-      this.enemyLevelPool = [];
-      for ( var i = minLevel; i <= this.enemyMaxLevel; i++) {
-        for (var j = 0; j < i - minLevel + 1; j++){
-          this.enemyLevelPool.push(this.enemyMaxLevel-i+minLevel);
-        }
-      }
-      cc.log("this.enemyLevelPool"+this.enemyLevelPool)
-    }
-
-    if ( Global.currentRoom.turn % Global.ENEMY_NUNBER_CHANGE_PER_TURN == 0) {
-      this.enemyNumber = Math.min( this.enemyNumber+1, Global.MAX_GEN_ENEMY_NUMBER );
-    }
+    
   }
 })
